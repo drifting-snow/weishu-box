@@ -57,19 +57,22 @@ body.collapsed #app {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  -webkit-app-region: drag;
+  /* Native caption drag via JS → Win32; do NOT use -webkit-app-region here —
+     WebView2 without NonClientRegionSupport eats chrome events and never moves. */
   cursor: move;
   flex-shrink: 0;
+  user-select: none;
 }
 .brand {
   font-weight: 700;
   letter-spacing: 0.04em;
   font-size: 17px;
+  pointer-events: none;
 }
 .bar-actions {
   display: flex;
   gap: 8px;
-  -webkit-app-region: no-drag;
+  cursor: default;
 }
 .compliance {
   margin: 0;

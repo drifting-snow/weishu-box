@@ -946,6 +946,23 @@
     setStatus(on ? "可交互（穿透关）" : "穿透开 · 标题栏仍可点交互/隐");
   });
 
+  // Native Win32 caption drag — pywebview easy_drag / -webkit-app-region is
+  // unreliable on this WebView2 host (chrome events swallowed, no move).
+  (function bindNativeChromeDrag() {
+    const bar = $("drag-bar");
+    if (!bar) return;
+    bar.addEventListener("mousedown", (ev) => {
+      if (ev.button !== 0) return;
+      const t = ev.target;
+      if (t && t.closest && t.closest(".bar-actions, button, a, input, select, textarea, label")) {
+        return;
+      }
+      ev.preventDefault();
+      ev.stopPropagation();
+      call("start_drag", "panel");
+    });
+  })();
+
   window.addEventListener("pywebviewready", async () => {
     const cfg = await call("get_defaults");
     if (cfg) {
