@@ -1537,16 +1537,20 @@ class Api:
                     break
                 self._ensure_hwnd()
                 if self._hwnd:
-                    over = w32.cursor_in_window_chrome(self._hwnd, chrome_h=56)
-                    want_through = not over
-                    if want_through != last:
-                        try:
-                            w32.set_click_through(self._hwnd, enabled=want_through)
-                        except Exception:
-                            pass
-                        last = want_through
+                    # Skip style toggles while dragging — SetWindowPos /
+                    # WS_EX_TRANSPARENT mid-capture cancels window moves.
+                    if not w32.left_button_down():
+                        over = w32.cursor_in_window_chrome(self._hwnd, chrome_h=56)
+                        want_through = not over
+                        if want_through != last:
+                            try:
+                                w32.set_click_through(self._hwnd, enabled=want_through)
+                            except Exception:
+                                pass
+                            last = want_through
                 ticks += 1
-                # Game focus / resize can steal Z-order — refresh ~2Hz.
+                # Game focus / resize can steal Z-order — refresh ~2Hz,
+                # but never during an active drag (see set_topmost).
                 if ticks % 12 == 0:
                     self._reassert_topmost()
                 self._chrome_stop.wait(0.04)

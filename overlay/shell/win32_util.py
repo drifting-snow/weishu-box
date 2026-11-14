@@ -26,9 +26,9 @@ SWP_NOMOVE = 0x0002
 SWP_NOSIZE = 0x0001
 SWP_NOACTIVATE = 0x0010
 SWP_SHOWWINDOW = 0x0040
-SWP_FRAMECHANGED = 0x0020
 SW_HIDE = 0
 SW_SHOWNOACTIVATE = 4
+VK_LBUTTON = 0x01
 
 user32.FindWindowW.argtypes = [wintypes.LPCWSTR, wintypes.LPCWSTR]
 user32.FindWindowW.restype = wintypes.HWND
@@ -44,6 +44,8 @@ user32.SetWindowPos.argtypes = [
 user32.SetWindowPos.restype = wintypes.BOOL
 user32.IsWindow.argtypes = [wintypes.HWND]
 user32.IsWindow.restype = wintypes.BOOL
+user32.GetAsyncKeyState.argtypes = [ctypes.c_int]
+user32.GetAsyncKeyState.restype = ctypes.c_short
 
 MOD_ALT = 0x0001
 MOD_CONTROL = 0x0002
@@ -67,9 +69,25 @@ def find_window_by_title(title: str) -> Optional[int]:
     return int(hwnd)
 
 
-def set_topmost(hwnd: int) -> None:
-    """Force HWND_TOPMOST + WS_EX_TOPMOST (Hearthstone-box always-on-top)."""
+def left_button_down() -> bool:
+    """True while primary mouse button is held (drag / click in progress)."""
+    try:
+        return bool(user32.GetAsyncKeyState(VK_LBUTTON) & 0x8000)
+    except Exception:
+        return False
+
+
+def set_topmost(hwnd: int, *, force: bool = False) -> None:
+    """Force HWND_TOPMOST + WS_EX_TOPMOST (Hearthstone-box always-on-top).
+
+    Routine heartbeats must not call SetWindowPos while the user is dragging:
+    after the x64 HWND_TOPMOST fix, SetWindowPos actually succeeds and a 1Hz
+    (or faster) reassert with SWP_NOMOVE cancels pywebview easy_drag / caption
+    moves. Skip while LMB is down unless force=True (explicit style settle).
+    """
     if not hwnd or not user32.IsWindow(hwnd):
+        return
+    if not force and left_button_down():
         return
     # SetWindowLong* often clears the TOPMOST bit; put it back before Z-order.
     try:
@@ -78,6 +96,8 @@ def set_topmost(hwnd: int) -> None:
             _SetWindowLong(hwnd, GWL_EXSTYLE, ex | WS_EX_TOPMOST)
     except Exception:
         pass
+    # Z-order only — no SWP_SHOWWINDOW / SWP_FRAMECHANGED (those disrupt drag
+    # and NC layout on frameless WebView2 panels).
     user32.SetWindowPos(
         hwnd,
         HWND_TOPMOST,
@@ -85,7 +105,7 @@ def set_topmost(hwnd: int) -> None:
         0,
         0,
         0,
-        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_SHOWWINDOW | SWP_FRAMECHANGED,
+        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE,
     )
 
 
@@ -98,11 +118,14 @@ def set_layered_alpha(hwnd: int, alpha: int) -> None:
     _SetWindowLong(hwnd, GWL_EXSTYLE, ex | WS_EX_LAYERED | WS_EX_TOOLWINDOW)
     user32.SetLayeredWindowAttributes(hwnd, 0, alpha, LWA_ALPHA)
     # SetWindowLong can drop Z-order — reassert always-on-top.
-    set_topmost(hwnd)
+    set_topmost(hwnd, force=True)
 
 
 def set_click_through(hwnd: int, enabled: bool) -> None:
     if not hwnd:
+        return
+    # Do not toggle WS_EX_TRANSPARENT mid-drag — that drops mouse capture.
+    if left_button_down():
         return
     ex = _GetWindowLong(hwnd, GWL_EXSTYLE)
     ex |= WS_EX_LAYERED | WS_EX_TOOLWINDOW
@@ -114,7 +137,7 @@ def set_click_through(hwnd: int, enabled: bool) -> None:
         ex &= ~WS_EX_NOACTIVATE
     _SetWindowLong(hwnd, GWL_EXSTYLE, ex)
     # Changing WS_EX_* via SetWindowLong often loses HWND_TOPMOST.
-    set_topmost(hwnd)
+    set_topmost(hwnd, force=True)
 
 
 def cursor_in_window_chrome(hwnd: int, chrome_h: int = 48) -> bool:
