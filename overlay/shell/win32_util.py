@@ -15,14 +15,35 @@ WS_EX_LAYERED = 0x00080000
 WS_EX_TRANSPARENT = 0x00000020
 WS_EX_TOOLWINDOW = 0x00000080
 WS_EX_NOACTIVATE = 0x08000000
+WS_EX_TOPMOST = 0x00000008
 LWA_ALPHA = 0x2
-HWND_TOPMOST = -1
+# Must be pointer-sized ((HWND)-1). Plain Python -1 without SetWindowPos
+# argtypes zero-extends to 0xFFFFFFFF on x64 → ERROR_INVALID_WINDOW_HANDLE,
+# so style changes that drop TOPMOST never get reasserted (参谋 panel bug).
+HWND_TOPMOST = wintypes.HWND(-1)
+HWND_NOTOPMOST = wintypes.HWND(-2)
 SWP_NOMOVE = 0x0002
 SWP_NOSIZE = 0x0001
 SWP_NOACTIVATE = 0x0010
 SWP_SHOWWINDOW = 0x0040
+SWP_FRAMECHANGED = 0x0020
 SW_HIDE = 0
 SW_SHOWNOACTIVATE = 4
+
+user32.FindWindowW.argtypes = [wintypes.LPCWSTR, wintypes.LPCWSTR]
+user32.FindWindowW.restype = wintypes.HWND
+user32.SetWindowPos.argtypes = [
+    wintypes.HWND,
+    wintypes.HWND,
+    ctypes.c_int,
+    ctypes.c_int,
+    ctypes.c_int,
+    ctypes.c_int,
+    wintypes.UINT,
+]
+user32.SetWindowPos.restype = wintypes.BOOL
+user32.IsWindow.argtypes = [wintypes.HWND]
+user32.IsWindow.restype = wintypes.BOOL
 
 MOD_ALT = 0x0001
 MOD_CONTROL = 0x0002
@@ -41,15 +62,30 @@ else:
 
 def find_window_by_title(title: str) -> Optional[int]:
     hwnd = user32.FindWindowW(None, title)
-    return int(hwnd) if hwnd else None
+    if not hwnd:
+        return None
+    return int(hwnd)
 
 
 def set_topmost(hwnd: int) -> None:
-    if not hwnd:
+    """Force HWND_TOPMOST + WS_EX_TOPMOST (Hearthstone-box always-on-top)."""
+    if not hwnd or not user32.IsWindow(hwnd):
         return
+    # SetWindowLong* often clears the TOPMOST bit; put it back before Z-order.
+    try:
+        ex = int(_GetWindowLong(hwnd, GWL_EXSTYLE) or 0)
+        if not (ex & WS_EX_TOPMOST):
+            _SetWindowLong(hwnd, GWL_EXSTYLE, ex | WS_EX_TOPMOST)
+    except Exception:
+        pass
     user32.SetWindowPos(
-        hwnd, HWND_TOPMOST, 0, 0, 0, 0,
-        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_SHOWWINDOW,
+        hwnd,
+        HWND_TOPMOST,
+        0,
+        0,
+        0,
+        0,
+        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_SHOWWINDOW | SWP_FRAMECHANGED,
     )
 
 
@@ -284,7 +320,7 @@ def focus_hwnd(hwnd: int) -> bool:
                 SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW,
             )
             user32.SetWindowPos(
-                hwnd, -2, 0, 0, 0, 0,  # HWND_NOTOPMOST
+                hwnd, HWND_NOTOPMOST, 0, 0, 0, 0,
                 SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW,
             )
             ok = bool(user32.SetForegroundWindow(hwnd))

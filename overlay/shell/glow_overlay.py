@@ -21,7 +21,8 @@ WS_EX_TRANSPARENT = 0x00000020
 WS_EX_TOPMOST = 0x00000008
 WS_EX_TOOLWINDOW = 0x00000080
 WS_EX_NOACTIVATE = 0x08000000
-HWND_TOPMOST = -1
+# Pointer-sized ((HWND)-1); bare -1 breaks SetWindowPos on x64 without argtypes.
+HWND_TOPMOST = wintypes.HWND(-1)
 SWP_SHOWWINDOW = 0x0040
 SWP_NOACTIVATE = 0x0010
 SWP_NOMOVE = 0x0002
@@ -48,6 +49,18 @@ RDW_FRAME = 0x0400
 WNDPROC = ctypes.WINFUNCTYPE(
     ctypes.c_ssize_t, wintypes.HWND, wintypes.UINT, wintypes.WPARAM, wintypes.LPARAM
 )
+
+# x64: HWND insertAfter must be pointer-sized (see HWND_TOPMOST note above).
+user32.SetWindowPos.argtypes = [
+    wintypes.HWND,
+    wintypes.HWND,
+    ctypes.c_int,
+    ctypes.c_int,
+    ctypes.c_int,
+    ctypes.c_int,
+    wintypes.UINT,
+]
+user32.SetWindowPos.restype = wintypes.BOOL
 
 
 class RECT(ctypes.Structure):
