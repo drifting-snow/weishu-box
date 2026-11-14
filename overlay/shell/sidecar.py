@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import subprocess
+import sys
 import threading
 import time
 from pathlib import Path
@@ -53,6 +54,17 @@ class AdvisorSidecar:
             assert self._proc.stdout is not None
             t0 = time.perf_counter()
             while time.perf_counter() - t0 < timeout:
+                if self._proc.poll() is not None:
+                    # Startup crash (e.g. missing vision module) — surface stderr.
+                    err = ""
+                    try:
+                        err = (self._proc.stderr.read() or "")[-1500:]
+                    except Exception:
+                        pass
+                    self.stop_unlocked()
+                    if err:
+                        print(f"[sidecar] exited before ready: {err}", file=sys.stderr)
+                    return False
                 line = self._proc.stdout.readline()
                 if not line:
                     break
@@ -63,7 +75,15 @@ class AdvisorSidecar:
                 if msg.get("ready") or msg.get("ok"):
                     self._ready = True
                     return True
+            err = ""
+            try:
+                if self._proc and self._proc.stderr:
+                    err = (self._proc.stderr.read() or "")[-800:]
+            except Exception:
+                pass
             self.stop_unlocked()
+            if err:
+                print(f"[sidecar] ready timeout/fail: {err}", file=sys.stderr)
             return False
 
     def stop(self) -> None:

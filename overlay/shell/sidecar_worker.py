@@ -522,9 +522,22 @@ def main() -> int:
     from advisor.engine import Advisor
     from advisor.model import state_from_dict
     from vision.shop_band_ocr import ShopBandRecognizer
-    from vision.board_strip_ocr import BoardStripRecognizer
     from vision.resource_ocr import ResourceRecognizer
     from vision.keybinds import verb_to_key
+
+    # board_strip_ocr was never landed in the public monorepo (HANDOFF: ??).
+    # Hard-importing it killed the whole sidecar → CLI fallback (no 开始模拟
+    # sniff) and broke 录入本局 / procedure_level → regulation_level. Strip OCR
+    # stays optional; shop + opening paths must still warm.
+    try:
+        from vision.board_strip_ocr import BoardStripRecognizer
+    except ModuleNotFoundError:  # pragma: no cover - missing in scrubbed tip
+        class BoardStripRecognizer:  # type: ignore[no-redef]
+            def __init__(self, *args, **kwargs):
+                pass
+
+            def recognize_board(self, img):
+                return []
 
     ds = Dataset()
     adv = Advisor(ds)
