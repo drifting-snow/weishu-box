@@ -13,7 +13,7 @@ authors = [{ name = "weishu-advisor contributors" }]
 keywords = ["arknights", "guard-protocol", "decision-advisor", "auto-battler", "ocr"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: Other/Proprietary License",
     "Operating System :: OS Independent",
     "Topic :: Games/Entertainment",
     "Private :: Do Not Upload",

@@ -358,11 +358,11 @@ gate0 只判“有没有解”（布尔），阶段 1 判“火力够不够在�
 
 ## 数据来源与许可
 
-- **代码**：[MIT License](LICENSE)。
-- **游戏数据版权**：归 鹰角网络 / 明日方舟 IP 方所有。本仓库为非商业学习研究项目，不分发游戏客户端、不与之交互。
+- **代码与文档**：[PolyForm Noncommercial License 1.0.0](LICENSE)（非商业；完整条款见该文件）。**可以**在非商业目的下使用、修改、再分发（须保留许可与 `Required Notice`）；**不可以**用于任何商业用途，亦不得转授本许可。
+- **游戏数据版权**：归 鹰角网络 / 明日方舟 IP 方所有。本仓库为非商业学习研究项目，不分发游戏客户端、不与之交互。上述 PolyForm 许可**不**覆盖 `data/source` 与派生 JSON。
 - **Wiki 数据**：经第三方 Wiki（BWiki / PRTS，CC 类许可）整理，请遵守其署名与许可要求。
 - **解包数值表**：来自社区项目 [`Kengxxiao/ArknightsGameData`](https://github.com/Kengxxiao/ArknightsGameData)，通过公开 CDN 拉取，版权归原权利方；本仓库仅缓存用于本地可复现构建，缓存不提交。
 - 官方未公布抽棋各等阶概率，本项目不编造固定概率，只基于等级门控与实测记录决策。
-- **净室合规**：`advisor/battle/` 的战场协议在方法论上参考了 GPL-3.0 的 Stronghold-Protocol，但仅学习其公开游戏机制思想，所有代码与数据均为本项目独立编写/取自自有及宽松来源；GPL 参考源不进仓库（gitignored）、不被 import，故本仓库整体保持 MIT。
+- **净室合规**：`advisor/battle/` 的战场协议在方法论上参考了 GPL-3.0 的 Stronghold-Protocol，但仅学习其公开游戏机制思想，所有代码与数据均为本项目独立编写/取自自有及宽松来源；GPL 参考源不进仓库（gitignored）、不被 import。
 
-分发或衍生时请保留上述来源声明与合规免责声明。
+分发或衍生时请保留上述来源声明、PolyForm 条款与合规免责声明。

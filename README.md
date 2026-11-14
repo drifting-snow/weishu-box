@@ -75,4 +75,10 @@ Advisor 全量单测中，`tests/test_roadmap.py`（阵容/路线图 WIP）可�
 
 ## License
 
-见 `advisor/LICENSE`（内核）；壳与配套文档随本仓一并发布，仅供学习与个人研究。
+本仓库代码与文档采用 **[PolyForm Noncommercial License 1.0.0](LICENSE)**（取代原 MIT）。完整条款见根目录与 `advisor/LICENSE`。
+
+**他人可以：** 在非商业目的下使用、研究、修改与再分发本仓库代码与文档（须保留本许可全文或 URL，以及 `Required Notice`）。个人学习、业余爱好、教育研究等属许可范围内的用途。
+
+**他人不可以：** 将本仓库用于任何商业目的（例如售卖、收费服务、广告变现、商业产品/SaaS 内嵌等）；亦不得转授本许可。游戏客户端相关的脚本/作弊风险仍由使用者自行评估。
+
+**游戏数据说明：** `data/source` 与派生 JSON 数据集版权归鹰角网络 / 明日方舟 IP 方；仅作非商业研究引用，另受上游 Wiki/数据项目许可约束（见 `advisor/README.md`「数据来源与许可」）。本 PolyForm 许可**不**覆盖这些第三方游戏数据。
