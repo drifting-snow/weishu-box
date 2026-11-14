@@ -57,8 +57,8 @@ body.collapsed #app {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* Native caption drag via JS → Win32; do NOT use -webkit-app-region here —
-     WebView2 without NonClientRegionSupport eats chrome events and never moves. */
+  /* Drag via JS mousemove → Window.move/SetWindowPos. Do NOT use
+     -webkit-app-region (WebView2) or WM_NCLBUTTONDOWN (no-op on WinForms host). */
   cursor: move;
   flex-shrink: 0;
   user-select: none;

@@ -1482,34 +1482,53 @@ class Api:
         self._sync_chrome_guard()
         return self._interact
 
-    def start_drag(self, which: str = "panel") -> dict:
-        """Native caption drag for 参谋 / 阵容 title chrome (JS → Win32)."""
+    def _drag_target(self, which: str = "panel") -> tuple[str, int | None, object | None]:
         which_l = (which or "panel").strip().lower()
         if which_l in ("roster", "lineup", "阵容"):
-            hwnd = self._roster_hwnd()
-            label = "roster"
-        else:
-            self._ensure_hwnd()
-            hwnd = self._hwnd
-            label = "panel"
+            return "roster", self._roster_hwnd(), self._holder.get("roster")
+        self._ensure_hwnd()
+        return "panel", self._hwnd, self._holder.get("panel")
+
+    def start_drag(self, which: str = "panel") -> dict:
+        """Begin title-bar drag: lock heartbeat + clear click-through (non-blocking)."""
+        label, hwnd, _win = self._drag_target(which)
         if not hwnd:
             return {"ok": False, "which": label, "error": "no_hwnd"}
-        # Release click-through on chrome before the gesture; no SetWindowPos.
-        try:
-            w32.clear_transparent_bits(hwnd)
-        except Exception:
-            pass
-        result = w32.begin_caption_drag(int(hwnd))
+        result = w32.begin_drag_session(int(hwnd))
         result["which"] = label
-        # Optional console breadcrumb for live diagnosis (ex styles while drag).
         try:
             ex_b = int(result.get("ex_before") or 0)
             ex_a = int(result.get("ex_after") or 0)
             print(
-                f"[drag] {label} hwnd={hwnd} "
+                f"[drag] start {label} hwnd={hwnd} "
                 f"ex_before=0x{ex_b:x} ex_after=0x{ex_a:x} ok={result.get('ok')}",
                 flush=True,
             )
+        except Exception:
+            pass
+        return result
+
+    def drag_move(self, which: str, x: int, y: int) -> dict:
+        """Follow mouse during title-bar drag (logical screen coords → Window.move)."""
+        label, hwnd, win = self._drag_target(which)
+        if win is not None:
+            try:
+                win.move(int(x), int(y))
+                return {"ok": True, "which": label, "x": int(x), "y": int(y)}
+            except Exception as e:
+                return {"ok": False, "which": label, "error": str(e)}
+        if not hwnd:
+            return {"ok": False, "which": label, "error": "no_hwnd"}
+        ok = w32.move_window_pos(int(hwnd), int(x), int(y))
+        return {"ok": bool(ok), "which": label, "x": int(x), "y": int(y)}
+
+    def end_drag(self, which: str = "panel") -> dict:
+        """Mouseup — release drag lock so TOPMOST heartbeat may resume."""
+        label, hwnd, _win = self._drag_target(which)
+        result = w32.end_drag_session(int(hwnd or 0))
+        result["which"] = label
+        try:
+            print(f"[drag] end {label} hwnd={hwnd}", flush=True)
         except Exception:
             pass
         return result
@@ -1665,8 +1684,8 @@ def main(argv: list[str] | None = None) -> int:
         y=panel_y,
         on_top=True,
         frameless=True,
-        # Native caption drag via Api.start_drag — easy_drag JS move fights
-        # WebView2 + TOPMOST heartbeat and is replaced on both panels.
+        # Title-bar drag via Api.start_drag/drag_move/end_drag (SetWindowPos).
+        # easy_drag=False so only #drag-bar moves the window, not whole body.
         easy_drag=False,
         background_color="#0C1016",
         transparent=False,

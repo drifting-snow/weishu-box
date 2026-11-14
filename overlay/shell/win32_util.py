@@ -29,9 +29,6 @@ SWP_SHOWWINDOW = 0x0040
 SW_HIDE = 0
 SW_SHOWNOACTIVATE = 4
 VK_LBUTTON = 0x01
-WM_NCLBUTTONDOWN = 0x00A1
-HTCAPTION = 2
-
 user32.FindWindowW.argtypes = [wintypes.LPCWSTR, wintypes.LPCWSTR]
 user32.FindWindowW.restype = wintypes.HWND
 user32.SetWindowPos.argtypes = [
@@ -48,18 +45,11 @@ user32.IsWindow.argtypes = [wintypes.HWND]
 user32.IsWindow.restype = wintypes.BOOL
 user32.GetAsyncKeyState.argtypes = [ctypes.c_int]
 user32.GetAsyncKeyState.restype = ctypes.c_short
-user32.ReleaseCapture.argtypes = []
-user32.ReleaseCapture.restype = wintypes.BOOL
-user32.SendMessageW.argtypes = [
-    wintypes.HWND,
-    wintypes.UINT,
-    wintypes.WPARAM,
-    wintypes.LPARAM,
-]
-user32.SendMessageW.restype = wintypes.LPARAM
 
-# Hard lock while native caption drag (WM_NCLBUTTONDOWN) owns the move loop.
+# Hard lock while title-bar drag owns the move (JS mousemove → SetWindowPos).
 # Heartbeat / chrome-guard must not SetWindowPos or toggle WS_EX_* during this.
+# NOTE: WM_NCLBUTTONDOWN/HTCAPTION is a no-op on WinForms+WebView2 frameless
+# hosts (DefWindowProc never enters SC_MOVE) — do not use it for overlay drag.
 _drag_lock = threading.Event()
 
 MOD_ALT = 0x0001
@@ -93,7 +83,7 @@ def left_button_down() -> bool:
 
 
 def drag_in_progress() -> bool:
-    """Native caption drag session or any LMB hold (skip Z-order / style churn)."""
+    """Title-bar drag session or any LMB hold (skip Z-order / style churn)."""
     return _drag_lock.is_set() or left_button_down()
 
 
@@ -123,12 +113,12 @@ def clear_transparent_bits(hwnd: int) -> int:
     return ex
 
 
-def begin_caption_drag(hwnd: int) -> dict:
-    """Native Windows title-bar drag (ReleaseCapture + WM_NCLBUTTONDOWN/HTCAPTION).
+def begin_drag_session(hwnd: int) -> dict:
+    """Start a title-bar drag session (lock heartbeat + clear click-through).
 
-    pywebview easy_drag + ``-webkit-app-region: drag`` is unreliable on WebView2
-    WinForms hosts: app-region eats chrome pointer events without a real caption
-    move, and SetWindowPos heartbeats can cancel JS ``pywebviewMoveWindow``.
+    Actual movement is ``move_window_pos`` / pywebview ``Window.move`` from JS
+    mousemove — same approach EdgeChromium easy_drag uses. Caption messages
+    (WM_NCLBUTTONDOWN) do not move WinForms frameless WebView2 windows.
     """
     out: dict = {"ok": False, "hwnd": int(hwnd or 0), "ex_before": 0, "ex_after": 0}
     if not hwnd or not user32.IsWindow(hwnd):
@@ -137,24 +127,47 @@ def begin_caption_drag(hwnd: int) -> dict:
     out["ex_before"] = read_exstyle(hwnd)
     _drag_lock.set()
     try:
-        # Chrome must not be click-through when the gesture starts.
         out["ex_cleared"] = clear_transparent_bits(hwnd)
-        user32.ReleaseCapture()
-        # Cross-thread SendMessage: UI thread runs DefWindowProc move loop
-        # until LMB up; calling thread blocks for the duration.
-        user32.SendMessageW(
-            wintypes.HWND(hwnd),
-            WM_NCLBUTTONDOWN,
-            HTCAPTION,
-            0,
-        )
         out["ok"] = True
     except Exception as e:
         out["error"] = str(e)
-    finally:
-        out["ex_after"] = read_exstyle(hwnd)
         _drag_lock.clear()
+    out["ex_after"] = read_exstyle(hwnd)
     return out
+
+
+def move_window_pos(hwnd: int, x: int, y: int) -> bool:
+    """Move top-level hwnd to screen coords (physical px). No Z-order churn."""
+    if not hwnd or not user32.IsWindow(hwnd):
+        return False
+    try:
+        return bool(
+            user32.SetWindowPos(
+                wintypes.HWND(hwnd),
+                wintypes.HWND(0),
+                int(x),
+                int(y),
+                0,
+                0,
+                SWP_NOSIZE | SWP_NOACTIVATE | 0x0004,  # SWP_NOZORDER
+            )
+        )
+    except Exception:
+        return False
+
+
+def end_drag_session(hwnd: int = 0) -> dict:
+    """Release drag lock after mouseup."""
+    out: dict = {"ok": True, "hwnd": int(hwnd or 0), "ex_after": 0}
+    _drag_lock.clear()
+    if hwnd and user32.IsWindow(hwnd):
+        out["ex_after"] = read_exstyle(hwnd)
+    return out
+
+
+def begin_caption_drag(hwnd: int) -> dict:
+    """Deprecated alias — caption messages are a no-op on this host; use session+move."""
+    return begin_drag_session(hwnd)
 
 
 def set_topmost(hwnd: int, *, force: bool = False) -> None:
@@ -164,7 +177,7 @@ def set_topmost(hwnd: int, *, force: bool = False) -> None:
     after the x64 HWND_TOPMOST fix, SetWindowPos actually succeeds and a 1Hz
     (or faster) reassert with SWP_NOMOVE cancels caption moves. Skip while a
     drag session / LMB is down unless force=True (explicit style settle).
-    force=True is still refused during an active native caption drag.
+    force=True is still refused during an active title-bar drag session.
     """
     if not hwnd or not user32.IsWindow(hwnd):
         return

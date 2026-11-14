@@ -627,19 +627,43 @@
     setCollapsed(!!collapsed);
   });
 
-  (function bindNativeChromeDrag() {
+  (function bindChromeDrag() {
     const bar = $("drag-bar");
     if (!bar) return;
+    let dragging = false;
+    let ox = 0;
+    let oy = 0;
+    const onMove = (ev) => {
+      if (!dragging) return;
+      const x = ev.screenX - ox;
+      const y = ev.screenY - oy;
+      if (window.pywebview && window.pywebview.api && window.pywebview.api.drag_move) {
+        window.pywebview.api.drag_move("roster", x, y);
+      }
+    };
+    const onUp = () => {
+      if (!dragging) return;
+      dragging = false;
+      window.removeEventListener("mousemove", onMove, true);
+      window.removeEventListener("mouseup", onUp, true);
+      if (window.pywebview && window.pywebview.api && window.pywebview.api.end_drag) {
+        window.pywebview.api.end_drag("roster");
+      }
+    };
     bar.addEventListener("mousedown", (ev) => {
       if (ev.button !== 0) return;
       const t = ev.target;
       if (t && t.closest && t.closest(".bar-actions, button, a, input, select, textarea, label")) {
         return;
       }
+      if (!window.pywebview || !window.pywebview.api || !window.pywebview.api.drag_move) return;
       ev.preventDefault();
-      ev.stopPropagation();
-      if (!window.pywebview || !window.pywebview.api || !window.pywebview.api.start_drag) return;
-      window.pywebview.api.start_drag("roster");
+      dragging = true;
+      ox = ev.clientX;
+      oy = ev.clientY;
+      if (window.pywebview.api.start_drag) window.pywebview.api.start_drag("roster");
+      window.addEventListener("mousemove", onMove, true);
+      window.addEventListener("mouseup", onUp, true);
     });
   })();
 
