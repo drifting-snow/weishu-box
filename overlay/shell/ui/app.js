@@ -946,11 +946,32 @@
     setStatus(on ? "可交互（穿透关）" : "穿透开 · 标题栏仍可点交互/隐");
   });
 
-  // Native Win32 caption drag — pywebview easy_drag / -webkit-app-region is
-  // unreliable on this WebView2 host (chrome events swallowed, no move).
-  (function bindNativeChromeDrag() {
+  // Title-bar drag via SetWindowPos (pywebview Window.move). WinForms+WebView2
+  // ignores WM_NCLBUTTONDOWN/HTCAPTION — caption SendMessage returns immediately.
+  (function bindChromeDrag() {
     const bar = $("drag-bar");
     if (!bar) return;
+    let dragging = false;
+    let ox = 0;
+    let oy = 0;
+    const onMove = (ev) => {
+      if (!dragging) return;
+      // Same formula as pywebview customize.js easy_drag / drag-region.
+      const x = ev.screenX - ox;
+      const y = ev.screenY - oy;
+      if (window.pywebview && window.pywebview.api && window.pywebview.api.drag_move) {
+        window.pywebview.api.drag_move("panel", x, y);
+      }
+    };
+    const onUp = () => {
+      if (!dragging) return;
+      dragging = false;
+      window.removeEventListener("mousemove", onMove, true);
+      window.removeEventListener("mouseup", onUp, true);
+      if (window.pywebview && window.pywebview.api && window.pywebview.api.end_drag) {
+        window.pywebview.api.end_drag("panel");
+      }
+    };
     bar.addEventListener("mousedown", (ev) => {
       if (ev.button !== 0) return;
       const t = ev.target;
@@ -958,8 +979,12 @@
         return;
       }
       ev.preventDefault();
-      ev.stopPropagation();
+      dragging = true;
+      ox = ev.clientX;
+      oy = ev.clientY;
       call("start_drag", "panel");
+      window.addEventListener("mousemove", onMove, true);
+      window.addEventListener("mouseup", onUp, true);
     });
   })();
 
