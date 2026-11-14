@@ -630,38 +630,51 @@
   (function bindChromeDrag() {
     const bar = $("drag-bar");
     if (!bar) return;
+    bar.classList.add("pywebview-drag-region");
     let dragging = false;
     let ox = 0;
     let oy = 0;
-    const onMove = (ev) => {
-      if (!dragging) return;
-      const x = ev.screenX - ox;
-      const y = ev.screenY - oy;
+    const moveTo = (x, y) => {
+      if (window.pywebview && typeof window.pywebview._jsApiCallback === "function") {
+        window.pywebview._jsApiCallback("pywebviewMoveWindow", [x, y], "move");
+        return;
+      }
       if (window.pywebview && window.pywebview.api && window.pywebview.api.drag_move) {
         window.pywebview.api.drag_move("roster", x, y);
       }
     };
+    const onMove = (ev) => {
+      if (!dragging) return;
+      moveTo(ev.screenX - ox, ev.screenY - oy);
+    };
     const onUp = () => {
       if (!dragging) return;
       dragging = false;
+      window.removeEventListener("pointermove", onMove, true);
+      window.removeEventListener("pointerup", onUp, true);
       window.removeEventListener("mousemove", onMove, true);
       window.removeEventListener("mouseup", onUp, true);
       if (window.pywebview && window.pywebview.api && window.pywebview.api.end_drag) {
         window.pywebview.api.end_drag("roster");
       }
     };
-    bar.addEventListener("mousedown", (ev) => {
+    bar.addEventListener("pointerdown", (ev) => {
       if (ev.button !== 0) return;
       const t = ev.target;
       if (t && t.closest && t.closest(".bar-actions, button, a, input, select, textarea, label")) {
         return;
       }
-      if (!window.pywebview || !window.pywebview.api || !window.pywebview.api.drag_move) return;
+      if (!window.pywebview) return;
       ev.preventDefault();
       dragging = true;
       ox = ev.clientX;
       oy = ev.clientY;
-      if (window.pywebview.api.start_drag) window.pywebview.api.start_drag("roster");
+      try { bar.setPointerCapture(ev.pointerId); } catch (_) {}
+      if (window.pywebview.api && window.pywebview.api.start_drag) {
+        window.pywebview.api.start_drag("roster");
+      }
+      window.addEventListener("pointermove", onMove, true);
+      window.addEventListener("pointerup", onUp, true);
       window.addEventListener("mousemove", onMove, true);
       window.addEventListener("mouseup", onUp, true);
     });

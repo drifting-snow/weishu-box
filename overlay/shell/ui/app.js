@@ -946,33 +946,41 @@
     setStatus(on ? "可交互（穿透关）" : "穿透开 · 标题栏仍可点交互/隐");
   });
 
-  // Title-bar drag via SetWindowPos (pywebview Window.move). WinForms+WebView2
-  // ignores WM_NCLBUTTONDOWN/HTCAPTION — caption SendMessage returns immediately.
+  // Title-bar drag via SetWindowPos. WinForms+WebView2 ignores WM_NCLBUTTONDOWN.
+  // Prefer pywebviewMoveWindow (same path as EdgeChromium easy_drag); fall back
+  // to Api.drag_move. Also mark .pywebview-drag-region for the injected selector.
   (function bindChromeDrag() {
     const bar = $("drag-bar");
     if (!bar) return;
+    bar.classList.add("pywebview-drag-region");
     let dragging = false;
     let ox = 0;
     let oy = 0;
-    const onMove = (ev) => {
-      if (!dragging) return;
-      // Same formula as pywebview customize.js easy_drag / drag-region.
-      const x = ev.screenX - ox;
-      const y = ev.screenY - oy;
+    const moveTo = (x, y) => {
+      if (window.pywebview && typeof window.pywebview._jsApiCallback === "function") {
+        window.pywebview._jsApiCallback("pywebviewMoveWindow", [x, y], "move");
+        return;
+      }
       if (window.pywebview && window.pywebview.api && window.pywebview.api.drag_move) {
         window.pywebview.api.drag_move("panel", x, y);
       }
     };
+    const onMove = (ev) => {
+      if (!dragging) return;
+      moveTo(ev.screenX - ox, ev.screenY - oy);
+    };
     const onUp = () => {
       if (!dragging) return;
       dragging = false;
+      window.removeEventListener("pointermove", onMove, true);
+      window.removeEventListener("pointerup", onUp, true);
       window.removeEventListener("mousemove", onMove, true);
       window.removeEventListener("mouseup", onUp, true);
       if (window.pywebview && window.pywebview.api && window.pywebview.api.end_drag) {
         window.pywebview.api.end_drag("panel");
       }
     };
-    bar.addEventListener("mousedown", (ev) => {
+    bar.addEventListener("pointerdown", (ev) => {
       if (ev.button !== 0) return;
       const t = ev.target;
       if (t && t.closest && t.closest(".bar-actions, button, a, input, select, textarea, label")) {
@@ -982,7 +990,10 @@
       dragging = true;
       ox = ev.clientX;
       oy = ev.clientY;
+      try { bar.setPointerCapture(ev.pointerId); } catch (_) {}
       call("start_drag", "panel");
+      window.addEventListener("pointermove", onMove, true);
+      window.addEventListener("pointerup", onUp, true);
       window.addEventListener("mousemove", onMove, true);
       window.addEventListener("mouseup", onUp, true);
     });
