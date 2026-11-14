@@ -65,6 +65,10 @@ py -3.12 run_overlay.py
 - 敌人名录 / 面板 OCR；棋盘 badge；资源 OCR
 - battle 离散 tick（输出）+ `clear_margin`（入分）为战斗 SoT
 
+## 测试姿态
+
+Advisor 全量单测中，`tests/test_roadmap.py`（阵容/路线图 WIP）可能有已知红例；视觉 / 敌人名录 / 引擎核心路径应保持绿。公开 tip 以 `advisor/` @ `756876f` 为准。首次跑 overlay 视觉前，如缺本机 ROI 标定，需按 advisor 文档做一次本地校准（勿提交机器相关 `config.local.json`）。
+
 ## 隐私
 
 公开树已 scrub：无本机绝对路径、无 `config.json`、无 `session/` 对局/截图、无 QQ/OpenClaw/Cursor store id。本地截图与会话产物请放在 gitignore 目录。

@@ -1,18 +1,18 @@
 # HANDOFF — 明日恢复索引（2026-11-14 更新）
 
 > 目的：让下一个会话 5 分钟进入状态。本文是**索引 + 状态快照**，机制细节见各模块 docstring 与 `docs/board_click_ocr_design.md`。
-> 项目根：``advisor/` (monorepo) / local clone root`　分支：`main`　当前 HEAD：`40ceaf4`（merge #3 scoring+odds）
+> 项目根：`advisor/`（本 monorepo 子目录）　公开 tip：`756876f`（merge #4；含 scoring #3 + shop odds）
 
 ---
 
 ## 0. 一分钟自检（恢复后先跑）
 
-```powershell
-cd "`advisor/` (monorepo) / local clone root"
+``powershell
+cd advisor
 .\.venv\Scripts\python.exe -m unittest discover -s tests          # 全量，期望 478
 .\.venv\Scripts\python.exe -m unittest tests.test_board_badge tests.test_match_text tests.test_enemy_catalog tests.test_enemy_panel_ocr tests.test_resource_ocr  # 视觉+名录，期望全绿
 git status --short                                                # 看在途未提交工作
-```
+``
 
 - 全量当前 **478 测试，4 红，全在 `tests/test_roadmap.py`**（阵容/路线图层，**与视觉无关**，见 §5）。
 - 视觉 + 敌人名录相关 **74 测试全绿**；其中 `test_board_badge` 9 个、保守匹配 `ConservativeModeTest` 8 个 + `MatchRankedTest` 4 个。
@@ -84,7 +84,7 @@ git status --short                                                # 看在途未
 
 ---
 
-## 4. 工作区在途工作边界（`git status` 实况，提交前必读）
+## 4. 工作区在途工作边界（历史快照 · 公开固定 tip 可忽略）
 
 | 文件 | 状态 | 归属线 | 说明 |
 |---|---|---|---|
@@ -104,7 +104,7 @@ git status --short                                                # 看在途未
 - **保守匹配护栏实数**（`_diag/vision/audit_conservative.py`）：1119 截断探针下，默认模式误吸 **118**，保守模式降到 **20（-83%）**；179 个战术全名**零漏识别**；残留 20 全是"精英长名→基型短名"安全降级（XX长→XX、变异α→基型，战术分类一致）。常量 `CONSERVATIVE_THRESHOLD=0.85`、`CONSERVATIVE_GAP=0.12`；单字输入直接拒。
 - **敌人面板**：只给名字 + 定性特性文字，**不给 HP/攻/防/抗数值**；本波源石虫(untyped 中性)、寻险水手(→INVISIBLE/stealth)。
 - **资源语义（用户口径，已纠正误读）**：红框 ◆4 三钻簇=当前金币 4；黄框白竖条=当前本数 1（填充段=调度等级）；六边形"5"=升本费用，4<5 还差 1 块。顶部 ♟25 是另一种资源，不是金币。
-- 截图源目录：``$WEISHU_SHOTS_DIR` (local screenshots)`；工作副本在 ``_diag/vision/` (local, not shipped)\`（2560×1440，16:9）。
+- 截图源目录：`$WEISHU_SHOTS_DIR`（本地截图）；工作副本在本地 `_diag/vision/`（不随公开仓发布）（2560×1440，16:9）。
 
 ## 6. 红线（不可越）
 
@@ -126,19 +126,19 @@ git status --short                                                # 看在途未
 | 棋盘标记检测 | `vision/board_badge.py` |
 | 资源（金币/回合）OCR | `vision/resource_ocr.py` |
 | 视觉设计与实证 | `docs/board_click_ocr_design.md`（§8.5 旧管线 / §8.6 高本帧实证+重构路线） |
-| 诊断脚本 | ``_diag/vision/` (local, not shipped)\*.py`（audit_*/hue/warm/inverted/gate/collapse 等） |
+| 诊断脚本 | `_diag/vision/*.py`（本地诊断；不随公开仓发布：audit_*/hue/warm/inverted/gate/collapse 等） |
 
 ## 8. 交付状态快照（2026-11-14）
 
 ### 评分权重 — **已合入 main**
-- **Merge**：[#3](https://github.com/drifting-snow/weishu-advisor/pull/3) → `main` @ `40ceaf4`（2026-11-14）；分支 `cursor/scoring-weights-394c`
-- **#1 shop odds**：已 **close as superseded**（[#1](https://github.com/drifting-snow/weishu-advisor/pull/1)）；#3 含同一 ASSUMED `data/shop_roll_odds.json` + `advisor/shop_odds.py` 并已接入 refresh EV，勿再合以免冲突
+- **Merge**：PR #3 (scoring + shop odds) → `main` @ `756876f`（2026-11-14）；分支 `cursor/scoring-weights-394c`
+- **#1 shop odds**：已 **close as superseded**（PR #1）；#3 含同一 ASSUMED `data/shop_roll_odds.json` + `advisor/shop_odds.py` 并已接入 refresh EV，勿再合以免冲突
 - **三连/2→3**：仍 +100，不压进 soft band
 - **经济/刷新 EV**：`INVEST_WEIGHT` 上调；`engine._score_refresh` 用 ASSUMED `shop_odds.tier_probs` × 槽位 × 余钱；soft≤58 可被刷新压过，critical≥70（羁绊差1 / 2→3）仍压刷新
 - **多缺口**：priority silence>refraction>anti_air；primary15 + secondary8；硬顶 **28**（废止 +15×N）
 
 ### PR#2 combat_resolver — **保持退役**
-- [#2](https://github.com/drifting-snow/weishu-advisor/pull/2) closed、**未合并**；不 rebase / 不落地
+- PR #2 closed、**未合并**；不 rebase / 不落地
 - SoT：**`advisor/battle` tick**（output-only）+ **`clear_margin`**（喂分）；无第三条并行战斗模型
 
 ### 装备 OCR / Overlay
