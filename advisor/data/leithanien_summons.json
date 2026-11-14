@@ -1,0 +1,130 @@
+{
+  "_doc": "Leithanien (Leytaniya) bond summons for the Garrison Protocol / Weishu autochess mode. Static unit stats are factual numbers transcribed from the PRTS wiki unit pages (the summons are modeled in-game as enemy-type units SP32/SP33, so they carry an enemy attribute table). Only numeric facts and short mechanic paraphrases are stored; no prose is copied. License of the source wiki applies to its presentation, not to these game facts.",
+  "season": "卫戍协议·规程",
+  "sources": {
+    "bond_record": {
+      "label": "PRTS 卫戍协议·规程/PRTS盟约记录",
+      "url": "https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录"
+    },
+    "xiaojie_page": {
+      "label": "PRTS “一个小节” 单位页 (SP32)",
+      "url": "https://prts.wiki/w/“一个小节”"
+    },
+    "lebu_page": {
+      "label": "PRTS “一个乐部” 单位页 (SP33)",
+      "url": "https://prts.wiki/w/“一个乐部”"
+    }
+  },
+  "fetched_via": "Tavily extract (direct local HTTPS to prts.wiki is SSL-blocked on this host)",
+  "data_status": "static unit stats complete; in-game ownership rule marked (待补充) on PRTS; no per-level scaling published",
+  "bond_mechanic": {
+    "bond": "莱塔尼亚",
+    "activation_need": 3,
+    "six_member_threshold": 6,
+    "atk_buff": {
+      "applies_to": "莱塔尼亚干员 与 莱塔尼亚召唤物",
+      "formula_pct": "30 + 1*stack",
+      "note": "direct percentage multiplier to ATK"
+    },
+    "base": "激活后场上敌人被击倒时，在其附近召唤一个“一个小节”，场上最多同时存在 10 个",
+    "six_member": {
+      "upgrade_prob_formula_pct": "30 + 0.1*stack",
+      "upgrade_from": "一个小节",
+      "upgrade_to": "一个乐部",
+      "summon_cap": 20,
+      "extra": "我方干员被击倒时也会额外召唤一个“一个小节”"
+    },
+    "summon_cap_base": 10,
+    "summon_cap_six_member": 20
+  },
+  "summons": {
+    "xiaojie": {
+      "id": "xiaojie",
+      "display_name": "“一个小节”",
+      "in_game_code": "SP32",
+      "model_id": null,
+      "model_id_status": "needs_review: model file name not captured from PRTS page",
+      "kind": "法术造物",
+      "rank": "普通",
+      "attack_style": "近战",
+      "movement": "地面",
+      "damage_type": "arts",
+      "stats": {
+        "max_hp": 2350,
+        "atk": 450,
+        "def": 0,
+        "res": 0,
+        "move_speed": 0.7,
+        "attack_interval": 3.0,
+        "attack_radius": 0.5,
+        "weight": 1,
+        "taunt_level": 0,
+        "target_value": 0,
+        "elemental_resist": 0,
+        "damage_resist": 0,
+        "hp_regen": 0
+      },
+      "block_count": 1,
+      "block_radius": 0.7071,
+      "lifespan": {
+        "forbidden_heal": true,
+        "hp_drain_pct_of_max_per_sec": 0.10,
+        "note": "禁疗：无法被治疗；每秒流失 10% 最大生命值，按最大生命值计，理论 10 秒后离场"
+      },
+      "skills": [],
+      "aura": null,
+      "prts_note": "PRTS 注明：莱塔尼亚盟约所述“召唤物”仅指小节/乐部，与游戏机制意义上的召唤物定义无关；本质是带禁疗的法术造物"
+    },
+    "lebu": {
+      "id": "lebu",
+      "display_name": "“一个乐部”",
+      "in_game_code": "SP33",
+      "model_id": "enemy_9026_acltm",
+      "kind": "法术造物",
+      "rank": "精英",
+      "attack_style": "远程",
+      "movement": "地面",
+      "damage_type": "arts",
+      "stats": {
+        "max_hp": 8500,
+        "atk": 950,
+        "def": 450,
+        "res": 30,
+        "move_speed": 0.5,
+        "attack_interval": 3.0,
+        "attack_radius": 2.4,
+        "weight": 3,
+        "taunt_level": 0,
+        "target_value": 0,
+        "elemental_resist": 0,
+        "damage_resist": 0,
+        "hp_regen": 0
+      },
+      "block_count": 2,
+      "block_radius": 0.7071,
+      "lifespan": {
+        "forbidden_heal": true,
+        "hp_drain_pct_of_max_per_sec": 0.10,
+        "note": "禁疗：无法被治疗；每秒流失 10% 最大生命值，按最大生命值计，理论 10 秒后离场"
+      },
+      "skills": [
+        {
+          "name": "2连击",
+          "sp_cost": 3,
+          "sp_gain": "攻击回复，每次攻击 +1 技力",
+          "trigger": "造成 3 次攻击后，下一次攻击进行 2 连击（连续两次远程攻击）",
+          "cycle_hits": 5,
+          "cycle_attack_actions": 4,
+          "note": "每 4 次攻击动作一个循环：前 3 次单击 + 第 4 次双击，共 5 次命中"
+        }
+      ],
+      "aura": {
+        "target": "所属玩家场地上的莱塔尼亚盟约干员（不含调和干员）",
+        "aspd_bonus": 20,
+        "stackable": true,
+        "duration": "持续至乐部离场"
+      },
+      "prts_note": "同小节，属带禁疗的法术造物；精英级，远程法术攻击"
+    }
+  }
+}

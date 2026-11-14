@@ -1,0 +1,45 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Dependency layout
+# ─────────────────────────────────────────────────────────────────────────────
+# The rule engine (advisor/), every data parser (tools/parse_*.py) and the
+# entire test suite use the Python STANDARD LIBRARY ONLY. A bare Python >= 3.9
+# runs the engine and all tests with nothing installed:
+#
+#   python -m advisor.cli --state examples/state_demo.json
+#   python -m unittest discover -s tests
+#
+# The packages below are needed ONLY for the optional screenshot/OCR path
+# (advisor.cli --shot, vision/, tools/ocr_smoke.py). Install them if you want
+# vision input; engine-only users can skip this file entirely. Equivalent to
+# the pyproject "vision" extra:  pip install ".[vision]"
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Image handling + array ops for ROI preprocessing and template matching
+numpy>=1.24
+pillow>=10.0
+
+# Primary OCR path (offline, MAA-style). Bundles PP-OCR ONNX models;
+# pip pulls onnxruntime + opencv automatically. No network at runtime.
+rapidocr_onnxruntime>=1.3.0
+
+# ---------------------------------------------------------------------------
+# SIZE NOTE for GitHub / offline distribution (measured on win_amd64, py3.11)
+# ---------------------------------------------------------------------------
+# A plain install pulls opencv-python (~112 MB incl. Qt/GUI + an FFmpeg video
+# plugin). Static-image OCR never opens a window or decodes video, so you can
+# shrink the stack from ~235 MB to ~204 MB with NO accuracy loss (verified:
+# same 4/4 shop cards, identical confidences 0.84-0.999):
+#
+#   pip install -e ".[vision]"
+#   pip uninstall -y opencv-python
+#   pip install "opencv-python-headless==4.10.0.84"   # same cv2, no Qt/GUI
+#   python tools/slim_vision.py --apply               # removes FFmpeg plugin
+#
+# rapidocr only ever imports `cv2`, which headless provides. This leaves one
+# BENIGN `pip check` metadata note (rapidocr declares opencv-python); runtime is
+# unaffected. A fully pip-check-clean path needs the rapidocr 3.x API migration
+# (it declares opencv-python-headless natively) - tracked on the roadmap.
+
+# Optional pins (already pulled transitively by rapidocr; uncomment if needed):
+# onnxruntime>=1.16
+# opencv-python>=4.8

@@ -1,0 +1,23 @@
+# Local secrets / machine state
+**/config.json
+**/session/
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.pyc
+**/*.log
+**/.once_shot
+**/tmp/
+**/.DS_Store
+**/.idea/
+**/.vscode/
+# Advisor regenerable / third-party (never ship)
+advisor/assets/roi/config.local.json
+advisor/shots/
+advisor/data/source/prts/
+advisor/data/source/gamedata/
+advisor/data/source/_arkdps_*
+advisor/data/source/_stronghold/
+advisor/*.egg-info/
+# Overlay local debug
+overlay/tools/_patch_op_log.py

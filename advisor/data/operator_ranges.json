@@ -1,0 +1,10118 @@
+{
+ "_meta": {
+  "convention": "range_cells = elite normal-attack offsets; base_range_cells = pre-promotion; col+ points forward (toward the red gate at deployment)",
+  "description": "卫戍协议干员真实普攻射程网格，由官方解包 character_table.rangeId + range_table.grids 经 tools/build_operator_ranges.py 自有解析生成；不含第三方/GPL 数据。网格为相对自身格(0,0)的 (row,col) 偏移，col+ 为朝向方向。",
+  "distinct_range_shapes": 25,
+  "generated_by": "tools/build_operator_ranges.py",
+  "operator_count": 141,
+  "operators_whose_range_changes_on_elite": 72,
+  "orientation_note": "forward orientation toward the red gate is a first-cut single-lane assumption pending in-game verification (needs_review).",
+  "source_tables": "character_table.json + range_table.json + skill_table.json (gitignored)"
+ },
+ "operators": {
+  "Miss.Christine": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_4198_christ",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "Mon3tr": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "y-1",
+   "cell_count": 12,
+   "char_id": "char_4179_monstr",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_monstr_1": "y-2",
+    "skchr_monstr_2": "y-2",
+    "skchr_monstr_3": "x-4"
+   }
+  },
+  "W": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 15,
+   "char_id": "char_113_cqbw",
+   "elite_range_id": "3-10",
+   "forward_reach": 4,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -1,
+     4
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "乌啾": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "y-1",
+   "cell_count": 12,
+   "char_id": "char_4224_turdus",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "乌尔比安": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4145_ulpia",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_ulpia_1": "3-2",
+    "skchr_ulpia_3": "6-1"
+   }
+  },
+  "乌有": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_455_nothin",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "云迹": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 3,
+   "char_id": "char_4165_ctrail",
+   "elite_range_id": "2-2",
+   "forward_reach": 2,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_ctrail_1": "2-3",
+    "skchr_ctrail_2": "3-1"
+   }
+  },
+  "仇白": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-3",
+   "cell_count": 8,
+   "char_id": "char_4082_qiubai",
+   "elite_range_id": "3-12",
+   "forward_reach": 3,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_qiubai_2": "4-1",
+    "skchr_qiubai_3": "3-1"
+   }
+  },
+  "伊桑": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "y-1",
+   "cell_count": 10,
+   "char_id": "char_355_ethan",
+   "elite_range_id": "y-1",
+   "forward_reach": 2,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "伺夜": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-1",
+   "cell_count": 12,
+   "char_id": "char_427_vigil",
+   "elite_range_id": "3-3",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "余": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "base_range_id": "0-1",
+   "cell_count": 1,
+   "char_id": "char_2026_yu",
+   "elite_range_id": "0-1",
+   "forward_reach": 0,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_yu_2": "x-1"
+   }
+  },
+  "佩佩": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4058_pepe",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_pepe_2": "2-5"
+   }
+  },
+  "克莱门莎": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4231_clemnt",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_clemnt_2": "4-1",
+    "skchr_clemnt_3": "3-2"
+   }
+  },
+  "冻河": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-1",
+   "cell_count": 14,
+   "char_id": "char_4244_tocka",
+   "elite_range_id": "3-18",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "凛御银灰": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_1045_svash2",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_svash2_2": "3-7",
+    "skchr_svash2_3": "3-1"
+   }
+  },
+  "凯瑟琳": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4162_cathy",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "初雪": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 16,
+   "char_id": "char_174_slbell",
+   "elite_range_id": "y-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "华法琳": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-1",
+   "cell_count": 12,
+   "char_id": "char_171_bldsk",
+   "elite_range_id": "3-3",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "卡涅利安": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "x-4",
+   "cell_count": 13,
+   "char_id": "char_426_billro",
+   "elite_range_id": "x-1",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -2,
+     0
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_billro_3": "x-2"
+   }
+  },
+  "卡达": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_328_cammou",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_cammou_2": "3-3"
+   }
+  },
+  "历阵锐枪芬": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_1036_fang2",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "可露希尔": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-1",
+   "cell_count": 12,
+   "char_id": "char_4228_closur",
+   "elite_range_id": "3-3",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "史尔特尔": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_350_surtr",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "吉星": {
+   "base_range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-4",
+   "cell_count": 7,
+   "char_id": "char_4203_kichi",
+   "elite_range_id": "2-5",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "哈洛德": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 18,
+   "char_id": "char_4114_harold",
+   "elite_range_id": "3-17",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -2,
+     1
+    ],
+    [
+     -2,
+     2
+    ],
+    [
+     -2,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "圣聆初雪": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "x-4",
+   "cell_count": 13,
+   "char_id": "char_1046_sbell2",
+   "elite_range_id": "x-1",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -2,
+     0
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_sbell2_3": "x-2"
+   }
+  },
+  "地灵": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 12,
+   "char_id": "char_183_skgoat",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "塔露拉": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4247_oxi",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "塞雷娅": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "base_range_id": "0-1",
+   "cell_count": 1,
+   "char_id": "char_202_demkni",
+   "elite_range_id": "0-1",
+   "forward_reach": 0,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_demkni_1": "x-4",
+    "skchr_demkni_2": "x-2",
+    "skchr_demkni_3": "x-3"
+   }
+  },
+  "复奏": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-3",
+   "cell_count": 9,
+   "char_id": "char_4031_liesel",
+   "elite_range_id": "3-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "夏栎": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 16,
+   "char_id": "char_492_quercu",
+   "elite_range_id": "y-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "夕": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-3",
+   "cell_count": 9,
+   "char_id": "char_2015_dusk",
+   "elite_range_id": "3-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_dusk_2": "3-3",
+    "skchr_dusk_3": "3-15"
+   }
+  },
+  "夜莺": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "y-1",
+   "cell_count": 12,
+   "char_id": "char_179_cgbird",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_cgbird_3": "y-4"
+   }
+  },
+  "奥尔佳": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "base_range_id": "2-2",
+   "cell_count": 3,
+   "char_id": "char_4245_alga",
+   "elite_range_id": "2-2",
+   "forward_reach": 2,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_alga_2": "3-2"
+   }
+  },
+  "奥斯塔": {
+   "base_range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-4",
+   "cell_count": 7,
+   "char_id": "char_346_aosta",
+   "elite_range_id": "2-5",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "妮芙": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_4146_nymph",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_nymph_3": "3-3"
+   }
+  },
+  "安哲拉": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 19,
+   "char_id": "char_218_cuttle",
+   "elite_range_id": "3-9",
+   "forward_reach": 4,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ],
+    [
+     -2,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "安洁莉娜": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 12,
+   "char_id": "char_291_aglina",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_aglina_3": "y-4"
+   }
+  },
+  "宴": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_337_utage",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "寒檀": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-3",
+   "cell_count": 9,
+   "char_id": "char_341_sntlla",
+   "elite_range_id": "3-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_sntlla_2": "3-3"
+   }
+  },
+  "山": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_264_f12yin",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_f12yin_2": "0-1",
+    "skchr_f12yin_3": "x-5"
+   }
+  },
+  "帕拉斯": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "base_range_id": "2-2",
+   "cell_count": 3,
+   "char_id": "char_485_pallas",
+   "elite_range_id": "2-2",
+   "forward_reach": 2,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "幽灵鲨": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_143_ghost",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "异客": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_472_pasngr",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_pasngr_3": "x-3"
+   }
+  },
+  "引星棘刺": {
+   "base_range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -2,
+     0
+    ]
+   ],
+   "base_range_id": "2-1",
+   "cell_count": 13,
+   "char_id": "char_1039_thorn2",
+   "elite_range_id": "3-5",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_thorn2_3": "3-9"
+   }
+  },
+  "归溟幽灵鲨": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_1023_ghost2",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_ghost2_1": "x-4"
+   }
+  },
+  "忍冬": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4026_vulpis",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_vulpis_2": "3-12",
+    "skchr_vulpis_3": "2-2"
+   }
+  },
+  "怒潮凛冬": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_1051_headb2",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_headb2_2": "2-5"
+   }
+  },
+  "慕斯": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_185_frncat",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "承曦格雷伊": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 19,
+   "char_id": "char_1027_greyy2",
+   "elite_range_id": "3-9",
+   "forward_reach": 4,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ],
+    [
+     -2,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "折光": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_499_kaitou",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "折桠": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "base_range_id": "0-1",
+   "cell_count": 1,
+   "char_id": "char_4207_branch",
+   "elite_range_id": "0-1",
+   "forward_reach": 0,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_branch_2": "x-4"
+   }
+  },
+  "拉普兰德": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-3",
+   "cell_count": 8,
+   "char_id": "char_140_whitew",
+   "elite_range_id": "3-12",
+   "forward_reach": 3,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "拜松": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "base_range_id": "0-1",
+   "cell_count": 1,
+   "char_id": "char_325_bison",
+   "elite_range_id": "0-1",
+   "forward_reach": 0,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_bison_2": "x-5"
+   }
+  },
+  "摆渡人": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4166_varkis",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "斥罪": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4065_judge",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_judge_2": "x-4"
+   }
+  },
+  "斯卡蒂": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_263_skadi",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "旅骨": {
+   "base_range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -2,
+     0
+    ]
+   ],
+   "base_range_id": "2-1",
+   "cell_count": 13,
+   "char_id": "char_4232_hbound",
+   "elite_range_id": "3-5",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "星极": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_274_astesi",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "星源": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_135_halo",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_halo_2": "3-3"
+   }
+  },
+  "机械师": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "base_range_id": "2-2",
+   "cell_count": 3,
+   "char_id": "char_4230_mcnist",
+   "elite_range_id": "2-2",
+   "forward_reach": 2,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "杰克": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_347_jaksel",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "极光": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_422_aurora",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "棘刺": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-3",
+   "cell_count": 8,
+   "char_id": "char_293_thorns",
+   "elite_range_id": "3-12",
+   "forward_reach": 3,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_thorns_2": "3-1",
+    "skchr_thorns_3": "3-3"
+   }
+  },
+  "森蚺": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_416_zumama",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "歌蕾蒂娅": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "base_range_id": "2-2",
+   "cell_count": 4,
+   "char_id": "char_474_glady",
+   "elite_range_id": "3-2",
+   "forward_reach": 3,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_glady_2": "3-14"
+   }
+  },
+  "水月": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "y-1",
+   "cell_count": 10,
+   "char_id": "char_437_mizuki",
+   "elite_range_id": "y-1",
+   "forward_reach": 2,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_mizuki_3": "y-4"
+   }
+  },
+  "水灯心": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 15,
+   "char_id": "char_4177_brigid",
+   "elite_range_id": "y-7",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "泡泡": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "base_range_id": "0-1",
+   "cell_count": 1,
+   "char_id": "char_381_bubble",
+   "elite_range_id": "0-1",
+   "forward_reach": 0,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "波登可": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 12,
+   "char_id": "char_258_podego",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "流明": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 18,
+   "char_id": "char_4042_lumen",
+   "elite_range_id": "3-4",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ],
+    [
+     -2,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "浊心斯卡蒂": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "x-4",
+   "cell_count": 13,
+   "char_id": "char_1012_skadi2",
+   "elite_range_id": "x-1",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -2,
+     0
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "海沫": {
+   "base_range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "1-3",
+   "cell_count": 4,
+   "char_id": "char_4066_highmo",
+   "elite_range_id": "1-3",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "涤火杰西卡": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "base_range_id": "2-2",
+   "cell_count": 3,
+   "char_id": "char_1034_jesca2",
+   "elite_range_id": "2-2",
+   "forward_reach": 2,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_jesca2_2": "2-5"
+   }
+  },
+  "淬羽赫默": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 16,
+   "char_id": "char_1031_slent2",
+   "elite_range_id": "y-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "深巡": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "base_range_id": "2-2",
+   "cell_count": 3,
+   "char_id": "char_4137_udflow",
+   "elite_range_id": "2-2",
+   "forward_reach": 2,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_udflow_2": "3-2"
+   }
+  },
+  "深靛": {
+   "base_range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-13",
+   "cell_count": 10,
+   "char_id": "char_469_indigo",
+   "elite_range_id": "3-14",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_indigo_1": "4-1"
+   }
+  },
+  "渡桥": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-1",
+   "cell_count": 12,
+   "char_id": "char_4147_mitm",
+   "elite_range_id": "3-3",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_mitm_1": "x-5"
+   }
+  },
+  "温蒂": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_400_weedy",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_weedy_3": "4-1"
+   }
+  },
+  "溯光星源": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 12,
+   "char_id": "char_1047_halo2",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_halo2_3": "y-4"
+   }
+  },
+  "灰喉": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-1",
+   "cell_count": 12,
+   "char_id": "char_367_swllow",
+   "elite_range_id": "3-3",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "灵知": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 16,
+   "char_id": "char_206_gnosis",
+   "elite_range_id": "y-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "烈夏": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-3",
+   "cell_count": 8,
+   "char_id": "char_194_leto",
+   "elite_range_id": "3-12",
+   "forward_reach": 3,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "烛煌": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_1040_blaze2",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_blaze2_2": "x-2",
+    "skchr_blaze2_3": "4-11"
+   }
+  },
+  "焰尾": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_420_flamtl",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_flamtl_2": "x-1"
+   }
+  },
+  "玛恩纳": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     0
+    ]
+   ],
+   "base_range_id": "1-2",
+   "cell_count": 4,
+   "char_id": "char_4064_mlynar",
+   "elite_range_id": "1-2",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     0
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_mlynar_2": "2-3",
+    "skchr_mlynar_3": "3-18"
+   }
+  },
+  "瑕光": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_423_blemsh",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_blemsh_1": "x-4",
+    "skchr_blemsh_2": "x-1",
+    "skchr_blemsh_3": "x-1"
+   }
+  },
+  "瑰盐": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "y-1",
+   "cell_count": 12,
+   "char_id": "char_4163_rosesa",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "白铁": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4072_ironmn",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "真理": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 12,
+   "char_id": "char_195_glassb",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_glassb_2": "x-2"
+   }
+  },
+  "真言": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_4204_mantra",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_mantra_3": "3-17"
+   }
+  },
+  "矩": {
+   "base_range_cells": [
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -1,
+     4
+    ]
+   ],
+   "base_range_id": "4-4",
+   "cell_count": 13,
+   "char_id": "char_4221_ju",
+   "elite_range_id": "4-3",
+   "forward_reach": 4,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -1,
+     4
+    ],
+    [
+     -2,
+     2
+    ],
+    [
+     -2,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "砾": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_237_gravel",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "空弦": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-1",
+   "cell_count": 12,
+   "char_id": "char_332_archet",
+   "elite_range_id": "3-3",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "纯烬艾雅法拉": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 18,
+   "char_id": "char_1016_agoat2",
+   "elite_range_id": "3-17",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -2,
+     1
+    ],
+    [
+     -2,
+     2
+    ],
+    [
+     -2,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "维伊": {
+   "base_range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-13",
+   "cell_count": 10,
+   "char_id": "char_4226_veen",
+   "elite_range_id": "3-14",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "维娜·维多利亚": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_1019_siege2",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_siege2_1": "x-5",
+    "skchr_siege2_2": "2-2"
+   }
+  },
+  "缪尔赛思": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-1",
+   "cell_count": 12,
+   "char_id": "char_249_mlyss",
+   "elite_range_id": "3-3",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "罗比菈塔": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_484_robrta",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "耀骑士临光": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_1014_nearl2",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_nearl2_1": "2-2",
+    "skchr_nearl2_3": "2-1"
+   }
+  },
+  "老鲤": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_322_lmlee",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_lmlee_3": "x-4"
+   }
+  },
+  "耶拉": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_4013_kjera",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "至简": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_4054_malist",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "艾丝黛尔": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_127_estell",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "艾丽妮": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4009_irene",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_irene_2": "3-12",
+    "skchr_irene_3": "x-1"
+   }
+  },
+  "艾雅法拉": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_180_amgoat",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_amgoat_3": "x-3"
+   }
+  },
+  "荒芜拉普兰德": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_1038_whitw2",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_whitw2_2": "3-18"
+   }
+  },
+  "莎草": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "y-1",
+   "cell_count": 12,
+   "char_id": "char_4139_papyrs",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "蓝毒": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-1",
+   "cell_count": 12,
+   "char_id": "char_129_bluep",
+   "elite_range_id": "3-3",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "蕾缪安": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 19,
+   "char_id": "char_4193_lemuen",
+   "elite_range_id": "3-9",
+   "forward_reach": 4,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ],
+    [
+     -2,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "薇薇安娜": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4098_vvana",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_vvana_3": "1-1"
+   }
+  },
+  "蛇屠箱": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "base_range_id": "0-1",
+   "cell_count": 1,
+   "char_id": "char_150_snakek",
+   "elite_range_id": "0-1",
+   "forward_reach": 0,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "褐果": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 18,
+   "char_id": "char_4041_chnut",
+   "elite_range_id": "3-17",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -2,
+     1
+    ],
+    [
+     -2,
+     2
+    ],
+    [
+     -2,
+     3
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_chnut_2": "3-2"
+   }
+  },
+  "角峰": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "base_range_id": "0-1",
+   "cell_count": 1,
+   "char_id": "char_199_yak",
+   "elite_range_id": "0-1",
+   "forward_reach": 0,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "贝洛内": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4037_demetr",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_demetr_2": "3-13"
+   }
+  },
+  "赫德雷": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4088_hodrer",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "赫拉格": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_188_helage",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "车尔尼": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "base_range_id": "0-1",
+   "cell_count": 1,
+   "char_id": "char_4047_pianst",
+   "elite_range_id": "0-1",
+   "forward_reach": 0,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "远牙": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 19,
+   "char_id": "char_430_fartth",
+   "elite_range_id": "3-9",
+   "forward_reach": 4,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ],
+    [
+     -2,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "迷迭香": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 19,
+   "char_id": "char_391_rosmon",
+   "elite_range_id": "3-9",
+   "forward_reach": 4,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ],
+    [
+     -2,
+     2
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "逻各斯": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_4133_logos",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_logos_1": "3-3",
+    "skchr_logos_3": "3-4"
+   }
+  },
+  "遥": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 16,
+   "char_id": "char_4202_haruka",
+   "elite_range_id": "y-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_haruka_3": "y-8"
+   }
+  },
+  "酒神": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 12,
+   "char_id": "char_1042_phatm2",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_phatm2_3": "y-8"
+   }
+  },
+  "野鬃": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_496_wildmn",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_wildmn_2": "2-2"
+   }
+  },
+  "铃兰": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 12,
+   "char_id": "char_358_lisa",
+   "elite_range_id": "y-2",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_lisa_3": "y-8"
+   }
+  },
+  "铸铁": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_333_sidero",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_sidero_2": "0-1"
+   }
+  },
+  "锏": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4116_blkkgt",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_blkkgt_1": "x-4",
+    "skchr_blkkgt_2": "1-4",
+    "skchr_blkkgt_3": "x-1"
+   }
+  },
+  "锡人": {
+   "base_range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -2,
+     0
+    ]
+   ],
+   "base_range_id": "2-1",
+   "cell_count": 13,
+   "char_id": "char_4151_tinman",
+   "elite_range_id": "3-5",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "阿米娅": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_002_amiya",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_amiya_3": "3-4"
+   }
+  },
+  "陨星": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "base_range_id": "3-3",
+   "cell_count": 15,
+   "char_id": "char_219_meteo",
+   "elite_range_id": "3-10",
+   "forward_reach": 4,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ],
+    [
+     -1,
+     4
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "隐德来希": {
+   "base_range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "1-3",
+   "cell_count": 4,
+   "char_id": "char_4010_etlchi",
+   "elite_range_id": "1-3",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_etlchi_3": "2-5"
+   }
+  },
+  "雪猎": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "3-12",
+   "cell_count": 9,
+   "char_id": "char_4211_snhunt",
+   "elite_range_id": "4-9",
+   "forward_reach": 4,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "霍尔海雅": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-6",
+   "cell_count": 10,
+   "char_id": "char_4027_heyak",
+   "elite_range_id": "3-1",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_heyak_3": "3-10"
+   }
+  },
+  "霜叶": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-3",
+   "cell_count": 8,
+   "char_id": "char_193_frostl",
+   "elite_range_id": "3-12",
+   "forward_reach": 3,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "青枳": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_488_buildr",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "风丸": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "base_range_id": "1-1",
+   "cell_count": 2,
+   "char_id": "char_4016_kazema",
+   "elite_range_id": "1-1",
+   "forward_reach": 1,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "风絮": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "y-2",
+   "cell_count": 16,
+   "char_id": "char_4222_taraxa",
+   "elite_range_id": "y-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -2,
+     0
+    ],
+    [
+     -2,
+     1
+    ]
+   ],
+   "skill_range_ids": {}
+  },
+  "魔王": {
+   "base_range_cells": [
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "x-4",
+   "cell_count": 13,
+   "char_id": "char_4134_cetsyr",
+   "elite_range_id": "x-1",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     2,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -2,
+     0
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_cetsyr_3": "x-2"
+   }
+  },
+  "鸿雪": {
+   "base_range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "base_range_id": "2-3",
+   "cell_count": 9,
+   "char_id": "char_4055_bgsnow",
+   "elite_range_id": "3-6",
+   "forward_reach": 2,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_bgsnow_2": "3-1",
+    "skchr_bgsnow_3": "3-1"
+   }
+  },
+  "黍": {
+   "base_range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "base_range_id": "0-1",
+   "cell_count": 1,
+   "char_id": "char_2025_shu",
+   "elite_range_id": "0-1",
+   "forward_reach": 0,
+   "is_melee": true,
+   "position": "MELEE",
+   "range_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_shu_1": "x-4",
+    "skchr_shu_2": "x-1",
+    "skchr_shu_3": "x-2"
+   }
+  },
+  "黑键": {
+   "base_range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ]
+   ],
+   "base_range_id": "3-13",
+   "cell_count": 10,
+   "char_id": "char_4046_ebnhlz",
+   "elite_range_id": "3-14",
+   "forward_reach": 3,
+   "is_melee": false,
+   "position": "RANGED",
+   "range_cells": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     -1,
+     2
+    ],
+    [
+     -1,
+     3
+    ]
+   ],
+   "skill_range_ids": {
+    "skchr_ebnhlz_1": "4-1"
+   }
+  }
+ }
+}

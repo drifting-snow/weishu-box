@@ -1,0 +1,1384 @@
+{
+ "_meta": {
+  "description": "装备效果结构化(三轴评分原料)。stat_mods 为可正则化的数值属性(含负值)，drawbacks 为定性负面，stack_gain 为盟约加层，combo_of 为两件合成成品(状态跟踪后置)，mechanics 为机制标签(暂不计战力分)。needs_review=True 表示含条件/概率/组合/动态效果，其数值部分仍提取，但条件部分在战斗/状态层建立前不计分。消耗品走 item_economy。",
+  "total": 70,
+  "clean_combat": 12,
+  "needs_review": 42,
+  "consumables": 16,
+  "with_numeric_mods": 30,
+  "stat_keys": [
+   "atk_pct",
+   "hp_pct",
+   "def_pct",
+   "aspd_pct",
+   "aspd_flat",
+   "sp_cost_pct",
+   "sp_regen",
+   "block",
+   "res",
+   "redeploy_pct"
+  ]
+ },
+ "items": [
+  {
+   "name": "坚守盾牌",
+   "tier": 1,
+   "price": 1,
+   "bond": "坚守",
+   "consumable": false,
+   "stat_mods": {
+    "def_pct": 20
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "源石溶剂",
+   "tier": 1,
+   "price": 1,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 40
+   },
+   "drawbacks": [
+    {
+     "kind": "hp_drain_flat",
+     "value": 60
+    }
+   ],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "盟约之币",
+   "tier": 1,
+   "price": 1,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "维式重锤",
+   "tier": 1,
+   "price": 1,
+   "bond": "维多利亚",
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 15
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "虹彩活血饮料",
+   "tier": 1,
+   "price": 1,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [
+    {
+     "kind": "unhealable",
+     "value": null
+    }
+   ],
+   "utility": [
+    {
+     "kind": "regen_flat",
+     "value": 75
+    }
+   ],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "随身身份牌",
+   "tier": 1,
+   "price": 1,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": {
+    "amount": 3,
+    "transient": false,
+    "requires_active": false
+   },
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "雪祀之衣",
+   "tier": 1,
+   "price": 1,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "hp_pct": 15,
+    "block": -1
+   },
+   "drawbacks": [],
+   "utility": [
+    {
+     "kind": "taunt_down",
+     "value": null
+    }
+   ],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "不屈弹射器",
+   "tier": 2,
+   "price": 1,
+   "bond": "不屈",
+   "consumable": false,
+   "stat_mods": {
+    "hp_pct": -30,
+    "redeploy_pct": -30
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "revive"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "再部署时",
+    "部署时"
+   ]
+  },
+  {
+   "name": "见钱眼开玩偶",
+   "tier": 2,
+   "price": 1,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "卫戍推荐信",
+   "tier": 2,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": {
+    "amount": 1,
+    "transient": false,
+    "requires_active": true
+   },
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "战栗维式重锤",
+   "tier": 2,
+   "price": 2,
+   "bond": "维多利亚",
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 20
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "cc"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "攻击时",
+    "概率",
+    "若"
+   ]
+  },
+  {
+   "name": "灵巧涡轮手套",
+   "tier": 2,
+   "price": 2,
+   "bond": "灵巧",
+   "consumable": false,
+   "stat_mods": {
+    "aspd_flat": 2
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "受到伤害时",
+    "叠加",
+    "部署后"
+   ]
+  },
+  {
+   "name": "简易通讯机",
+   "tier": 2,
+   "price": 2,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "紧急调度券",
+   "tier": 2,
+   "price": 2,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "聚合急救箱",
+   "tier": 2,
+   "price": 2,
+   "bond": "聚合",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "shield_heal"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "范围内",
+    "首次"
+   ]
+  },
+  {
+   "name": "萨尔贡浓茶",
+   "tier": 2,
+   "price": 2,
+   "bond": "萨尔贡",
+   "consumable": false,
+   "stat_mods": {
+    "sp_regen": 0.15
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "精打细算玩偶",
+   "tier": 2,
+   "price": 3,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "奥术法阵",
+   "tier": 3,
+   "price": 1,
+   "bond": "奥术",
+   "consumable": false,
+   "stat_mods": {
+    "res": 20
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "silence"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "突袭手雷",
+   "tier": 3,
+   "price": 1,
+   "bond": "突袭",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "cc"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "攻击时",
+    "每次",
+    "部署后"
+   ]
+  },
+  {
+   "name": "不退者之盾",
+   "tier": 3,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "cc",
+    "immunity"
+   ],
+   "stack_gain": null,
+   "combo_of": "不退者卫护系统",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "组合为",
+    "若"
+   ]
+  },
+  {
+   "name": "乌萨斯呼吸器",
+   "tier": 3,
+   "price": 2,
+   "bond": "乌萨斯",
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 20,
+    "block": 1
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "再部署时",
+    "叠加",
+    "每次",
+    "部署时"
+   ]
+  },
+  {
+   "name": "伊比利亚骨刺刀",
+   "tier": 3,
+   "price": 2,
+   "bond": "伊比利亚",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "每次",
+    "造成伤害时"
+   ]
+  },
+  {
+   "name": "加速维式重锤",
+   "tier": 3,
+   "price": 2,
+   "bond": "维多利亚",
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 25,
+    "aspd_flat": 30
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "叙拉古正装",
+   "tier": 3,
+   "price": 2,
+   "bond": "叙拉古",
+   "consumable": false,
+   "stat_mods": {
+    "aspd_flat": 15
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "左右两侧"
+   ]
+  },
+  {
+   "name": "坚固维式重锤",
+   "tier": 3,
+   "price": 2,
+   "bond": "维多利亚",
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 25
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "首次"
+   ]
+  },
+  {
+   "name": "多功能补剂",
+   "tier": 3,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": {
+    "amount": 1,
+    "transient": true,
+    "requires_active": true
+   },
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "叠加",
+    "每次",
+    "造成伤害时"
+   ]
+  },
+  {
+   "name": "定期存折",
+   "tier": 3,
+   "price": 2,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "歌利亚头盔",
+   "tier": 3,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "hp_pct": 25
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "若",
+    "身前一格",
+    "部署时"
+   ]
+  },
+  {
+   "name": "炎国短刀",
+   "tier": 3,
+   "price": 2,
+   "bond": "炎",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "叠加",
+    "开启一次技能"
+   ]
+  },
+  {
+   "name": "精准狙击镜",
+   "tier": 3,
+   "price": 2,
+   "bond": "精准",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "距离"
+   ]
+  },
+  {
+   "name": "迅捷作战粮",
+   "tier": 3,
+   "price": 2,
+   "bond": "迅捷",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "部署时"
+   ]
+  },
+  {
+   "name": "阿戈尔重刃",
+   "tier": 3,
+   "price": 2,
+   "bond": "阿戈尔",
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 40,
+    "aspd_flat": -10
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "驮兽储蓄罐",
+   "tier": 3,
+   "price": 3,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "伪装服",
+   "tier": 4,
+   "price": 1,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "anti_stealth"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "隐匿",
+    "首次"
+   ]
+  },
+  {
+   "name": "蜂鸣器",
+   "tier": 4,
+   "price": 1,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "hp_pct": 40
+   },
+   "drawbacks": [
+    {
+     "kind": "taunt_up",
+     "value": null
+    }
+   ],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "M3茧甲",
+   "tier": 4,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "revive"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "击倒",
+    "被击倒时"
+   ]
+  },
+  {
+   "name": "一次性促销券",
+   "tier": 4,
+   "price": 2,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "动能单手弩",
+   "tier": 4,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": "动能轰击弩",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "概率",
+    "组合为",
+    "若",
+    "造成伤害时"
+   ]
+  },
+  {
+   "name": "卡西米尔竞技旗",
+   "tier": 4,
+   "price": 2,
+   "bond": "卡西米尔",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "衰减",
+    "部署后"
+   ]
+  },
+  {
+   "name": "可靠怀表",
+   "tier": 4,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "aspd_pct": -25,
+    "sp_cost_pct": -20
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "护盾无人机",
+   "tier": 4,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "shield_heal"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "概率"
+   ]
+  },
+  {
+   "name": "汲取者之喙",
+   "tier": 4,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": "汲取者之镰",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "每次",
+    "组合为",
+    "若",
+    "造成伤害时"
+   ]
+  },
+  {
+   "name": "灼燃维式重锤",
+   "tier": 4,
+   "price": 2,
+   "bond": "维多利亚",
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 30
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "dot"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "造成法术伤害时"
+   ]
+  },
+  {
+   "name": "莱塔尼亚小鼓",
+   "tier": 4,
+   "price": 2,
+   "bond": "莱塔尼亚",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "击倒",
+    "每次",
+    "范围内",
+    "被击倒时"
+   ]
+  },
+  {
+   "name": "谢拉格不融冰",
+   "tier": 4,
+   "price": 2,
+   "bond": "谢拉格",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "cc"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "概率",
+    "造成伤害时"
+   ]
+  },
+  {
+   "name": "驱逐者警棍",
+   "tier": 4,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "cc"
+   ],
+   "stack_gain": null,
+   "combo_of": "驱逐者防暴装备",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "组合为",
+    "若"
+   ]
+  },
+  {
+   "name": "寻呼模块",
+   "tier": 4,
+   "price": 4,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "佣兵名牌",
+   "tier": 5,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 6,
+    "hp_pct": 6
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "叠加"
+   ]
+  },
+  {
+   "name": "瓶装烈性反应",
+   "tier": 5,
+   "price": 2,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "元素爆发"
+   ]
+  },
+  {
+   "name": "电流维式重锤",
+   "tier": 5,
+   "price": 2,
+   "bond": "维多利亚",
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 30
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "cc",
+    "def_pierce"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "概率",
+    "造成伤害时"
+   ]
+  },
+  {
+   "name": "不退者力场",
+   "tier": 5,
+   "price": 3,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "block": 2
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": "不退者卫护系统",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "组合为",
+    "若"
+   ]
+  },
+  {
+   "name": "人事部记录",
+   "tier": 5,
+   "price": 3,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "信标",
+   "tier": 5,
+   "price": 3,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "双模机械臂",
+   "tier": 5,
+   "price": 3,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 30
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "true_damage"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "转化"
+   ]
+  },
+  {
+   "name": "天马之盔",
+   "tier": 5,
+   "price": 3,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "hp_pct": 60
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": "天马之耀",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "组合为",
+    "若"
+   ]
+  },
+  {
+   "name": "投机骰子",
+   "tier": 5,
+   "price": 3,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "驱逐者瓦斯",
+   "tier": 5,
+   "price": 3,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "cc"
+   ],
+   "stack_gain": null,
+   "combo_of": "驱逐者防暴装备",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "异常状态",
+    "组合为",
+    "若",
+    "范围内"
+   ]
+  },
+  {
+   "name": "拟态物质",
+   "tier": 5,
+   "price": 4,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "博士投影",
+   "tier": 5,
+   "price": 5,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "动能加速器",
+   "tier": 6,
+   "price": 3,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "aspd_flat": 2
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": "动能轰击弩",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "每次",
+    "组合为",
+    "若"
+   ]
+  },
+  {
+   "name": "变形同构体",
+   "tier": 6,
+   "price": 3,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "额外盟约"
+   ]
+  },
+  {
+   "name": "天马之枪",
+   "tier": 6,
+   "price": 3,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 50
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": "天马之耀",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "组合为",
+    "若"
+   ]
+  },
+  {
+   "name": "汲取者之心",
+   "tier": 6,
+   "price": 3,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 30,
+    "aspd_flat": 30
+   },
+   "drawbacks": [
+    {
+     "kind": "hp_drain_pct",
+     "value": 1
+    }
+   ],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": "汲取者之镰",
+   "needs_review": true,
+   "review_reasons": [
+    "同时持有",
+    "组合为",
+    "若"
+   ]
+  },
+  {
+   "name": "终极维式重锤",
+   "tier": 6,
+   "price": 3,
+   "bond": "维多利亚",
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "场上所有"
+   ]
+  },
+  {
+   "name": "人事部文档",
+   "tier": 6,
+   "price": 4,
+   "bond": null,
+   "consumable": true,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": false,
+   "review_reasons": []
+  },
+  {
+   "name": "不退者卫护系统",
+   "tier": 6,
+   "price": 6,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "block": 2
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "cc",
+    "immunity"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "范围内"
+   ]
+  },
+  {
+   "name": "动能轰击弩",
+   "tier": 6,
+   "price": 6,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "aspd_flat": 2
+   },
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "叠加",
+    "攻击时",
+    "概率",
+    "每次",
+    "范围内",
+    "造成伤害时"
+   ]
+  },
+  {
+   "name": "天马之耀",
+   "tier": 6,
+   "price": 6,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 50,
+    "hp_pct": 60
+   },
+   "drawbacks": [],
+   "utility": [
+    {
+     "kind": "regen_pct",
+     "value": 8
+    }
+   ],
+   "mechanics": [
+    "true_damage"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "造成伤害时"
+   ]
+  },
+  {
+   "name": "汲取者之镰",
+   "tier": 6,
+   "price": 6,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {
+    "atk_pct": 30,
+    "aspd_flat": 30
+   },
+   "drawbacks": [
+    {
+     "kind": "unhealable",
+     "value": null
+    },
+    {
+     "kind": "hp_drain_pct",
+     "value": 1
+    }
+   ],
+   "utility": [],
+   "mechanics": [],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "每次",
+    "造成伤害时"
+   ]
+  },
+  {
+   "name": "驱逐者防暴装备",
+   "tier": 6,
+   "price": 6,
+   "bond": null,
+   "consumable": false,
+   "stat_mods": {},
+   "drawbacks": [],
+   "utility": [],
+   "mechanics": [
+    "cc"
+   ],
+   "stack_gain": null,
+   "combo_of": null,
+   "needs_review": true,
+   "review_reasons": [
+    "异常状态",
+    "概率",
+    "每次",
+    "范围内"
+   ]
+  }
+ ]
+}

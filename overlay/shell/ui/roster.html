@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>卫戍盒子 · 阵容</title>
+  <link rel="stylesheet" href="roster.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="bar" id="drag-bar">
+      <div class="brand">卫戍盒子 · 阵容</div>
+      <div class="bar-actions">
+        <button type="button" id="btn-clear-sel" title="清除阵容高亮">清高亮</button>
+        <button type="button" id="btn-hide" title="折叠内容（不关窗）">隐</button>
+      </div>
+    </header>
+
+    <div id="roster-body">
+    <p class="hint">按敌人克制排序 · 「追板」= next_targets（商店高亮）· 「场下经济」= off_board_targets（不高亮）· 持有为唯一干员数</p>
+
+    <section class="block run-env">
+      <div class="sec-title">本局环境 <span id="run-env-path" class="muted"></span></div>
+      <ul id="run-env-list"><li class="muted">尚未录入 · 主面板点「录入本局」</li></ul>
+      <div id="enemy-wave" class="enemy-wave muted">本波敌人：主面板「读敌人」自动按 W → OCR</div>
+    </section>
+
+    <section class="block">
+      <div class="sec-title">当前持有 <span id="roster-count" class="muted"></span></div>
+      <div id="roster" class="chip-row empty">尚未 OCR</div>
+    </section>
+
+    <section class="block comps-block">
+      <div class="sec-title">推荐阵容 · 过渡构图</div>
+      <div id="comps" class="comps empty">等待识别后显示推荐构图</div>
+    </section>
+
+    <div id="status" class="status">待命</div>
+    </div><!-- #roster-body -->
+  </div>
+  <script src="roster.js"></script>
+</body>
+</html>

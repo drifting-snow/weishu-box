@@ -1,0 +1,217 @@
+{
+  "state": {
+    "round": 4,
+    "gold": 9,
+    "dispatch_level": 2,
+    "difficulty": "standard",
+    "target_bond": "乌萨斯",
+    "shop": [
+      {
+        "price": 3,
+        "name": "烈夏",
+        "tier": 1,
+        "kind": "operator"
+      },
+      {
+        "price": 3,
+        "name": "真理",
+        "tier": 2,
+        "kind": "operator"
+      },
+      {
+        "price": 1,
+        "name": "坚守盾牌",
+        "tier": 1,
+        "kind": "item"
+      },
+      {
+        "price": 3,
+        "name": "塔露拉",
+        "tier": 6,
+        "kind": "operator"
+      }
+    ]
+  },
+  "bond_status": [
+    {
+      "bond": "乌萨斯",
+      "have": 2,
+      "need": 3,
+      "active": false
+    },
+    {
+      "bond": "不屈",
+      "have": 1,
+      "need": 2,
+      "active": false
+    }
+  ],
+  "recommendations": [
+    {
+      "verb": "buy",
+      "target": "烈夏",
+      "score": 192.0,
+      "reason": "凑齐3合1升精锐；乌萨斯差1人激活(2/3)；契合目标盟约乌萨斯；4星底子(同本内微调)",
+      "cost": 3,
+      "impact": {
+        "target": "烈夏",
+        "kind": "operator",
+        "cost": 3,
+        "affordable": true,
+        "legal": true,
+        "power": 11.3,
+        "economy": 0.0,
+        "growth": 100.0,
+        "weights": [
+          0.4,
+          0.35,
+          0.25
+        ],
+        "total_impact": 39.5,
+        "impact_per_gold": 13.18,
+        "reasons": [
+          "成长:已有2张，向三合一推进",
+          "成长:凑乌萨斯盟约(2/3)",
+          "成长:契合目标盟约乌萨斯"
+        ]
+      }
+    },
+    {
+      "verb": "buy",
+      "target": "真理",
+      "score": 111.0,
+      "reason": "乌萨斯差1人激活(2/3)；契合目标盟约乌萨斯；4星底子(同本内微调)；投资型(special_buy_price)",
+      "cost": 3,
+      "impact": {
+        "target": "真理",
+        "kind": "operator",
+        "cost": 3,
+        "affordable": true,
+        "legal": true,
+        "power": 19.7,
+        "economy": 27.0,
+        "growth": 100.0,
+        "weights": [
+          0.4,
+          0.35,
+          0.25
+        ],
+        "total_impact": 49.6,
+        "impact_per_gold": 16.54,
+        "reasons": [
+          "经济:投资型(special_buy_price)",
+          "成长:乌萨斯差1人激活，买入即点亮(2/3)",
+          "成长:契合目标盟约乌萨斯",
+          "成长:新单位铺场边际18(板填充50%)"
+        ]
+      }
+    },
+    {
+      "verb": "upgrade",
+      "target": "调度中心",
+      "score": 35.0,
+      "reason": "升本价当前8（每停留1回合-1，升后重置）",
+      "cost": 8,
+      "impact": null
+    },
+    {
+      "verb": "buy",
+      "target": "坚守盾牌",
+      "score": 7.0,
+      "reason": "装备补强",
+      "cost": 1,
+      "impact": {
+        "target": "坚守盾牌",
+        "kind": "item",
+        "cost": 1,
+        "affordable": true,
+        "legal": true,
+        "power": 6.0,
+        "economy": 0.0,
+        "growth": 0.0,
+        "weights": [
+          0.4,
+          0.35,
+          0.25
+        ],
+        "total_impact": 2.4,
+        "impact_per_gold": 2.4,
+        "reasons": [
+          "战力:数值属性合计12",
+          "战力:携带者成熟度50%折减",
+          "成长:无盟约/叠层协同"
+        ]
+      }
+    },
+    {
+      "verb": "refresh",
+      "target": "调度中心",
+      "score": 0.0,
+      "reason": "无高分目标时刷店找核心牌",
+      "cost": 1,
+      "impact": null
+    },
+    {
+      "verb": "buy",
+      "target": "塔露拉",
+      "score": -999.0,
+      "reason": "超过当前调度等级，规则上不应出现",
+      "cost": 3,
+      "impact": {
+        "target": "塔露拉",
+        "kind": "operator",
+        "cost": 3,
+        "affordable": true,
+        "legal": false,
+        "power": 56.0,
+        "economy": 0.0,
+        "growth": 100.0,
+        "weights": [
+          0.4,
+          0.35,
+          0.25
+        ],
+        "total_impact": 57.4,
+        "impact_per_gold": 19.13,
+        "reasons": [
+          "成长:乌萨斯差1人激活，买入即点亮(2/3)",
+          "成长:契合目标盟约乌萨斯",
+          "成长:新单位铺场边际18(板填充50%)"
+        ]
+      }
+    }
+  ],
+  "top_pick": {
+    "verb": "buy",
+    "target": "烈夏",
+    "score": 192.0,
+    "reason": "凑齐3合1升精锐；乌萨斯差1人激活(2/3)；契合目标盟约乌萨斯；4星底子(同本内微调)",
+    "cost": 3,
+    "impact": {
+      "target": "烈夏",
+      "kind": "operator",
+      "cost": 3,
+      "affordable": true,
+      "legal": true,
+      "power": 11.3,
+      "economy": 0.0,
+      "growth": 100.0,
+      "weights": [
+        0.4,
+        0.35,
+        0.25
+      ],
+      "total_impact": 39.5,
+      "impact_per_gold": 13.18,
+      "reasons": [
+        "成长:已有2张，向三合一推进",
+        "成长:凑乌萨斯盟约(2/3)",
+        "成长:契合目标盟约乌萨斯"
+      ]
+    }
+  },
+  "notes": [
+    "抽棋各等阶具体百分比官方未公布，建议基于等级门控与实测记录，勿采信固定概率。",
+    "未花完资金下回合清零；要保留货物请用冻结。"
+  ]
+}

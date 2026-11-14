@@ -1,0 +1,3660 @@
+{
+  "_meta": {
+    "description": "卫戍协议敌人名录：把放大镜面板 OCR 到的敌人名解析成 enemy_traits.json 的战术分类 trait key。由官方解包表(Kengxxiao)经 tools/build_enemy_catalog.py 自动重建，不含任何第三方/GPL 复刻数据；源表在 data/source/gamedata(gitignored)。",
+    "generated_by": "tools/build_enemy_catalog.py",
+    "season": "act3autochess V3_1（卫戍协议·规程第三赛季，随官方版本重建）",
+    "category_bridge": {
+      "SPECIAL": "special",
+      "FLY": "flying",
+      "TIMES": "multi_hit",
+      "ELEMENT": "elemental",
+      "DOT": "sustained",
+      "INVISIBLE": "stealth",
+      "REFLECTION": "refraction",
+      "CRITIC": "lethal",
+      "REBORN": "revival"
+    },
+    "trait_key_to_name": {
+      "special": "特异",
+      "flying": "飞行",
+      "multi_hit": "频次",
+      "elemental": "元素",
+      "sustained": "持续",
+      "stealth": "隐匿",
+      "refraction": "折射",
+      "lethal": "致命",
+      "revival": "复苏"
+    },
+    "counts": {
+      "classified_enemy_ids": 179,
+      "unique_names": 179,
+      "by_official_type": {
+        "CRITIC": 33,
+        "DOT": 12,
+        "ELEMENT": 18,
+        "FLY": 14,
+        "INVISIBLE": 18,
+        "REBORN": 32,
+        "REFLECTION": 15,
+        "SPECIAL": 35,
+        "TIMES": 10
+      },
+      "unresolved_ids": []
+    },
+    "field_notes": {
+      "sources": "training=特训敌人池官方分类；special=特殊敌人(自带 type)；attached=特殊敌人关联的普通/精英，类型继承自宿主(inherited_type=true)。",
+      "untyped": "普通杂兵(如源石虫)不属于任何战术特训类，不在本名录；其名字仍收录在 data/enemy_names.json 全量索引中，OCR 可识别但不贡献 trait key。"
+    }
+  },
+  "enemies": {
+    "Dor-1号失败品": {
+      "enemy_ids": [
+        "enemy_1251_lysyta"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "Dor-α号失败品": {
+      "enemy_ids": [
+        "enemy_1251_lysyta_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "Dor-β号复制体": {
+      "enemy_ids": [
+        "enemy_1252_lysytb_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "传奇重犯": {
+      "enemy_ids": [
+        "enemy_1121_lifbos_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "军用猎狗": {
+      "enemy_ids": [
+        "enemy_1325_cbgpro"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "宿主士兵": {
+      "enemy_ids": [
+        "enemy_1043_zomsbr"
+      ],
+      "ac_types": [
+        "SPECIAL",
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "special",
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "宿主重装士兵": {
+      "enemy_ids": [
+        "enemy_1061_zomshd"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "弧光锋卫": {
+      "enemy_ids": [
+        "enemy_1328_cbjedi"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "弧光镜卫": {
+      "enemy_ids": [
+        "enemy_1329_cbshld"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "弧光镜卫长": {
+      "enemy_ids": [
+        "enemy_1329_cbshld_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "强壮囚犯": {
+      "enemy_ids": [
+        "enemy_1119_vofsd"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "拳师囚犯": {
+      "enemy_ids": [
+        "enemy_1118_lidbox_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "普通囚犯": {
+      "enemy_ids": [
+        "enemy_1116_liprr"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "步兵": {
+      "enemy_ids": [
+        "enemy_1046_agent"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "测试用动力装甲": {
+      "enemy_ids": [
+        "enemy_1254_lypa_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "渎罪奇美拉": {
+      "enemy_ids": [
+        "enemy_1425_lrcmra_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "猎狗pro": {
+      "enemy_ids": [
+        "enemy_1000_gopro_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "粉碎攻坚手": {
+      "enemy_ids": [
+        "enemy_1045_hammer"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "粉碎攻坚组长": {
+      "enemy_ids": [
+        "enemy_1045_hammer_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "老练囚犯": {
+      "enemy_ids": [
+        "enemy_1116_liprr_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "莱茵生命防卫科高级成员": {
+      "enemy_ids": [
+        "enemy_1249_lysdb_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹刀兵": {
+      "enemy_ids": [
+        "enemy_1071_dftman"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹大剑手": {
+      "enemy_ids": [
+        "enemy_1010_demon"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹大剑组长": {
+      "enemy_ids": [
+        "enemy_1010_demon_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹悖谬暴虐兵长": {
+      "enemy_ids": [
+        "enemy_1320_wdrrl_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹枯朽辟路前锋": {
+      "enemy_ids": [
+        "enemy_1422_lrsldr_2"
+      ],
+      "ac_types": [
+        "SPECIAL",
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "special",
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹穿刺手": {
+      "enemy_ids": [
+        "enemy_1072_dlancer"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "访问团持盾者": {
+      "enemy_ids": [
+        "enemy_1387_winshd"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "访问团新兵": {
+      "enemy_ids": [
+        "enemy_1381_winman"
+      ],
+      "ac_types": [
+        "SPECIAL",
+        "INVISIBLE",
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "special",
+        "stealth",
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "访问团老兵": {
+      "enemy_ids": [
+        "enemy_1381_winman_2"
+      ],
+      "ac_types": [
+        "SPECIAL",
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "special",
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "重犯": {
+      "enemy_ids": [
+        "enemy_1121_lifbos"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "重装五十夫长": {
+      "enemy_ids": [
+        "enemy_1006_shield_3"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "重装侦察兵": {
+      "enemy_ids": [
+        "enemy_1402_tgshd_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "集团军中坚盾卫": {
+      "enemy_ids": [
+        "enemy_10124_uashld_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "高级军用猎狗": {
+      "enemy_ids": [
+        "enemy_1325_cbgpro_2"
+      ],
+      "ac_types": [
+        "SPECIAL"
+      ],
+      "trait_keys": [
+        "special"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "“萨科塔之眼”": {
+      "enemy_ids": [
+        "enemy_10084_hlegle"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "NORMAL",
+      "is_flying": true,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "“萨科塔之翼”": {
+      "enemy_ids": [
+        "enemy_10083_hlbird"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "NORMAL",
+      "is_flying": true,
+      "apply_way": "NONE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：黑云": {
+      "enemy_ids": [
+        "enemy_9009_acfort"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "ELITE",
+      "is_flying": true,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "妖怪": {
+      "enemy_ids": [
+        "enemy_1005_yokai"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "NORMAL",
+      "is_flying": true,
+      "apply_way": "NONE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "妖怪MKII": {
+      "enemy_ids": [
+        "enemy_1005_yokai_2"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "NORMAL",
+      "is_flying": true,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "威龙": {
+      "enemy_ids": [
+        "enemy_1005_yokai_3"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "ELITE",
+      "is_flying": true,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "寒霜": {
+      "enemy_ids": [
+        "enemy_1042_frostd"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "ELITE",
+      "is_flying": true,
+      "apply_way": "NONE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "帝国炮火先兆者": {
+      "enemy_ids": [
+        "enemy_1112_emppnt"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "ELITE",
+      "is_flying": true,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "御4": {
+      "enemy_ids": [
+        "enemy_1017_defdrn"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "NORMAL",
+      "is_flying": true,
+      "apply_way": "NONE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "护障": {
+      "enemy_ids": [
+        "enemy_1355_mrfly"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "NORMAL",
+      "is_flying": true,
+      "apply_way": "NONE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "护障·P": {
+      "enemy_ids": [
+        "enemy_1355_mrfly_2"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "NORMAL",
+      "is_flying": true,
+      "apply_way": "NONE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "法术大师A1": {
+      "enemy_ids": [
+        "enemy_1041_lazerd"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "NORMAL",
+      "is_flying": true,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "法术大师A2": {
+      "enemy_ids": [
+        "enemy_1041_lazerd_2"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "ELITE",
+      "is_flying": true,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "远眺": {
+      "enemy_ids": [
+        "enemy_1407_hummbd"
+      ],
+      "ac_types": [
+        "FLY"
+      ],
+      "trait_keys": [
+        "flying"
+      ],
+      "rank": "NORMAL",
+      "is_flying": true,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "俗心": {
+      "enemy_ids": [
+        "enemy_1197_sfshu"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：再生": {
+      "enemy_ids": [
+        "enemy_9010_acpupp"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "明鉴": {
+      "enemy_ids": [
+        "enemy_1195_sfyin_2"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "沉沙": {
+      "enemy_ids": [
+        "enemy_1207_sfji"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池逐火战士": {
+      "enemy_ids": [
+        "enemy_1288_duskls"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池逐火护卫": {
+      "enemy_ids": [
+        "enemy_1292_duskld"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池逐火精锐战士": {
+      "enemy_ids": [
+        "enemy_1288_duskls_2"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "磨砻": {
+      "enemy_ids": [
+        "enemy_1195_sfyin"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "身观": {
+      "enemy_ids": [
+        "enemy_1199_sfjin"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "雅气": {
+      "enemy_ids": [
+        "enemy_1197_sfshu_2"
+      ],
+      "ac_types": [
+        "TIMES"
+      ],
+      "trait_keys": [
+        "multi_hit"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：淤困": {
+      "enemy_ids": [
+        "enemy_9007_acelem"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "NONE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "元核孽生者": {
+      "enemy_ids": [
+        "enemy_1439_dslntf"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "卷心籽": {
+      "enemy_ids": [
+        "enemy_10065_ftzlc"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "富营养的滑动者": {
+      "enemy_ids": [
+        "enemy_1148_dssbr_2"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "底海滑动者": {
+      "enemy_ids": [
+        "enemy_1148_dssbr"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "掠海漂移体": {
+      "enemy_ids": [
+        "enemy_2025_syufo"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "ALL",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "控潮术师": {
+      "enemy_ids": [
+        "enemy_1161_tidmag"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "潜水员": {
+      "enemy_ids": [
+        "enemy_1158_divman"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "灼热源石虫": {
+      "enemy_ids": [
+        "enemy_1305_mhslim"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "灼藤": {
+      "enemy_ids": [
+        "enemy_10067_ftsjc"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "炽焰源石虫": {
+      "enemy_ids": [
+        "enemy_1305_mhslim_2"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "码头水手": {
+      "enemy_ids": [
+        "enemy_1160_hvyslr"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "码头水手长": {
+      "enemy_ids": [
+        "enemy_1160_hvyslr_2"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹王庭军战士": {
+      "enemy_ids": [
+        "enemy_1229_darmy"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹王庭军精锐战士": {
+      "enemy_ids": [
+        "enemy_1229_darmy_2"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹王庭军精锐术师": {
+      "enemy_ids": [
+        "enemy_1275_dwlock_2"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "领潮员": {
+      "enemy_ids": [
+        "enemy_1161_tidmag_2"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "骨海漂流体": {
+      "enemy_ids": [
+        "enemy_2021_syfish"
+      ],
+      "ac_types": [
+        "ELEMENT"
+      ],
+      "trait_keys": [
+        "elemental"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：蚀裂": {
+      "enemy_ids": [
+        "enemy_9006_actoxi"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "单核掠食者": {
+      "enemy_ids": [
+        "enemy_1433_dsbasi"
+      ],
+      "ac_types": [
+        "DOT",
+        "REBORN"
+      ],
+      "trait_keys": [
+        "sustained",
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "富营养的巢涌者": {
+      "enemy_ids": [
+        "enemy_1234_dsubrl_2"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "尖端萨卡兹枯朽战车": {
+      "enemy_ids": [
+        "enemy_1272_nhtank_2"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "ALL",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "异光体掠食者": {
+      "enemy_ids": [
+        "enemy_1433_dsbasi_2"
+      ],
+      "ac_types": [
+        "DOT",
+        "REBORN"
+      ],
+      "trait_keys": [
+        "sustained",
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深溟巢涌者": {
+      "enemy_ids": [
+        "enemy_1234_dsubrl"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "疯狂的逐腐兽": {
+      "enemy_ids": [
+        "enemy_1270_nhstlk_2"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹枯朽战士": {
+      "enemy_ids": [
+        "enemy_1267_nhpbr"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹枯朽战士组长": {
+      "enemy_ids": [
+        "enemy_1267_nhpbr_2"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹枯朽战车": {
+      "enemy_ids": [
+        "enemy_1272_nhtank"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "ALL",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "逐腐兽": {
+      "enemy_ids": [
+        "enemy_1270_nhstlk"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "集团军重型火炮": {
+      "enemy_ids": [
+        "enemy_10122_uacann_2"
+      ],
+      "ac_types": [
+        "DOT"
+      ],
+      "trait_keys": [
+        "sustained"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "业余竞演者": {
+      "enemy_ids": [
+        "enemy_10031_cnvsld"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：影役": {
+      "enemy_ids": [
+        "enemy_9034_acblk"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：骨刺": {
+      "enemy_ids": [
+        "enemy_9008_acbunn"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "家族灭迹人": {
+      "enemy_ids": [
+        "enemy_1283_sgkill"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "寻险水手": {
+      "enemy_ids": [
+        "enemy_10043_sailor"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "山海众头目": {
+      "enemy_ids": [
+        "enemy_1299_ymkilr"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "山海众秘使": {
+      "enemy_ids": [
+        "enemy_1299_ymkilr_2"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "扶桥老手": {
+      "enemy_ids": [
+        "enemy_10042_prtrop_2"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "架桥船工": {
+      "enemy_ids": [
+        "enemy_10042_prtrop"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "潜伏者": {
+      "enemy_ids": [
+        "enemy_1009_lurker"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "节日爵士乐手": {
+      "enemy_ids": [
+        "enemy_10034_cnvsax"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "ALL",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "访问团强攻冠军": {
+      "enemy_ids": [
+        "enemy_1389_winbab_2"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "重弩突袭者": {
+      "enemy_ids": [
+        "enemy_1404_msnip"
+      ],
+      "ac_types": [
+        "INVISIBLE",
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "stealth",
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "隐形弩手": {
+      "enemy_ids": [
+        "enemy_1019_jshoot"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "隐形弩手组长": {
+      "enemy_ids": [
+        "enemy_1019_jshoot_2"
+      ],
+      "ac_types": [
+        "INVISIBLE"
+      ],
+      "trait_keys": [
+        "stealth"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "“喷射罐”": {
+      "enemy_ids": [
+        "enemy_1385_winbom"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "“喷爆罐”": {
+      "enemy_ids": [
+        "enemy_1385_winbom_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "“左手”泰特斯·白杨": {
+      "enemy_ids": [
+        "enemy_1104_lfkght_3"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "“投石机”": {
+      "enemy_ids": [
+        "enemy_1388_wingnt"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "“榴弹炮”": {
+      "enemy_ids": [
+        "enemy_1388_wingnt_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：丛生": {
+      "enemy_ids": [
+        "enemy_9040_accrit"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：镜波": {
+      "enemy_ids": [
+        "enemy_9031_acrefd"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：镜眼": {
+      "enemy_ids": [
+        "enemy_9039_acrefm"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "假想敌：镜膜": {
+      "enemy_ids": [
+        "enemy_9011_acrefr"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "冰原卫法者": {
+      "enemy_ids": [
+        "enemy_1191_krgrg"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "冰原御法者": {
+      "enemy_ids": [
+        "enemy_1191_krgrg_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "冰爆源石虫·α": {
+      "enemy_ids": [
+        "enemy_1067_snslime_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "变异岩蛛": {
+      "enemy_ids": [
+        "enemy_1132_sarchn"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "变异岩蛛α": {
+      "enemy_ids": [
+        "enemy_1132_sarchn_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "变异巨岩蛛": {
+      "enemy_ids": [
+        "enemy_1133_harchn"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "变异巨岩蛛α": {
+      "enemy_ids": [
+        "enemy_1133_harchn_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "变异沙地兽": {
+      "enemy_ids": [
+        "enemy_1131_sbeast"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "变异沙地兽α": {
+      "enemy_ids": [
+        "enemy_1131_sbeast_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "守墓石像": {
+      "enemy_ids": [
+        "enemy_1172_dugago"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "ALL",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "寻路者信使": {
+      "enemy_ids": [
+        "enemy_1219_mtrbty"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "ALL",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "寻路者狙击手": {
+      "enemy_ids": [
+        "enemy_1213_mtrsnp"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "寻路者阵地破坏者": {
+      "enemy_ids": [
+        "enemy_1216_cansld"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "ALL",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "巫王乐团圆号手": {
+      "enemy_ids": [
+        "enemy_1373_ltnhor_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "巫王乐团管乐家": {
+      "enemy_ids": [
+        "enemy_1375_ltnclr_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "巫王乐团鼓手": {
+      "enemy_ids": [
+        "enemy_1376_ltndru_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "异光体集养者": {
+      "enemy_ids": [
+        "enemy_1436_dsdivi_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "异光体饲育者": {
+      "enemy_ids": [
+        "enemy_1437_dsfull_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "战线推进者": {
+      "enemy_ids": [
+        "enemy_1406_chghmr"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "新生血裔": {
+      "enemy_ids": [
+        "enemy_1360_dfello"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "无畏掷弹兵": {
+      "enemy_ids": [
+        "enemy_1405_boomer_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "棱镜魂灵残迹": {
+      "enemy_ids": [
+        "enemy_1429_lrwzrd_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "残党乐团圆号手": {
+      "enemy_ids": [
+        "enemy_1373_ltnhor"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "残党乐团管乐家": {
+      "enemy_ids": [
+        "enemy_1375_ltnclr"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "残党乐团鼓手": {
+      "enemy_ids": [
+        "enemy_1376_ltndru"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "沸血骑士团精锐": {
+      "enemy_ids": [
+        "enemy_1103_wdkght_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "注能魂灵法骸": {
+      "enemy_ids": [
+        "enemy_1431_lrmzrd"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池伙友卫队": {
+      "enemy_ids": [
+        "enemy_1174_duholy"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池伙友卫队精英": {
+      "enemy_ids": [
+        "enemy_1174_duholy_2"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池伙友影刃精英": {
+      "enemy_ids": [
+        "enemy_1175_dushdo_2"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池侦察兵": {
+      "enemy_ids": [
+        "enemy_1166_dusbr"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池侦察犬": {
+      "enemy_ids": [
+        "enemy_1165_duhond"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池侦察队长": {
+      "enemy_ids": [
+        "enemy_1166_dusbr_2"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池方阵战士": {
+      "enemy_ids": [
+        "enemy_1169_duphlx"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池方阵指挥官": {
+      "enemy_ids": [
+        "enemy_1169_duphlx_2"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池暗影术师": {
+      "enemy_ids": [
+        "enemy_1168_dumage"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池重甲卫士": {
+      "enemy_ids": [
+        "enemy_1170_dushld"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "深池重甲卫士队长": {
+      "enemy_ids": [
+        "enemy_1170_dushld_2"
+      ],
+      "ac_types": [
+        "REFLECTION"
+      ],
+      "trait_keys": [
+        "refraction"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "狂暴凶豕兽": {
+      "enemy_ids": [
+        "enemy_1309_mhboar_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "神勇的帕拉杜利斯": {
+      "enemy_ids": [
+        "enemy_10163_mnctur_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "粹影魂灵法骸": {
+      "enemy_ids": [
+        "enemy_1431_lrmzrd_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "聚焦魂灵残迹": {
+      "enemy_ids": [
+        "enemy_1429_lrwzrd"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔寄生者": {
+      "enemy_ids": [
+        "enemy_9030_acpara"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔工匠": {
+      "enemy_ids": [
+        "enemy_1223_dmech"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔工匠组长": {
+      "enemy_ids": [
+        "enemy_1223_dmech_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔惩戒者": {
+      "enemy_ids": [
+        "enemy_1362_dfat_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔战士": {
+      "enemy_ids": [
+        "enemy_1222_dpvt"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔战士组长": {
+      "enemy_ids": [
+        "enemy_1222_dpvt_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔改装补给车": {
+      "enemy_ids": [
+        "enemy_1224_dsuply_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔毁击者": {
+      "enemy_ids": [
+        "enemy_1361_dthrow_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔补给车": {
+      "enemy_ids": [
+        "enemy_1224_dsuply"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔责罚者": {
+      "enemy_ids": [
+        "enemy_1362_dfat"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔轰击者": {
+      "enemy_ids": [
+        "enemy_1361_dthrow"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔链术师": {
+      "enemy_ids": [
+        "enemy_1225_dkmage"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔链术师组长": {
+      "enemy_ids": [
+        "enemy_1225_dkmage_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔集怒者": {
+      "enemy_ids": [
+        "enemy_1226_dklord_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹子裔集恨者": {
+      "enemy_ids": [
+        "enemy_1226_dklord"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "萨卡兹骸骨卫士长": {
+      "enemy_ids": [
+        "enemy_1363_spnshd_2"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "蕴核饲育者": {
+      "enemy_ids": [
+        "enemy_1437_dsfull"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "诡核集养者": {
+      "enemy_ids": [
+        "enemy_1436_dsdivi"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "速射劲弩手": {
+      "enemy_ids": [
+        "enemy_1403_gunsho_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "速射轻弩手": {
+      "enemy_ids": [
+        "enemy_1403_gunsho"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "锋盔骑士团学徒": {
+      "enemy_ids": [
+        "enemy_1104_lfkght"
+      ],
+      "ac_types": [
+        "REBORN"
+      ],
+      "trait_keys": [
+        "revival"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "RANGED",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "雪怪小队": {
+      "enemy_ids": [
+        "enemy_1064_snsbr"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "马特奥的近卫": {
+      "enemy_ids": [
+        "enemy_1409_bdguad_2"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "ELITE",
+      "is_flying": false,
+      "apply_way": "ALL",
+      "sources": [
+        "training",
+        "special"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    },
+    "魂灵涡流": {
+      "enemy_ids": [
+        "enemy_1428_lrsoul"
+      ],
+      "ac_types": [
+        "CRITIC"
+      ],
+      "trait_keys": [
+        "lethal"
+      ],
+      "rank": "NORMAL",
+      "is_flying": false,
+      "apply_way": "MELEE",
+      "sources": [
+        "training",
+        "attached"
+      ],
+      "inherited_type": false,
+      "needs_review": false
+    }
+  }
+}

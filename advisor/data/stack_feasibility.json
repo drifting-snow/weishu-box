@@ -1,0 +1,708 @@
+{
+ "_meta": {
+  "description": "全羁绊叠层可行性因子(0~1，越高越容易养大层数)。持续叠加(激活后反复触发)占85%，按时机0.25/广度0.20/手段0.15/速率0.40 四维加权，通用叠层手至多+0.10；单次注入(获得即给层的启动能力)占15%。静态画像，不含实时层数。",
+  "grade_rule": "高>=0.75, 中>=0.55, 低<0.55",
+  "means_ease": {
+   "passive_or_other": 1.0,
+   "end_of_rest": 0.95,
+   "start_of_rest": 0.9,
+   "on_acquire": 0.9,
+   "op_acquire": 0.85,
+   "op_refresh": 0.8,
+   "on_sell": 0.7,
+   "battle_start": 0.65,
+   "battle_end": 0.65,
+   "convert_transient": 0.55,
+   "aura_adjacent": 0.55,
+   "aura_front": 0.5,
+   "on_deploy": 0.5,
+   "on_skill": 0.4,
+   "on_kill": 0.35,
+   "on_affliction": 0.3
+  }
+ },
+ "bonds": {
+  "精准": {
+   "factor": 0.844,
+   "grade": "高",
+   "continuous_factor": 0.84,
+   "startup_score": 0.867,
+   "earliest_tier": 3,
+   "continuous_stacker_count": 4,
+   "injector_count": 2,
+   "stackers": [
+    "伺夜",
+    "迷迭香",
+    "鸿雪",
+    "黑键"
+   ],
+   "injectors": [
+    "灰喉",
+    "雪猎"
+   ],
+   "sub_scores": {
+    "timing": 0.667,
+    "breadth": 0.8,
+    "means_ease": 0.775,
+    "rate": 0.768
+   },
+   "generic_helpers": [
+    "旅骨",
+    "空弦",
+    "霍尔海雅"
+   ],
+   "means_used": [
+    "end_of_rest",
+    "on_kill",
+    "on_skill"
+   ],
+   "dynamic_sources": 0
+  },
+  "奥术": {
+   "factor": 0.842,
+   "grade": "高",
+   "continuous_factor": 0.991,
+   "startup_score": 0.0,
+   "earliest_tier": 1,
+   "continuous_stacker_count": 5,
+   "injector_count": 0,
+   "stackers": [
+    "Miss.Christine",
+    "卡达",
+    "夕",
+    "溯光星源",
+    "逻各斯"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 1.0,
+    "breadth": 1.0,
+    "means_ease": 0.946,
+    "rate": 0.922
+   },
+   "generic_helpers": [
+    "霍尔海雅"
+   ],
+   "means_used": [
+    "end_of_rest",
+    "on_acquire"
+   ],
+   "dynamic_sources": 2
+  },
+  "迅捷": {
+   "factor": 0.807,
+   "grade": "高",
+   "continuous_factor": 0.949,
+   "startup_score": 0.0,
+   "earliest_tier": 1,
+   "continuous_stacker_count": 5,
+   "injector_count": 0,
+   "stackers": [
+    "冻河",
+    "妮芙",
+    "引星棘刺",
+    "焰尾",
+    "陨星"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 1.0,
+    "breadth": 1.0,
+    "means_ease": 0.802,
+    "rate": 0.872
+   },
+   "generic_helpers": [
+    "青枳"
+   ],
+   "means_used": [
+    "end_of_rest",
+    "on_affliction",
+    "on_kill",
+    "on_skill"
+   ],
+   "dynamic_sources": 0
+  },
+  "炎": {
+   "factor": 0.786,
+   "grade": "高",
+   "continuous_factor": 0.748,
+   "startup_score": 1.0,
+   "earliest_tier": 3,
+   "continuous_stacker_count": 3,
+   "injector_count": 4,
+   "stackers": [
+    "夕",
+    "烛煌",
+    "风絮"
+   ],
+   "injectors": [
+    "仇白",
+    "拜松",
+    "矩",
+    "黍"
+   ],
+   "sub_scores": {
+    "timing": 0.667,
+    "breadth": 0.6,
+    "means_ease": 0.987,
+    "rate": 0.708
+   },
+   "generic_helpers": [
+    "余"
+   ],
+   "means_used": [
+    "end_of_rest",
+    "passive_or_other"
+   ],
+   "dynamic_sources": 2
+  },
+  "聚合": {
+   "factor": 0.744,
+   "grade": "中",
+   "continuous_factor": 0.746,
+   "startup_score": 0.733,
+   "earliest_tier": 3,
+   "continuous_stacker_count": 4,
+   "injector_count": 1,
+   "stackers": [
+    "流明",
+    "纯烬艾雅法拉",
+    "遥",
+    "风絮"
+   ],
+   "injectors": [
+    "褐果"
+   ],
+   "sub_scores": {
+    "timing": 0.667,
+    "breadth": 0.8,
+    "means_ease": 0.8,
+    "rate": 0.598
+   },
+   "generic_helpers": [
+    "华法琳",
+    "夜莺"
+   ],
+   "means_used": [
+    "battle_end",
+    "end_of_rest",
+    "on_kill"
+   ],
+   "dynamic_sources": 1
+  },
+  "不屈": {
+   "factor": 0.739,
+   "grade": "中",
+   "continuous_factor": 0.717,
+   "startup_score": 0.867,
+   "earliest_tier": 2,
+   "continuous_stacker_count": 4,
+   "injector_count": 2,
+   "stackers": [
+    "史尔特尔",
+    "森蚺",
+    "砾",
+    "风丸"
+   ],
+   "injectors": [
+    "宴",
+    "摆渡人"
+   ],
+   "sub_scores": {
+    "timing": 0.833,
+    "breadth": 0.8,
+    "means_ease": 0.47,
+    "rate": 0.695
+   },
+   "generic_helpers": [],
+   "means_used": [
+    "on_deploy",
+    "on_kill"
+   ],
+   "dynamic_sources": 0
+  },
+  "突袭": {
+   "factor": 0.733,
+   "grade": "中",
+   "continuous_factor": 0.862,
+   "startup_score": 0.0,
+   "earliest_tier": 2,
+   "continuous_stacker_count": 5,
+   "injector_count": 0,
+   "stackers": [
+    "史尔特尔",
+    "耀骑士临光",
+    "赫德雷",
+    "赫拉格",
+    "铸铁"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 0.833,
+    "breadth": 1.0,
+    "means_ease": 0.782,
+    "rate": 0.765
+   },
+   "generic_helpers": [
+    "瑕光"
+   ],
+   "means_used": [
+    "end_of_rest",
+    "on_deploy",
+    "on_kill"
+   ],
+   "dynamic_sources": 0
+  },
+  "伊比利亚": {
+   "factor": 0.723,
+   "grade": "中",
+   "continuous_factor": 0.851,
+   "startup_score": 0.0,
+   "earliest_tier": 1,
+   "continuous_stacker_count": 4,
+   "injector_count": 0,
+   "stackers": [
+    "引星棘刺",
+    "棘刺",
+    "流明",
+    "深靛"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 1.0,
+    "breadth": 0.8,
+    "means_ease": 0.92,
+    "rate": 0.682
+   },
+   "generic_helpers": [
+    "旅骨"
+   ],
+   "means_used": [
+    "battle_end",
+    "end_of_rest"
+   ],
+   "dynamic_sources": 1
+  },
+  "坚守": {
+   "factor": 0.68,
+   "grade": "中",
+   "continuous_factor": 0.671,
+   "startup_score": 0.733,
+   "earliest_tier": 2,
+   "continuous_stacker_count": 4,
+   "injector_count": 1,
+   "stackers": [
+    "泡泡",
+    "涤火杰西卡",
+    "罗比菈塔",
+    "蛇屠箱"
+   ],
+   "injectors": [
+    "摆渡人"
+   ],
+   "sub_scores": {
+    "timing": 0.833,
+    "breadth": 0.8,
+    "means_ease": 0.885,
+    "rate": 0.276
+   },
+   "generic_helpers": [
+    "余",
+    "青枳"
+   ],
+   "means_used": [
+    "end_of_rest",
+    "on_skill"
+   ],
+   "dynamic_sources": 0
+  },
+  "维多利亚": {
+   "factor": 0.677,
+   "grade": "中",
+   "continuous_factor": 0.796,
+   "startup_score": 0.0,
+   "earliest_tier": 1,
+   "continuous_stacker_count": 5,
+   "injector_count": 0,
+   "stackers": [
+    "Miss.Christine",
+    "慕斯",
+    "涤火杰西卡",
+    "烛煌",
+    "维娜·维多利亚"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 1.0,
+    "breadth": 1.0,
+    "means_ease": 0.984,
+    "rate": 0.495
+   },
+   "generic_helpers": [],
+   "means_used": [
+    "end_of_rest",
+    "passive_or_other"
+   ],
+   "dynamic_sources": 0
+  },
+  "谢拉格": {
+   "factor": 0.675,
+   "grade": "中",
+   "continuous_factor": 0.659,
+   "startup_score": 0.766,
+   "earliest_tier": 3,
+   "continuous_stacker_count": 2,
+   "injector_count": 2,
+   "stackers": [
+    "初雪",
+    "圣聆初雪"
+   ],
+   "injectors": [
+    "极光",
+    "雪猎"
+   ],
+   "sub_scores": {
+    "timing": 0.667,
+    "breadth": 0.4,
+    "means_ease": 0.86,
+    "rate": 0.708
+   },
+   "generic_helpers": [],
+   "means_used": [
+    "on_affliction",
+    "passive_or_other"
+   ],
+   "dynamic_sources": 0
+  },
+  "助力": {
+   "factor": 0.671,
+   "grade": "中",
+   "continuous_factor": 0.79,
+   "startup_score": 0.0,
+   "earliest_tier": 2,
+   "continuous_stacker_count": 3,
+   "injector_count": 0,
+   "stackers": [
+    "安哲拉",
+    "罗比菈塔",
+    "迷迭香"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 0.833,
+    "breadth": 0.6,
+    "means_ease": 0.857,
+    "rate": 0.584
+   },
+   "generic_helpers": [
+    "夏栎",
+    "帕拉斯",
+    "星源",
+    "淬羽赫默"
+   ],
+   "means_used": [
+    "end_of_rest",
+    "on_kill"
+   ],
+   "dynamic_sources": 0
+  },
+  "萨尔贡": {
+   "factor": 0.666,
+   "grade": "中",
+   "continuous_factor": 0.783,
+   "startup_score": 0.0,
+   "earliest_tier": 1,
+   "continuous_stacker_count": 4,
+   "injector_count": 0,
+   "stackers": [
+    "森蚺",
+    "泡泡",
+    "艾丝黛尔",
+    "鸿雪"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 1.0,
+    "breadth": 0.8,
+    "means_ease": 0.47,
+    "rate": 0.68
+   },
+   "generic_helpers": [
+    "佩佩"
+   ],
+   "means_used": [
+    "on_deploy",
+    "on_skill"
+   ],
+   "dynamic_sources": 0
+  },
+  "叙拉古": {
+   "factor": 0.655,
+   "grade": "中",
+   "continuous_factor": 0.641,
+   "startup_score": 0.733,
+   "earliest_tier": 2,
+   "continuous_stacker_count": 4,
+   "injector_count": 1,
+   "stackers": [
+    "伺夜",
+    "复奏",
+    "安洁莉娜",
+    "荒芜拉普兰德"
+   ],
+   "injectors": [
+    "拉普兰德"
+   ],
+   "sub_scores": {
+    "timing": 0.833,
+    "breadth": 0.8,
+    "means_ease": 0.815,
+    "rate": 0.377
+   },
+   "generic_helpers": [],
+   "means_used": [
+    "end_of_rest",
+    "on_kill",
+    "op_refresh"
+   ],
+   "dynamic_sources": 1
+  },
+  "卡西米尔": {
+   "factor": 0.654,
+   "grade": "中",
+   "continuous_factor": 0.769,
+   "startup_score": 0.0,
+   "earliest_tier": 1,
+   "continuous_stacker_count": 4,
+   "injector_count": 0,
+   "stackers": [
+    "焰尾",
+    "砾",
+    "耀骑士临光",
+    "野鬃"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 1.0,
+    "breadth": 0.8,
+    "means_ease": 0.767,
+    "rate": 0.536
+   },
+   "generic_helpers": [
+    "瑕光"
+   ],
+   "means_used": [
+    "end_of_rest",
+    "on_deploy",
+    "on_kill"
+   ],
+   "dynamic_sources": 0
+  },
+  "乌萨斯": {
+   "factor": 0.618,
+   "grade": "中",
+   "continuous_factor": 0.727,
+   "startup_score": 0.0,
+   "earliest_tier": 1,
+   "continuous_stacker_count": 6,
+   "injector_count": 0,
+   "stackers": [
+    "乌啾",
+    "冻河",
+    "塔露拉",
+    "折桠",
+    "烈夏",
+    "赫拉格"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 1.0,
+    "breadth": 1.0,
+    "means_ease": 0.783,
+    "rate": 0.4
+   },
+   "generic_helpers": [],
+   "means_used": [
+    "battle_start",
+    "on_deploy",
+    "on_kill",
+    "start_of_rest"
+   ],
+   "dynamic_sources": 1
+  },
+  "远见": {
+   "factor": 0.617,
+   "grade": "中",
+   "continuous_factor": 0.667,
+   "startup_score": 0.333,
+   "earliest_tier": 4,
+   "continuous_stacker_count": 2,
+   "injector_count": 1,
+   "stackers": [
+    "寒檀",
+    "逻各斯"
+   ],
+   "injectors": [
+    "黍"
+   ],
+   "sub_scores": {
+    "timing": 0.5,
+    "breadth": 0.4,
+    "means_ease": 0.9,
+    "rate": 0.667
+   },
+   "generic_helpers": [
+    "渡桥",
+    "空弦"
+   ],
+   "means_used": [
+    "on_acquire",
+    "start_of_rest"
+   ],
+   "dynamic_sources": 0
+  },
+  "莱塔尼亚": {
+   "factor": 0.612,
+   "grade": "中",
+   "continuous_factor": 0.72,
+   "startup_score": 0.0,
+   "earliest_tier": 1,
+   "continuous_stacker_count": 5,
+   "injector_count": 0,
+   "stackers": [
+    "地灵",
+    "复奏",
+    "折光",
+    "纯烬艾雅法拉",
+    "黑键"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 1.0,
+    "breadth": 1.0,
+    "means_ease": 0.794,
+    "rate": 0.377
+   },
+   "generic_helpers": [],
+   "means_used": [
+    "end_of_rest",
+    "on_kill",
+    "op_refresh"
+   ],
+   "dynamic_sources": 0
+  },
+  "阿戈尔": {
+   "factor": 0.603,
+   "grade": "中",
+   "continuous_factor": 0.71,
+   "startup_score": 0.0,
+   "earliest_tier": 1,
+   "continuous_stacker_count": 4,
+   "injector_count": 0,
+   "stackers": [
+    "安哲拉",
+    "幽灵鲨",
+    "斯卡蒂",
+    "浊心斯卡蒂"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 1.0,
+    "breadth": 0.8,
+    "means_ease": 0.835,
+    "rate": 0.438
+   },
+   "generic_helpers": [],
+   "means_used": [
+    "on_deploy",
+    "on_kill",
+    "passive_or_other"
+   ],
+   "dynamic_sources": 0
+  },
+  "投资人": {
+   "factor": 0.557,
+   "grade": "中",
+   "continuous_factor": 0.544,
+   "startup_score": 0.633,
+   "earliest_tier": 5,
+   "continuous_stacker_count": 1,
+   "injector_count": 1,
+   "stackers": [
+    "可露希尔"
+   ],
+   "injectors": [
+    "锡人"
+   ],
+   "sub_scores": {
+    "timing": 0.333,
+    "breadth": 0.2,
+    "means_ease": 0.95,
+    "rate": 0.695
+   },
+   "generic_helpers": [],
+   "means_used": [
+    "end_of_rest"
+   ],
+   "dynamic_sources": 1
+  },
+  "奇迹": {
+   "factor": 0.533,
+   "grade": "低",
+   "continuous_factor": 0.627,
+   "startup_score": 0.0,
+   "earliest_tier": 4,
+   "continuous_stacker_count": 3,
+   "injector_count": 0,
+   "stackers": [
+    "安洁莉娜",
+    "维娜·维多利亚",
+    "遥"
+   ],
+   "injectors": [],
+   "sub_scores": {
+    "timing": 0.5,
+    "breadth": 0.6,
+    "means_ease": 0.87,
+    "rate": 0.478
+   },
+   "generic_helpers": [
+    "云迹",
+    "阿米娅"
+   ],
+   "means_used": [
+    "end_of_rest",
+    "on_kill"
+   ],
+   "dynamic_sources": 1
+  },
+  "灵巧": {
+   "factor": 0.385,
+   "grade": "低",
+   "continuous_factor": 0.3,
+   "startup_score": 0.867,
+   "earliest_tier": null,
+   "continuous_stacker_count": 0,
+   "injector_count": 2,
+   "stackers": [],
+   "injectors": [
+    "仇白",
+    "霜叶"
+   ],
+   "sub_scores": {
+    "timing": 0.0,
+    "breadth": 0.0,
+    "means_ease": 0.0,
+    "rate": 0.5
+   },
+   "generic_helpers": [
+    "云迹",
+    "佩佩",
+    "华法琳",
+    "帕拉斯"
+   ],
+   "means_used": [],
+   "dynamic_sources": 0
+  }
+ }
+}

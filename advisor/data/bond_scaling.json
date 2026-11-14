@@ -1,0 +1,204 @@
+{
+ "_meta": {
+  "description": "羁绊层数->干员攻击力乘数（仅作战能力条目中明确的每N层+X%规则；防御/生命无公布逐层值，不产出）。",
+  "source": "operators.json 作战能力条目（BWiki 干员数据集）",
+  "formula": "atk_multiplier = 1 + (active_stacks // stack_step) * atk_pct_per_step/100，按当前形态(basic/advanced)取参数",
+  "coverage_note": "仅攻击力有可解析规则；防御/生命的羁绊加成官方只写「受层数影响」无具体数值，乘数层对其保持中性(1.0)。",
+  "operator_count_with_rule": 12,
+  "unparsed_combat_entries": 58
+ },
+ "operators": [
+  {
+   "name": "W",
+   "shop_tier": 4,
+   "scaling": {
+    "basic": {
+     "stack_step": 3,
+     "atk_pct_per_step": 1.0,
+     "bond": "迅捷"
+    },
+    "advanced": {
+     "stack_step": 3,
+     "atk_pct_per_step": 2.0,
+     "bond": "迅捷"
+    }
+   }
+  },
+  {
+   "name": "乌尔比安",
+   "shop_tier": 5,
+   "scaling": {
+    "basic": {
+     "stack_step": 20,
+     "atk_pct_per_step": 1.0,
+     "bond": "阿戈尔"
+    },
+    "advanced": {
+     "stack_step": 10,
+     "atk_pct_per_step": 1.0,
+     "bond": "阿戈尔"
+    }
+   }
+  },
+  {
+   "name": "哈洛德",
+   "shop_tier": 2,
+   "scaling": {
+    "basic": {
+     "stack_step": 5,
+     "atk_pct_per_step": 1.0,
+     "bond": "谢拉格"
+    },
+    "advanced": {
+     "stack_step": 5,
+     "atk_pct_per_step": 2.0,
+     "bond": "谢拉格"
+    }
+   }
+  },
+  {
+   "name": "怒潮凛冬",
+   "shop_tier": 5,
+   "scaling": {
+    "basic": {
+     "stack_step": 10,
+     "atk_pct_per_step": 1.0,
+     "bond": "奇迹"
+    },
+    "advanced": {
+     "stack_step": 10,
+     "atk_pct_per_step": 2.0,
+     "bond": "奇迹"
+    }
+   }
+  },
+  {
+   "name": "斥罪",
+   "shop_tier": 4,
+   "scaling": {
+    "basic": {
+     "stack_step": 3,
+     "atk_pct_per_step": 1.0,
+     "bond": "叙拉古"
+    },
+    "advanced": {
+     "stack_step": 3,
+     "atk_pct_per_step": 2.0,
+     "bond": "叙拉古"
+    }
+   }
+  },
+  {
+   "name": "瑰盐",
+   "shop_tier": 2,
+   "scaling": {
+    "basic": {
+     "stack_step": 3,
+     "atk_pct_per_step": 1.0,
+     "bond": "聚合"
+    },
+    "advanced": {
+     "stack_step": 3,
+     "atk_pct_per_step": 2.0,
+     "bond": "聚合"
+    }
+   }
+  },
+  {
+   "name": "真言",
+   "shop_tier": 6,
+   "scaling": {
+    "basic": {
+     "stack_step": 5,
+     "atk_pct_per_step": 1.0,
+     "bond": "萨尔贡"
+    },
+    "advanced": {
+     "stack_step": 5,
+     "atk_pct_per_step": 2.0,
+     "bond": "萨尔贡"
+    }
+   }
+  },
+  {
+   "name": "老鲤",
+   "shop_tier": 5,
+   "scaling": {
+    "basic": {
+     "stack_step": 3,
+     "atk_pct_per_step": 1.0,
+     "bond": "炎"
+    },
+    "advanced": {
+     "stack_step": 3,
+     "atk_pct_per_step": 2.0,
+     "bond": "炎"
+    }
+   }
+  },
+  {
+   "name": "艾雅法拉",
+   "shop_tier": 4,
+   "scaling": {
+    "basic": {
+     "stack_step": 2,
+     "atk_pct_per_step": 1.0,
+     "bond": "莱塔尼亚"
+    },
+    "advanced": {
+     "stack_step": 1,
+     "atk_pct_per_step": 1.0,
+     "bond": "莱塔尼亚"
+    }
+   }
+  },
+  {
+   "name": "蓝毒",
+   "shop_tier": 2,
+   "scaling": {
+    "basic": {
+     "stack_step": 2,
+     "atk_pct_per_step": 1.0,
+     "bond": "伊比利亚"
+    },
+    "advanced": {
+     "stack_step": 1,
+     "atk_pct_per_step": 1.0,
+     "bond": "伊比利亚"
+    }
+   }
+  },
+  {
+   "name": "贝洛内",
+   "shop_tier": 5,
+   "scaling": {
+    "basic": {
+     "stack_step": 3,
+     "atk_pct_per_step": 1.0,
+     "bond": "突袭"
+    },
+    "advanced": {
+     "stack_step": 3,
+     "atk_pct_per_step": 2.0,
+     "bond": "突袭"
+    }
+   }
+  },
+  {
+   "name": "隐德来希",
+   "shop_tier": 5,
+   "scaling": {
+    "basic": {
+     "stack_step": 3,
+     "atk_pct_per_step": 1.0,
+     "bond": "灵巧"
+    },
+    "advanced": {
+     "stack_step": 3,
+     "atk_pct_per_step": 2.0,
+     "bond": "灵巧"
+    }
+   }
+  }
+ ]
+}

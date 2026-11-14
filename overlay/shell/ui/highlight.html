@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>weishu-highlight</title>
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: transparent !important;
+      pointer-events: none;
+      user-select: none;
+    }
+    #stage {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: transparent;
+    }
+    .glow-frame {
+      position: absolute;
+      z-index: 2;
+      border-radius: 14px;
+      border: 3px solid rgba(93, 255, 176, 0.95);
+      box-shadow:
+        0 0 0 2px rgba(93, 255, 176, 0.25),
+        0 0 18px rgba(62, 207, 142, 0.75),
+        0 0 42px rgba(62, 207, 142, 0.45),
+        inset 0 0 22px rgba(62, 207, 142, 0.18);
+      background: rgba(62, 207, 142, 0.06);
+      animation: pulse 2.4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .glow-frame .tag {
+      position: absolute;
+      left: 10px;
+      top: -22px;
+      font: 600 13px/1 "Segoe UI", "Microsoft YaHei UI", sans-serif;
+      color: #b8ffe0;
+      text-shadow: 0 0 10px rgba(62, 207, 142, 0.9);
+      white-space: nowrap;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow:
+          0 0 0 2px rgba(93, 255, 176, 0.2),
+          0 0 14px rgba(62, 207, 142, 0.55),
+          0 0 32px rgba(62, 207, 142, 0.3),
+          inset 0 0 16px rgba(62, 207, 142, 0.12);
+      }
+      50% {
+        box-shadow:
+          0 0 0 3px rgba(93, 255, 176, 0.4),
+          0 0 24px rgba(62, 207, 142, 0.9),
+          0 0 56px rgba(62, 207, 142, 0.5),
+          inset 0 0 28px rgba(62, 207, 142, 0.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="stage"></div>
+  <script>
+    const stage = document.getElementById("stage");
+
+    function clearFrames() {
+      stage.querySelectorAll(".glow-frame").forEach((n) => n.remove());
+    }
+
+    function setHighlights(frames) {
+      clearFrames();
+      (frames || []).forEach((f) => {
+        const el = document.createElement("div");
+        el.className = "glow-frame";
+        let left, top, width, height;
+        if (f.css) {
+          left = f.css.left; top = f.css.top; width = f.css.width; height = f.css.height;
+        } else {
+          const [x, y, w, h] = f.frac || [0, 0, 0, 0];
+          left = (x * 100).toFixed(3) + "%";
+          top = (y * 100).toFixed(3) + "%";
+          width = (w * 100).toFixed(3) + "%";
+          height = (h * 100).toFixed(3) + "%";
+        }
+        el.style.left = left;
+        el.style.top = top;
+        el.style.width = width;
+        el.style.height = height;
+        if (f.label) {
+          const tag = document.createElement("div");
+          tag.className = "tag";
+          tag.textContent = f.label;
+          el.appendChild(tag);
+        }
+        stage.appendChild(el);
+      });
+    }
+
+    window.__weishu_set_highlights = setHighlights;
+    window.__weishu_clear_highlights = clearFrames;
+
+    window.addEventListener("pywebviewready", async () => {
+      try {
+        if (window.pywebview && window.pywebview.api && window.pywebview.api.highlight_ready) {
+          await window.pywebview.api.highlight_ready();
+        }
+      } catch (e) {}
+    });
+  </script>
+</body>
+</html>

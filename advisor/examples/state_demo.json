@@ -1,0 +1,17 @@
+{
+  "round": 4,
+  "gold": 9,
+  "dispatch_level": 2,
+  "difficulty": "standard",
+  "target_bond": "乌萨斯",
+  "shop": [
+    {"kind": "operator", "name": "烈夏", "tier": 1, "price": 3},
+    {"kind": "operator", "name": "真理", "tier": 2, "price": 3},
+    {"kind": "item", "name": "坚守盾牌", "tier": 1, "price": 1},
+    {"kind": "operator", "name": "塔露拉", "tier": 6, "price": 3}
+  ],
+  "board": [
+    {"name": "烈夏", "count": 2, "tier": 1, "bonds": ["乌萨斯"]},
+    {"name": "折桠", "count": 1, "tier": 1, "bonds": ["乌萨斯", "不屈"]}
+  ]
+}

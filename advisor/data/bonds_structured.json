@@ -1,0 +1,699 @@
+{
+  "core": [
+    {
+      "name": "炎",
+      "activation_need": 3,
+      "operators": [
+        "风絮",
+        "余",
+        "黍",
+        "烛煌",
+        "老鲤",
+        "乌有",
+        "矩",
+        "拜松",
+        "仇白",
+        "夕"
+      ],
+      "base_effect": "【炎】干员攻击力提升（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【炎】干员",
+          "bond_ref": "炎",
+          "effect": "战斗开始时，【炎】干员每次攻击时造成攻击力一定比例的随机元素损伤；全场敌人元素损伤恢复速度提升（受层数影响）"
+        }
+      ]
+    },
+    {
+      "name": "萨尔贡",
+      "activation_need": 3,
+      "operators": [
+        "卡涅利安",
+        "艾丝黛尔",
+        "泡泡",
+        "莎草",
+        "森蚺",
+        "佩佩",
+        "真言",
+        "鸿雪",
+        "至简",
+        "异客"
+      ],
+      "base_effect": "【萨尔贡】干员开启技能时，所有【萨尔贡】干员攻击速度提升（有上限），持续一定时间（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【萨尔贡】干员",
+          "bond_ref": "萨尔贡",
+          "effect": "【萨尔贡】干员每次开启技能时，将在攻击范围内制造一个流沙地面。位于流沙地面上的敌人受到一定的迟钝效果（受层数影响），每5秒造成一次法术伤害（受层数影响）并束缚1秒；【萨尔贡】干员技能持续期间，攻击范围内的流沙地面使敌人的迟钝效果变为2倍，每秒受到一定法术伤害（受层数影响）"
+        }
+      ]
+    },
+    {
+      "name": "维多利亚",
+      "activation_need": 3,
+      "operators": [
+        "烛煌",
+        "慕斯",
+        "水灯心",
+        "Miss.Christine",
+        "涤火杰西卡",
+        "白铁",
+        "酒神",
+        "维娜·维多利亚",
+        "哈洛德",
+        "凯瑟琳"
+      ],
+      "base_effect": "携带装备的【维多利亚】干员造成的伤害提升（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "stack_each",
+          "threshold": 25,
+          "unit": "stack",
+          "condition": "每叠加25层",
+          "effect": "获得1件带有随机效果的维式重锤"
+        },
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【维多利亚】干员",
+          "bond_ref": "维多利亚",
+          "effect": "【维多利亚】干员每携带1件装备攻击力提升，携带进阶装备时额外提升"
+        }
+      ]
+    },
+    {
+      "name": "谢拉格",
+      "activation_need": 3,
+      "operators": [
+        "极光",
+        "雪猎",
+        "耶拉",
+        "初雪",
+        "灵知",
+        "圣聆初雪",
+        "凛御银灰",
+        "角峰",
+        "哈洛德",
+        "锏"
+      ],
+      "base_effect": "【谢拉格】干员造成的伤害提升，对寒冷、冻结敌人获得额外提升（受层数影响） 雪山形态：可以阻挡敌人并造成溅射伤害，攻击被冻结的敌人时造成高额法术伤害并解除目标的冻结状态 巨人形态：可以移动并对敌人造成远程溅射伤害",
+      "milestones": [
+        {
+          "trigger_type": "stack_each",
+          "threshold": 100,
+          "unit": "stack",
+          "condition": "每叠加100层",
+          "effect": "获得1件谢拉格不融冰"
+        },
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【谢拉格】干员",
+          "bond_ref": "谢拉格",
+          "effect": "战斗开始时召唤可自主行动的雪山巨人（攻击力和生命值受层数影响）；雪山巨人将在巨人和雪山形态间转换"
+        }
+      ]
+    },
+    {
+      "name": "阿戈尔",
+      "activation_need": 3,
+      "operators": [
+        "幽灵鲨",
+        "深巡",
+        "斯卡蒂",
+        "歌蕾蒂娅",
+        "归溟幽灵鲨",
+        "乌尔比安",
+        "浊心斯卡蒂",
+        "克莱门莎",
+        "水月",
+        "安哲拉"
+      ],
+      "base_effect": "【阿戈尔】干员生命值提升（受层数影响） 战斗开始时，【阿戈尔】干员会依次吞噬身前一格干员对其造成5000点物理伤害并获得其基础攻击力和阻挡数，并叠加等于被吞噬者等阶的盟约层数（【阿戈尔】之间优先对更靠左和靠上的干员发起吞噬）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【阿戈尔】干员",
+          "bond_ref": "阿戈尔",
+          "effect": "前3名【阿戈尔】干员首次被击倒时立刻复活"
+        }
+      ]
+    },
+    {
+      "name": "叙拉古",
+      "activation_need": 3,
+      "operators": [
+        "复奏",
+        "奥斯塔",
+        "忍冬",
+        "伺夜",
+        "铃兰",
+        "贝洛内",
+        "荒芜拉普兰德",
+        "斥罪",
+        "安洁莉娜",
+        "拉普兰德"
+      ],
+      "base_effect": "【叙拉古】干员部署后攻击速度提升，持续一定时间（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【叙拉古】干员",
+          "bond_ref": "叙拉古",
+          "effect": "每次攻击时有一定概率为敌人随机附加一个异常状态，持续一定时间（受层数影响）；当敌人存在2种或以上异常状态时，每秒对自身及周围造成一次真实伤害（受层数影响）"
+        }
+      ]
+    },
+    {
+      "name": "卡西米尔",
+      "activation_need": 3,
+      "operators": [
+        "砾",
+        "野鬃",
+        "瑕光",
+        "远牙",
+        "玛恩纳",
+        "耀骑士临光",
+        "薇薇安娜",
+        "锏",
+        "历阵锐枪芬",
+        "焰尾"
+      ],
+      "base_effect": "每次有干员部署时，【卡西米尔】干员攻击力提升持续至战斗结束（上限受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【卡西米尔】干员",
+          "bond_ref": "卡西米尔",
+          "effect": "【卡西米尔】地面干员被击倒时离场，并召唤整备区最右侧的【卡西米尔】干员上场（不改变当前盟约的激活状态）；【卡西米尔】干员开启技能或部署后30秒内攻击时附带攻击力65%的真实伤害"
+        }
+      ]
+    },
+    {
+      "name": "乌萨斯",
+      "activation_need": 3,
+      "operators": [
+        "折桠",
+        "乌啾",
+        "赫拉格",
+        "维伊",
+        "怒潮凛冬",
+        "烈夏",
+        "塔露拉",
+        "真理",
+        "奥尔佳",
+        "冻河"
+      ],
+      "base_effect": "【乌萨斯】干员攻击力和生命值提升（受层数影响），【乌萨斯】干员击倒其他单位时为【乌萨斯】叠加2层临时层数",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【乌萨斯】干员",
+          "bond_ref": "乌萨斯",
+          "effect": "【乌萨斯】干员所受伤害的一定比例（受层数影响）转化为持续10秒的生命流失，当伤害来源被击倒时不再流失生命；阻挡敌人期间，敌人每秒受到该干员攻击力一定比例的法术伤害（受层数影响）；【乌萨斯】干员击倒其他单位时叠加的临时层数提升至4层"
+        }
+      ]
+    },
+    {
+      "name": "伊比利亚",
+      "activation_need": 3,
+      "operators": [
+        "蓝毒",
+        "海沫",
+        "旅骨",
+        "艾丽妮",
+        "温蒂",
+        "流明",
+        "棘刺",
+        "引星棘刺",
+        "深靛",
+        "瑰盐"
+      ],
+      "base_effect": "【伊比利亚】干员或炼金单元每次造成伤害时，使目标每秒受到该单位攻击力一定比例的持续法术伤害（受层数影响），至多叠加10次，持续10秒",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【伊比利亚】干员",
+          "bond_ref": "伊比利亚",
+          "effect": "【伊比利亚】干员或炼金单元造成伤害时附带的持续法术伤害提升至2倍，并使目标移动速度-4%（至多-80%），持续10秒；【伊比利亚】干员或炼金单元每次造成伤害时，有一定概率使该次伤害弹射至周围一定范围内的敌人，造成300%攻击力的法术伤害"
+        }
+      ]
+    },
+    {
+      "name": "莱塔尼亚",
+      "activation_need": 3,
+      "operators": [
+        "折光",
+        "车尔尼",
+        "黑键",
+        "卡涅利安",
+        "艾雅法拉",
+        "纯烬艾雅法拉",
+        "薇薇安娜",
+        "复奏",
+        "锏",
+        "地灵"
+      ],
+      "base_effect": "【莱塔尼亚】干员和召唤物攻击力提升（受层数影响），场上敌方单位被击倒时在附近召唤“一个小节”（场上最多存在10个）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 6,
+          "unit": "distinct_operator",
+          "condition": "在场6名不同【莱塔尼亚】干员",
+          "bond_ref": "莱塔尼亚",
+          "effect": "召唤“一个小节”时有一定概率（受层数影响）改为召唤“一个乐部”，在场时使【莱塔尼亚】干员攻击速度提升，场上【莱塔尼亚】召唤物上限提升至20个；场上我方干员被击倒时会额外召唤“一个小节”"
+        }
+      ]
+    }
+  ],
+  "attached": [
+    {
+      "name": "精准",
+      "activation_need": 2,
+      "operators": [
+        "黑键",
+        "旅骨",
+        "雪猎",
+        "远牙",
+        "伺夜",
+        "空弦",
+        "迷迭香",
+        "灰喉",
+        "霍尔海雅",
+        "承曦格雷伊",
+        "鸿雪",
+        "蕾缪安"
+      ],
+      "base_effect": "【精准】干员攻击力提升（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 3,
+          "unit": "distinct_operator",
+          "condition": "在场3名不同【精准】干员",
+          "bond_ref": "精准",
+          "effect": "生效范围变为【精准】干员和所有远程干员，且攻击无视一定的防御力和法术抗性"
+        }
+      ]
+    },
+    {
+      "name": "迅捷",
+      "activation_need": 2,
+      "operators": [
+        "卡涅利安",
+        "引星棘刺",
+        "烛煌",
+        "灵知",
+        "忍冬",
+        "妮芙",
+        "W",
+        "波登可",
+        "焰尾",
+        "陨星",
+        "冻河",
+        "青枳"
+      ],
+      "base_effect": "【迅捷】干员技能结束时有概率（受层数影响）立刻回复12点技力",
+      "milestones": [
+        {
+          "trigger_type": "stack_reach",
+          "threshold": 40,
+          "unit": "stack",
+          "condition": "达到40层",
+          "effect": "所有干员技能结束时有等概率额外回复15点技力"
+        }
+      ]
+    },
+    {
+      "name": "灵巧",
+      "activation_need": 2,
+      "operators": [
+        "佩佩",
+        "凛御银灰",
+        "水月",
+        "水灯心",
+        "云迹",
+        "隐德来希",
+        "承曦格雷伊",
+        "霜叶",
+        "仇白",
+        "奥尔佳",
+        "华法琳",
+        "帕拉斯"
+      ],
+      "base_effect": "【灵巧】干员及周围4格干员攻击速度提升（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "stack_reach",
+          "threshold": 40,
+          "unit": "stack",
+          "condition": "达到40层",
+          "effect": "生效范围变为【灵巧】干员周围8格"
+        }
+      ]
+    },
+    {
+      "name": "坚守",
+      "activation_need": 2,
+      "operators": [
+        "车尔尼",
+        "温蒂",
+        "余",
+        "泡泡",
+        "深巡",
+        "涤火杰西卡",
+        "角峰",
+        "蛇屠箱",
+        "罗比菈塔",
+        "摆渡人",
+        "塞雷娅",
+        "机械师",
+        "青枳"
+      ],
+      "base_effect": "所有干员生命值提升（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 3,
+          "unit": "distinct_operator",
+          "condition": "在场3名不同【坚守】干员",
+          "bond_ref": "坚守",
+          "effect": "场上非【坚守】干员受到伤害时，所受伤害的40%由所有【坚守】干员平均承担。【坚守】干员受到伤害时，伤害来源将受到一定法术伤害（受层数影响，每0.2秒至多触发1次）和持续5秒的40%脆弱效果"
+        }
+      ]
+    },
+    {
+      "name": "助力",
+      "activation_need": 2,
+      "operators": [
+        "野鬃",
+        "白铁",
+        "迷迭香",
+        "罗比菈塔",
+        "淬羽赫默",
+        "夏栎",
+        "星源",
+        "安哲拉",
+        "帕拉斯"
+      ],
+      "base_effect": "所有干员防御力提升（受层数影响），再部署时间减少 休整期结束时，使当前所有已激活盟约层数+2",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 3,
+          "unit": "distinct_operator",
+          "condition": "在场3名不同【助力】干员",
+          "bond_ref": "助力",
+          "effect": "改为层数+4"
+        }
+      ]
+    },
+    {
+      "name": "远见",
+      "activation_need": 2,
+      "operators": [
+        "纯烬艾雅法拉",
+        "黍",
+        "逻各斯",
+        "空弦",
+        "妮芙",
+        "历阵锐枪芬",
+        "渡桥",
+        "凯瑟琳",
+        "寒檀"
+      ],
+      "base_effect": "（整备区的【远见】干员也可用于激活盟约）",
+      "milestones": [
+        {
+          "trigger_type": "stack_each",
+          "threshold": 10,
+          "unit": "stack",
+          "condition": "每叠加10层",
+          "effect": "获得一次2资金"
+        },
+        {
+          "trigger_type": "stack_first",
+          "threshold": 80,
+          "unit": "stack",
+          "condition": "首次达到80层",
+          "effect": "所有【远见】干员购买价格永久-1资金"
+        },
+        {
+          "trigger_type": "stack_first",
+          "threshold": 150,
+          "unit": "stack",
+          "condition": "首次达到150层",
+          "effect": "所有【远见】干员购买价格额外永久-1资金"
+        }
+      ]
+    },
+    {
+      "name": "奇迹",
+      "activation_need": 2,
+      "operators": [
+        "怒潮凛冬",
+        "耶拉",
+        "复奏",
+        "维娜·维多利亚",
+        "吉星",
+        "云迹",
+        "遥",
+        "星极",
+        "安洁莉娜",
+        "阿米娅"
+      ],
+      "base_effect": "刷新调度中心时，有概率使下次刷新不消耗资金（受层数影响） （整备区的【奇迹】干员也可用于激活盟约）",
+      "milestones": [
+        {
+          "trigger_type": "stack_first",
+          "threshold": 100,
+          "unit": "stack",
+          "condition": "首次达到100层",
+          "effect": "调度中心刷新时至少出现一名等同于当前调度中心等级的干员"
+        }
+      ]
+    },
+    {
+      "name": "投资人",
+      "activation_need": 3,
+      "operators": [
+        "凛御银灰",
+        "锡人",
+        "山",
+        "老鲤",
+        "可露希尔"
+      ],
+      "base_effect": "干员的“获得时”类特质每次触发2次 （整备区的【投资人】干员也可用于激活盟约）",
+      "milestones": [
+        {
+          "trigger_type": "stack_reach",
+          "threshold": 100,
+          "unit": "stack",
+          "condition": "达到100层",
+          "effect": "“获得时”类特质每次触发3次"
+        }
+      ]
+    },
+    {
+      "name": "突袭",
+      "activation_need": 2,
+      "operators": [
+        "赫拉格",
+        "斯卡蒂",
+        "瑕光",
+        "耀骑士临光",
+        "贝洛内",
+        "伊桑",
+        "史尔特尔",
+        "杰克",
+        "赫德雷",
+        "铸铁"
+      ],
+      "base_effect": "【突袭】干员10秒内未进行攻击或技能就绪时，若范围内没有敌人，则保留技力立即再部署至一名地面敌人周围，期间攻击力和生命值提升（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "stack_reach",
+          "threshold": 50,
+          "unit": "stack",
+          "condition": "达到50层",
+          "effect": "所有干员攻击速度+50"
+        }
+      ]
+    },
+    {
+      "name": "不屈",
+      "activation_need": 2,
+      "operators": [
+        "折桠",
+        "海沫",
+        "森蚺",
+        "归溟幽灵鲨",
+        "砾",
+        "斥罪",
+        "隐德来希",
+        "摆渡人",
+        "史尔特尔",
+        "宴",
+        "风丸"
+      ],
+      "base_effect": "地面干员被击倒时，有概率立即重新部署（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 3,
+          "unit": "distinct_operator",
+          "condition": "在场3名不同【不屈】干员",
+          "bond_ref": "不屈",
+          "effect": "地面干员被击倒时使场上所有干员技力+5"
+        }
+      ]
+    },
+    {
+      "name": "调和",
+      "activation_need": 1,
+      "operators": [
+        "魔王",
+        "盟约·辅助干员"
+      ],
+      "base_effect": "激活时使场上核心盟约的激活人数+1，【调和】干员享受已激活的核心盟约的效果",
+      "milestones": []
+    },
+    {
+      "name": "协防干员",
+      "activation_need": 2,
+      "operators": [
+        "初雪",
+        "塞雷娅",
+        "夜莺",
+        "Mon3tr",
+        "“暴躁铁皮”",
+        "机械师",
+        "塔露拉",
+        "缪尔赛思"
+      ],
+      "base_effect": "所有干员受到的物理和法术伤害-20%，【协防干员】伤害提升至120%，精锐【协防干员】造成伤害提升至140%",
+      "milestones": []
+    },
+    {
+      "name": "独行",
+      "activation_need": 1,
+      "operators": [
+        "艾丝黛尔",
+        "水灯心",
+        "地灵"
+      ],
+      "base_effect": "",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 1,
+          "unit": "distinct_operator",
+          "condition": "在场1名【独行】干员",
+          "bond_ref": "独行",
+          "effect": "【独行】干员攻击力和生命值+60%，初始技力+15（在场2名及以上【独行】干员时失效）"
+        }
+      ]
+    },
+    {
+      "name": "绝技",
+      "activation_need": 2,
+      "operators": [],
+      "base_effect": "（所有干员的精锐状态均可激活盟约）",
+      "milestones": [
+        {
+          "trigger_type": "elite_operator",
+          "threshold": 2,
+          "unit": "elite_operator",
+          "condition": "在场2名精锐状态的干员",
+          "effect": "精锐状态的干员攻击力+30%"
+        },
+        {
+          "trigger_type": "elite_operator",
+          "threshold": 5,
+          "unit": "elite_operator",
+          "condition": "在场5名精锐状态的干员",
+          "effect": "精锐状态的干员技力消耗-30%"
+        }
+      ]
+    },
+    {
+      "name": "聚合",
+      "activation_need": 2,
+      "operators": [
+        "纯烬艾雅法拉",
+        "乌啾",
+        "流明",
+        "风絮",
+        "莎草",
+        "浊心斯卡蒂",
+        "遥",
+        "波登可",
+        "夜莺",
+        "褐果",
+        "瑰盐",
+        "华法琳"
+      ],
+      "base_effect": "【聚合】干员攻击范围内的我方单位每秒回复相当于该干员一定比例攻击力的生命值和一定比例攻击力的元素损伤（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 3,
+          "unit": "distinct_operator",
+          "condition": "在场3名【聚合】干员",
+          "bond_ref": "聚合",
+          "effect": "【聚合】干员攻击范围内的所有干员获得一定比例的庇护（受层数影响）"
+        }
+      ]
+    },
+    {
+      "name": "奥术",
+      "activation_need": 2,
+      "operators": [
+        "艾雅法拉",
+        "维伊",
+        "棘刺",
+        "圣聆初雪",
+        "薇薇安娜",
+        "Miss.Christine",
+        "逻各斯",
+        "霍尔海雅",
+        "伊桑",
+        "卡达",
+        "溯光星源",
+        "异客",
+        "塔露拉",
+        "夕"
+      ],
+      "base_effect": "【奥术】干员造成伤害时，额外附加一次一定攻击力的法术伤害（受层数影响）",
+      "milestones": [
+        {
+          "trigger_type": "distinct_operator",
+          "threshold": 3,
+          "unit": "distinct_operator",
+          "condition": "在场3名不同【奥术】干员",
+          "bond_ref": "奥术",
+          "effect": "场上所有敌人每次受到伤害时法术抗性降低（上限受层数影响）；【奥术】干员攻击范围内敌人的隐匿效果失效"
+        }
+      ]
+    }
+  ]
+}

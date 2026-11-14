@@ -1,0 +1,69 @@
+{
+  "_meta": {
+    "description": "卫戍协议盟约层数->干员面板(攻/防/血)线性乘数公式。本地 BWiki wikitext 仅写「受层数影响」，具体表达式取自 PRTS 盟约记录页（游戏内动态占位的展开值）。",
+    "source": "https://prts.wiki/w/卫戍协议：盟约/PRTS盟约记录",
+    "retrieved": "2026-11-12",
+    "multiply_note": "PRTS 原文：盟约/策略/装备的属性加成均为直接乘算，与自持有干员的账号练度加成独立。",
+    "form_semantics": {
+      "additive_pct": "效果为 +(base+per_stack*层数)%，乘数 = 1 + (base+per_stack*stacks)/100",
+      "total_pct": "效果为 提升至(base+per_stack*层数)%，乘数 = (base+per_stack*stacks)/100"
+    },
+    "scope_semantics": {
+      "bond": "仅该盟约所属干员生效",
+      "all": "所有干员生效",
+      "ranged": "仅高台(远程位)干员生效"
+    },
+    "not_panel_bonds": "萨尔贡(攻速/持续时间)、拉特兰(弹药)、灵巧(攻速)、迅捷/不屈/奇迹(概率)、投资人/远见/调和(经济/人数)不直接改攻/防/血面板，故不收入本乘数表；协防为固定减伤/伤害提升，无层数斜率，单列。",
+    "fixed_note": "协防干员：所有干员受伤-20%，造成伤害提升至120%(精锐140%)，无层数变量，未放入线性表。"
+  },
+  "formulas": [
+    {
+      "bond": "炎", "kind": "core", "activation_need": 3,
+      "stat": "atk", "scope": "bond", "form": "additive_pct",
+      "base": 23, "per_stack": 0.9, "condition": null, "cap": null,
+      "source_text": "【炎】干员攻击力+(23+0.9×层数)%"
+    },
+    {
+      "bond": "阿戈尔", "kind": "core", "activation_need": 3,
+      "stat": "hp", "scope": "bond", "form": "additive_pct",
+      "base": 35, "per_stack": 1.0, "condition": null, "cap": null,
+      "source_text": "【阿戈尔】干员生命值+(35+1×层数)%"
+    },
+    {
+      "bond": "维多利亚", "kind": "core", "activation_need": 3,
+      "stat": "damage", "scope": "bond", "form": "total_pct",
+      "base": 120, "per_stack": 0.8, "condition": "携带装备", "cap": null,
+      "source_text": "携带装备的【维多利亚】干员造成的伤害提升至(120+0.8×层数)%"
+    },
+    {
+      "bond": "谢拉格", "kind": "core", "activation_need": 3,
+      "stat": "damage", "scope": "bond", "form": "total_pct",
+      "base": 135, "per_stack": 1.0, "condition": "对寒冷/冻结敌人(基础伤害提升至130%)", "cap": null,
+      "source_text": "造成的伤害提升至130%，对寒冷、冻结敌人额外提升至(135+1×层数)%"
+    },
+    {
+      "bond": "精准", "kind": "attached", "activation_need": 2,
+      "stat": "atk", "scope": "ranged", "form": "additive_pct",
+      "base": 10, "per_stack": 1.2, "condition": null, "cap": null,
+      "source_text": "高台干员攻击力+(10+1.2×层数)%"
+    },
+    {
+      "bond": "坚守", "kind": "attached", "activation_need": 2,
+      "stat": "hp", "scope": "all", "form": "additive_pct",
+      "base": 30, "per_stack": 1.25, "condition": null, "cap": null,
+      "source_text": "所有干员生命值+(30+1.25×层数)%"
+    },
+    {
+      "bond": "突袭", "kind": "attached", "activation_need": 2,
+      "stat": "atk_hp", "scope": "bond", "form": "additive_pct",
+      "base": 10, "per_stack": 1.0, "condition": "技能期间", "cap": null,
+      "source_text": "技能期间攻击力和生命值+(10+1×层数)%"
+    },
+    {
+      "bond": "助力", "kind": "attached", "activation_need": 2,
+      "stat": "def", "scope": "all", "form": "additive_pct",
+      "base": 15, "per_stack": 1.2, "condition": null, "cap": null,
+      "source_text": "所有干员防御力+(15+1.2×层数)%，再部署时间-30%"
+    }
+  ]
+}

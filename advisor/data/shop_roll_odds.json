@@ -1,0 +1,61 @@
+{
+  "assumed": true,
+  "official": false,
+  "unit": "fraction",
+  "unit_note": "Tier probabilities are fractions in [0, 1], not percent. Values come from research tables rounded to 0.1%.",
+  "model": "assumed_copy_weighted",
+  "source": "https://github.com/sganggs/Stronghold-Protocol/blob/master/docs/research/00-INDEX.md",
+  "source_section": "§3 Shop odds [ASSUMED; the official odds are unpublished]",
+  "research_doc": "docs/weishu-shop-roll-probabilities.md",
+  "disclaimer": "Fan ASSUMED prior for later combat/refresh EV sim. Official Hypergryph has not published dispatch-level × tier roll weights. Do not treat these tables as official truth. Full-pool, no-ban baseline only; in-match bans, purchases, and DIY/hidden flags change effective odds.",
+  "pool_stock_per_operator": [12, 14, 18, 16, 8, 5],
+  "pool_stock_tiers": [1, 2, 3, 4, 5, 6],
+  "pool_stock_note": "Community-measured shared pool copies per operator for tiers I–VI (elite operators count as 3 copies). Not an official client field.",
+  "visible_counts": {
+    "mengyue": {
+      "note": "盟约 act2autochess visible operators per tier from Stronghold-Protocol research notes",
+      "by_tier": {"1": 16, "2": 17, "3": 19, "4": 22, "5": 19, "6": 19}
+    },
+    "guicheng": {
+      "note": "规程 act3autochess V3_1 non-hidden visible counts from activity_table charShopChessDatas (2026-11-13 probe)",
+      "by_tier": {"1": 19, "2": 24, "3": 26, "4": 27, "5": 31, "6": 26}
+    }
+  },
+  "slot_counts": {
+    "note": "Official client shopLevelDataDict style slot counts (mirrors data/economy.json). Not ASSUMED.",
+    "standard": {"1": 3, "2": 4, "3": 4, "4": 4, "5": 4, "6": 5},
+    "hard_abyss": {"1": 3, "2": 4, "3": 4, "4": 5, "5": 5, "6": 5}
+  },
+  "refresh_price": 1,
+  "refresh_price_note": "Official constData.shopRefreshPrice = 1 (manual refresh default).",
+  "buy_price_by_shop_tier": {"1": 2, "2": 3, "3": 3, "4": 3, "5": 4, "6": 4},
+  "tables": {
+    "mengyue": {
+      "label": "盟约 visible-count model",
+      "season_tag": "act2autochess",
+      "assumed": true,
+      "dispatch_level": {
+        "1": {"1": 1.0},
+        "2": {"1": 0.447, "2": 0.553},
+        "3": {"1": 0.249, "2": 0.308, "3": 0.443},
+        "4": {"1": 0.171, "2": 0.212, "3": 0.304, "4": 0.313},
+        "5": {"1": 0.150, "2": 0.187, "3": 0.268, "4": 0.276, "5": 0.119},
+        "6": {"1": 0.140, "2": 0.174, "3": 0.250, "4": 0.257, "5": 0.111, "6": 0.069}
+      }
+    },
+    "guicheng": {
+      "label": "规程 act3 visible recount",
+      "season_tag": "act3autochess",
+      "assumed": true,
+      "dispatch_level": {
+        "1": {"1": 1.0},
+        "2": {"1": 0.404, "2": 0.596},
+        "3": {"1": 0.221, "2": 0.326, "3": 0.453},
+        "4": {"1": 0.156, "2": 0.230, "3": 0.320, "4": 0.295},
+        "5": {"1": 0.133, "2": 0.196, "3": 0.273, "4": 0.252, "5": 0.145},
+        "6": {"1": 0.124, "2": 0.182, "3": 0.254, "4": 0.235, "5": 0.135, "6": 0.071}
+      }
+    }
+  },
+  "default_season": "guicheng"
+}

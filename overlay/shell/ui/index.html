@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>卫戍盒子 · 参谋</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="bar" id="drag-bar">
+      <div class="brand">卫戍盒子</div>
+      <div class="bar-actions">
+        <button type="button" id="btn-interact" title="临时可点 / 拖拽；穿透时标题栏仍可点">交互</button>
+        <button type="button" id="btn-hide" title="折叠/展开（不关窗）· Ctrl+Shift+W">隐</button>
+      </div>
+    </header>
+
+    <div id="panel-body">
+    <p class="compliance">只读像素参谋 · 不代操作 · 操作请自行点击游戏</p>
+
+    <section class="meta">
+      <label>回合 <input id="round" type="number" min="1" value="1" /></label>
+      <label>金币 <input id="gold" type="number" min="0" value="10" /></label>
+      <label>调度 <input id="dispatch" type="number" min="1" value="1" /></label>
+      <label class="wide">目标羁绊 <input id="bond" type="text" placeholder="可选，可手改" /></label>
+    </section>
+    <div id="ocr-meta" class="ocr-meta">OCR 元数据：尚未识别（可手改上方数字）</div>
+
+    <section class="actions">
+      <button type="button" id="btn-live" class="primary">OCR 识别</button>
+      <button type="button" id="btn-auto" title="武装自动识别：prep/商店启发 → 周期截屏参谋（冷启动不自动）">自动</button>
+      <button type="button" id="btn-begin-match" title="开始新一局：封存上一局日志 → 新文件夹 → 立刻 OCR 写入新日志">开始新一局</button>
+      <button type="button" id="btn-end-match" title="结束一局：写入 ended_at，停止追加（不删日志）">结束一局</button>
+      <button type="button" id="btn-run-env" class="accent">录入本局</button>
+      <button type="button" id="btn-enemy" title="自动按 W 打开放大镜 → 0.5s → OCR → 本局环境·本波敌人">读敌人</button>
+      <button type="button" id="btn-lineup" title="读阵容：标记检测→只读点击→面板名/装备 OCR→ESC（不进自动商店循环）">读阵容</button>
+      <button type="button" id="btn-mock">Mock</button>
+      <button type="button" id="btn-state">State</button>
+      <button type="button" id="btn-shot">文件…</button>
+    </section>
+
+    <!-- ARK-22: Moji sits with OCR status timings (bottom-right of this row) -->
+    <div class="ocr-status-row">
+      <div id="status" class="status">空闲</div>
+      <div id="moji-badge" class="moji-badge" aria-hidden="true" data-state="idle">
+        <div class="moji-stack">
+          <div id="moji-xform" class="moji-xform">
+            <img id="moji-face" class="moji-face" alt="" draggable="false" />
+          </div>
+          <div class="moji-scan"></div>
+        </div>
+        <div id="moji-fx" class="moji-fx" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <section id="top-pick" class="top-pick empty">
+      <div class="tp-label">主建议</div>
+      <div class="tp-verb" id="tp-verb">—</div>
+      <div class="tp-target" id="tp-target">点「OCR 识别」抓主屏</div>
+      <div class="tp-meta"><span id="tp-score"></span> <span id="tp-cost"></span></div>
+      <div class="tp-reason" id="tp-reason"></div>
+    </section>
+
+    <section class="shop-mirror" id="shop-mirror-sec" hidden>
+      <div class="sec-title">商店槽（推荐高亮）</div>
+      <div id="shop-slots"></div>
+    </section>
+
+    <section class="recs">
+      <div class="sec-title">候选 Top3</div>
+      <ul id="rec-list"></ul>
+    </section>
+
+    <section class="bonds">
+      <div class="sec-title">羁绊</div>
+      <div id="bond-list"></div>
+    </section>
+
+    <section class="notes">
+      <div class="sec-title">备注</div>
+      <ul id="note-list"></ul>
+    </section>
+
+    <footer class="hotkeys">Ctrl+Shift+W 折叠/展开 · Ctrl+Shift+A = OCR · 本局环境在阵容窗</footer>
+    </div><!-- #panel-body -->
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,615 @@
+:root {
+  --bg: rgba(12, 16, 22, 0.84);
+  --panel: rgba(22, 28, 38, 0.55);
+  --text: #e8eef7;
+  --muted: #9aa8bc;
+  --accent: #3ecf8e;
+  --buy: #5b9cff;
+  --warn: #e8b84a;
+  --danger: #e86a6a;
+  --glow: #5dffb0;
+  --glow-soft: rgba(62, 207, 142, 0.55);
+  --radius: 14px;
+  --font: "Segoe UI", "Microsoft YaHei UI", "PingFang SC", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  /* Solid page bg — panel WebView is non-transparent to avoid white flash */
+  background: #0c1016;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  user-select: none;
+  overflow: hidden;
+  height: 100%;
+}
+
+#app {
+  height: 100vh;
+  padding: 16px 18px 12px;
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+#panel-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+}
+body.collapsed #panel-body { display: none; }
+body.collapsed #app {
+  padding: 8px 12px;
+  gap: 0;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: move;
+  flex-shrink: 0;
+}
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 17px;
+}
+.bar-actions { display: flex; gap: 8px; }
+.compliance {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.meta label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.meta label.wide { grid-column: 1 / -1; }
+.meta input {
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+button {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+button:hover { background: rgba(255,255,255,0.14); }
+button.primary {
+  background: rgba(62, 207, 142, 0.22);
+  border-color: rgba(62, 207, 142, 0.45);
+}
+button.accent {
+  background: rgba(91, 156, 255, 0.22);
+  border-color: rgba(91, 156, 255, 0.5);
+}
+button.active {
+  background: rgba(91, 156, 255, 0.28);
+  border-color: rgba(91, 156, 255, 0.5);
+}
+button#btn-auto.active {
+  background: rgba(62, 207, 142, 0.28);
+  border-color: rgba(62, 207, 142, 0.55);
+  color: #b8f5d4;
+}
+
+.ocr-status-row {
+  position: relative;
+  flex-shrink: 0;
+  min-height: 88px;
+  padding-right: 96px; /* room for Moji; never cover CTAs above */
+}
+.status {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 1.2em;
+  line-height: 1.45;
+  padding-top: 6px;
+  padding-right: 4px;
+}
+.status.err { color: var(--danger); }
+.status.ok { color: var(--accent); }
+
+.ocr-meta {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.ocr-meta .hit { color: var(--accent); }
+.ocr-meta .miss { color: var(--warn); }
+
+.run-env {
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px;
+  padding: 10px 12px;
+  flex-shrink: 0;
+  max-height: 160px;
+  overflow: auto;
+}
+.run-env .sec-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.run-env .muted,
+.run-env .sec-title .muted {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 11px;
+}
+#run-env-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text);
+}
+#run-env-list li { padding: 1px 0; }
+#run-env-list li.muted { color: var(--muted); }
+
+/* —— Primary recommendation: soft glow frame —— */
+.top-pick {
+  position: relative;
+  background:
+    radial-gradient(120% 80% at 20% 0%, rgba(62,207,142,0.22), transparent 55%),
+    linear-gradient(160deg, rgba(28, 42, 36, 0.75), rgba(18, 24, 32, 0.55));
+  border: 1.5px solid rgba(93, 255, 176, 0.65);
+  border-radius: var(--radius);
+  padding: 18px 18px 16px;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 0 1px rgba(93, 255, 176, 0.18),
+    0 0 18px rgba(62, 207, 142, 0.35),
+    0 0 42px rgba(62, 207, 142, 0.18),
+    inset 0 0 24px rgba(62, 207, 142, 0.08);
+  animation: glow-breathe 2.8s ease-in-out infinite;
+}
+.top-pick.empty {
+  opacity: 0.65;
+  animation: none;
+  box-shadow: none;
+  border-color: rgba(255,255,255,0.12);
+}
+.tp-label {
+  font-size: 11px;
+  color: var(--glow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+.tp-verb {
+  font-size: 13px;
+  color: var(--buy);
+  margin-top: 6px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.tp-target {
+  font-size: 28px;
+  font-weight: 750;
+  margin-top: 4px;
+  line-height: 1.15;
+  text-shadow: 0 0 18px rgba(93, 255, 176, 0.35);
+}
+.tp-meta {
+  color: var(--warn);
+  font-size: 14px;
+  margin-top: 10px;
+  display: flex;
+  gap: 14px;
+}
+.tp-reason {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sec-title {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+.recs, .bonds, .notes, .shop-mirror {
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+#rec-list, #note-list, #shop-slots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#rec-list li, #note-list li {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--panel);
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+/* Recommended rows: soft glow, no badges */
+#rec-list li.rec-glow {
+  border-color: rgba(93, 255, 176, 0.55);
+  background: rgba(62, 207, 142, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(93, 255, 176, 0.12),
+    0 0 14px rgba(62, 207, 142, 0.28),
+    inset 0 0 12px rgba(62, 207, 142, 0.06);
+}
+#rec-list li .verb {
+  color: var(--buy);
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+#shop-slots {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+#shop-slots .slot {
+  flex: 1 1 28%;
+  min-width: 88px;
+  padding: 10px 8px;
+  border-radius: 10px;
+  background: var(--panel);
+  text-align: center;
+  font-size: 13px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+#shop-slots .slot.slot-glow {
+  border-color: rgba(93, 255, 176, 0.7);
+  box-shadow:
+    0 0 0 1px rgba(93, 255, 176, 0.2),
+    0 0 16px rgba(62, 207, 142, 0.4),
+    0 0 28px rgba(62, 207, 142, 0.2);
+  background: rgba(62, 207, 142, 0.14);
+  color: #fff;
+  font-weight: 650;
+}
+
+#bond-list .bond-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  font-size: 13px;
+}
+#bond-list .bar-track {
+  height: 5px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  margin: 4px 0 10px;
+  overflow: hidden;
+}
+#bond-list .bar-fill {
+  height: 100%;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(62, 207, 142, 0.45);
+}
+
+.hotkeys {
+  margin-top: auto;
+  padding-top: 4px;
+  font-size: 11px;
+  color: rgba(154,168,188,0.8);
+  flex-shrink: 0;
+}
+
+@keyframes glow-breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(93, 255, 176, 0.16),
+      0 0 16px rgba(62, 207, 142, 0.28),
+      0 0 36px rgba(62, 207, 142, 0.14),
+      inset 0 0 20px rgba(62, 207, 142, 0.06);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(93, 255, 176, 0.28),
+      0 0 22px rgba(62, 207, 142, 0.45),
+      0 0 48px rgba(62, 207, 142, 0.22),
+      inset 0 0 28px rgba(62, 207, 142, 0.1);
+  }
+}
+
+/* ARK-22 OCR Moji — status-row bottom-right (~84px); transform-only PNG */
+#app { position: relative; }
+.moji-badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 84px;
+  height: 84px;
+  z-index: 12;
+  pointer-events: none;
+  transform: scale(0);
+  transform-origin: 90% 90%;
+  visibility: hidden;
+  overflow: visible;
+  isolation: isolate;
+  filter: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.moji-badge[data-state="thinking"],
+.moji-badge[data-state="morphing"],
+.moji-badge[data-state="easy"],
+.moji-badge[data-state="sorry"],
+.moji-badge[data-state="loop"] {
+  visibility: visible;
+  transform: scale(1);
+}
+.moji-badge[data-state="idle"] {
+  visibility: hidden;
+  transform: scale(0);
+}
+.moji-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(18, 24, 34, 0.35);
+  filter: none;
+  mix-blend-mode: normal;
+}
+/* Lightweight cyan spark burst (DOM dots + WAAPI; short life) */
+.moji-fx {
+  position: absolute;
+  inset: -12px;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 2;
+}
+.moji-spark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  margin: -1.5px 0 0 -1.5px;
+  border-radius: 50%;
+  background: #7ec8ff;
+  box-shadow: 0 0 4px rgba(126, 200, 255, 0.85);
+  opacity: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+.moji-spark.tall {
+  width: 2px;
+  height: 7px;
+  margin: -3.5px 0 0 -1px;
+  border-radius: 1px;
+  background: linear-gradient(180deg, #b8e4ff, #5bb8ff);
+  box-shadow: 0 0 5px rgba(91, 184, 255, 0.7);
+}
+.moji-spark.idle {
+  width: 2px;
+  height: 2px;
+  margin: -1px 0 0 -1px;
+  opacity: 0.55;
+  box-shadow: 0 0 3px rgba(126, 200, 255, 0.55);
+}
+/* Transform target for morph WAAPI — NOT the <img>, so src swap won't cancel it */
+.moji-xform {
+  position: absolute;
+  inset: 0;
+  transform: scale(1);
+  transform-origin: 50% 70%;
+  will-change: transform;
+  filter: none;
+}
+.moji-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Full-color PNG; never filter / blend / posterize */
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  image-rendering: auto;
+  -ms-interpolation-mode: bicubic;
+  transform: none;
+}
+/* Per-moji idle loops (~30–60fps feel via CSS; unique motion each) */
+.moji-badge[data-state="morphing"] .moji-xform,
+.moji-badge[data-state="idle"] .moji-xform {
+  animation: none !important;
+}
+.moji-badge[data-emotion="happy"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-happy 0.85s cubic-bezier(0.34, 1.4, 0.64, 1) infinite;
+}
+.moji-badge[data-emotion="scared"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-scared 0.42s ease-in-out infinite;
+}
+.moji-badge[data-emotion="sorry"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-sorry 1.5s ease-in-out infinite;
+}
+.moji-badge[data-emotion="thanks"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-thanks 1.1s ease-in-out infinite;
+}
+.moji-badge[data-emotion="thinking"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-thinking 1.6s ease-in-out infinite;
+}
+.moji-badge[data-emotion="cooperate"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-cooperate 1.25s ease-in-out infinite;
+}
+.moji-badge[data-emotion="noproblem"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-noproblem 1.35s ease-in-out infinite;
+}
+.moji-badge[data-emotion="respect"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-respect 1.6s ease-in-out infinite;
+}
+.moji-badge[data-emotion="call"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-call 0.7s cubic-bezier(0.34, 1.35, 0.64, 1) infinite;
+}
+.moji-badge[data-emotion="easy"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-easy 2.2s ease-in-out infinite;
+}
+.moji-badge[data-emotion="sad"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-sad 2.0s ease-in-out infinite;
+}
+.moji-badge[data-emotion="dying"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-xform {
+  animation: moji-dying 1.1s ease-in-out infinite;
+}
+
+/* Scanline only on thinking */
+.moji-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(91, 156, 255, 0.14) 48%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: translateY(-30%);
+  mix-blend-mode: normal;
+  filter: none;
+}
+.moji-badge[data-emotion="thinking"]:not([data-state="idle"]):not([data-state="morphing"]) .moji-scan {
+  display: block;
+  animation: moji-scan 1.8s ease-in-out infinite;
+}
+.moji-badge[data-state="morphing"] .moji-scan,
+.moji-badge[data-state="idle"] .moji-scan,
+.moji-badge:not([data-emotion="thinking"]) .moji-scan {
+  display: none !important;
+  animation: none;
+  opacity: 0;
+}
+
+/* #1 happy — bounce */
+@keyframes moji-happy {
+  0%, 100% { transform: translateY(0) scale(1, 1) rotate(0deg); }
+  30% { transform: translateY(-7%) scale(0.96, 1.08) rotate(-2deg); }
+  55% { transform: translateY(2%) scale(1.05, 0.94) rotate(2deg); }
+  75% { transform: translateY(-3%) scale(0.98, 1.04) rotate(-1deg); }
+}
+/* #2 scared — shake */
+@keyframes moji-scared {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  20% { transform: translate(-4%, 1%) rotate(-3deg) scale(1.02); }
+  40% { transform: translate(4%, -1%) rotate(3deg) scale(0.98); }
+  60% { transform: translate(-3%, 0) rotate(-2deg) scale(1.01); }
+  80% { transform: translate(3%, 1%) rotate(2deg) scale(0.99); }
+}
+/* #3 sorry — apologetic droop bob */
+@keyframes moji-sorry {
+  0%, 100% { transform: translateY(0) rotate(4deg) scale(1); }
+  50% { transform: translateY(4%) rotate(6deg) scale(0.97, 1.02); }
+}
+/* #4 thanks — grateful nod */
+@keyframes moji-thanks {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  35% { transform: rotate(8deg) translateY(3%); }
+  55% { transform: rotate(-3deg) translateY(-1%); }
+  75% { transform: rotate(4deg) translateY(1%); }
+}
+/* #5 thinking — soft breathe / bob */
+@keyframes moji-thinking {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3%) scale(1.04); }
+}
+@keyframes moji-scan {
+  0%, 100% { opacity: 0; transform: translateY(-35%); }
+  40% { opacity: 0.45; }
+  50% { opacity: 0.55; transform: translateY(35%); }
+  60% { opacity: 0.25; }
+}
+/* #6 cooperate — handshake sway */
+@keyframes moji-cooperate {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-5deg) scale(1.03); }
+  50% { transform: rotate(0deg) scale(1.05); }
+  75% { transform: rotate(5deg) scale(1.03); }
+}
+/* #7 noproblem — confident sway */
+@keyframes moji-noproblem {
+  0%, 100% { transform: rotate(-2deg) scale(1); }
+  50% { transform: rotate(3deg) scale(1.04) translateY(-2%); }
+}
+/* #8 respect — salute tip */
+@keyframes moji-respect {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  40% { transform: rotate(-10deg) translateY(-2%) scale(1.02); }
+  60% { transform: rotate(-8deg) translateY(-1%); }
+}
+/* #9 call — cheer pump */
+@keyframes moji-call {
+  0%, 100% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(-9%) scale(1.08, 0.96); }
+  65% { transform: translateY(2%) scale(0.96, 1.06); }
+}
+/* #10 EASY / playingcool — cool lean float */
+@keyframes moji-easy {
+  0%, 100% { transform: rotate(-3deg) translateY(0) scale(1); }
+  50% { transform: rotate(-5deg) translateY(-4%) scale(1.03); }
+}
+/* #11 sad — slow sink */
+@keyframes moji-sad {
+  0%, 100% { transform: translateY(0) rotate(2deg) scale(1); }
+  50% { transform: translateY(5%) rotate(4deg) scale(0.96); }
+}
+/* #12 dying — weak flicker tilt */
+@keyframes moji-dying {
+  0%, 100% { transform: rotate(6deg) translate(0, 2%) scale(0.97); }
+  25% { transform: rotate(3deg) translate(-1%, 0) scale(1); }
+  50% { transform: rotate(8deg) translate(1%, 4%) scale(0.94); }
+  75% { transform: rotate(4deg) translate(-1%, 1%) scale(0.98); }
+}
+body.collapsed .moji-badge { display: none; }

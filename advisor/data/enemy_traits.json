@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "description": "卫戍协议战术特训敌人 9 分类 -> 我方反制标签。counter_tags 命中升权重，anti_synergy 降权并警告。标签来源见 advisor/counters.py 注册表。",
+    "season": "卫戍协议·规程·序列I",
+    "tag_glossary": {
+      "anti_air": "可攻击空中单位(职业/分支规则)",
+      "anti_air_bonus": "对空特化(优先打空/打空增伤)",
+      "anti_stealth": "反隐(使敌人隐匿失效)",
+      "silence": "沉默(使特殊能力失效)",
+      "dot": "持续伤害(每秒伤害/毒/侵蚀/流血)",
+      "bleed_dot": "生命流失型流血(乌萨斯6人里程碑)",
+      "cc": "控制(冻结/寒冷/束缚/麻痹/眩晕/停顿/减速)",
+      "def_pierce": "穿甲/削法抗/无视防御",
+      "true_damage": "真实伤害",
+      "crit_burst": "高频爆发/连击",
+      "shield_heal": "治疗/护盾/庇护",
+      "damage_soak": "伤害分摊/团队承伤",
+      "shelter": "庇护减伤(聚合3人)",
+      "revive": "复活/重生"
+    }
+  },
+  "enemy_types": {
+    "special": {
+      "name": "特异",
+      "order": 1,
+      "desc": "拥有优秀的造成伤害和承受伤害能力(高面板)",
+      "counter_tags": {"def_pierce": 2, "crit_burst": 1, "shield_heal": 1, "damage_soak": 1},
+      "anti_synergy": [],
+      "note": "高面板敌人，需要穿甲爆发加坦度，低费未成型队吃亏"
+    },
+    "flying": {
+      "name": "飞行",
+      "order": 2,
+      "desc": "包含大量空中单位",
+      "counter_tags": {"anti_air": 3, "anti_air_bonus": 2},
+      "anti_synergy": ["ground_only"],
+      "note": "地面近战无法对空，狙击/术师及领主/哨戒铁卫等远程分支可打空"
+    },
+    "multi_hit": {
+      "name": "频次",
+      "order": 3,
+      "desc": "需要一定攻击次数才能击破",
+      "counter_tags": {"dot": 3, "crit_burst": 2, "cc": 1},
+      "anti_synergy": ["slow_single_hit"],
+      "note": "DOT跳伤与高频连击优于单发重击"
+    },
+    "elemental": {
+      "name": "元素",
+      "order": 4,
+      "desc": "拥有造成元素损伤的能力",
+      "counter_tags": {"shield_heal": 2, "shelter": 2, "damage_soak": 1},
+      "anti_synergy": [],
+      "note": "需要元素庇护与续航治疗硬抗元素损伤"
+    },
+    "sustained": {
+      "name": "持续",
+      "order": 5,
+      "desc": "擅长造成持续性伤害",
+      "counter_tags": {"shield_heal": 3, "damage_soak": 1, "shelter": 1},
+      "anti_synergy": [],
+      "note": "DOT环境，治疗量与高血池比一次性护盾更重要"
+    },
+    "stealth": {
+      "name": "隐匿",
+      "order": 6,
+      "desc": "拥有隐匿",
+      "counter_tags": {"anti_stealth": 3, "silence": 1},
+      "anti_synergy": ["no_anti_stealth"],
+      "note": "无反隐普通攻击会打空；奥术3人里程碑或真言/凛御银灰技能可反隐"
+    },
+    "refraction": {
+      "name": "折射",
+      "order": 7,
+      "desc": "拥有折射(折减法术)",
+      "counter_tags": {"def_pierce": 3, "true_damage": 2},
+      "anti_synergy": ["pure_arts_no_shred"],
+      "note": "物理/穿甲/真伤占优；纯法术需奥术削法抗补救，否则被折减"
+    },
+    "lethal": {
+      "name": "致命",
+      "order": 8,
+      "desc": "在特定条件下造成高额伤害",
+      "counter_tags": {"damage_soak": 2, "bleed_dot": 2, "shield_heal": 2, "cc": 1, "revive": 1},
+      "anti_synergy": [],
+      "note": "用分摊/庇护扛爆发，流血DOT压制，控制窗口规避致命条件"
+    },
+    "revival": {
+      "name": "复苏",
+      "order": 9,
+      "desc": "首次被击倒后会重生(部分化身隐匿)",
+      "counter_tags": {"silence": 2, "anti_stealth": 2, "dot": 2, "crit_burst": 1},
+      "anti_synergy": ["one_shot_burst"],
+      "note": "需二次击杀能力；隐匿形态要反隐/沉默，DOT与持续输出保证补刀"
+    }
+  }
+}

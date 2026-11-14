@@ -1,0 +1,2309 @@
+{
+ "_meta": {
+  "description": "卫戍协议干员可确定性驱动的定时爆发技能（自动回复 SP，SP 满自动触发，充能=spCost/increment），由 skill_table.spData + operator_combat_metrics.skill_metrics 经 tools/build_operator_skills.py 自有解析生成；不含第三方/GPL 数据。",
+  "generated_by": "tools/build_operator_skills.py",
+  "model": "auto-battle: skill fires at SP=spCost, active for duration, then recharges; burst applies multiplier to ATK (mult_source additive vs total preserved).",
+  "needs_review": [
+   "only INCREASE_WITH_TIME skills are driven; attack/hit-taken recovery and spType=8 wait for combat-event modeling",
+   "only additive ATK-up skills with multiplier>1 become burst_skill; total-source DoT/control skills (multiplier<=1) are parked in special_skill_ids",
+   "when several skills qualify the highest multiplier is used as the representative burst (manual choice is strategic)",
+   "AUTO vs MANUAL label is ignored: autochess auto-fires every skill when SP is full",
+   "AoE hit_count/targets and control side-effects are not yet applied to the kernel (damage multiplier only)"
+  ],
+  "operator_count": 141,
+  "operators_with_burst_skill": 80,
+  "source_tables": "skill_table.json + operator_combat_metrics.json (gitignored source for the former)",
+  "untimed_skill_rows": 245
+ },
+ "operators": {
+  "Miss.Christine": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.2,
+    "name": "自由用餐礼仪",
+    "skill_id": "skchr_christ_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 2
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_christ_2"
+   ],
+   "untimed_skill_ids": []
+  },
+  "Mon3tr": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_monstr_1",
+    "skchr_monstr_2",
+    "skchr_monstr_3"
+   ]
+  },
+  "W": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_cqbw_1",
+    "skchr_cqbw_2",
+    "skchr_cqbw_3"
+   ]
+  },
+  "乌啾": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_turdus_1",
+    "skchr_turdus_2"
+   ]
+  },
+  "乌尔比安": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_ulpia_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_ulpia_1",
+    "skchr_ulpia_2"
+   ]
+  },
+  "乌有": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_nothin_1",
+    "skchr_nothin_2"
+   ]
+  },
+  "云迹": {
+   "burst_skill": {
+    "charge_time": 15.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 5.0,
+    "initial_sp": 5.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "掠空飞翎",
+    "skill_id": "skchr_ctrail_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 3
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_ctrail_1"
+   ]
+  },
+  "仇白": {
+   "burst_skill": {
+    "charge_time": 55.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 45.0,
+    "initial_sp": 45.0,
+    "mult_source": "additive",
+    "multiplier": 1.4,
+    "name": "问雪",
+    "skill_id": "skchr_qiubai_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_qiubai_1",
+    "skchr_qiubai_2"
+   ]
+  },
+  "伊桑": {
+   "burst_skill": {
+    "charge_time": 25.0,
+    "duration": 24.0,
+    "hit_count": 1,
+    "initial_charge": 0.0,
+    "initial_sp": 0.0,
+    "mult_source": "additive",
+    "multiplier": 1.5,
+    "name": "十字悬挂",
+    "skill_id": "skchr_ethan_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_ethan_1"
+   ]
+  },
+  "伺夜": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_vigil_1",
+    "skchr_vigil_2",
+    "skchr_vigil_3"
+   ]
+  },
+  "余": {
+   "burst_skill": {
+    "charge_time": 55.0,
+    "duration": 42.0,
+    "hit_count": 1,
+    "initial_charge": 42.0,
+    "initial_sp": 42.0,
+    "mult_source": "additive",
+    "multiplier": 1.8,
+    "name": "灶里乾坤",
+    "skill_id": "skchr_yu_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_yu_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_yu_1"
+   ]
+  },
+  "佩佩": {
+   "burst_skill": {
+    "charge_time": 45.0,
+    "duration": 40.0,
+    "hit_count": 1,
+    "initial_charge": 35.0,
+    "initial_sp": 35.0,
+    "mult_source": "additive",
+    "multiplier": 2.8,
+    "name": "时光震荡",
+    "skill_id": "skchr_pepe_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_pepe_1"
+   ]
+  },
+  "克莱门莎": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_clemnt_1",
+    "skchr_clemnt_2",
+    "skchr_clemnt_3"
+   ]
+  },
+  "冻河": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_tocka_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_tocka_1",
+    "skchr_tocka_2"
+   ]
+  },
+  "凛御银灰": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_svash2_1",
+    "skchr_svash2_2",
+    "skchr_svash2_3"
+   ]
+  },
+  "凯瑟琳": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_cathy_1",
+    "skchr_cathy_2"
+   ]
+  },
+  "初雪": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_slbell_1",
+    "skchr_slbell_2"
+   ]
+  },
+  "华法琳": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_bldsk_1",
+    "skchr_bldsk_2"
+   ]
+  },
+  "卡涅利安": {
+   "burst_skill": {
+    "charge_time": 28.0,
+    "duration": 21.0,
+    "hit_count": 1,
+    "initial_charge": 5.0,
+    "initial_sp": 5.0,
+    "mult_source": "additive",
+    "multiplier": 3.0,
+    "name": "食噬之印",
+    "skill_id": "skchr_billro_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 3,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "卡达": {
+   "burst_skill": {
+    "charge_time": 45.0,
+    "duration": 26.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.58,
+    "name": "同步索敌攻击",
+    "skill_id": "skchr_cammou_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "历阵锐枪芬": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_fang2_1",
+    "skchr_fang2_2"
+   ]
+  },
+  "可露希尔": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 34.0,
+    "initial_sp": 34.0,
+    "mult_source": "additive",
+    "multiplier": 1.55,
+    "name": "模型扩展",
+    "skill_id": "skchr_closur_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 2
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_closur_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_closur_1"
+   ]
+  },
+  "史尔特尔": {
+   "burst_skill": {
+    "charge_time": 18.0,
+    "duration": 17.0,
+    "hit_count": 1,
+    "initial_charge": 12.0,
+    "initial_sp": 12.0,
+    "mult_source": "additive",
+    "multiplier": 1.8,
+    "name": "熔核巨影",
+    "skill_id": "skchr_surtr_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 2
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_surtr_1",
+    "skchr_surtr_3"
+   ]
+  },
+  "吉星": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "吉星高照！",
+    "skill_id": "skchr_kichi_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "哈洛德": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.7,
+    "name": "治疗强化·γ型",
+    "skill_id": "skcom_heal_up[3]",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_harold_2"
+   ]
+  },
+  "圣聆初雪": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_sbell2_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_sbell2_1",
+    "skchr_sbell2_2"
+   ]
+  },
+  "地灵": {
+   "burst_skill": {
+    "charge_time": 35.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 10.0,
+    "initial_sp": 10.0,
+    "mult_source": "additive",
+    "multiplier": 1.5,
+    "name": "攻击力强化·β型",
+    "skill_id": "skcom_atk_up[2]",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_skgoat_2"
+   ]
+  },
+  "塔露拉": {
+   "burst_skill": {
+    "charge_time": 45.0,
+    "duration": 36.0,
+    "hit_count": 1,
+    "initial_charge": 38.0,
+    "initial_sp": 38.0,
+    "mult_source": "additive",
+    "multiplier": 2.2,
+    "name": "日冕重烈",
+    "skill_id": "skchr_oxi_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_oxi_1",
+    "skchr_oxi_2"
+   ]
+  },
+  "塞雷娅": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_demkni_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_demkni_1",
+    "skchr_demkni_2"
+   ]
+  },
+  "复奏": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_liesel_1",
+    "skchr_liesel_2"
+   ]
+  },
+  "夏栎": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_quercu_1",
+    "skchr_quercu_2"
+   ]
+  },
+  "夕": {
+   "burst_skill": {
+    "charge_time": 100.0,
+    "duration": 60.0,
+    "hit_count": 1,
+    "initial_charge": 70.0,
+    "initial_sp": 70.0,
+    "mult_source": "additive",
+    "multiplier": 2.0,
+    "name": "写意胜形",
+    "skill_id": "skchr_dusk_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_dusk_1"
+   ]
+  },
+  "夜莺": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.7,
+    "name": "治疗强化·γ型",
+    "skill_id": "skcom_heal_up[3]",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_cgbird_2"
+   ]
+  },
+  "奥尔佳": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.5,
+    "name": "只为我的答案",
+    "skill_id": "skchr_alga_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_alga_1"
+   ]
+  },
+  "奥斯塔": {
+   "burst_skill": {
+    "charge_time": 50.0,
+    "duration": 22.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 1.5,
+    "name": "影钉",
+    "skill_id": "skchr_aosta_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "妮芙": {
+   "burst_skill": {
+    "charge_time": 55.0,
+    "duration": 29.0,
+    "hit_count": 1,
+    "initial_charge": 36.0,
+    "initial_sp": 36.0,
+    "mult_source": "additive",
+    "multiplier": 2.7,
+    "name": "心防溃决",
+    "skill_id": "skchr_nymph_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 2
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_nymph_2"
+   ]
+  },
+  "安哲拉": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 2.9,
+    "name": "阻滞射击战术",
+    "skill_id": "skchr_cuttle_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "安洁莉娜": {
+   "burst_skill": {
+    "charge_time": 25.0,
+    "duration": 18.0,
+    "hit_count": 1,
+    "initial_charge": 10.0,
+    "initial_sp": 10.0,
+    "mult_source": "additive",
+    "multiplier": 2.05,
+    "name": "秘杖·反重力模式",
+    "skill_id": "skchr_aglina_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 5
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_aglina_1",
+    "skchr_aglina_2"
+   ]
+  },
+  "宴": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_utage_1",
+    "skchr_utage_2"
+   ]
+  },
+  "寒檀": {
+   "burst_skill": {
+    "charge_time": 35.0,
+    "duration": 35.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.34,
+    "name": "迅捷打击·γ型",
+    "skill_id": "skcom_quickattack[3]",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_sntlla_2"
+   ],
+   "untimed_skill_ids": []
+  },
+  "山": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 27.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 1.7,
+    "name": "震地碎岩击",
+    "skill_id": "skchr_f12yin_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 3
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_f12yin_1",
+    "skchr_f12yin_2"
+   ]
+  },
+  "帕拉斯": {
+   "burst_skill": {
+    "charge_time": 50.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 35.0,
+    "initial_sp": 35.0,
+    "mult_source": "additive",
+    "multiplier": 1.7,
+    "name": "英勇的祝福",
+    "skill_id": "skchr_pallas_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 3
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_pallas_1"
+   ]
+  },
+  "幽灵鲨": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 12.0,
+    "hit_count": 1,
+    "initial_charge": 35.0,
+    "initial_sp": 35.0,
+    "mult_source": "additive",
+    "multiplier": 2.0,
+    "name": "肉斩骨断",
+    "skill_id": "skchr_ghost_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "异客": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 31.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.2,
+    "name": "聚焦指令",
+    "skill_id": "skchr_pasngr_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 5
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_pasngr_1",
+    "skchr_pasngr_3"
+   ]
+  },
+  "引星棘刺": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_thorn2_1",
+    "skchr_thorn2_2",
+    "skchr_thorn2_3"
+   ]
+  },
+  "归溟幽灵鲨": {
+   "burst_skill": {
+    "charge_time": 35.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 2.2,
+    "name": "生存的技巧",
+    "skill_id": "skchr_ghost2_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [
+    "skchr_ghost2_3"
+   ],
+   "untimed_skill_ids": []
+  },
+  "忍冬": {
+   "burst_skill": {
+    "charge_time": 18.0,
+    "duration": 10.0,
+    "hit_count": 1,
+    "initial_charge": 10.0,
+    "initial_sp": 10.0,
+    "mult_source": "additive",
+    "multiplier": 1.8,
+    "name": "隐狐之艺",
+    "skill_id": "skchr_vulpis_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_vulpis_1",
+    "skchr_vulpis_2"
+   ]
+  },
+  "怒潮凛冬": {
+   "burst_skill": {
+    "charge_time": 50.0,
+    "duration": 16.0,
+    "hit_count": 1,
+    "initial_charge": 36.0,
+    "initial_sp": 36.0,
+    "mult_source": "additive",
+    "multiplier": 1.75,
+    "name": "绝不罢休",
+    "skill_id": "skchr_headb2_2",
+    "skill_type": "AUTO",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_headb2_3"
+   ]
+  },
+  "慕斯": {
+   "burst_skill": {
+    "charge_time": 80.0,
+    "duration": 40.0,
+    "hit_count": 1,
+    "initial_charge": 45.0,
+    "initial_sp": 45.0,
+    "mult_source": "additive",
+    "multiplier": 1.45,
+    "name": "炸毛",
+    "skill_id": "skchr_frncat_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_frncat_1"
+   ]
+  },
+  "承曦格雷伊": {
+   "burst_skill": {
+    "charge_time": 35.0,
+    "duration": 35.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.34,
+    "name": "迅捷打击·γ型",
+    "skill_id": "skcom_quickattack[3]",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_greyy2_2"
+   ]
+  },
+  "折光": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 20.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.8,
+    "name": "镭射穿凿",
+    "skill_id": "skchr_kaitou_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_kaitou_2"
+   ]
+  },
+  "折桠": {
+   "burst_skill": {
+    "charge_time": 18.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 5.0,
+    "initial_sp": 5.0,
+    "mult_source": "additive",
+    "multiplier": 2.2,
+    "name": "生存决心",
+    "skill_id": "skchr_branch_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_branch_1"
+   ]
+  },
+  "拉普兰德": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_whitew_1",
+    "skchr_whitew_2"
+   ]
+  },
+  "拜松": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skcom_def_up[3]",
+    "skchr_bison_2"
+   ]
+  },
+  "摆渡人": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_varkis_1",
+    "skchr_varkis_2"
+   ]
+  },
+  "斥罪": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_judge_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_judge_1",
+    "skchr_judge_3"
+   ]
+  },
+  "斯卡蒂": {
+   "burst_skill": {
+    "charge_time": 90.0,
+    "duration": 41.0,
+    "hit_count": 1,
+    "initial_charge": 70.0,
+    "initial_sp": 70.0,
+    "mult_source": "additive",
+    "multiplier": 2.0,
+    "name": "涌潮悲歌",
+    "skill_id": "skchr_skadi_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_skadi_2"
+   ]
+  },
+  "旅骨": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_hbound_1",
+    "skchr_hbound_2"
+   ]
+  },
+  "星极": {
+   "burst_skill": {
+    "charge_time": 20.0,
+    "duration": 12.0,
+    "hit_count": 1,
+    "initial_charge": 10.0,
+    "initial_sp": 10.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "星辉剑",
+    "skill_id": "skchr_astesi_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "星源": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.25,
+    "name": "星束交汇",
+    "skill_id": "skchr_halo_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 2
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_halo_1"
+   ]
+  },
+  "机械师": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_mcnist_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_mcnist_1",
+    "skchr_mcnist_2"
+   ]
+  },
+  "杰克": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_jaksel_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_jaksel_1"
+   ]
+  },
+  "极光": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_aurora_1",
+    "skchr_aurora_2"
+   ]
+  },
+  "棘刺": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "攻击力强化·γ型",
+    "skill_id": "skcom_atk_up[3]",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_thorns_3"
+   ]
+  },
+  "森蚺": {
+   "burst_skill": {
+    "charge_time": 45.0,
+    "duration": 32.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 2.7,
+    "name": "钢铁意志",
+    "skill_id": "skchr_zumama_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_zumama_1"
+   ]
+  },
+  "歌蕾蒂娅": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_glady_2",
+    "skchr_glady_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_glady_1"
+   ]
+  },
+  "水月": {
+   "burst_skill": {
+    "charge_time": 60.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 30.0,
+    "initial_sp": 30.0,
+    "mult_source": "additive",
+    "multiplier": 2.05,
+    "name": "镜花水月",
+    "skill_id": "skchr_mizuki_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 2
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_mizuki_1"
+   ]
+  },
+  "水灯心": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_brigid_1",
+    "skchr_brigid_2"
+   ]
+  },
+  "泡泡": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_bubble_2"
+   ],
+   "untimed_skill_ids": [
+    "skcom_def_up[2]"
+   ]
+  },
+  "波登可": {
+   "burst_skill": {
+    "charge_time": 25.0,
+    "duration": 22.0,
+    "hit_count": 1,
+    "initial_charge": 10.0,
+    "initial_sp": 10.0,
+    "mult_source": "additive",
+    "multiplier": 1.3,
+    "name": "花香疗法",
+    "skill_id": "skchr_podego_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_podego_2"
+   ]
+  },
+  "流明": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_lumen_1",
+    "skchr_lumen_2",
+    "skchr_lumen_3"
+   ]
+  },
+  "浊心斯卡蒂": {
+   "burst_skill": {
+    "charge_time": 50.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 30.0,
+    "initial_sp": 30.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "同归殊途之吟",
+    "skill_id": "skchr_skadi2_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_skadi2_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_skadi2_2"
+   ]
+  },
+  "海沫": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 20.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.5,
+    "name": "泡影，殆尽",
+    "skill_id": "skchr_highmo_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_highmo_1"
+   ]
+  },
+  "涤火杰西卡": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "掩蔽护卫",
+    "skill_id": "skchr_jesca2_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_jesca2_1",
+    "skchr_jesca2_3"
+   ]
+  },
+  "淬羽赫默": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.5,
+    "name": "进取之心",
+    "skill_id": "skchr_slent2_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_slent2_2"
+   ]
+  },
+  "深巡": {
+   "burst_skill": {
+    "charge_time": 32.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 1.4,
+    "name": "行动能力剥夺",
+    "skill_id": "skchr_udflow_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 3
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "深靛": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_indigo_1"
+   ],
+   "untimed_skill_ids": [
+    "skchr_indigo_2"
+   ]
+  },
+  "渡桥": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "承压功率",
+    "skill_id": "skchr_mitm_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_mitm_1"
+   ]
+  },
+  "温蒂": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_weedy_1",
+    "skchr_weedy_2",
+    "skchr_weedy_3"
+   ]
+  },
+  "溯光星源": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 18.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "星图闪烁",
+    "skill_id": "skchr_halo2_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_halo2_2"
+   ]
+  },
+  "灰喉": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_swllow_1",
+    "skchr_swllow_2"
+   ]
+  },
+  "灵知": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_gnosis_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_gnosis_1",
+    "skchr_gnosis_2"
+   ]
+  },
+  "烈夏": {
+   "burst_skill": {
+    "charge_time": 28.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 16.0,
+    "initial_sp": 16.0,
+    "mult_source": "additive",
+    "multiplier": 1.8,
+    "name": "一呼百应",
+    "skill_id": "skchr_leto_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 2
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "烛煌": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_blaze2_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_blaze2_1",
+    "skchr_blaze2_3"
+   ]
+  },
+  "焰尾": {
+   "burst_skill": {
+    "charge_time": 16.0,
+    "duration": 8.0,
+    "hit_count": 1,
+    "initial_charge": 6.0,
+    "initial_sp": 6.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "焰心",
+    "skill_id": "skchr_flamtl_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_flamtl_1",
+    "skchr_flamtl_2"
+   ]
+  },
+  "玛恩纳": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_mlynar_1",
+    "skchr_mlynar_2",
+    "skchr_mlynar_3"
+   ],
+   "untimed_skill_ids": []
+  },
+  "瑕光": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_blemsh_1",
+    "skchr_blemsh_2",
+    "skchr_blemsh_3"
+   ]
+  },
+  "瑰盐": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_rosesa_1",
+    "skchr_rosesa_2"
+   ]
+  },
+  "白铁": {
+   "burst_skill": {
+    "charge_time": 50.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 1.4,
+    "name": "高效补给",
+    "skill_id": "skchr_ironmn_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [
+    "skchr_ironmn_1"
+   ],
+   "untimed_skill_ids": []
+  },
+  "真理": {
+   "burst_skill": {
+    "charge_time": 50.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 30.0,
+    "initial_sp": 30.0,
+    "mult_source": "additive",
+    "multiplier": 1.3,
+    "name": "文学风暴",
+    "skill_id": "skchr_glassb_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 3
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_glassb_1"
+   ]
+  },
+  "真言": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_mantra_2",
+    "skchr_mantra_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_mantra_1"
+   ]
+  },
+  "矩": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_ju_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_ju_1"
+   ]
+  },
+  "砾": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_gravel_1",
+    "skchr_gravel_2"
+   ]
+  },
+  "空弦": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_archet_1",
+    "skchr_archet_2",
+    "skchr_archet_3"
+   ]
+  },
+  "纯烬艾雅法拉": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_agoat2_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_agoat2_1",
+    "skchr_agoat2_2"
+   ]
+  },
+  "维伊": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_veen_1",
+    "skchr_veen_2",
+    "skchr_veen_3"
+   ]
+  },
+  "维娜·维多利亚": {
+   "burst_skill": {
+    "charge_time": 50.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 35.0,
+    "initial_sp": 35.0,
+    "mult_source": "additive",
+    "multiplier": 2.6,
+    "name": "俱以我之名",
+    "skill_id": "skchr_siege2_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 3
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_siege2_1",
+    "skchr_siege2_2"
+   ]
+  },
+  "缪尔赛思": {
+   "burst_skill": {
+    "charge_time": 28.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 8.0,
+    "initial_sp": 8.0,
+    "mult_source": "additive",
+    "multiplier": 1.35,
+    "name": "渐进性润化",
+    "skill_id": "skchr_mlyss_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 3,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "罗比菈塔": {
+   "burst_skill": {
+    "charge_time": 25.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.35,
+    "name": "叙拉古式上妆",
+    "skill_id": "skchr_robrta_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_robrta_2"
+   ]
+  },
+  "耀骑士临光": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 2.0,
+    "name": "耀阳颔首",
+    "skill_id": "skchr_nearl2_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_nearl2_1",
+    "skchr_nearl2_2"
+   ]
+  },
+  "老鲤": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_lmlee_1",
+    "skchr_lmlee_2",
+    "skchr_lmlee_3"
+   ]
+  },
+  "耶拉": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "攻击力强化·γ型",
+    "skill_id": "skcom_atk_up[3]",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": []
+  },
+  "至简": {
+   "burst_skill": {
+    "charge_time": 35.0,
+    "duration": 35.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.34,
+    "name": "迅捷打击·γ型",
+    "skill_id": "skcom_quickattack[3]",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_malist_2"
+   ]
+  },
+  "艾丝黛尔": {
+   "burst_skill": {
+    "charge_time": 35.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 10.0,
+    "initial_sp": 10.0,
+    "mult_source": "additive",
+    "multiplier": 1.5,
+    "name": "攻击力强化·β型",
+    "skill_id": "skcom_atk_up[2]",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_estell_2"
+   ]
+  },
+  "艾丽妮": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_irene_1",
+    "skchr_irene_2",
+    "skchr_irene_3"
+   ]
+  },
+  "艾雅法拉": {
+   "burst_skill": {
+    "charge_time": 80.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 55.0,
+    "initial_sp": 55.0,
+    "mult_source": "additive",
+    "multiplier": 1.85,
+    "name": "火山",
+    "skill_id": "skchr_amgoat_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 5
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_amgoat_1",
+    "skchr_amgoat_2"
+   ]
+  },
+  "荒芜拉普兰德": {
+   "burst_skill": {
+    "charge_time": 28.0,
+    "duration": 18.0,
+    "hit_count": 1,
+    "initial_charge": 18.0,
+    "initial_sp": 18.0,
+    "mult_source": "additive",
+    "multiplier": 1.8,
+    "name": "逐猎狂飙",
+    "skill_id": "skchr_whitw2_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_whitw2_1"
+   ]
+  },
+  "莎草": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.35,
+    "name": "临考发挥",
+    "skill_id": "skchr_papyrs_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_papyrs_1"
+   ]
+  },
+  "蓝毒": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 26.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 1.3,
+    "name": "毒液散射",
+    "skill_id": "skchr_bluep_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_bluep_1"
+   ]
+  },
+  "蕾缪安": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_lemuen_1",
+    "skchr_lemuen_2",
+    "skchr_lemuen_3"
+   ]
+  },
+  "薇薇安娜": {
+   "burst_skill": {
+    "charge_time": 25.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 18.0,
+    "initial_sp": 18.0,
+    "mult_source": "additive",
+    "multiplier": 1.75,
+    "name": "“明灭”",
+    "skill_id": "skchr_vvana_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_vvana_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_vvana_1"
+   ]
+  },
+  "蛇屠箱": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skcom_def_up[2]",
+    "skchr_snakek_2"
+   ]
+  },
+  "褐果": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_chnut_1",
+    "skchr_chnut_2"
+   ]
+  },
+  "角峰": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_yak_1",
+    "skchr_yak_2"
+   ]
+  },
+  "贝洛内": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_demetr_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_demetr_1",
+    "skchr_demetr_3"
+   ]
+  },
+  "赫德雷": {
+   "burst_skill": {
+    "charge_time": 50.0,
+    "duration": 70.0,
+    "hit_count": 1,
+    "initial_charge": 40.0,
+    "initial_sp": 40.0,
+    "mult_source": "additive",
+    "multiplier": 1.9,
+    "name": "死境硝烟",
+    "skill_id": "skchr_hodrer_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_hodrer_1",
+    "skchr_hodrer_2"
+   ]
+  },
+  "赫拉格": {
+   "burst_skill": {
+    "charge_time": 35.0,
+    "duration": 14.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.7,
+    "name": "满月",
+    "skill_id": "skchr_helage_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 3
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_helage_1"
+   ]
+  },
+  "车尔尼": {
+   "burst_skill": {
+    "charge_time": 35.0,
+    "duration": 29.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.5,
+    "name": "纷飞十指",
+    "skill_id": "skchr_pianst_1",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_pianst_2"
+   ],
+   "untimed_skill_ids": []
+  },
+  "远牙": {
+   "burst_skill": {
+    "charge_time": 20.0,
+    "duration": 17.0,
+    "hit_count": 1,
+    "initial_charge": 10.0,
+    "initial_sp": 10.0,
+    "mult_source": "additive",
+    "multiplier": 2.0,
+    "name": "光羽箭",
+    "skill_id": "skchr_fartth_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_fartth_2"
+   ]
+  },
+  "迷迭香": {
+   "burst_skill": {
+    "charge_time": 60.0,
+    "duration": 27.0,
+    "hit_count": 1,
+    "initial_charge": 35.0,
+    "initial_sp": 35.0,
+    "mult_source": "additive",
+    "multiplier": 1.4,
+    "name": "“如你所愿”",
+    "skill_id": "skchr_rosmon_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 2
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_rosmon_1"
+   ]
+  },
+  "逻各斯": {
+   "burst_skill": {
+    "charge_time": 45.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 30.0,
+    "initial_sp": 30.0,
+    "mult_source": "additive",
+    "multiplier": 3.2,
+    "name": "延异视阈",
+    "skill_id": "skchr_logos_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 3
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_logos_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_logos_1"
+   ]
+  },
+  "遥": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_haruka_2",
+    "skchr_haruka_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_haruka_1"
+   ]
+  },
+  "酒神": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 30.0,
+    "initial_sp": 30.0,
+    "mult_source": "additive",
+    "multiplier": 1.95,
+    "name": "空剧场",
+    "skill_id": "skchr_phatm2_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_phatm2_1",
+    "skchr_phatm2_2"
+   ]
+  },
+  "野鬃": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 20.0,
+    "hit_count": 1,
+    "initial_charge": 30.0,
+    "initial_sp": 30.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "夹枪冲锋",
+    "skill_id": "skchr_wildmn_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_wildmn_1"
+   ]
+  },
+  "铃兰": {
+   "burst_skill": {
+    "charge_time": 20.0,
+    "duration": 26.0,
+    "hit_count": 1,
+    "initial_charge": 0.0,
+    "initial_sp": 0.0,
+    "mult_source": "additive",
+    "multiplier": 1.6,
+    "name": "全力以赴",
+    "skill_id": "skchr_lisa_1",
+    "skill_type": "AUTO",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_lisa_2"
+   ]
+  },
+  "铸铁": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 27.0,
+    "hit_count": 1,
+    "initial_charge": 10.0,
+    "initial_sp": 10.0,
+    "mult_source": "additive",
+    "multiplier": 1.8,
+    "name": "破浪回神",
+    "skill_id": "skchr_sidero_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skcom_heal_self[3]"
+   ]
+  },
+  "锏": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_blkkgt_1",
+    "skchr_blkkgt_2",
+    "skchr_blkkgt_3"
+   ]
+  },
+  "锡人": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_tinman_1",
+    "skchr_tinman_2"
+   ]
+  },
+  "阿米娅": {
+   "burst_skill": {
+    "charge_time": 120.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 0.0,
+    "initial_sp": 0.0,
+    "mult_source": "additive",
+    "multiplier": 2.6,
+    "name": "奇美拉",
+    "skill_id": "skchr_amiya_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_amiya_2"
+   ],
+   "untimed_skill_ids": [
+    "skcom_magic_rage[3]"
+   ]
+  },
+  "陨星": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_meteo_1",
+    "skchr_meteo_2"
+   ]
+  },
+  "隐德来希": {
+   "burst_skill": {
+    "charge_time": 30.0,
+    "duration": 20.0,
+    "hit_count": 1,
+    "initial_charge": 22.0,
+    "initial_sp": 22.0,
+    "mult_source": "additive",
+    "multiplier": 2.1,
+    "name": "灵与欲的惜别",
+    "skill_id": "skchr_etlchi_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 3
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_etlchi_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_etlchi_1"
+   ]
+  },
+  "雪猎": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_snhunt_1",
+    "skchr_snhunt_2"
+   ]
+  },
+  "霍尔海雅": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_heyak_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_heyak_1",
+    "skchr_heyak_3"
+   ]
+  },
+  "霜叶": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_frostl_1",
+    "skchr_frostl_2"
+   ]
+  },
+  "青枳": {
+   "burst_skill": {
+    "charge_time": 40.0,
+    "duration": 15.0,
+    "hit_count": 1,
+    "initial_charge": 25.0,
+    "initial_sp": 25.0,
+    "mult_source": "additive",
+    "multiplier": 1.2,
+    "name": "工程者之愿",
+    "skill_id": "skchr_buildr_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skcom_charge_cost[3]"
+   ]
+  },
+  "风丸": {
+   "burst_skill": {
+    "charge_time": 20.0,
+    "duration": 20.0,
+    "hit_count": 1,
+    "initial_charge": 15.0,
+    "initial_sp": 15.0,
+    "mult_source": "additive",
+    "multiplier": 1.9,
+    "name": "纸艺·双影",
+    "skill_id": "skchr_kazema_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_kazema_1"
+   ]
+  },
+  "风絮": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_taraxa_1",
+    "skchr_taraxa_2"
+   ],
+   "untimed_skill_ids": []
+  },
+  "魔王": {
+   "burst_skill": {
+    "charge_time": 55.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 35.0,
+    "initial_sp": 35.0,
+    "mult_source": "additive",
+    "multiplier": 1.75,
+    "name": "编织重构现世",
+    "skill_id": "skchr_cetsyr_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_cetsyr_2"
+   ],
+   "untimed_skill_ids": [
+    "skchr_cetsyr_1"
+   ]
+  },
+  "鸿雪": {
+   "burst_skill": null,
+   "eligible_skill_count": 0,
+   "special_skill_ids": [
+    "skchr_bgsnow_3"
+   ],
+   "untimed_skill_ids": [
+    "skchr_bgsnow_1",
+    "skchr_bgsnow_2"
+   ]
+  },
+  "黍": {
+   "burst_skill": {
+    "charge_time": 25.0,
+    "duration": 25.0,
+    "hit_count": 1,
+    "initial_charge": 20.0,
+    "initial_sp": 20.0,
+    "mult_source": "additive",
+    "multiplier": 1.9,
+    "name": "嘉禾盈仓",
+    "skill_id": "skchr_shu_2",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 2
+   },
+   "eligible_skill_count": 2,
+   "special_skill_ids": [],
+   "untimed_skill_ids": [
+    "skchr_shu_1"
+   ]
+  },
+  "黑键": {
+   "burst_skill": {
+    "charge_time": 20.0,
+    "duration": 30.0,
+    "hit_count": 1,
+    "initial_charge": 10.0,
+    "initial_sp": 10.0,
+    "mult_source": "additive",
+    "multiplier": 1.5,
+    "name": "寂静之声",
+    "skill_id": "skchr_ebnhlz_3",
+    "skill_type": "MANUAL",
+    "sp_type": "INCREASE_WITH_TIME",
+    "targets": 1
+   },
+   "eligible_skill_count": 1,
+   "special_skill_ids": [
+    "skchr_ebnhlz_1"
+   ],
+   "untimed_skill_ids": [
+    "skchr_ebnhlz_2"
+   ]
+  }
+ }
+}

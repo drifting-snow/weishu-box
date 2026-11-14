@@ -1,0 +1,25 @@
+{
+  "kernel_path": "../advisor",
+  "kernel_python": "../advisor/.venv/Scripts/python.exe",
+  "opacity": 0.82,
+  "ocr_interval_sec": 2.0,
+  "auto_ocr_gap_sec": 0.5,
+  "auto_ocr_interval_sec": 4.5,
+  "auto_ocr_backoff_sec": 8.0,
+  "click_through_default": true,
+  "hotkey_toggle": "ctrl+shift+w",
+  "hotkey_analyze": "ctrl+shift+a",
+  "window": {
+    "width": 460,
+    "height": 820,
+    "x": null,
+    "y": null
+  },
+  "defaults": {
+    "round": 1,
+    "gold": 10,
+    "dispatch_level": 1,
+    "target_bond": "",
+    "difficulty": "standard"
+  }
+}

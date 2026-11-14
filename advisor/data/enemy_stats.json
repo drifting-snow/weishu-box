@@ -1,0 +1,4561 @@
+{
+ "_meta": {
+  "description": "卫戍协议敌人真实 level-0 数值（def/res/hp/atk），由官方解包表 enemy_database.json 经 tools/build_enemy_stats.py 自有解析生成；不含第三方/GPL 数据。名录 enemy_catalog.json 保持纯定性，数值独立存放。",
+  "enemy_count": 179,
+  "generated_by": "tools/build_enemy_stats.py",
+  "level_note": "autochess enemyDbRefs use level=0; level-1 entries are elite ladders, not the spawn base. DEF/RES static across regulation levels; HP scaled separately via advisor/regulation_hp.py.",
+  "level_used": 0,
+  "res_unit": "percent 0..100 (magicResistance)",
+  "source_table": "data/source/gamedata/enemy_database.json (gitignored)"
+ },
+ "category_worst": {
+  "elemental": {
+   "enemy_count": 18,
+   "median_def": 200,
+   "median_res": 40.0,
+   "worst_def": 1000,
+   "worst_res": 70.0
+  },
+  "flying": {
+   "enemy_count": 14,
+   "median_def": 140,
+   "median_res": 30.0,
+   "worst_def": 800,
+   "worst_res": 65.0
+  },
+  "lethal": {
+   "enemy_count": 33,
+   "median_def": 350,
+   "median_res": 30.0,
+   "worst_def": 1600,
+   "worst_res": 60.0
+  },
+  "multi_hit": {
+   "enemy_count": 10,
+   "median_def": 100,
+   "median_res": 30.0,
+   "worst_def": 750,
+   "worst_res": 60.0
+  },
+  "refraction": {
+   "enemy_count": 15,
+   "median_def": 550,
+   "median_res": 0.0,
+   "worst_def": 1100,
+   "worst_res": 20.0
+  },
+  "revival": {
+   "enemy_count": 32,
+   "median_def": 300,
+   "median_res": 20.0,
+   "worst_def": 1500,
+   "worst_res": 50.0
+  },
+  "special": {
+   "enemy_count": 35,
+   "median_def": 300,
+   "median_res": 20.0,
+   "worst_def": 3500,
+   "worst_res": 60.0
+  },
+  "stealth": {
+   "enemy_count": 18,
+   "median_def": 180,
+   "median_res": 20.0,
+   "worst_def": 800,
+   "worst_res": 60.0
+  },
+  "sustained": {
+   "enemy_count": 12,
+   "median_def": 350,
+   "median_res": 20.0,
+   "worst_def": 750,
+   "worst_res": 60.0
+  }
+ },
+ "enemies": {
+  "Dor-1号失败品": {
+   "by_id": {
+    "enemy_1251_lysyta": {
+     "atk": 310,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 2750,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1251_lysyta"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 310,
+    "def": 0,
+    "hp": 2750,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "Dor-α号失败品": {
+   "by_id": {
+    "enemy_1251_lysyta_2": {
+     "atk": 360,
+     "def": 50,
+     "has_higher_level": false,
+     "hp": 3200,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1251_lysyta_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 360,
+    "def": 50,
+    "hp": 3200,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "Dor-β号复制体": {
+   "by_id": {
+    "enemy_1252_lysytb_2": {
+     "atk": 420,
+     "def": 50,
+     "has_higher_level": false,
+     "hp": 9000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1252_lysytb_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 420,
+    "def": 50,
+    "hp": 9000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "“喷射罐”": {
+   "by_id": {
+    "enemy_1385_winbom": {
+     "atk": 400,
+     "def": 350,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1385_winbom"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 400,
+    "def": 350,
+    "hp": 10000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "“喷爆罐”": {
+   "by_id": {
+    "enemy_1385_winbom_2": {
+     "atk": 550,
+     "def": 450,
+     "has_higher_level": false,
+     "hp": 14000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1385_winbom_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 550,
+    "def": 450,
+    "hp": 14000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "“左手”泰特斯·白杨": {
+   "by_id": {
+    "enemy_1104_lfkght_3": {
+     "atk": 750,
+     "def": 700,
+     "has_higher_level": false,
+     "hp": 20000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1104_lfkght_3"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 750,
+    "def": 700,
+    "hp": 20000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "“投石机”": {
+   "by_id": {
+    "enemy_1388_wingnt": {
+     "atk": 800,
+     "def": 700,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1388_wingnt"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 700,
+    "hp": 10000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "“榴弹炮”": {
+   "by_id": {
+    "enemy_1388_wingnt_2": {
+     "atk": 950,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1388_wingnt_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 950,
+    "def": 800,
+    "hp": 12000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "“萨科塔之眼”": {
+   "by_id": {
+    "enemy_10084_hlegle": {
+     "atk": 1000,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 5500,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10084_hlegle"
+   ],
+   "is_flying": true,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 1000,
+    "def": 150,
+    "hp": 5500,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "“萨科塔之翼”": {
+   "by_id": {
+    "enemy_10083_hlbird": {
+     "atk": 0,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 1500,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10083_hlbird"
+   ],
+   "is_flying": true,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 0,
+    "def": 0,
+    "hp": 1500,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "业余竞演者": {
+   "by_id": {
+    "enemy_10031_cnvsld": {
+     "atk": 300,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 4000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10031_cnvsld"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 100,
+    "hp": 4000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "传奇重犯": {
+   "by_id": {
+    "enemy_1121_lifbos_2": {
+     "atk": 1000,
+     "def": 500,
+     "has_higher_level": false,
+     "hp": 25000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1121_lifbos_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1000,
+    "def": 500,
+    "hp": 25000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "俗心": {
+   "by_id": {
+    "enemy_1197_sfshu": {
+     "atk": 320,
+     "def": 60,
+     "has_higher_level": false,
+     "hp": 2500,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1197_sfshu"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 320,
+    "def": 60,
+    "hp": 2500,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "假想敌：丛生": {
+   "by_id": {
+    "enemy_9040_accrit": {
+     "atk": 1200,
+     "def": 400,
+     "has_higher_level": false,
+     "hp": 11000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9040_accrit"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1200,
+    "def": 400,
+    "hp": 11000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "假想敌：再生": {
+   "by_id": {
+    "enemy_9010_acpupp": {
+     "atk": 1100,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9010_acpupp"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1100,
+    "def": 300,
+    "hp": 12000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "假想敌：影役": {
+   "by_id": {
+    "enemy_9034_acblk": {
+     "atk": 800,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9034_acblk"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 300,
+    "hp": 12000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "假想敌：淤困": {
+   "by_id": {
+    "enemy_9007_acelem": {
+     "atk": 600,
+     "def": 200,
+     "has_higher_level": false,
+     "hp": 36000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9007_acelem"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 600,
+    "def": 200,
+    "hp": 36000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "假想敌：蚀裂": {
+   "by_id": {
+    "enemy_9006_actoxi": {
+     "atk": 400,
+     "def": 400,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9006_actoxi"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 400,
+    "def": 400,
+    "hp": 15000,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "假想敌：镜波": {
+   "by_id": {
+    "enemy_9031_acrefd": {
+     "atk": 500,
+     "def": 450,
+     "has_higher_level": false,
+     "hp": 4500,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9031_acrefd"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 500,
+    "def": 450,
+    "hp": 4500,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "假想敌：镜眼": {
+   "by_id": {
+    "enemy_9039_acrefm": {
+     "atk": 1000,
+     "def": 550,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9039_acrefm"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1000,
+    "def": 550,
+    "hp": 15000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "假想敌：镜膜": {
+   "by_id": {
+    "enemy_9011_acrefr": {
+     "atk": 1000,
+     "def": 600,
+     "has_higher_level": false,
+     "hp": 18000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9011_acrefr"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 1000,
+    "def": 600,
+    "hp": 18000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "假想敌：骨刺": {
+   "by_id": {
+    "enemy_9008_acbunn": {
+     "atk": 360,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9008_acbunn"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 360,
+    "def": 300,
+    "hp": 12000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "假想敌：黑云": {
+   "by_id": {
+    "enemy_9009_acfort": {
+     "atk": 500,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 24000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9009_acfort"
+   ],
+   "is_flying": true,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 500,
+    "def": 150,
+    "hp": 24000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "元核孽生者": {
+   "by_id": {
+    "enemy_1439_dslntf": {
+     "atk": 500,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 30000,
+     "res": 70.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1439_dslntf"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 500,
+    "def": 0,
+    "hp": 30000,
+    "res": 70.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "军用猎狗": {
+   "by_id": {
+    "enemy_1325_cbgpro": {
+     "atk": 290,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 3800,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1325_cbgpro"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 290,
+    "def": 0,
+    "hp": 3800,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "冰原卫法者": {
+   "by_id": {
+    "enemy_1191_krgrg": {
+     "atk": 600,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 5000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1191_krgrg"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 600,
+    "def": 250,
+    "hp": 5000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "冰原御法者": {
+   "by_id": {
+    "enemy_1191_krgrg_2": {
+     "atk": 800,
+     "def": 350,
+     "has_higher_level": false,
+     "hp": 7000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1191_krgrg_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 350,
+    "hp": 7000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "冰爆源石虫·α": {
+   "by_id": {
+    "enemy_1067_snslime_2": {
+     "atk": 370,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 4850,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1067_snslime_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 370,
+    "def": 0,
+    "hp": 4850,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "单核掠食者": {
+   "by_id": {
+    "enemy_1433_dsbasi": {
+     "atk": 280,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 4300,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1433_dsbasi"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 280,
+    "def": 0,
+    "hp": 4300,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "sustained",
+    "revival"
+   ]
+  },
+  "卷心籽": {
+   "by_id": {
+    "enemy_10065_ftzlc": {
+     "atk": 240,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 3800,
+     "res": 5.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10065_ftzlc"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 240,
+    "def": 0,
+    "hp": 3800,
+    "res": 5.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "变异岩蛛": {
+   "by_id": {
+    "enemy_1132_sarchn": {
+     "atk": 360,
+     "def": 200,
+     "has_higher_level": false,
+     "hp": 2500,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1132_sarchn"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 360,
+    "def": 200,
+    "hp": 2500,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "变异岩蛛α": {
+   "by_id": {
+    "enemy_1132_sarchn_2": {
+     "atk": 410,
+     "def": 200,
+     "has_higher_level": false,
+     "hp": 3500,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1132_sarchn_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 410,
+    "def": 200,
+    "hp": 3500,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "变异巨岩蛛": {
+   "by_id": {
+    "enemy_1133_harchn": {
+     "atk": 600,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1133_harchn"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 600,
+    "def": 300,
+    "hp": 15000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "变异巨岩蛛α": {
+   "by_id": {
+    "enemy_1133_harchn_2": {
+     "atk": 800,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 20000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1133_harchn_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 300,
+    "hp": 20000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "变异沙地兽": {
+   "by_id": {
+    "enemy_1131_sbeast": {
+     "atk": 320,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 2700,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1131_sbeast"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 320,
+    "def": 100,
+    "hp": 2700,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "变异沙地兽α": {
+   "by_id": {
+    "enemy_1131_sbeast_2": {
+     "atk": 380,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 3300,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1131_sbeast_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 380,
+    "def": 100,
+    "hp": 3300,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "妖怪": {
+   "by_id": {
+    "enemy_1005_yokai": {
+     "atk": 0,
+     "def": 50,
+     "has_higher_level": true,
+     "hp": 800,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1005_yokai"
+   ],
+   "is_flying": true,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 0,
+    "def": 50,
+    "hp": 800,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "妖怪MKII": {
+   "by_id": {
+    "enemy_1005_yokai_2": {
+     "atk": 220,
+     "def": 50,
+     "has_higher_level": true,
+     "hp": 1550,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1005_yokai_2"
+   ],
+   "is_flying": true,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 220,
+    "def": 50,
+    "hp": 1550,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "威龙": {
+   "by_id": {
+    "enemy_1005_yokai_3": {
+     "atk": 660,
+     "def": 170,
+     "has_higher_level": false,
+     "hp": 30000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1005_yokai_3"
+   ],
+   "is_flying": true,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 660,
+    "def": 170,
+    "hp": 30000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "守墓石像": {
+   "by_id": {
+    "enemy_1172_dugago": {
+     "atk": 550,
+     "def": 550,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1172_dugago"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 550,
+    "def": 550,
+    "hp": 10000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "家族灭迹人": {
+   "by_id": {
+    "enemy_1283_sgkill": {
+     "atk": 800,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 45.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1283_sgkill"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 800,
+    "hp": 12000,
+    "res": 45.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "宿主士兵": {
+   "by_id": {
+    "enemy_1043_zomsbr": {
+     "atk": 250,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 2500,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1043_zomsbr"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 250,
+    "def": 100,
+    "hp": 2500,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "special",
+    "stealth"
+   ]
+  },
+  "宿主重装士兵": {
+   "by_id": {
+    "enemy_1061_zomshd": {
+     "atk": 600,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1061_zomshd"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 600,
+    "def": 800,
+    "hp": 10000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "富营养的巢涌者": {
+   "by_id": {
+    "enemy_1234_dsubrl_2": {
+     "atk": 160,
+     "def": 550,
+     "has_higher_level": false,
+     "hp": 14000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1234_dsubrl_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 160,
+    "def": 550,
+    "hp": 14000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "富营养的滑动者": {
+   "by_id": {
+    "enemy_1148_dssbr_2": {
+     "atk": 360,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 3600,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1148_dssbr_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 360,
+    "def": 150,
+    "hp": 3600,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "寒霜": {
+   "by_id": {
+    "enemy_1042_frostd": {
+     "atk": 100,
+     "def": 600,
+     "has_higher_level": false,
+     "hp": 6500,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1042_frostd"
+   ],
+   "is_flying": true,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 100,
+    "def": 600,
+    "hp": 6500,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "寻路者信使": {
+   "by_id": {
+    "enemy_1219_mtrbty": {
+     "atk": 600,
+     "def": 500,
+     "has_higher_level": false,
+     "hp": 17000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1219_mtrbty"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 600,
+    "def": 500,
+    "hp": 17000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "寻路者狙击手": {
+   "by_id": {
+    "enemy_1213_mtrsnp": {
+     "atk": 300,
+     "def": 50,
+     "has_higher_level": false,
+     "hp": 3800,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1213_mtrsnp"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 50,
+    "hp": 3800,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "寻路者阵地破坏者": {
+   "by_id": {
+    "enemy_1216_cansld": {
+     "atk": 800,
+     "def": 1200,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1216_cansld"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 1200,
+    "hp": 12000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "寻险水手": {
+   "by_id": {
+    "enemy_10043_sailor": {
+     "atk": 350,
+     "def": 50,
+     "has_higher_level": false,
+     "hp": 5500,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10043_sailor"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 350,
+    "def": 50,
+    "hp": 5500,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "尖端萨卡兹枯朽战车": {
+   "by_id": {
+    "enemy_1272_nhtank_2": {
+     "atk": 850,
+     "def": 750,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1272_nhtank_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 850,
+    "def": 750,
+    "hp": 15000,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "山海众头目": {
+   "by_id": {
+    "enemy_1299_ymkilr": {
+     "atk": 800,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 8500,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1299_ymkilr"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 250,
+    "hp": 8500,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "山海众秘使": {
+   "by_id": {
+    "enemy_1299_ymkilr_2": {
+     "atk": 1000,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 11000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1299_ymkilr_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1000,
+    "def": 300,
+    "hp": 11000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "巫王乐团圆号手": {
+   "by_id": {
+    "enemy_1373_ltnhor_2": {
+     "atk": 200,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 9000,
+     "res": 15.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1373_ltnhor_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 200,
+    "def": 250,
+    "hp": 9000,
+    "res": 15.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "巫王乐团管乐家": {
+   "by_id": {
+    "enemy_1375_ltnclr_2": {
+     "atk": 600,
+     "def": 700,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1375_ltnclr_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 600,
+    "def": 700,
+    "hp": 15000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "巫王乐团鼓手": {
+   "by_id": {
+    "enemy_1376_ltndru_2": {
+     "atk": 350,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1376_ltndru_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 350,
+    "def": 300,
+    "hp": 12000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "帝国炮火先兆者": {
+   "by_id": {
+    "enemy_1112_emppnt": {
+     "atk": 1000,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 13000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1112_emppnt"
+   ],
+   "is_flying": true,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1000,
+    "def": 800,
+    "hp": 13000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "底海滑动者": {
+   "by_id": {
+    "enemy_1148_dssbr": {
+     "atk": 280,
+     "def": 130,
+     "has_higher_level": false,
+     "hp": 2800,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1148_dssbr"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 280,
+    "def": 130,
+    "hp": 2800,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "异光体掠食者": {
+   "by_id": {
+    "enemy_1433_dsbasi_2": {
+     "atk": 350,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 5700,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1433_dsbasi_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 350,
+    "def": 0,
+    "hp": 5700,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "sustained",
+    "revival"
+   ]
+  },
+  "异光体集养者": {
+   "by_id": {
+    "enemy_1436_dsdivi_2": {
+     "atk": 230,
+     "def": 175,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 45.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1436_dsdivi_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 230,
+    "def": 175,
+    "hp": 10000,
+    "res": 45.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "异光体饲育者": {
+   "by_id": {
+    "enemy_1437_dsfull_2": {
+     "atk": 900,
+     "def": 1400,
+     "has_higher_level": false,
+     "hp": 16000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1437_dsfull_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 900,
+    "def": 1400,
+    "hp": 16000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "弧光锋卫": {
+   "by_id": {
+    "enemy_1328_cbjedi": {
+     "atk": 700,
+     "def": 550,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1328_cbjedi"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 700,
+    "def": 550,
+    "hp": 10000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "弧光镜卫": {
+   "by_id": {
+    "enemy_1329_cbshld": {
+     "atk": 700,
+     "def": 3300,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1329_cbshld"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 700,
+    "def": 3300,
+    "hp": 10000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "弧光镜卫长": {
+   "by_id": {
+    "enemy_1329_cbshld_2": {
+     "atk": 900,
+     "def": 3500,
+     "has_higher_level": false,
+     "hp": 13000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1329_cbshld_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 900,
+    "def": 3500,
+    "hp": 13000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "强壮囚犯": {
+   "by_id": {
+    "enemy_1119_vofsd": {
+     "atk": 600,
+     "def": 700,
+     "has_higher_level": false,
+     "hp": 11000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1119_vofsd"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 600,
+    "def": 700,
+    "hp": 11000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "御4": {
+   "by_id": {
+    "enemy_1017_defdrn": {
+     "atk": 0,
+     "def": 150,
+     "has_higher_level": true,
+     "hp": 4000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1017_defdrn"
+   ],
+   "is_flying": true,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 0,
+    "def": 150,
+    "hp": 4000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "战线推进者": {
+   "by_id": {
+    "enemy_1406_chghmr": {
+     "atk": 1350,
+     "def": 1000,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1406_chghmr"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1350,
+    "def": 1000,
+    "hp": 15000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "扶桥老手": {
+   "by_id": {
+    "enemy_10042_prtrop_2": {
+     "atk": 720,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 8000,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10042_prtrop_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 720,
+    "def": 300,
+    "hp": 8000,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "护障": {
+   "by_id": {
+    "enemy_1355_mrfly": {
+     "atk": 0,
+     "def": 80,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1355_mrfly"
+   ],
+   "is_flying": true,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 0,
+    "def": 80,
+    "hp": 6000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "护障·P": {
+   "by_id": {
+    "enemy_1355_mrfly_2": {
+     "atk": 0,
+     "def": 80,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1355_mrfly_2"
+   ],
+   "is_flying": true,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 0,
+    "def": 80,
+    "hp": 10000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "拳师囚犯": {
+   "by_id": {
+    "enemy_1118_lidbox_2": {
+     "atk": 400,
+     "def": 400,
+     "has_higher_level": false,
+     "hp": 9500,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1118_lidbox_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 400,
+    "def": 400,
+    "hp": 9500,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "掠海漂移体": {
+   "by_id": {
+    "enemy_2025_syufo": {
+     "atk": 500,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 20000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_2025_syufo"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 500,
+    "def": 250,
+    "hp": 20000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "控潮术师": {
+   "by_id": {
+    "enemy_1161_tidmag": {
+     "atk": 200,
+     "def": 200,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1161_tidmag"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 200,
+    "def": 200,
+    "hp": 6000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "新生血裔": {
+   "by_id": {
+    "enemy_1360_dfello": {
+     "atk": 100,
+     "def": 200,
+     "has_higher_level": false,
+     "hp": 4000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1360_dfello"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 100,
+    "def": 200,
+    "hp": 4000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "无畏掷弹兵": {
+   "by_id": {
+    "enemy_1405_boomer_2": {
+     "atk": 550,
+     "def": 900,
+     "has_higher_level": false,
+     "hp": 5000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1405_boomer_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 550,
+    "def": 900,
+    "hp": 5000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "明鉴": {
+   "by_id": {
+    "enemy_1195_sfyin_2": {
+     "atk": 390,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 3100,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1195_sfyin_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 390,
+    "def": 0,
+    "hp": 3100,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "普通囚犯": {
+   "by_id": {
+    "enemy_1116_liprr": {
+     "atk": 280,
+     "def": 60,
+     "has_higher_level": false,
+     "hp": 5500,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1116_liprr"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 280,
+    "def": 60,
+    "hp": 5500,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "架桥船工": {
+   "by_id": {
+    "enemy_10042_prtrop": {
+     "atk": 600,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10042_prtrop"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 600,
+    "def": 150,
+    "hp": 6000,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "棱镜魂灵残迹": {
+   "by_id": {
+    "enemy_1429_lrwzrd_2": {
+     "atk": 400,
+     "def": 400,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1429_lrwzrd_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 400,
+    "def": 400,
+    "hp": 10000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "步兵": {
+   "by_id": {
+    "enemy_1046_agent": {
+     "atk": 280,
+     "def": 85,
+     "has_higher_level": false,
+     "hp": 2500,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1046_agent"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 280,
+    "def": 85,
+    "hp": 2500,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "残党乐团圆号手": {
+   "by_id": {
+    "enemy_1373_ltnhor": {
+     "atk": 150,
+     "def": 200,
+     "has_higher_level": false,
+     "hp": 8000,
+     "res": 15.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1373_ltnhor"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 150,
+    "def": 200,
+    "hp": 8000,
+    "res": 15.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "残党乐团管乐家": {
+   "by_id": {
+    "enemy_1375_ltnclr": {
+     "atk": 500,
+     "def": 700,
+     "has_higher_level": false,
+     "hp": 13000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1375_ltnclr"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 500,
+    "def": 700,
+    "hp": 13000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "残党乐团鼓手": {
+   "by_id": {
+    "enemy_1376_ltndru": {
+     "atk": 250,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1376_ltndru"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 250,
+    "def": 250,
+    "hp": 10000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "沉沙": {
+   "by_id": {
+    "enemy_1207_sfji": {
+     "atk": 1100,
+     "def": 600,
+     "has_higher_level": false,
+     "hp": 11000,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1207_sfji"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1100,
+    "def": 600,
+    "hp": 11000,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "沸血骑士团精锐": {
+   "by_id": {
+    "enemy_1103_wdkght_2": {
+     "atk": 650,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 13000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1103_wdkght_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 650,
+    "def": 800,
+    "hp": 13000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "法术大师A1": {
+   "by_id": {
+    "enemy_1041_lazerd": {
+     "atk": 220,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 2700,
+     "res": 65.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1041_lazerd"
+   ],
+   "is_flying": true,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 220,
+    "def": 100,
+    "hp": 2700,
+    "res": 65.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "法术大师A2": {
+   "by_id": {
+    "enemy_1041_lazerd_2": {
+     "atk": 600,
+     "def": 140,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 65.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1041_lazerd_2"
+   ],
+   "is_flying": true,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 600,
+    "def": 140,
+    "hp": 6000,
+    "res": 65.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "注能魂灵法骸": {
+   "by_id": {
+    "enemy_1431_lrmzrd": {
+     "atk": 900,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1431_lrmzrd"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 900,
+    "def": 800,
+    "hp": 15000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "测试用动力装甲": {
+   "by_id": {
+    "enemy_1254_lypa_2": {
+     "atk": 850,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1254_lypa_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 850,
+    "def": 800,
+    "hp": 10000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "深池伙友卫队": {
+   "by_id": {
+    "enemy_1174_duholy": {
+     "atk": 900,
+     "def": 900,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1174_duholy"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 900,
+    "def": 900,
+    "hp": 15000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池伙友卫队精英": {
+   "by_id": {
+    "enemy_1174_duholy_2": {
+     "atk": 1100,
+     "def": 1000,
+     "has_higher_level": false,
+     "hp": 20000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1174_duholy_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1100,
+    "def": 1000,
+    "hp": 20000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池伙友影刃精英": {
+   "by_id": {
+    "enemy_1175_dushdo_2": {
+     "atk": 580,
+     "def": 550,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1175_dushdo_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 580,
+    "def": 550,
+    "hp": 15000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池侦察兵": {
+   "by_id": {
+    "enemy_1166_dusbr": {
+     "atk": 280,
+     "def": 110,
+     "has_higher_level": false,
+     "hp": 3000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1166_dusbr"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 280,
+    "def": 110,
+    "hp": 3000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池侦察犬": {
+   "by_id": {
+    "enemy_1165_duhond": {
+     "atk": 300,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 2800,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1165_duhond"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 0,
+    "hp": 2800,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池侦察队长": {
+   "by_id": {
+    "enemy_1166_dusbr_2": {
+     "atk": 380,
+     "def": 180,
+     "has_higher_level": false,
+     "hp": 4400,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1166_dusbr_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 380,
+    "def": 180,
+    "hp": 4400,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池方阵战士": {
+   "by_id": {
+    "enemy_1169_duphlx": {
+     "atk": 300,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 4000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1169_duphlx"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 300,
+    "hp": 4000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池方阵指挥官": {
+   "by_id": {
+    "enemy_1169_duphlx_2": {
+     "atk": 450,
+     "def": 400,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1169_duphlx_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 450,
+    "def": 400,
+    "hp": 6000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池暗影术师": {
+   "by_id": {
+    "enemy_1168_dumage": {
+     "atk": 300,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 4500,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1168_dumage"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 150,
+    "hp": 4500,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池逐火战士": {
+   "by_id": {
+    "enemy_1288_duskls": {
+     "atk": 150,
+     "def": 50,
+     "has_higher_level": false,
+     "hp": 5000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1288_duskls"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 150,
+    "def": 50,
+    "hp": 5000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "深池逐火护卫": {
+   "by_id": {
+    "enemy_1292_duskld": {
+     "atk": 350,
+     "def": 550,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1292_duskld"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 350,
+    "def": 550,
+    "hp": 10000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "深池逐火精锐战士": {
+   "by_id": {
+    "enemy_1288_duskls_2": {
+     "atk": 180,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1288_duskls_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 180,
+    "def": 100,
+    "hp": 6000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "深池重甲卫士": {
+   "by_id": {
+    "enemy_1170_dushld": {
+     "atk": 700,
+     "def": 750,
+     "has_higher_level": false,
+     "hp": 7000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1170_dushld"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 700,
+    "def": 750,
+    "hp": 7000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深池重甲卫士队长": {
+   "by_id": {
+    "enemy_1170_dushld_2": {
+     "atk": 900,
+     "def": 1100,
+     "has_higher_level": false,
+     "hp": 9000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1170_dushld_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 900,
+    "def": 1100,
+    "hp": 9000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "refraction"
+   ]
+  },
+  "深溟巢涌者": {
+   "by_id": {
+    "enemy_1234_dsubrl": {
+     "atk": 140,
+     "def": 550,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1234_dsubrl"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 140,
+    "def": 550,
+    "hp": 10000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "渎罪奇美拉": {
+   "by_id": {
+    "enemy_1425_lrcmra_2": {
+     "atk": 1200,
+     "def": 1200,
+     "has_higher_level": false,
+     "hp": 25000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1425_lrcmra_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1200,
+    "def": 1200,
+    "hp": 25000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "潜伏者": {
+   "by_id": {
+    "enemy_1009_lurker": {
+     "atk": 300,
+     "def": 90,
+     "has_higher_level": true,
+     "hp": 2200,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1009_lurker"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 90,
+    "hp": 2200,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "潜水员": {
+   "by_id": {
+    "enemy_1158_divman": {
+     "atk": 240,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 3300,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1158_divman"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 240,
+    "def": 150,
+    "hp": 3300,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "灼热源石虫": {
+   "by_id": {
+    "enemy_1305_mhslim": {
+     "atk": 50,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 1200,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1305_mhslim"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 50,
+    "def": 0,
+    "hp": 1200,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "灼藤": {
+   "by_id": {
+    "enemy_10067_ftsjc": {
+     "atk": 800,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 13000,
+     "res": 65.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10067_ftsjc"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 250,
+    "hp": 13000,
+    "res": 65.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "炽焰源石虫": {
+   "by_id": {
+    "enemy_1305_mhslim_2": {
+     "atk": 80,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 1800,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1305_mhslim_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 80,
+    "def": 0,
+    "hp": 1800,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "狂暴凶豕兽": {
+   "by_id": {
+    "enemy_1309_mhboar_2": {
+     "atk": 700,
+     "def": 50,
+     "has_higher_level": false,
+     "hp": 32000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1309_mhboar_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 700,
+    "def": 50,
+    "hp": 32000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "猎狗pro": {
+   "by_id": {
+    "enemy_1000_gopro_2": {
+     "atk": 260,
+     "def": 0,
+     "has_higher_level": true,
+     "hp": 1700,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1000_gopro_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 260,
+    "def": 0,
+    "hp": 1700,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "疯狂的逐腐兽": {
+   "by_id": {
+    "enemy_1270_nhstlk_2": {
+     "atk": 700,
+     "def": 200,
+     "has_higher_level": false,
+     "hp": 16000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1270_nhstlk_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 700,
+    "def": 200,
+    "hp": 16000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "码头水手": {
+   "by_id": {
+    "enemy_1160_hvyslr": {
+     "atk": 800,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1160_hvyslr"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 800,
+    "hp": 10000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "码头水手长": {
+   "by_id": {
+    "enemy_1160_hvyslr_2": {
+     "atk": 1000,
+     "def": 1000,
+     "has_higher_level": false,
+     "hp": 14000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1160_hvyslr_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1000,
+    "def": 1000,
+    "hp": 14000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "磨砻": {
+   "by_id": {
+    "enemy_1195_sfyin": {
+     "atk": 310,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 2000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1195_sfyin"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 310,
+    "def": 0,
+    "hp": 2000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "神勇的帕拉杜利斯": {
+   "by_id": {
+    "enemy_10163_mnctur_2": {
+     "atk": 1900,
+     "def": 1600,
+     "has_higher_level": false,
+     "hp": 44000,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10163_mnctur_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1900,
+    "def": 1600,
+    "hp": 44000,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "粉碎攻坚手": {
+   "by_id": {
+    "enemy_1045_hammer": {
+     "atk": 1000,
+     "def": 1000,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1045_hammer"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1000,
+    "def": 1000,
+    "hp": 10000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "粉碎攻坚组长": {
+   "by_id": {
+    "enemy_1045_hammer_2": {
+     "atk": 1500,
+     "def": 2000,
+     "has_higher_level": false,
+     "hp": 20000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1045_hammer_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1500,
+    "def": 2000,
+    "hp": 20000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "粹影魂灵法骸": {
+   "by_id": {
+    "enemy_1431_lrmzrd_2": {
+     "atk": 1200,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 18000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1431_lrmzrd_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1200,
+    "def": 800,
+    "hp": 18000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "老练囚犯": {
+   "by_id": {
+    "enemy_1116_liprr_2": {
+     "atk": 380,
+     "def": 60,
+     "has_higher_level": false,
+     "hp": 7500,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1116_liprr_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 380,
+    "def": 60,
+    "hp": 7500,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "聚焦魂灵残迹": {
+   "by_id": {
+    "enemy_1429_lrwzrd": {
+     "atk": 400,
+     "def": 400,
+     "has_higher_level": false,
+     "hp": 8000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1429_lrwzrd"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 400,
+    "def": 400,
+    "hp": 8000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "节日爵士乐手": {
+   "by_id": {
+    "enemy_10034_cnvsax": {
+     "atk": 650,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10034_cnvsax"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 650,
+    "def": 300,
+    "hp": 10000,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "莱茵生命防卫科高级成员": {
+   "by_id": {
+    "enemy_1249_lysdb_2": {
+     "atk": 485,
+     "def": 300,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1249_lysdb_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 485,
+    "def": 300,
+    "hp": 6000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "萨卡兹刀兵": {
+   "by_id": {
+    "enemy_1071_dftman": {
+     "atk": 300,
+     "def": 70,
+     "has_higher_level": false,
+     "hp": 2800,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1071_dftman"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 70,
+    "hp": 2800,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "萨卡兹大剑手": {
+   "by_id": {
+    "enemy_1010_demon": {
+     "atk": 600,
+     "def": 230,
+     "has_higher_level": true,
+     "hp": 7500,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1010_demon"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 600,
+    "def": 230,
+    "hp": 7500,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "萨卡兹大剑组长": {
+   "by_id": {
+    "enemy_1010_demon_2": {
+     "atk": 750,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1010_demon_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 750,
+    "def": 250,
+    "hp": 15000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "萨卡兹子裔寄生者": {
+   "by_id": {
+    "enemy_9030_acpara": {
+     "atk": 850,
+     "def": 400,
+     "has_higher_level": false,
+     "hp": 26000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_9030_acpara"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 850,
+    "def": 400,
+    "hp": 26000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔工匠": {
+   "by_id": {
+    "enemy_1223_dmech": {
+     "atk": 300,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1223_dmech"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 250,
+    "hp": 6000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔工匠组长": {
+   "by_id": {
+    "enemy_1223_dmech_2": {
+     "atk": 380,
+     "def": 350,
+     "has_higher_level": false,
+     "hp": 8000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1223_dmech_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 380,
+    "def": 350,
+    "hp": 8000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔惩戒者": {
+   "by_id": {
+    "enemy_1362_dfat_2": {
+     "atk": 1500,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 35000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1362_dfat_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1500,
+    "def": 100,
+    "hp": 35000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔战士": {
+   "by_id": {
+    "enemy_1222_dpvt": {
+     "atk": 340,
+     "def": 120,
+     "has_higher_level": false,
+     "hp": 3600,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1222_dpvt"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 340,
+    "def": 120,
+    "hp": 3600,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔战士组长": {
+   "by_id": {
+    "enemy_1222_dpvt_2": {
+     "atk": 400,
+     "def": 210,
+     "has_higher_level": false,
+     "hp": 4500,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1222_dpvt_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 400,
+    "def": 210,
+    "hp": 4500,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔改装补给车": {
+   "by_id": {
+    "enemy_1224_dsuply_2": {
+     "atk": 420,
+     "def": 600,
+     "has_higher_level": false,
+     "hp": 9000,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1224_dsuply_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 420,
+    "def": 600,
+    "hp": 9000,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔毁击者": {
+   "by_id": {
+    "enemy_1361_dthrow_2": {
+     "atk": 550,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 8000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1361_dthrow_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 550,
+    "def": 150,
+    "hp": 8000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔补给车": {
+   "by_id": {
+    "enemy_1224_dsuply": {
+     "atk": 340,
+     "def": 550,
+     "has_higher_level": false,
+     "hp": 7000,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1224_dsuply"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 340,
+    "def": 550,
+    "hp": 7000,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔责罚者": {
+   "by_id": {
+    "enemy_1362_dfat": {
+     "atk": 1200,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 25000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1362_dfat"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1200,
+    "def": 100,
+    "hp": 25000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔轰击者": {
+   "by_id": {
+    "enemy_1361_dthrow": {
+     "atk": 450,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1361_dthrow"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 450,
+    "def": 150,
+    "hp": 6000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔链术师": {
+   "by_id": {
+    "enemy_1225_dkmage": {
+     "atk": 420,
+     "def": 450,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1225_dkmage"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 420,
+    "def": 450,
+    "hp": 12000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔链术师组长": {
+   "by_id": {
+    "enemy_1225_dkmage_2": {
+     "atk": 550,
+     "def": 550,
+     "has_higher_level": false,
+     "hp": 16000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1225_dkmage_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 550,
+    "def": 550,
+    "hp": 16000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔集怒者": {
+   "by_id": {
+    "enemy_1226_dklord_2": {
+     "atk": 1200,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 20000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1226_dklord_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1200,
+    "def": 800,
+    "hp": 20000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹子裔集恨者": {
+   "by_id": {
+    "enemy_1226_dklord": {
+     "atk": 1000,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 14000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1226_dklord"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1000,
+    "def": 800,
+    "hp": 14000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "萨卡兹悖谬暴虐兵长": {
+   "by_id": {
+    "enemy_1320_wdrrl_2": {
+     "atk": 1200,
+     "def": 800,
+     "has_higher_level": false,
+     "hp": 25000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1320_wdrrl_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1200,
+    "def": 800,
+    "hp": 25000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "萨卡兹枯朽战士": {
+   "by_id": {
+    "enemy_1267_nhpbr": {
+     "atk": 380,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 4500,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1267_nhpbr"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 380,
+    "def": 100,
+    "hp": 4500,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "萨卡兹枯朽战士组长": {
+   "by_id": {
+    "enemy_1267_nhpbr_2": {
+     "atk": 450,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 5500,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1267_nhpbr_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 450,
+    "def": 100,
+    "hp": 5500,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "萨卡兹枯朽战车": {
+   "by_id": {
+    "enemy_1272_nhtank": {
+     "atk": 750,
+     "def": 750,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1272_nhtank"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 750,
+    "def": 750,
+    "hp": 12000,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "萨卡兹枯朽辟路前锋": {
+   "by_id": {
+    "enemy_1422_lrsldr_2": {
+     "atk": 350,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 5500,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1422_lrsldr_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 350,
+    "def": 100,
+    "hp": 5500,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "special",
+    "stealth"
+   ]
+  },
+  "萨卡兹王庭军战士": {
+   "by_id": {
+    "enemy_1229_darmy": {
+     "atk": 240,
+     "def": 220,
+     "has_higher_level": false,
+     "hp": 4200,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1229_darmy"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 240,
+    "def": 220,
+    "hp": 4200,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "萨卡兹王庭军精锐战士": {
+   "by_id": {
+    "enemy_1229_darmy_2": {
+     "atk": 380,
+     "def": 280,
+     "has_higher_level": false,
+     "hp": 5500,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1229_darmy_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 380,
+    "def": 280,
+    "hp": 5500,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "萨卡兹王庭军精锐术师": {
+   "by_id": {
+    "enemy_1275_dwlock_2": {
+     "atk": 500,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 14000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1275_dwlock_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 500,
+    "def": 250,
+    "hp": 14000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "萨卡兹穿刺手": {
+   "by_id": {
+    "enemy_1072_dlancer": {
+     "atk": 450,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 40.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1072_dlancer"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 450,
+    "def": 150,
+    "hp": 6000,
+    "res": 40.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "萨卡兹骸骨卫士长": {
+   "by_id": {
+    "enemy_1363_spnshd_2": {
+     "atk": 1100,
+     "def": 1500,
+     "has_higher_level": false,
+     "hp": 15000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1363_spnshd_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1100,
+    "def": 1500,
+    "hp": 15000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "蕴核饲育者": {
+   "by_id": {
+    "enemy_1437_dsfull": {
+     "atk": 800,
+     "def": 1250,
+     "has_higher_level": false,
+     "hp": 14500,
+     "res": 15.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1437_dsfull"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 800,
+    "def": 1250,
+    "hp": 14500,
+    "res": 15.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "访问团强攻冠军": {
+   "by_id": {
+    "enemy_1389_winbab_2": {
+     "atk": 650,
+     "def": 400,
+     "has_higher_level": false,
+     "hp": 7000,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1389_winbab_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 650,
+    "def": 400,
+    "hp": 7000,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "访问团持盾者": {
+   "by_id": {
+    "enemy_1387_winshd": {
+     "atk": 500,
+     "def": 1200,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1387_winshd"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 500,
+    "def": 1200,
+    "hp": 12000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "访问团新兵": {
+   "by_id": {
+    "enemy_1381_winman": {
+     "atk": 300,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 5800,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1381_winman"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 100,
+    "hp": 5800,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special",
+    "stealth",
+    "lethal"
+   ]
+  },
+  "访问团老兵": {
+   "by_id": {
+    "enemy_1381_winman_2": {
+     "atk": 400,
+     "def": 200,
+     "has_higher_level": false,
+     "hp": 7800,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1381_winman_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 400,
+    "def": 200,
+    "hp": 7800,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special",
+    "lethal"
+   ]
+  },
+  "诡核集养者": {
+   "by_id": {
+    "enemy_1436_dsdivi": {
+     "atk": 190,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 8000,
+     "res": 35.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1436_dsdivi"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 190,
+    "def": 150,
+    "hp": 8000,
+    "res": 35.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "身观": {
+   "by_id": {
+    "enemy_1199_sfjin": {
+     "atk": 700,
+     "def": 750,
+     "has_higher_level": false,
+     "hp": 6500,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1199_sfjin"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 700,
+    "def": 750,
+    "hp": 6500,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "远眺": {
+   "by_id": {
+    "enemy_1407_hummbd": {
+     "atk": 250,
+     "def": 120,
+     "has_higher_level": false,
+     "hp": 4500,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1407_hummbd"
+   ],
+   "is_flying": true,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 250,
+    "def": 120,
+    "hp": 4500,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "flying"
+   ]
+  },
+  "逐腐兽": {
+   "by_id": {
+    "enemy_1270_nhstlk": {
+     "atk": 550,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 12000,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1270_nhstlk"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 550,
+    "def": 150,
+    "hp": 12000,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "速射劲弩手": {
+   "by_id": {
+    "enemy_1403_gunsho_2": {
+     "atk": 400,
+     "def": 250,
+     "has_higher_level": false,
+     "hp": 5500,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1403_gunsho_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 400,
+    "def": 250,
+    "hp": 5500,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "速射轻弩手": {
+   "by_id": {
+    "enemy_1403_gunsho": {
+     "atk": 350,
+     "def": 180,
+     "has_higher_level": false,
+     "hp": 4500,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1403_gunsho"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 350,
+    "def": 180,
+    "hp": 4500,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "重弩突袭者": {
+   "by_id": {
+    "enemy_1404_msnip": {
+     "atk": 400,
+     "def": 180,
+     "has_higher_level": false,
+     "hp": 6000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1404_msnip"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 400,
+    "def": 180,
+    "hp": 6000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "stealth",
+    "lethal"
+   ]
+  },
+  "重犯": {
+   "by_id": {
+    "enemy_1121_lifbos": {
+     "atk": 800,
+     "def": 400,
+     "has_higher_level": false,
+     "hp": 20000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1121_lifbos"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 800,
+    "def": 400,
+    "hp": 20000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "重装五十夫长": {
+   "by_id": {
+    "enemy_1006_shield_3": {
+     "atk": 1000,
+     "def": 1200,
+     "has_higher_level": true,
+     "hp": 40000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1006_shield_3"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1000,
+    "def": 1200,
+    "hp": 40000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "重装侦察兵": {
+   "by_id": {
+    "enemy_1402_tgshd_2": {
+     "atk": 700,
+     "def": 1500,
+     "has_higher_level": false,
+     "hp": 13000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1402_tgshd_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 700,
+    "def": 1500,
+    "hp": 13000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "锋盔骑士团学徒": {
+   "by_id": {
+    "enemy_1104_lfkght": {
+     "atk": 550,
+     "def": 700,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1104_lfkght"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 550,
+    "def": 700,
+    "hp": 10000,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "revival"
+   ]
+  },
+  "隐形弩手": {
+   "by_id": {
+    "enemy_1019_jshoot": {
+     "atk": 260,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 1800,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1019_jshoot"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 260,
+    "def": 100,
+    "hp": 1800,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "隐形弩手组长": {
+   "by_id": {
+    "enemy_1019_jshoot_2": {
+     "atk": 310,
+     "def": 130,
+     "has_higher_level": false,
+     "hp": 2700,
+     "res": 20.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1019_jshoot_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 310,
+    "def": 130,
+    "hp": 2700,
+    "res": 20.0
+   },
+   "trait_keys": [
+    "stealth"
+   ]
+  },
+  "雅气": {
+   "by_id": {
+    "enemy_1197_sfshu_2": {
+     "atk": 410,
+     "def": 70,
+     "has_higher_level": false,
+     "hp": 3350,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1197_sfshu_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 410,
+    "def": 70,
+    "hp": 3350,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "multi_hit"
+   ]
+  },
+  "集团军中坚盾卫": {
+   "by_id": {
+    "enemy_10124_uashld_2": {
+     "atk": 950,
+     "def": 1800,
+     "has_higher_level": false,
+     "hp": 25000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10124_uashld_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 950,
+    "def": 1800,
+    "hp": 25000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "集团军重型火炮": {
+   "by_id": {
+    "enemy_10122_uacann_2": {
+     "atk": 500,
+     "def": 350,
+     "has_higher_level": false,
+     "hp": 10000,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_10122_uacann_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 500,
+    "def": 350,
+    "hp": 10000,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "sustained"
+   ]
+  },
+  "雪怪小队": {
+   "by_id": {
+    "enemy_1064_snsbr": {
+     "atk": 360,
+     "def": 100,
+     "has_higher_level": true,
+     "hp": 3400,
+     "res": 0.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1064_snsbr"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 360,
+    "def": 100,
+    "hp": 3400,
+    "res": 0.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "领潮员": {
+   "by_id": {
+    "enemy_1161_tidmag_2": {
+     "atk": 260,
+     "def": 220,
+     "has_higher_level": false,
+     "hp": 8000,
+     "res": 60.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1161_tidmag_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 260,
+    "def": 220,
+    "hp": 8000,
+    "res": 60.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "马特奥的近卫": {
+   "by_id": {
+    "enemy_1409_bdguad_2": {
+     "atk": 1300,
+     "def": 1200,
+     "has_higher_level": false,
+     "hp": 25000,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1409_bdguad_2"
+   ],
+   "is_flying": false,
+   "rank": "ELITE",
+   "stats": {
+    "atk": 1300,
+    "def": 1200,
+    "hp": 25000,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  },
+  "骨海漂流体": {
+   "by_id": {
+    "enemy_2021_syfish": {
+     "atk": 250,
+     "def": 150,
+     "has_higher_level": false,
+     "hp": 4000,
+     "res": 10.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_2021_syfish"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 250,
+    "def": 150,
+    "hp": 4000,
+    "res": 10.0
+   },
+   "trait_keys": [
+    "elemental"
+   ]
+  },
+  "高级军用猎狗": {
+   "by_id": {
+    "enemy_1325_cbgpro_2": {
+     "atk": 360,
+     "def": 0,
+     "has_higher_level": false,
+     "hp": 4600,
+     "res": 30.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1325_cbgpro_2"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 360,
+    "def": 0,
+    "hp": 4600,
+    "res": 30.0
+   },
+   "trait_keys": [
+    "special"
+   ]
+  },
+  "魂灵涡流": {
+   "by_id": {
+    "enemy_1428_lrsoul": {
+     "atk": 300,
+     "def": 100,
+     "has_higher_level": false,
+     "hp": 3500,
+     "res": 50.0
+    }
+   },
+   "enemy_ids": [
+    "enemy_1428_lrsoul"
+   ],
+   "is_flying": false,
+   "rank": "NORMAL",
+   "stats": {
+    "atk": 300,
+    "def": 100,
+    "hp": 3500,
+    "res": 50.0
+   },
+   "trait_keys": [
+    "lethal"
+   ]
+  }
+ }
+}

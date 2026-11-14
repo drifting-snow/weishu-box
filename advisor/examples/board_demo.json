@@ -1,0 +1,8 @@
+{
+  "_doc": "Owned-board input for --board. Two row shapes are both accepted: a bare name string or an object {name, count, elite, tier, bonds}. Same-name rows merge by summing count. bonds/tier are auto-filled from the dataset when omitted; unknown names are skipped with a stderr warning, never fabricated.",
+  "board": [
+    {"name": "地灵", "count": 1},
+    {"name": "复奏", "count": 2, "elite": false},
+    "折光"
+  ]
+}

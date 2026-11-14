@@ -1,0 +1,4 @@
+pywebview>=5.0
+pillow>=10.0
+# optional: keyboard for global hotkeys if RegisterHotKey path fails
+# keyboard>=0.13

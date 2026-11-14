@@ -1,0 +1,29 @@
+# Normalize line endings: text files are LF in the repo regardless of OS,
+# so Windows checkouts do not introduce CRLF noise into cross-platform diffs.
+* text=auto eol=lf
+
+# Explicit text types
+*.py    text eol=lf
+*.md    text eol=lf
+*.json  text eol=lf
+*.txt   text eol=lf
+*.toml  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.sh    text eol=lf
+*.wiki  text eol=lf
+.gitignore     text eol=lf
+.gitattributes text eol=lf
+
+# Windows-only helper keeps CRLF if one is ever added
+*.bat   text eol=crlf
+*.ps1   text eol=crlf
+
+# Binary assets must never be mangled
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.onnx  binary
+*.ttc   binary
+*.ttf   binary

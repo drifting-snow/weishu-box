@@ -1,0 +1,367 @@
+{
+ "_meta": {
+  "description": "卫戍协议敌人可确定性驱动的周期 AoE 技能爆发（物理/法术）；由 enemy_database 经 tools/build_enemy_skills.py 自有筛选生成，仅收录攻击力倍率+范围+有限冷却且无控制/召唤/护盾/链式的技能；伤害类型由官方描述“法术伤害”字样裁决，不含第三方/GPL 数据。",
+  "enemy_count_with_burst": 3,
+  "generated_by": "tools/build_enemy_skills.py",
+  "model": "every cooldown seconds the enemy hits EVERY deployed operator within Euclidean range_radius for base_atk*atk_scale; damage_family=arts settles through the ARTS trunk (operator RES) and phys through the physical trunk (operator DEF), both with the 5% minimum-damage floor. Elemental ep_damage_ratio is parked.",
+  "needs_review": [
+   "driven: periodic single-hit phys/arts AoE whose family is proven by the description text; elemental nerve damage (ep_damage_ratio), chain, DoT, stun, shields, summons and multi-phase bosses are parked until modelled",
+   "the enemy table has no damage-type field; arts family relies on the 法术伤害 description keyword, so an unlabelled skill defaults to physical",
+   "AoE reach uses Euclidean tile radius; the official prefab may use a different shape",
+   "burst uses the level-0 base ATK; any in-fight ATK state changes are not modelled"
+  ],
+  "parked": [
+   {
+    "enemy_id": "enemy_10027_vtsk",
+    "prefab": "Appear",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_10027_vtsk",
+    "prefab": "MultiCombat",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_10085_hllevi_2",
+    "prefab": "Roar",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_1040_bombd",
+    "prefab": "boomb",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_1209_sfden_2",
+    "prefab": "InvisibleShield",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_1299_ymkilr_2",
+    "prefab": "InvisibleCombat",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_1425_lrcmra",
+    "prefab": "triggerAnim",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_1438_dspred",
+    "prefab": "0",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_1438_dspred",
+    "prefab": "1",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "Tidewater",
+    "reason": "no AoE range_radius"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "Rockfall",
+    "reason": "no AoE range_radius"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "SummonTentac",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "TidewaterG1",
+    "reason": "no AoE range_radius"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "RockfallG1",
+    "reason": "no AoE range_radius"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "SummonTentacG1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "TidewaterG2",
+    "reason": "no AoE range_radius"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "RockfallG2",
+    "reason": "no AoE range_radius"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "SummonTentacG2",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_1521_dslily",
+    "prefab": "Doom",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9010_acpupp",
+    "prefab": "BornAnim",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9013_acstmk",
+    "prefab": "1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9013_acstmk",
+    "prefab": "2",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9013_acstmk_2",
+    "prefab": "1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9013_acstmk_2",
+    "prefab": "2",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9013_acstmk_2",
+    "prefab": "3",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9014_acstma",
+    "prefab": "1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9014_acstma",
+    "prefab": "2",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9015_acstmb",
+    "prefab": "1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9015_acstmb",
+    "prefab": "2",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9017_achunt",
+    "prefab": "1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9017_achunt_2",
+    "prefab": "1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9017_achunt_2",
+    "prefab": "2",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9017_achunt_2",
+    "prefab": "3",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9019_actrpb",
+    "prefab": "1",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9020_actrpc",
+    "prefab": "1",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9021_acduml",
+    "prefab": "1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9021_acduml_2",
+    "prefab": "1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9022_acdumm",
+    "prefab": "1",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9023_acdums",
+    "prefab": "Skill",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9029_acfnc",
+    "prefab": "SommonSquad",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9029_acfnc_2",
+    "prefab": "LaunchArmor",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9029_acfnc_2",
+    "prefab": "SkSummonArmor",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9029_acfnc_2",
+    "prefab": "SommonSquad",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9032_aclionk",
+    "prefab": "equip",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9032_aclionk",
+    "prefab": "store",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9032_aclionk",
+    "prefab": "storeA",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9032_aclionk",
+    "prefab": "equipA",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9032_aclionk",
+    "prefab": "Suicide",
+    "reason": "no AoE range_radius"
+   },
+   {
+    "enemy_id": "enemy_9033_acdeer",
+    "prefab": "Lasso",
+    "reason": "no AoE range_radius"
+   },
+   {
+    "enemy_id": "enemy_9033_acdeer",
+    "prefab": "Doom",
+    "reason": "no AoE range_radius"
+   },
+   {
+    "enemy_id": "enemy_9035_acspider",
+    "prefab": "Net",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9035_acspider_2",
+    "prefab": "Net",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9035_acspider_2",
+    "prefab": "AcidRain",
+    "reason": "no positive atk scale"
+   },
+   {
+    "enemy_id": "enemy_9037_aceel",
+    "prefab": "PowerAtk",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9037_aceel",
+    "prefab": "Discharge",
+    "reason": "elemental ep_damage_ratio=0.40 parked; arts main hit driven"
+   },
+   {
+    "enemy_id": "enemy_9037_aceel",
+    "prefab": "ShieldGen",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9037_aceel_2",
+    "prefab": "PowerAtk",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9037_aceel_2",
+    "prefab": "Discharge",
+    "reason": "elemental ep_damage_ratio=0.40 parked; arts main hit driven"
+   },
+   {
+    "enemy_id": "enemy_9037_aceel_2",
+    "prefab": "ShieldGen",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   },
+   {
+    "enemy_id": "enemy_9040_accrit",
+    "prefab": "Critical",
+    "reason": "non-periodic (cd=0.0, passive/state)"
+   }
+  ],
+  "parked_skill_count": 60,
+  "source_tables": "enemy_database.json + act3_waves.json (gitignored source for the former)"
+ },
+ "enemies": {
+  "enemy_2124_dyjsfg": {
+   "base_atk": 1500.0,
+   "bursts": [
+    {
+     "atk_scale": 2.0,
+     "cooldown": 2.0,
+     "damage_family": "phys",
+     "initial_cooldown": 0.0,
+     "kind": "periodic_aoe",
+     "prefab": "CombatAoe",
+     "range_radius": 1.6
+    }
+   ],
+   "enemy_name": "矩兽"
+  },
+  "enemy_9037_aceel": {
+   "base_atk": 750.0,
+   "bursts": [
+    {
+     "atk_scale": 1.25,
+     "cooldown": 24.0,
+     "damage_family": "arts",
+     "elemental_ratio_parked": 0.4,
+     "initial_cooldown": 24.0,
+     "kind": "periodic_aoe",
+     "prefab": "Discharge",
+     "range_radius": 1.5
+    }
+   ],
+   "enemy_name": "假想敌：鳍"
+  },
+  "enemy_9037_aceel_2": {
+   "base_atk": 750.0,
+   "bursts": [
+    {
+     "atk_scale": 1.25,
+     "cooldown": 24.0,
+     "damage_family": "arts",
+     "elemental_ratio_parked": 0.4,
+     "initial_cooldown": 24.0,
+     "kind": "periodic_aoe",
+     "prefab": "Discharge",
+     "range_radius": 1.5
+    }
+   ],
+   "enemy_name": "假想敌：鳍"
+  }
+ }
+}

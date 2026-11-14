@@ -1,0 +1,1539 @@
+{
+  "_meta": {
+    "description": "敌人特例对策层：收录官方手册 textFormat==SILENCE 的全部敌人，按机制族归类、统一反制标签 silence。generic_covered=true 的折射族仅存档不参与运行时补缺；其余敌人按具体敌人名触发 gate0 沉默缺口。运行期不读取敌人介绍文本，只读本库的族标签与证据。",
+    "generated_by": "tools/build_enemy_special_cases.py",
+    "source_tables": "data/source/gamedata/enemy_handbook_table.json + enemy_catalog.json (gitignored)",
+    "activation_rule": "仅当某敌人名在本表层且 generic_covered=false 时，才追加沉默特例对策分",
+    "silence_counter_sources": [
+      "operator:拉普兰德",
+      "operator:荒芜拉普兰德",
+      "operator:霍尔海雅",
+      "item:奥术法阵(失去特殊能力)",
+      "bond:精准(3人里程碑附加沉默)"
+    ],
+    "family_order": [
+      "refraction_essence",
+      "on_death_cold_explosion",
+      "on_death_split",
+      "on_death_trigger",
+      "enemy_aura_buff",
+      "team_debuff",
+      "on_hit_control",
+      "summon_charge",
+      "elemental_dot",
+      "attack_proc",
+      "other_silence"
+    ],
+    "case_count": 61,
+    "active_case_count": 47,
+    "generic_covered_count": 14,
+    "needs_review": []
+  },
+  "special_cases": [
+    {
+      "name": "“喷射罐”",
+      "enemy_ids": [
+        "enemy_1385_winbom"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "on_death_cold_explosion",
+      "all_mechanics": [
+        "on_death_cold_explosion"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡触发的爆炸并施加寒冷(再触发→冻结)",
+      "counter_label": "沉默，阻止死亡爆炸与寒冷/冻结",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "死亡时对周围所有单位造成法术伤害、施加<$ba.cold>寒冷</>并直接熄灭\"紧急供暖器\""
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "“喷爆罐”",
+      "enemy_ids": [
+        "enemy_1385_winbom_2"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "on_death_cold_explosion",
+      "all_mechanics": [
+        "on_death_cold_explosion"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡触发的爆炸并施加寒冷(再触发→冻结)",
+      "counter_label": "沉默，阻止死亡爆炸与寒冷/冻结",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "死亡时对周围所有单位造成法术伤害、施加<$ba.cold>寒冷</>并直接熄灭\"紧急供暖器\""
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "“左手”泰特斯·白杨",
+      "enemy_ids": [
+        "enemy_1104_lfkght_3"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "team_debuff",
+      "all_mechanics": [
+        "team_debuff"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "降低我方攻击/攻速或使我方暴露",
+      "counter_label": "沉默，阻止其削弱/暴露我方",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "使场上攻击力最高的我方单位攻击力大幅降低，持续一定时间"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "假想敌：蚀裂",
+      "enemy_ids": [
+        "enemy_9006_actoxi"
+      ],
+      "generic_trait_keys": [
+        "sustained"
+      ],
+      "primary_mechanic": "on_death_trigger",
+      "all_mechanics": [
+        "on_death_trigger"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "被击倒或受击时触发爆炸/毒雾/暴露等",
+      "counter_label": "沉默，阻止死亡/受击触发的特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "被击倒后，向击倒自身的目标发射一团毒雾，持续对周围造成法术伤害"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "假想敌：镜波",
+      "enemy_ids": [
+        "enemy_9031_acrefd"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [
+        "on_death_trigger"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>",
+          "被击倒时使周围法抗最低的敌人法术抗性提升"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "假想敌：镜眼",
+      "enemy_ids": [
+        "enemy_9039_acrefm"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>",
+          "受到法术伤害时降低伤害来源的攻击速度，持续一段时间"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "假想敌：镜膜",
+      "enemy_ids": [
+        "enemy_9011_acrefr"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "假想敌：黑云",
+      "enemy_ids": [
+        "enemy_9009_acfort"
+      ],
+      "generic_trait_keys": [
+        "flying"
+      ],
+      "primary_mechanic": "on_hit_control",
+      "all_mechanics": [
+        "on_hit_control"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "数次攻击或直击后造成晕眩/束缚/吞噬",
+      "counter_label": "沉默，阻止攻击触发的晕眩/束缚/吞噬",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "周期性束缚并吞噬数个非精英领袖飞行敌人，并回复等量弹药",
+          "一次性消耗所有弹药对目标造成大量物理伤害"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "冰原卫法者",
+      "enemy_ids": [
+        "enemy_1191_krgrg"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "on_death_cold_explosion",
+      "all_mechanics": [
+        "on_death_cold_explosion"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡触发的爆炸并施加寒冷(再触发→冻结)",
+      "counter_label": "沉默，阻止死亡爆炸与寒冷/冻结",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "被击倒时对周围所有单位造成法术伤害且施加<$ba.cold>寒冷</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "冰原御法者",
+      "enemy_ids": [
+        "enemy_1191_krgrg_2"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "on_death_cold_explosion",
+      "all_mechanics": [
+        "on_death_cold_explosion"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡触发的爆炸并施加寒冷(再触发→冻结)",
+      "counter_label": "沉默，阻止死亡爆炸与寒冷/冻结",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "被击倒时对周围所有单位造成法术伤害且施加<$ba.cold>寒冷</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "冰爆源石虫·α",
+      "enemy_ids": [
+        "enemy_1067_snslime_2"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "on_death_cold_explosion",
+      "all_mechanics": [
+        "on_death_cold_explosion"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡触发的爆炸并施加寒冷(再触发→冻结)",
+      "counter_label": "沉默，阻止死亡爆炸与寒冷/冻结",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "死亡时对周围我方单位造成物理伤害，并施加<$ba.cold>寒冷</>效果"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "卷心籽",
+      "enemy_ids": [
+        "enemy_10065_ftzlc"
+      ],
+      "generic_trait_keys": [
+        "elemental"
+      ],
+      "primary_mechanic": "on_death_trigger",
+      "all_mechanics": [
+        "on_death_trigger"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "被击倒或受击时触发爆炸/毒雾/暴露等",
+      "counter_label": "沉默，阻止死亡/受击触发的特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "点燃状态下死亡后对周围造成大量法术伤害"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "变异岩蛛",
+      "enemy_ids": [
+        "enemy_1132_sarchn"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_death_split",
+      "all_mechanics": [
+        "on_death_split"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡或半血时分裂出多个造物",
+      "counter_label": "沉默，阻止分裂(避免越打越多)",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "死亡时分裂三个<畸变赘生物>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "变异岩蛛α",
+      "enemy_ids": [
+        "enemy_1132_sarchn_2"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_death_split",
+      "all_mechanics": [
+        "on_death_split"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡或半血时分裂出多个造物",
+      "counter_label": "沉默，阻止分裂(避免越打越多)",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "死亡时分裂三个<畸变恶性瘤>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "变异巨岩蛛",
+      "enemy_ids": [
+        "enemy_1133_harchn"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_death_split",
+      "all_mechanics": [
+        "on_death_split"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡或半血时分裂出多个造物",
+      "counter_label": "沉默，阻止分裂(避免越打越多)",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "周期性分裂一个<畸变赘生物>",
+          "死亡时分裂四个<畸变赘生物>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "变异巨岩蛛α",
+      "enemy_ids": [
+        "enemy_1133_harchn_2"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_death_split",
+      "all_mechanics": [
+        "on_death_split"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡或半血时分裂出多个造物",
+      "counter_label": "沉默，阻止分裂(避免越打越多)",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "周期性分裂一个<畸变恶性瘤>",
+          "死亡时分裂四个<畸变恶性瘤>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "变异沙地兽",
+      "enemy_ids": [
+        "enemy_1131_sbeast"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_death_split",
+      "all_mechanics": [
+        "on_death_split"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡或半血时分裂出多个造物",
+      "counter_label": "沉默，阻止分裂(避免越打越多)",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "死亡时分裂两个<畸变赘生物>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "变异沙地兽α",
+      "enemy_ids": [
+        "enemy_1131_sbeast_2"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_death_split",
+      "all_mechanics": [
+        "on_death_split"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡或半血时分裂出多个造物",
+      "counter_label": "沉默，阻止分裂(避免越打越多)",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "死亡时分裂两个<畸变恶性瘤>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "守墓石像",
+      "enemy_ids": [
+        "enemy_1172_dugago"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "寒霜",
+      "enemy_ids": [
+        "enemy_1042_frostd"
+      ],
+      "generic_trait_keys": [
+        "flying"
+      ],
+      "primary_mechanic": "team_debuff",
+      "all_mechanics": [
+        "team_debuff"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "降低我方攻击/攻速或使我方暴露",
+      "counter_label": "沉默，阻止其削弱/暴露我方",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "周围的我方单位的攻击速度大幅度降低"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "巫王乐团圆号手",
+      "enemy_ids": [
+        "enemy_1373_ltnhor_2"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "attack_proc",
+      "all_mechanics": [
+        "attack_proc"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "连击/溅射/多目标/直击/攻击提升等触发特效",
+      "counter_label": "沉默，压制其攻击强化特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "攻击2次后，下一次攻击额外攻击一个目标"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "巫王乐团鼓手",
+      "enemy_ids": [
+        "enemy_1376_ltndru_2"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "attack_proc",
+      "all_mechanics": [
+        "attack_proc"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "连击/溅射/多目标/直击/攻击提升等触发特效",
+      "counter_label": "沉默，压制其攻击强化特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "攻击2次后，下一次攻击对攻击范围内所有目标造成溅射伤害"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "异光体集养者",
+      "enemy_ids": [
+        "enemy_1436_dsdivi_2"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_death_split",
+      "all_mechanics": [
+        "on_death_split"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡或半血时分裂出多个造物",
+      "counter_label": "沉默，阻止分裂(避免越打越多)",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "生命值首次低于一半时，分裂自身"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "御4",
+      "enemy_ids": [
+        "enemy_1017_defdrn"
+      ],
+      "generic_trait_keys": [
+        "flying"
+      ],
+      "primary_mechanic": "enemy_aura_buff",
+      "all_mechanics": [
+        "enemy_aura_buff"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "为周围敌军持续提供防御/法抗等加成",
+      "counter_label": "沉默，关闭敌方团队增益光环",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "为周围敌军持续提供防御力加成"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "战线推进者",
+      "enemy_ids": [
+        "enemy_1406_chghmr"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "attack_proc",
+      "all_mechanics": [
+        "attack_proc"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "连击/溅射/多目标/直击/攻击提升等触发特效",
+      "counter_label": "沉默，压制其攻击强化特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "每次被阻挡后，首次攻击的攻击力大幅提升"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "护障",
+      "enemy_ids": [
+        "enemy_1355_mrfly"
+      ],
+      "generic_trait_keys": [
+        "flying"
+      ],
+      "primary_mechanic": "enemy_aura_buff",
+      "all_mechanics": [
+        "enemy_aura_buff"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "为周围敌军持续提供防御/法抗等加成",
+      "counter_label": "沉默，关闭敌方团队增益光环",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "为周围敌军持续提供法术抗性加成"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "护障·P",
+      "enemy_ids": [
+        "enemy_1355_mrfly_2"
+      ],
+      "generic_trait_keys": [
+        "flying"
+      ],
+      "primary_mechanic": "enemy_aura_buff",
+      "all_mechanics": [
+        "enemy_aura_buff"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "为周围敌军持续提供防御/法抗等加成",
+      "counter_label": "沉默，关闭敌方团队增益光环",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "为周围敌军持续提供法术抗性加成"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "无畏掷弹兵",
+      "enemy_ids": [
+        "enemy_1405_boomer_2"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "on_death_trigger",
+      "all_mechanics": [
+        "on_death_trigger"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "被击倒或受击时触发爆炸/毒雾/暴露等",
+      "counter_label": "沉默，阻止死亡/受击触发的特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "未被阻挡状态下首次受到伤害时，向上下左右各发出一枚爆破弹，之后移动速度提升且重量下降"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "残党乐团圆号手",
+      "enemy_ids": [
+        "enemy_1373_ltnhor"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "attack_proc",
+      "all_mechanics": [
+        "attack_proc"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "连击/溅射/多目标/直击/攻击提升等触发特效",
+      "counter_label": "沉默，压制其攻击强化特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "攻击2次后，下一次攻击额外攻击一个目标"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "残党乐团鼓手",
+      "enemy_ids": [
+        "enemy_1376_ltndru"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "attack_proc",
+      "all_mechanics": [
+        "attack_proc"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "连击/溅射/多目标/直击/攻击提升等触发特效",
+      "counter_label": "沉默，压制其攻击强化特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "攻击2次后，下一次攻击对攻击范围内所有目标造成溅射伤害"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池伙友卫队",
+      "enemy_ids": [
+        "enemy_1174_duholy"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池伙友卫队精英",
+      "enemy_ids": [
+        "enemy_1174_duholy_2"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池侦察兵",
+      "enemy_ids": [
+        "enemy_1166_dusbr"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池侦察犬",
+      "enemy_ids": [
+        "enemy_1165_duhond"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池侦察队长",
+      "enemy_ids": [
+        "enemy_1166_dusbr_2"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池方阵战士",
+      "enemy_ids": [
+        "enemy_1169_duphlx"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池方阵指挥官",
+      "enemy_ids": [
+        "enemy_1169_duphlx_2"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池暗影术师",
+      "enemy_ids": [
+        "enemy_1168_dumage"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池重甲卫士",
+      "enemy_ids": [
+        "enemy_1170_dushld"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "深池重甲卫士队长",
+      "enemy_ids": [
+        "enemy_1170_dushld_2"
+      ],
+      "generic_trait_keys": [
+        "refraction"
+      ],
+      "primary_mechanic": "refraction_essence",
+      "all_mechanics": [],
+      "counter_tag": "silence",
+      "ability_label": "折射(法术折减)本体，主对策为法系/穿甲",
+      "counter_label": "折射本体：沉默非首选，优先法系/穿甲输出",
+      "generic_covered": true,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "<$ba.refraction>折射</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "码头水手",
+      "enemy_ids": [
+        "enemy_1160_hvyslr"
+      ],
+      "generic_trait_keys": [
+        "elemental"
+      ],
+      "primary_mechanic": "on_hit_control",
+      "all_mechanics": [
+        "on_hit_control"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "数次攻击或直击后造成晕眩/束缚/吞噬",
+      "counter_label": "沉默，阻止攻击触发的晕眩/束缚/吞噬",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "能在数次攻击后<$ba.stun>晕眩</>我方单位"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "码头水手长",
+      "enemy_ids": [
+        "enemy_1160_hvyslr_2"
+      ],
+      "generic_trait_keys": [
+        "elemental"
+      ],
+      "primary_mechanic": "on_hit_control",
+      "all_mechanics": [
+        "on_hit_control"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "数次攻击或直击后造成晕眩/束缚/吞噬",
+      "counter_label": "沉默，阻止攻击触发的晕眩/束缚/吞噬",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "能在数次攻击后<$ba.stun>晕眩</>我方单位"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "粉碎攻坚手",
+      "enemy_ids": [
+        "enemy_1045_hammer"
+      ],
+      "generic_trait_keys": [
+        "special"
+      ],
+      "primary_mechanic": "on_hit_control",
+      "all_mechanics": [
+        "on_hit_control"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "数次攻击或直击后造成晕眩/束缚/吞噬",
+      "counter_label": "沉默，阻止攻击触发的晕眩/束缚/吞噬",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "攻击2次后，下一次攻击会<$ba.stun>晕眩</>目标"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "粉碎攻坚组长",
+      "enemy_ids": [
+        "enemy_1045_hammer_2"
+      ],
+      "generic_trait_keys": [
+        "special"
+      ],
+      "primary_mechanic": "on_hit_control",
+      "all_mechanics": [
+        "on_hit_control"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "数次攻击或直击后造成晕眩/束缚/吞噬",
+      "counter_label": "沉默，阻止攻击触发的晕眩/束缚/吞噬",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "攻击2次后，下一次攻击会<$ba.stun>晕眩</>目标"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "节日爵士乐手",
+      "enemy_ids": [
+        "enemy_10034_cnvsax"
+      ],
+      "generic_trait_keys": [
+        "stealth"
+      ],
+      "primary_mechanic": "elemental_dot",
+      "all_mechanics": [
+        "elemental_dot"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "持续造成法术/灼燃/凋亡等元素损伤",
+      "counter_label": "沉默，压制其持续元素/法术损伤爆发",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "技能期间持续造成法术伤害和<$ba.dt.burning>灼燃损伤</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "萨卡兹子裔寄生者",
+      "enemy_ids": [
+        "enemy_9030_acpara"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_death_trigger",
+      "all_mechanics": [
+        "on_death_trigger"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "被击倒或受击时触发爆炸/毒雾/暴露等",
+      "counter_label": "沉默，阻止死亡/受击触发的特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "周围一定范围内的敌人被击倒时，召唤一个<大君之赐>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "萨卡兹子裔工匠",
+      "enemy_ids": [
+        "enemy_1223_dmech"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "summon_charge",
+      "all_mechanics": [
+        "summon_charge"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "召唤造物、为城防炮充能或强化重生造物",
+      "counter_label": "沉默，阻止召唤/充能/造物强化",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "为伦蒂尼姆城防副炮持续充能，被打断时城防炮损失部分充能"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "萨卡兹子裔工匠组长",
+      "enemy_ids": [
+        "enemy_1223_dmech_2"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "summon_charge",
+      "all_mechanics": [
+        "summon_charge"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "召唤造物、为城防炮充能或强化重生造物",
+      "counter_label": "沉默，阻止召唤/充能/造物强化",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "为伦蒂尼姆城防副炮持续充能，被打断时城防炮损失部分充能"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "萨卡兹子裔惩戒者",
+      "enemy_ids": [
+        "enemy_1362_dfat_2"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_hit_control",
+      "all_mechanics": [
+        "on_hit_control"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "数次攻击或直击后造成晕眩/束缚/吞噬",
+      "counter_label": "沉默，阻止攻击触发的晕眩/束缚/吞噬",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "能在数次攻击后<$ba.stun>晕眩</>周围所有我方单位"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "萨卡兹子裔改装补给车",
+      "enemy_ids": [
+        "enemy_1224_dsuply_2"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "summon_charge",
+      "all_mechanics": [
+        "summon_charge"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "召唤造物、为城防炮充能或强化重生造物",
+      "counter_label": "沉默，阻止召唤/充能/造物强化",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "在场时，重生造物的攻击力提升且攻击附带<$ba.dt.apoptosis>凋亡损伤</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "萨卡兹子裔补给车",
+      "enemy_ids": [
+        "enemy_1224_dsuply"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "summon_charge",
+      "all_mechanics": [
+        "summon_charge"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "召唤造物、为城防炮充能或强化重生造物",
+      "counter_label": "沉默，阻止召唤/充能/造物强化",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "在场时，重生造物的攻击力提升且攻击附带<$ba.dt.apoptosis>凋亡损伤</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "萨卡兹子裔责罚者",
+      "enemy_ids": [
+        "enemy_1362_dfat"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_hit_control",
+      "all_mechanics": [
+        "on_hit_control"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "数次攻击或直击后造成晕眩/束缚/吞噬",
+      "counter_label": "沉默，阻止攻击触发的晕眩/束缚/吞噬",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "能在数次攻击后<$ba.stun>晕眩</>周围所有我方单位"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "萨卡兹王庭军精锐术师",
+      "enemy_ids": [
+        "enemy_1275_dwlock_2"
+      ],
+      "generic_trait_keys": [
+        "elemental"
+      ],
+      "primary_mechanic": "elemental_dot",
+      "all_mechanics": [
+        "elemental_dot"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "持续造成法术/灼燃/凋亡等元素损伤",
+      "counter_label": "沉默，压制其持续元素/法术损伤爆发",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "会锁定我方单位持续造成法术伤害，并在释放完成时造成群体<$ba.dt.apoptosis>凋亡损伤</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "诡核集养者",
+      "enemy_ids": [
+        "enemy_1436_dsdivi"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "on_death_split",
+      "all_mechanics": [
+        "on_death_split"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "死亡或半血时分裂出多个造物",
+      "counter_label": "沉默，阻止分裂(避免越打越多)",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "生命值首次低于一半时，分裂自身"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "远眺",
+      "enemy_ids": [
+        "enemy_1407_hummbd"
+      ],
+      "generic_trait_keys": [
+        "flying"
+      ],
+      "primary_mechanic": "on_death_trigger",
+      "all_mechanics": [
+        "on_death_trigger"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "被击倒或受击时触发爆炸/毒雾/暴露等",
+      "counter_label": "沉默，阻止死亡/受击触发的特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "被击倒时使周围的我方单位暴露8秒"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "速射劲弩手",
+      "enemy_ids": [
+        "enemy_1403_gunsho_2"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "attack_proc",
+      "all_mechanics": [
+        "attack_proc"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "连击/溅射/多目标/直击/攻击提升等触发特效",
+      "counter_label": "沉默，压制其攻击强化特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "与我方处于同一直线上时进行直击：向目标方向发射3支弩箭"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "速射轻弩手",
+      "enemy_ids": [
+        "enemy_1403_gunsho"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "attack_proc",
+      "all_mechanics": [
+        "attack_proc"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "连击/溅射/多目标/直击/攻击提升等触发特效",
+      "counter_label": "沉默，压制其攻击强化特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "与我方处于同一直线上时进行直击：向目标方向发射3支弩箭"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "重弩突袭者",
+      "enemy_ids": [
+        "enemy_1404_msnip"
+      ],
+      "generic_trait_keys": [
+        "stealth",
+        "lethal"
+      ],
+      "primary_mechanic": "on_hit_control",
+      "all_mechanics": [
+        "on_hit_control"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "数次攻击或直击后造成晕眩/束缚/吞噬",
+      "counter_label": "沉默，阻止攻击触发的晕眩/束缚/吞噬",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "与我方处于同一直线上时进行直击：向目标方向发射1支造成法术伤害的弩箭并使目标<$ba.stun>晕眩</>"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "重装侦察兵",
+      "enemy_ids": [
+        "enemy_1402_tgshd_2"
+      ],
+      "generic_trait_keys": [
+        "special"
+      ],
+      "primary_mechanic": "team_debuff",
+      "all_mechanics": [
+        "team_debuff"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "降低我方攻击/攻速或使我方暴露",
+      "counter_label": "沉默，阻止其削弱/暴露我方",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "被攻击时使攻击者暴露5秒"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "锋盔骑士团学徒",
+      "enemy_ids": [
+        "enemy_1104_lfkght"
+      ],
+      "generic_trait_keys": [
+        "revival"
+      ],
+      "primary_mechanic": "team_debuff",
+      "all_mechanics": [
+        "team_debuff"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "降低我方攻击/攻速或使我方暴露",
+      "counter_label": "沉默，阻止其削弱/暴露我方",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "使场上攻击力最高的我方单位攻击力大幅降低，持续一定时间"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    },
+    {
+      "name": "马特奥的近卫",
+      "enemy_ids": [
+        "enemy_1409_bdguad_2"
+      ],
+      "generic_trait_keys": [
+        "lethal"
+      ],
+      "primary_mechanic": "attack_proc",
+      "all_mechanics": [
+        "attack_proc"
+      ],
+      "counter_tag": "silence",
+      "ability_label": "连击/溅射/多目标/直击/攻击提升等触发特效",
+      "counter_label": "沉默，压制其攻击强化特效",
+      "generic_covered": false,
+      "needs_review": false,
+      "evidence": {
+        "official_textformat": "SILENCE",
+        "official_ability_text": [
+          "与我方处于同一直线上时进行直击：向目标方向发射2枚爆破弹"
+        ],
+        "prts": "https://prts.wiki/w/异常效果图鉴/沉默"
+      }
+    }
+  ]
+}

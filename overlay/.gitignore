@@ -1,0 +1,15 @@
+config.json
+.once_shot
+__pycache__/
+*.pyc
+.venv/
+venv/
+.idea/
+.vscode/
+*.log
+tmp/
+.DS_Store
+# Session artifacts (op logs, opening shots, run_env) — local only
+session/
+# One-off local patch scripts
+tools/_patch_op_log.py

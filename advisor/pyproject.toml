@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weishu-advisor"
+version = "1.0.0"
+description = "Read-only decision advisor for the Arknights Guard Protocol (卫戍协议) auto-battler mode"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "weishu-advisor contributors" }]
+keywords = ["arknights", "guard-protocol", "decision-advisor", "auto-battler", "ocr"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Games/Entertainment",
+    "Private :: Do Not Upload",
+]
+
+# The rule engine and all data parsers are pure stdlib and need nothing.
+# Vision/OCR is an optional, heavier extra installed only when screenshot input
+# is required (pulls pillow/numpy/onnxruntime via rapidocr).
+[project.optional-dependencies]
+vision = [
+    "numpy>=1.24",
+    "pillow>=10.0",
+    "rapidocr_onnxruntime>=1.3.0",
+]
+
+[project.scripts]
+weishu = "advisor.cli:main"
+
+[tool.setuptools]
+# Data files live outside the package; ship only the importable code.
+packages = ["advisor", "vision"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

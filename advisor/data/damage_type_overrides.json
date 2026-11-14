@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "description": "阶段B伤害类型人工裁定表：自动分类器遇到单技能含多种伤害类型(mixed_text)时不硬猜，在此按主体伤害裁定。",
+    "rule": "以技能主体/持续攻击的伤害类型为准；一次性结尾伤害、位移副效果、装置/光环附带伤害不改变主类型。",
+    "provenance": "裁定依据为 skill_table Rank7 描述原文，逐条记录 reason；后续 ArkDPS 对拍偏差>5% 的干员也在此表追加修正。",
+    "entry_count": 4
+  },
+  "overrides": [
+    {
+      "skill_id": "skchr_qiubai_2",
+      "operator": "仇白",
+      "skill_name": "承影",
+      "damage_type": "arts",
+      "reason": "持续对范围内地面敌人造成法术伤害为主体；技能结束时一次性物理伤害不改变主类型。"
+    },
+    {
+      "skill_id": "skchr_weedy_3",
+      "operator": "温蒂",
+      "skill_name": "液氮大炮",
+      "damage_type": "arts",
+      "reason": "压缩液氮炮主体为群体法术伤害；推开后按位移距离结算的真实伤害是副效果。"
+    },
+    {
+      "skill_id": "skchr_mlynar_3",
+      "operator": "玛恩纳",
+      "skill_name": "未照耀的荣光",
+      "damage_type": "physical",
+      "reason": "攻击本身对目标造成物理伤害为主体；范围内敌人受卡西米尔干员攻击时附带的真实伤害为光环副效果。"
+    },
+    {
+      "skill_id": "skchr_mcnist_3",
+      "operator": "机械师",
+      "skill_name": "工程学十字星",
+      "damage_type": "arts",
+      "reason": "开启后干员攻击变为十字范围法术伤害为主体；结构性原理冲锋的物理伤害属装置一次性副效果。"
+    }
+  ]
+}

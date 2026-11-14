@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+/.venv/
+venv/
+# editable-install build metadata
+*.egg-info/
+# screenshots and per-machine calibration are not committed
+assets/roi/config.local.json
+shots/
+*.log
+# regenerable raw PRTS wikitext cache (rebuild via tools/fetch_prts_wiki.py)
+data/source/prts/
+# regenerable unpacked game tables (rebuild via tools/fetch_game_data.py)
+data/source/gamedata/
+# third-party ArkDPS bundles pulled for local methodology study only;
+# closed-source, never commit (we recompute all values from our own data)
+data/source/_arkdps_*
+# GPL-3.0 Stronghold-Protocol reference data (waves/stages/enemies/tokens);
+# methodology & cross-check only, never committed into the MIT repo
+data/source/_stronghold/

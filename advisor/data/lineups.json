@@ -1,0 +1,5863 @@
+{
+  "_meta": {
+    "version": "2.1-early3-splash-cap",
+    "season": "卫戍协议·规程·序列I",
+    "description": "人工编排的阵容 archetype 库。默认所有种族/羁绊都在(不考虑局内 ban)；ban 选落地后由 lineup 模块按可用性过滤。成员与本数(shop_tier)全部取自 operators.json/bonds_structured.json，不凭记忆造名。",
+    "population": "板位恒 8。early 4–6 冲激活+溅射/场下经济；mid/late 满 8；种族核心目标 3→6（≤6）；显示 n/max。",
+    "archetype_legend": {
+      "combat": "战斗型：围绕某类敌人的反制标签构筑，针对局内特训敌人选套",
+      "economy": "发育型：经济/刷新/获得时联动，滚雪球抢升本节奏",
+      "growth": "成长型：靠战斗内叠层/吞噬把大核层数养大，越打越强"
+    },
+    "enemy_key_legend": [
+      "special",
+      "flying",
+      "multi_hit",
+      "elemental",
+      "sustained",
+      "stealth",
+      "refraction",
+      "lethal",
+      "revival"
+    ],
+    "role_legend": {
+      "carry": "输出核",
+      "tank": "阻挡/承伤",
+      "heal": "治疗",
+      "control": "控制",
+      "support": "辅助/增益",
+      "econ": "经济"
+    },
+    "board_cap": 8,
+    "late_fill": "late exactly 8 from operators.json + bonds_structured; core_bonds meet activation_need; early/mid kept as transition subsets",
+    "stage_curve": "early_4to6 → mid_8_includes_early → late_8_race≤6",
+    "race_cap": 6,
+    "race_cap_note": "Racial big-bond useful max 6; never 8 same-race on mid/late.",
+    "design_ref": "docs/weishu-bonds-mechanics.md + counters.BOND_COUNTERS",
+    "off_board_bonds": [
+      "奇迹",
+      "投资人",
+      "远见"
+    ],
+    "bond_count_rule": "never exceed display_max (no 5/3); early≈3 core + small splashes; mid must include splash flex"
+  },
+  "lineups": [
+    {
+      "id": "arts_anti_stealth",
+      "name": "奥术法反隐队",
+      "archetype": "combat",
+      "core_bonds": [
+        "奥术"
+      ],
+      "splash_bonds": [
+        "聚合",
+        "莱塔尼亚",
+        "奇迹"
+      ],
+      "fantasy": "奥术 2 激活 / 3 人里程碑解锁反隐+削法抗（counters）。战场奥术刚好 3/3，聚合奶坦，奇迹挂整备区。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "卡达",
+              "tier": 1,
+              "role": "carry",
+              "note": "奥术1",
+              "off_board_ok": false
+            },
+            {
+              "name": "Miss.Christine",
+              "tier": 2,
+              "role": "carry",
+              "note": "奥术2",
+              "off_board_ok": false
+            },
+            {
+              "name": "伊桑",
+              "tier": 3,
+              "role": "control",
+              "note": "奥术3/3",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合小溅射",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹场下",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "奥术": 3,
+            "聚合": 1,
+            "奇迹": 1,
+            "维多利亚": 1,
+            "突袭": 1
+          },
+          "bond_progress": {
+            "奥术": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术3/3"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "维多利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚1/6"
+            },
+            "突袭": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "突袭1/2"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "卡达",
+              "tier": 1,
+              "role": "carry",
+              "note": "奥术",
+              "off_board_ok": false
+            },
+            {
+              "name": "Miss.Christine",
+              "tier": 2,
+              "role": "carry",
+              "note": "奥术",
+              "off_board_ok": false
+            },
+            {
+              "name": "伊桑",
+              "tier": 3,
+              "role": "control",
+              "note": "奥术3/3",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合/奶 · flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "车尔尼",
+              "tier": 3,
+              "role": "tank",
+              "note": "莱塔尼亚坦 · flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "夜莺",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合3/3 · flex",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "奥术": 3,
+            "聚合": 3,
+            "莱塔尼亚": 1,
+            "奇迹": 1,
+            "维多利亚": 1,
+            "突袭": 1,
+            "伊比利亚": 1,
+            "坚守": 1,
+            "协防干员": 1
+          },
+          "bond_progress": {
+            "奥术": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术3/3"
+            },
+            "聚合": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合3/3"
+            },
+            "莱塔尼亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚1/6"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "维多利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚1/6"
+            },
+            "突袭": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "突袭1/2"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "协防干员": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "协防干员1/2"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "逻各斯",
+              "tier": 6,
+              "role": "carry",
+              "note": "奥术大核",
+              "off_board_ok": true
+            },
+            {
+              "name": "艾雅法拉",
+              "tier": 4,
+              "role": "carry",
+              "note": "奥术3/3",
+              "off_board_ok": false
+            },
+            {
+              "name": "夕",
+              "tier": 6,
+              "role": "carry",
+              "note": "奥术",
+              "off_board_ok": false
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合奶",
+              "off_board_ok": false
+            },
+            {
+              "name": "夜莺",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "车尔尼",
+              "tier": 3,
+              "role": "tank",
+              "note": "莱坦",
+              "off_board_ok": false
+            },
+            {
+              "name": "黑键",
+              "tier": 4,
+              "role": "carry",
+              "note": "莱/精准 · 非奥术",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            }
+          ],
+          "bond_counts": {
+            "奥术": 3,
+            "聚合": 2,
+            "莱塔尼亚": 3,
+            "奇迹": 1,
+            "远见": 1,
+            "炎": 1,
+            "伊比利亚": 1,
+            "协防干员": 1,
+            "坚守": 1,
+            "精准": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "奥术": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术3/3"
+            },
+            "聚合": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合2/3"
+            },
+            "莱塔尼亚": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚3/6"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "炎": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "炎1/6"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            },
+            "协防干员": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "协防干员1/2"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "精准": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准1/3"
+            }
+          }
+        }
+      },
+      "counters": [
+        "stealth",
+        "revival",
+        "refraction"
+      ],
+      "counter_why": "奥术 3 人反隐克制隐匿/复苏隐匿形态；削法抗让纯法术在折射波不至于被腰斩；沉默装备/霍尔海雅压制复苏二次变身。",
+      "weak": [
+        "refraction"
+      ],
+      "weak_why": "折射高法抗仍是法术队天然劣势，必须靠奥术削抗+def_pierce 才能打，否则建议换物理队。",
+      "carry": [
+        "逻各斯",
+        "艾雅法拉",
+        "夕",
+        "黑键"
+      ],
+      "tank": [
+        "车尔尼"
+      ],
+      "heal": [
+        "流明",
+        "夜莺"
+      ],
+      "key_tips": [
+        "early 卡达+Christine+伊桑冲奥术 3/3 反隐",
+        "奇迹用星极/云迹放整备区，不占板",
+        "late 奥术保持 3/3 即可，勿堆到 6"
+      ],
+      "off_board_bonds": [
+        "奇迹"
+      ],
+      "reserve_plan": [
+        {
+          "name": "星极",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        },
+        {
+          "name": "云迹",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "bond_thresholds": {
+        "奥术": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "聚合": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "莱塔尼亚": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        }
+      }
+    },
+    {
+      "id": "physical_pierce_kazimierz",
+      "name": "精准卡西米尔穿甲队",
+      "archetype": "combat",
+      "core_bonds": [
+        "精准",
+        "卡西米尔"
+      ],
+      "splash_bonds": [
+        "助力",
+        "突袭",
+        "奇迹"
+      ],
+      "fantasy": "精准 3 穿甲 + 卡西米尔 3→6 真伤里程碑，克折射/飞行。奇迹场下。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "灰喉",
+              "tier": 1,
+              "role": "carry",
+              "note": "精准1",
+              "off_board_ok": false
+            },
+            {
+              "name": "雪猎",
+              "tier": 2,
+              "role": "carry",
+              "note": "精准2",
+              "off_board_ok": false
+            },
+            {
+              "name": "承曦格雷伊",
+              "tier": 2,
+              "role": "support",
+              "note": "精准3/3",
+              "off_board_ok": false
+            },
+            {
+              "name": "野鬃",
+              "tier": 1,
+              "role": "support",
+              "note": "卡西米尔/助力",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹场下",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "精准": 3,
+            "卡西米尔": 1,
+            "助力": 1,
+            "奇迹": 1,
+            "谢拉格": 1,
+            "灵巧": 1
+          },
+          "bond_progress": {
+            "精准": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准3/3"
+            },
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            },
+            "助力": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "谢拉格": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格1/6"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "灰喉",
+              "tier": 1,
+              "role": "carry",
+              "note": "精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "雪猎",
+              "tier": 2,
+              "role": "carry",
+              "note": "精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "承曦格雷伊",
+              "tier": 2,
+              "role": "support",
+              "note": "精准3/3",
+              "off_board_ok": false
+            },
+            {
+              "name": "野鬃",
+              "tier": 1,
+              "role": "support",
+              "note": "卡西/助力",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "瑕光",
+              "tier": 3,
+              "role": "tank",
+              "note": "卡西坦 · flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "砾",
+              "tier": 2,
+              "role": "tank",
+              "note": "不屈flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "焰尾",
+              "tier": 5,
+              "role": "support",
+              "note": "卡西/迅捷 · 非精准flex",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "精准": 3,
+            "卡西米尔": 4,
+            "助力": 1,
+            "突袭": 1,
+            "奇迹": 1,
+            "谢拉格": 1,
+            "灵巧": 1,
+            "不屈": 1,
+            "迅捷": 1
+          },
+          "bond_progress": {
+            "精准": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准3/3"
+            },
+            "卡西米尔": {
+              "n": 4,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔4/6"
+            },
+            "助力": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力1/3"
+            },
+            "突袭": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "突袭1/2"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "谢拉格": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格1/6"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "不屈": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈1/3"
+            },
+            "迅捷": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "迅捷1/2"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "耀骑士临光",
+              "tier": 6,
+              "role": "carry",
+              "note": "卡西主C",
+              "off_board_ok": false
+            },
+            {
+              "name": "玛恩纳",
+              "tier": 4,
+              "role": "carry",
+              "note": "卡西",
+              "off_board_ok": false
+            },
+            {
+              "name": "迷迭香",
+              "tier": 5,
+              "role": "carry",
+              "note": "精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "远牙",
+              "tier": 4,
+              "role": "carry",
+              "note": "卡西/精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "瑕光",
+              "tier": 3,
+              "role": "tank",
+              "note": "坦",
+              "off_board_ok": false
+            },
+            {
+              "name": "灰喉",
+              "tier": 1,
+              "role": "carry",
+              "note": "精准3/3 · 非空弦超标",
+              "off_board_ok": false
+            },
+            {
+              "name": "野鬃",
+              "tier": 1,
+              "role": "support",
+              "note": "助力",
+              "off_board_ok": false
+            },
+            {
+              "name": "砾",
+              "tier": 2,
+              "role": "tank",
+              "note": "卡西6/6",
+              "off_board_ok": false
+            }
+          ],
+          "bond_counts": {
+            "精准": 3,
+            "卡西米尔": 6,
+            "助力": 2,
+            "突袭": 2,
+            "不屈": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "精准": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准3/3"
+            },
+            "卡西米尔": {
+              "n": 6,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔6/6"
+            },
+            "助力": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力2/3"
+            },
+            "突袭": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "突袭2/2"
+            },
+            "不屈": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈1/3"
+            }
+          }
+        }
+      },
+      "counters": [
+        "refraction",
+        "special",
+        "flying"
+      ],
+      "counter_why": "def_pierce+true_damage 无视折射法抗和高甲(特异)；精准狙击多 anti_air，飞行波顺手解决。",
+      "weak": [
+        "elemental",
+        "sustained"
+      ],
+      "weak_why": "物理队对元素损伤/持续 DOT 环境缺乏庇护和奶量，需要外挂聚合医疗或协防坦。",
+      "carry": [
+        "耀骑士临光",
+        "玛恩纳",
+        "迷迭香",
+        "远牙"
+      ],
+      "tank": [
+        "瑕光",
+        "砾"
+      ],
+      "heal": [],
+      "key_tips": [
+        "mid 凑精准 3/3",
+        "late 卡西米尔 6/6 大成",
+        "星极整备区奇迹"
+      ],
+      "off_board_bonds": [
+        "奇迹"
+      ],
+      "reserve_plan": [
+        {
+          "name": "星极",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "bond_thresholds": {
+        "精准": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "卡西米尔": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "助力": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "突袭": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        }
+      }
+    },
+    {
+      "id": "dot_iberia_ursus",
+      "name": "伊比利亚乌萨斯 DOT 队",
+      "archetype": "combat",
+      "core_bonds": [
+        "伊比利亚",
+        "乌萨斯"
+      ],
+      "splash_bonds": [
+        "聚合",
+        "奇迹",
+        "不屈"
+      ],
+      "fantasy": "双核心各冲 3 激活；伊比利亚/乌萨斯大成需取舍。板位给 DOT+坦奶，奇迹场下。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "蓝毒",
+              "tier": 2,
+              "role": "carry",
+              "note": "伊比利亚",
+              "off_board_ok": false
+            },
+            {
+              "name": "烈夏",
+              "tier": 1,
+              "role": "carry",
+              "note": "乌萨斯",
+              "off_board_ok": false
+            },
+            {
+              "name": "折桠",
+              "tier": 1,
+              "role": "tank",
+              "note": "乌萨斯/不屈 · 双核~3",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合小溅射",
+              "off_board_ok": false
+            },
+            {
+              "name": "复奏",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹场下",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "伊比利亚": 1,
+            "乌萨斯": 2,
+            "聚合": 1,
+            "奇迹": 1,
+            "不屈": 1,
+            "叙拉古": 1,
+            "莱塔尼亚": 1
+          },
+          "bond_progress": {
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            },
+            "乌萨斯": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "乌萨斯2/6"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "不屈": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈1/3"
+            },
+            "叙拉古": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "叙拉古1/6"
+            },
+            "莱塔尼亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚1/6"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "蓝毒",
+              "tier": 2,
+              "role": "carry",
+              "note": "伊比",
+              "off_board_ok": false
+            },
+            {
+              "name": "烈夏",
+              "tier": 1,
+              "role": "carry",
+              "note": "乌萨斯",
+              "off_board_ok": false
+            },
+            {
+              "name": "折桠",
+              "tier": 1,
+              "role": "tank",
+              "note": "乌萨斯",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "复奏",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "棘刺",
+              "tier": 5,
+              "role": "carry",
+              "note": "伊比冲3",
+              "off_board_ok": false
+            },
+            {
+              "name": "深巡",
+              "tier": 3,
+              "role": "tank",
+              "note": "伊比坦 · flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合flex",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "伊比利亚": 3,
+            "乌萨斯": 2,
+            "聚合": 2,
+            "奇迹": 1,
+            "不屈": 1,
+            "叙拉古": 1,
+            "莱塔尼亚": 1,
+            "奥术": 1,
+            "坚守": 1,
+            "阿戈尔": 1
+          },
+          "bond_progress": {
+            "伊比利亚": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚3/6"
+            },
+            "乌萨斯": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "乌萨斯2/6"
+            },
+            "聚合": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合2/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "不屈": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈1/3"
+            },
+            "叙拉古": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "叙拉古1/6"
+            },
+            "莱塔尼亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚1/6"
+            },
+            "奥术": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术1/3"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "阿戈尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "阿戈尔1/6"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "引星棘刺",
+              "tier": 6,
+              "role": "carry",
+              "note": "伊比核",
+              "off_board_ok": false
+            },
+            {
+              "name": "棘刺",
+              "tier": 5,
+              "role": "carry",
+              "note": "DOT",
+              "off_board_ok": false
+            },
+            {
+              "name": "塔露拉",
+              "tier": 6,
+              "role": "carry",
+              "note": "乌萨斯",
+              "off_board_ok": false
+            },
+            {
+              "name": "怒潮凛冬",
+              "tier": 5,
+              "role": "carry",
+              "note": "乌萨斯",
+              "off_board_ok": true
+            },
+            {
+              "name": "蓝毒",
+              "tier": 2,
+              "role": "carry",
+              "note": "伊比",
+              "off_board_ok": false
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "奶",
+              "off_board_ok": false
+            },
+            {
+              "name": "深巡",
+              "tier": 3,
+              "role": "tank",
+              "note": "坦",
+              "off_board_ok": false
+            },
+            {
+              "name": "折桠",
+              "tier": 1,
+              "role": "tank",
+              "note": "不屈",
+              "off_board_ok": false
+            }
+          ],
+          "bond_counts": {
+            "伊比利亚": 4,
+            "乌萨斯": 3,
+            "聚合": 1,
+            "奇迹": 1,
+            "不屈": 1,
+            "奥术": 2,
+            "迅捷": 1,
+            "协防干员": 1,
+            "坚守": 1,
+            "阿戈尔": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "伊比利亚": {
+              "n": 4,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚4/6"
+            },
+            "乌萨斯": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "乌萨斯3/6"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "不屈": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈1/3"
+            },
+            "迅捷": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "迅捷1/2"
+            },
+            "奥术": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术2/3"
+            },
+            "协防干员": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "协防干员1/2"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "阿戈尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "阿戈尔1/6"
+            }
+          }
+        }
+      },
+      "counters": [
+        "multi_hit",
+        "revival",
+        "lethal"
+      ],
+      "counter_why": "DOT 跳伤对频次敌人(multi_hit 权重3)和复苏复活体可持续补刀；乌萨斯流血压制致命敌人血线。",
+      "weak": [
+        "special"
+      ],
+      "weak_why": "DOT 偏慢，遇到高面板特异怪/BOSS 斩杀线不足，需要补一个爆发核或穿甲。",
+      "carry": [
+        "引星棘刺",
+        "棘刺",
+        "塔露拉",
+        "怒潮凛冬"
+      ],
+      "tank": [
+        "深巡",
+        "折桠"
+      ],
+      "heal": [
+        "流明"
+      ],
+      "key_tips": [
+        "双核先各 3/6 激活",
+        "勿强求双 6",
+        "复奏整备区奇迹"
+      ],
+      "off_board_bonds": [
+        "奇迹"
+      ],
+      "reserve_plan": [
+        {
+          "name": "复奏",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        },
+        {
+          "name": "星极",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "bond_thresholds": {
+        "伊比利亚": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "乌萨斯": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "聚合": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "不屈": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        }
+      }
+    },
+    {
+      "id": "bulwark_sustain",
+      "name": "坚守聚合铁卫续航队",
+      "archetype": "combat",
+      "core_bonds": [
+        "坚守",
+        "聚合"
+      ],
+      "splash_bonds": [
+        "不屈",
+        "远见",
+        "奇迹",
+        "聚合"
+      ],
+      "fantasy": "坚守/聚合冲 3 人档承伤+庇护；经济远见/奇迹整备区。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "角峰",
+              "tier": 1,
+              "role": "tank",
+              "note": "坚守1",
+              "off_board_ok": false
+            },
+            {
+              "name": "蛇屠箱",
+              "tier": 2,
+              "role": "tank",
+              "note": "坚守2",
+              "off_board_ok": false
+            },
+            {
+              "name": "泡泡",
+              "tier": 2,
+              "role": "tank",
+              "note": "坚守3/3",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "渡桥",
+              "tier": 2,
+              "role": "econ",
+              "note": "远见场下",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "坚守": 3,
+            "聚合": 1,
+            "远见": 1,
+            "谢拉格": 1,
+            "萨尔贡": 1
+          },
+          "bond_progress": {
+            "坚守": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守3/3"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "谢拉格": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格1/6"
+            },
+            "萨尔贡": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "萨尔贡1/6"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "角峰",
+              "tier": 1,
+              "role": "tank",
+              "note": "坚守",
+              "off_board_ok": false
+            },
+            {
+              "name": "蛇屠箱",
+              "tier": 2,
+              "role": "tank",
+              "note": "坚守",
+              "off_board_ok": false
+            },
+            {
+              "name": "泡泡",
+              "tier": 2,
+              "role": "tank",
+              "note": "坚守3/3",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "渡桥",
+              "tier": 2,
+              "role": "econ",
+              "note": "远见",
+              "off_board_ok": true
+            },
+            {
+              "name": "夜莺",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合3/3 flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹flex",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "坚守": 3,
+            "聚合": 3,
+            "远见": 1,
+            "奇迹": 1,
+            "谢拉格": 1,
+            "萨尔贡": 1,
+            "协防干员": 1,
+            "伊比利亚": 1
+          },
+          "bond_progress": {
+            "坚守": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守3/3"
+            },
+            "聚合": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合3/3"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "谢拉格": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格1/6"
+            },
+            "萨尔贡": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "萨尔贡1/6"
+            },
+            "协防干员": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "协防干员1/2"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "塞雷娅",
+              "tier": 5,
+              "role": "tank",
+              "note": "主坦/协防",
+              "off_board_ok": false
+            },
+            {
+              "name": "机械师",
+              "tier": 6,
+              "role": "tank",
+              "note": "坚守/协防",
+              "off_board_ok": false
+            },
+            {
+              "name": "蛇屠箱",
+              "tier": 2,
+              "role": "tank",
+              "note": "坚守3/3",
+              "off_board_ok": false
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "纯烬艾雅法拉",
+              "tier": 5,
+              "role": "heal",
+              "note": "聚合3/3 · 非夜莺叠协防",
+              "off_board_ok": true
+            },
+            {
+              "name": "斥罪",
+              "tier": 4,
+              "role": "tank",
+              "note": "不屈",
+              "off_board_ok": false
+            },
+            {
+              "name": "森蚺",
+              "tier": 4,
+              "role": "tank",
+              "note": "不屈肉",
+              "off_board_ok": false
+            }
+          ],
+          "bond_counts": {
+            "坚守": 3,
+            "聚合": 3,
+            "不屈": 2,
+            "远见": 1,
+            "协防干员": 2,
+            "伊比利亚": 1,
+            "莱塔尼亚": 1,
+            "叙拉古": 1,
+            "萨尔贡": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "坚守": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守3/3"
+            },
+            "聚合": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合3/3"
+            },
+            "不屈": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈2/3"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "协防干员": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "协防干员2/2"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            },
+            "莱塔尼亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚1/6"
+            },
+            "叙拉古": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "叙拉古1/6"
+            },
+            "萨尔贡": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "萨尔贡1/6"
+            }
+          }
+        }
+      },
+      "counters": [
+        "elemental",
+        "sustained",
+        "lethal"
+      ],
+      "counter_why": "shield_heal/shelter/damage_soak 正是元素与持续 DOT 环境的高权重解；减伤+复活扛致命爆发。",
+      "weak": [
+        "flying"
+      ],
+      "weak_why": "铁卫/地面为主普遍无法对空，必须外挂蓝毒/空弦/霍尔海雅等对空手，否则飞行波漏怪。",
+      "carry": [],
+      "tank": [
+        "塞雷娅",
+        "机械师",
+        "蛇屠箱"
+      ],
+      "heal": [
+        "流明",
+        "褐果",
+        "纯烬艾雅法拉"
+      ],
+      "key_tips": [
+        "坚守与聚合都冲 3/3",
+        "远见渡桥放整备区"
+      ],
+      "off_board_bonds": [
+        "远见",
+        "奇迹"
+      ],
+      "reserve_plan": [
+        {
+          "name": "渡桥",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·远见",
+          "off_board_ok": true
+        },
+        {
+          "name": "星极",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "bond_thresholds": {
+        "坚守": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "聚合": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "不屈": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "远见": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        }
+      }
+    },
+    {
+      "id": "economy_investor_miracle",
+      "name": "投资人奇迹经济滚雪球队",
+      "archetype": "economy",
+      "core_bonds": [
+        "投资人",
+        "奇迹",
+        "远见"
+      ],
+      "splash_bonds": [
+        "助力",
+        "迅捷"
+      ],
+      "fantasy": "三经济盟约均可整备区激活：投资人 3、奇迹 2、远见 2。战场放战力，低本经济挂后面。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "锡人",
+              "tier": 2,
+              "role": "econ",
+              "note": "投资人场下",
+              "off_board_ok": true
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹1",
+              "off_board_ok": true
+            },
+            {
+              "name": "云迹",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹2/2场下",
+              "off_board_ok": true
+            },
+            {
+              "name": "渡桥",
+              "tier": 2,
+              "role": "econ",
+              "note": "远见场下",
+              "off_board_ok": true
+            },
+            {
+              "name": "野鬃",
+              "tier": 1,
+              "role": "support",
+              "note": "助力战力",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "投资人": 1,
+            "奇迹": 2,
+            "远见": 1,
+            "助力": 1,
+            "灵巧": 1,
+            "卡西米尔": 1
+          },
+          "bond_progress": {
+            "投资人": {
+              "n": 1,
+              "max": 3,
+              "act": 3,
+              "off_board": true,
+              "label": "投资人1/3"
+            },
+            "奇迹": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹2/2"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "助力": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力1/3"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "锡人",
+              "tier": 2,
+              "role": "econ",
+              "note": "投资人",
+              "off_board_ok": true
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "云迹",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "渡桥",
+              "tier": 2,
+              "role": "econ",
+              "note": "远见",
+              "off_board_ok": true
+            },
+            {
+              "name": "野鬃",
+              "tier": 1,
+              "role": "support",
+              "note": "助力",
+              "off_board_ok": false
+            },
+            {
+              "name": "山",
+              "tier": 4,
+              "role": "tank",
+              "note": "投资人战力",
+              "off_board_ok": true
+            },
+            {
+              "name": "空弦",
+              "tier": 3,
+              "role": "carry",
+              "note": "远见输出",
+              "off_board_ok": true
+            },
+            {
+              "name": "可露希尔",
+              "tier": 5,
+              "role": "econ",
+              "note": "投资人3/3",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "投资人": 3,
+            "奇迹": 2,
+            "远见": 2,
+            "助力": 1,
+            "灵巧": 1,
+            "卡西米尔": 1,
+            "精准": 1
+          },
+          "bond_progress": {
+            "投资人": {
+              "n": 3,
+              "max": 3,
+              "act": 3,
+              "off_board": true,
+              "label": "投资人3/3"
+            },
+            "奇迹": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹2/2"
+            },
+            "远见": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见2/2"
+            },
+            "助力": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力1/3"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            },
+            "精准": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准1/3"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "山",
+              "tier": 4,
+              "role": "tank",
+              "note": "投资人",
+              "off_board_ok": true
+            },
+            {
+              "name": "可露希尔",
+              "tier": 5,
+              "role": "econ",
+              "note": "投资人",
+              "off_board_ok": true
+            },
+            {
+              "name": "凛御银灰",
+              "tier": 5,
+              "role": "support",
+              "note": "投资人3/3",
+              "off_board_ok": true
+            },
+            {
+              "name": "维娜·维多利亚",
+              "tier": 5,
+              "role": "carry",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "空弦",
+              "tier": 3,
+              "role": "carry",
+              "note": "远见",
+              "off_board_ok": true
+            },
+            {
+              "name": "凯瑟琳",
+              "tier": 3,
+              "role": "support",
+              "note": "远见2/2",
+              "off_board_ok": true
+            },
+            {
+              "name": "耶拉",
+              "tier": 3,
+              "role": "econ",
+              "note": "奇迹2/2",
+              "off_board_ok": true
+            },
+            {
+              "name": "野鬃",
+              "tier": 1,
+              "role": "support",
+              "note": "助力",
+              "off_board_ok": false
+            }
+          ],
+          "bond_counts": {
+            "投资人": 3,
+            "奇迹": 2,
+            "远见": 2,
+            "助力": 1,
+            "谢拉格": 2,
+            "维多利亚": 2,
+            "灵巧": 1,
+            "精准": 1,
+            "卡西米尔": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "投资人": {
+              "n": 3,
+              "max": 3,
+              "act": 3,
+              "off_board": true,
+              "label": "投资人3/3"
+            },
+            "奇迹": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹2/2"
+            },
+            "远见": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见2/2"
+            },
+            "助力": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力1/3"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "谢拉格": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格2/6"
+            },
+            "维多利亚": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚2/6"
+            },
+            "精准": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准1/3"
+            },
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            }
+          }
+        }
+      },
+      "counters": [],
+      "counter_why": "本身不针对特定敌人，价值在经济/升本节奏，靠更快成型的高本阵容间接压制所有类型。",
+      "weak": [
+        "lethal",
+        "special"
+      ],
+      "weak_why": "前期战力薄，遇到致命/特异高压波容易血崩，需要留 1-2 个即时战力位。",
+      "carry": [
+        "维娜·维多利亚",
+        "空弦"
+      ],
+      "tank": [
+        "山"
+      ],
+      "heal": [],
+      "key_tips": [
+        "锡人/星极/渡桥优先整备区",
+        "上场山+可露希尔+凛御银灰凑投资人",
+        "别为经济占满 8 格"
+      ],
+      "off_board_bonds": [
+        "投资人",
+        "奇迹",
+        "远见"
+      ],
+      "reserve_plan": [
+        {
+          "name": "锡人",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·投资人",
+          "off_board_ok": true
+        },
+        {
+          "name": "星极",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        },
+        {
+          "name": "渡桥",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·远见",
+          "off_board_ok": true
+        }
+      ],
+      "bond_thresholds": {
+        "投资人": {
+          "activation_need": 3,
+          "display_max": 3,
+          "off_board": true
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "远见": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "助力": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "迅捷": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": false
+        }
+      }
+    },
+    {
+      "id": "growth_aegir_devour",
+      "name": "阿戈尔吞噬成长队",
+      "archetype": "growth",
+      "core_bonds": [
+        "阿戈尔"
+      ],
+      "splash_bonds": [
+        "聚合",
+        "突袭",
+        "奇迹"
+      ],
+      "fantasy": "阿戈尔 3→6 复活里程碑；聚合奶+奇迹场下。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "幽灵鲨",
+              "tier": 1,
+              "role": "carry",
+              "note": "阿戈尔1",
+              "off_board_ok": false
+            },
+            {
+              "name": "深巡",
+              "tier": 3,
+              "role": "tank",
+              "note": "阿戈尔2",
+              "off_board_ok": false
+            },
+            {
+              "name": "歌蕾蒂娅",
+              "tier": 5,
+              "role": "carry",
+              "note": "阿戈尔3/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹场下",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "阿戈尔": 3,
+            "聚合": 1,
+            "奇迹": 1,
+            "坚守": 1
+          },
+          "bond_progress": {
+            "阿戈尔": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "阿戈尔3/6"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "幽灵鲨",
+              "tier": 1,
+              "role": "carry",
+              "note": "阿戈尔",
+              "off_board_ok": false
+            },
+            {
+              "name": "深巡",
+              "tier": 3,
+              "role": "tank",
+              "note": "阿戈尔",
+              "off_board_ok": false
+            },
+            {
+              "name": "歌蕾蒂娅",
+              "tier": 5,
+              "role": "carry",
+              "note": "阿戈尔3",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "夜莺",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合3/3 flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "砾",
+              "tier": 2,
+              "role": "tank",
+              "note": "不屈flex · 非阿戈尔",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "阿戈尔": 3,
+            "聚合": 3,
+            "奇迹": 1,
+            "坚守": 1,
+            "伊比利亚": 1,
+            "协防干员": 1,
+            "不屈": 1,
+            "卡西米尔": 1
+          },
+          "bond_progress": {
+            "阿戈尔": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "阿戈尔3/6"
+            },
+            "聚合": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合3/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            },
+            "协防干员": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "协防干员1/2"
+            },
+            "不屈": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈1/3"
+            },
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "乌尔比安",
+              "tier": 5,
+              "role": "carry",
+              "note": "阿戈尔大核",
+              "off_board_ok": false
+            },
+            {
+              "name": "浊心斯卡蒂",
+              "tier": 6,
+              "role": "heal",
+              "note": "阿戈尔",
+              "off_board_ok": false
+            },
+            {
+              "name": "克莱门莎",
+              "tier": 6,
+              "role": "carry",
+              "note": "阿戈尔",
+              "off_board_ok": false
+            },
+            {
+              "name": "斯卡蒂",
+              "tier": 3,
+              "role": "carry",
+              "note": "阿戈尔/突袭",
+              "off_board_ok": false
+            },
+            {
+              "name": "归溟幽灵鲨",
+              "tier": 4,
+              "role": "carry",
+              "note": "阿戈尔",
+              "off_board_ok": false
+            },
+            {
+              "name": "深巡",
+              "tier": 3,
+              "role": "tank",
+              "note": "阿戈尔6/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合奶",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            }
+          ],
+          "bond_counts": {
+            "阿戈尔": 6,
+            "聚合": 2,
+            "突袭": 1,
+            "奇迹": 1,
+            "不屈": 1,
+            "坚守": 1,
+            "伊比利亚": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "阿戈尔": {
+              "n": 6,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "阿戈尔6/6"
+            },
+            "聚合": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合2/3"
+            },
+            "突袭": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "突袭1/2"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "不屈": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈1/3"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            }
+          }
+        }
+      },
+      "counters": [
+        "lethal",
+        "sustained"
+      ],
+      "counter_why": "吞噬叠高血攻+6 人复活，擅长持久战和扛致命爆发；成长起来后单点质量碾压。",
+      "weak": [
+        "flying"
+      ],
+      "weak_why": "阿戈尔以地面近战为主，对空依赖外挂狙击/术师，安哲拉是少数对空点要保住。",
+      "carry": [
+        "乌尔比安",
+        "克莱门莎",
+        "斯卡蒂",
+        "归溟幽灵鲨"
+      ],
+      "tank": [
+        "深巡"
+      ],
+      "heal": [
+        "浊心斯卡蒂",
+        "流明"
+      ],
+      "key_tips": [
+        "late 阿戈尔 6/6",
+        "第 7–8 格奶，不塞第 7 个阿戈尔"
+      ],
+      "off_board_bonds": [
+        "奇迹"
+      ],
+      "reserve_plan": [
+        {
+          "name": "星极",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "bond_thresholds": {
+        "阿戈尔": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "聚合": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "突袭": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        }
+      }
+    },
+    {
+      "id": "yan_elemental",
+      "name": "炎国元素损伤队",
+      "archetype": "combat",
+      "core_bonds": [
+        "炎"
+      ],
+      "splash_bonds": [
+        "聚合",
+        "坚守",
+        "远见",
+        "奇迹"
+      ],
+      "fantasy": "炎 3→6 元素损伤；余 2 格聚合/奇迹，不塞 8 炎。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "拜松",
+              "tier": 1,
+              "role": "tank",
+              "note": "炎1",
+              "off_board_ok": false
+            },
+            {
+              "name": "矩",
+              "tier": 2,
+              "role": "support",
+              "note": "炎2",
+              "off_board_ok": false
+            },
+            {
+              "name": "乌有",
+              "tier": 3,
+              "role": "carry",
+              "note": "炎3/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "渡桥",
+              "tier": 2,
+              "role": "econ",
+              "note": "远见场下",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "炎": 3,
+            "聚合": 1,
+            "远见": 1
+          },
+          "bond_progress": {
+            "炎": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "炎3/6"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "拜松",
+              "tier": 1,
+              "role": "tank",
+              "note": "炎",
+              "off_board_ok": false
+            },
+            {
+              "name": "矩",
+              "tier": 2,
+              "role": "support",
+              "note": "炎",
+              "off_board_ok": false
+            },
+            {
+              "name": "乌有",
+              "tier": 3,
+              "role": "carry",
+              "note": "炎3/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "渡桥",
+              "tier": 2,
+              "role": "econ",
+              "note": "远见",
+              "off_board_ok": true
+            },
+            {
+              "name": "风絮",
+              "tier": 3,
+              "role": "heal",
+              "note": "炎/聚合flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合flex · 非炎",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹flex",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "炎": 4,
+            "聚合": 3,
+            "远见": 1,
+            "奇迹": 1,
+            "伊比利亚": 1
+          },
+          "bond_progress": {
+            "炎": {
+              "n": 4,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "炎4/6"
+            },
+            "聚合": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合3/3"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "烛煌",
+              "tier": 6,
+              "role": "carry",
+              "note": "炎主C",
+              "off_board_ok": false
+            },
+            {
+              "name": "夕",
+              "tier": 6,
+              "role": "carry",
+              "note": "炎",
+              "off_board_ok": false
+            },
+            {
+              "name": "黍",
+              "tier": 5,
+              "role": "support",
+              "note": "炎/远见",
+              "off_board_ok": true
+            },
+            {
+              "name": "仇白",
+              "tier": 4,
+              "role": "carry",
+              "note": "炎",
+              "off_board_ok": false
+            },
+            {
+              "name": "余",
+              "tier": 4,
+              "role": "tank",
+              "note": "炎",
+              "off_board_ok": false
+            },
+            {
+              "name": "风絮",
+              "tier": 3,
+              "role": "heal",
+              "note": "炎6/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            }
+          ],
+          "bond_counts": {
+            "炎": 6,
+            "聚合": 2,
+            "坚守": 1,
+            "远见": 1,
+            "奇迹": 1,
+            "维多利亚": 1,
+            "迅捷": 1,
+            "奥术": 1,
+            "灵巧": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "炎": {
+              "n": 6,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "炎6/6"
+            },
+            "聚合": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合2/3"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "维多利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚1/6"
+            },
+            "迅捷": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "迅捷1/2"
+            },
+            "奥术": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术1/3"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            }
+          }
+        }
+      },
+      "counters": [
+        "multi_hit",
+        "revival"
+      ],
+      "counter_why": "炎 6 人元素损伤属于跳伤(DOT)，对频次怪海和需要持续补刀的复苏体有效；cc 挂件提供控制窗口。",
+      "weak": [
+        "special"
+      ],
+      "weak_why": "元素损伤面对高面板特异/BOSS 斩杀线不足，缺穿甲爆发，需要外挂暴击/真伤核。",
+      "carry": [
+        "烛煌",
+        "夕",
+        "仇白"
+      ],
+      "tank": [
+        "余"
+      ],
+      "heal": [
+        "风絮",
+        "褐果"
+      ],
+      "key_tips": [
+        "late 炎恰好 6/6",
+        "褐果+星极功能位"
+      ],
+      "reserve_plan": [
+        {
+          "name": "渡桥",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·远见",
+          "off_board_ok": true
+        },
+        {
+          "name": "星极",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "off_board_bonds": [
+        "远见",
+        "奇迹"
+      ],
+      "bond_thresholds": {
+        "炎": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "聚合": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "坚守": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "远见": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        }
+      }
+    },
+    {
+      "id": "sargon_quicksand",
+      "name": "萨尔贡流沙控制队",
+      "archetype": "combat",
+      "core_bonds": [
+        "萨尔贡"
+      ],
+      "splash_bonds": [
+        "迅捷",
+        "聚合",
+        "精准",
+        "奇迹"
+      ],
+      "fantasy": "萨尔贡 3→6 流沙控制；聚合奶+奇迹，种族≤6。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "泡泡",
+              "tier": 2,
+              "role": "tank",
+              "note": "萨尔贡1",
+              "off_board_ok": false
+            },
+            {
+              "name": "至简",
+              "tier": 3,
+              "role": "carry",
+              "note": "萨尔贡2",
+              "off_board_ok": false
+            },
+            {
+              "name": "艾丝黛尔",
+              "tier": 1,
+              "role": "tank",
+              "note": "萨尔贡3/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "云迹",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹场下",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "萨尔贡": 3,
+            "聚合": 1,
+            "奇迹": 1,
+            "坚守": 1,
+            "独行": 1,
+            "灵巧": 1
+          },
+          "bond_progress": {
+            "萨尔贡": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "萨尔贡3/6"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "独行": {
+              "n": 1,
+              "max": 1,
+              "act": 1,
+              "off_board": false,
+              "label": "独行1/1"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "泡泡",
+              "tier": 2,
+              "role": "tank",
+              "note": "萨尔贡",
+              "off_board_ok": false
+            },
+            {
+              "name": "至简",
+              "tier": 3,
+              "role": "carry",
+              "note": "萨尔贡",
+              "off_board_ok": false
+            },
+            {
+              "name": "艾丝黛尔",
+              "tier": 1,
+              "role": "tank",
+              "note": "萨尔贡",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "云迹",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "卡涅利安",
+              "tier": 3,
+              "role": "carry",
+              "note": "萨/迅捷",
+              "off_board_ok": false
+            },
+            {
+              "name": "灰喉",
+              "tier": 1,
+              "role": "carry",
+              "note": "精准flex",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "萨尔贡": 4,
+            "迅捷": 1,
+            "聚合": 2,
+            "精准": 1,
+            "奇迹": 1,
+            "坚守": 1,
+            "独行": 1,
+            "灵巧": 1,
+            "伊比利亚": 1,
+            "莱塔尼亚": 1
+          },
+          "bond_progress": {
+            "萨尔贡": {
+              "n": 4,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "萨尔贡4/6"
+            },
+            "迅捷": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "迅捷1/2"
+            },
+            "聚合": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合2/3"
+            },
+            "精准": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "独行": {
+              "n": 1,
+              "max": 1,
+              "act": 1,
+              "off_board": false,
+              "label": "独行1/1"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            },
+            "莱塔尼亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚1/6"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "真言",
+              "tier": 6,
+              "role": "carry",
+              "note": "萨核",
+              "off_board_ok": false
+            },
+            {
+              "name": "鸿雪",
+              "tier": 5,
+              "role": "carry",
+              "note": "萨/精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "佩佩",
+              "tier": 5,
+              "role": "carry",
+              "note": "萨",
+              "off_board_ok": false
+            },
+            {
+              "name": "异客",
+              "tier": 4,
+              "role": "carry",
+              "note": "萨",
+              "off_board_ok": false
+            },
+            {
+              "name": "卡涅利安",
+              "tier": 3,
+              "role": "carry",
+              "note": "萨/迅捷",
+              "off_board_ok": false
+            },
+            {
+              "name": "森蚺",
+              "tier": 4,
+              "role": "tank",
+              "note": "萨6/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "云迹",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            }
+          ],
+          "bond_counts": {
+            "萨尔贡": 6,
+            "迅捷": 1,
+            "聚合": 1,
+            "精准": 1,
+            "奇迹": 1,
+            "灵巧": 2,
+            "奥术": 1,
+            "莱塔尼亚": 1,
+            "不屈": 1,
+            "伊比利亚": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "萨尔贡": {
+              "n": 6,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "萨尔贡6/6"
+            },
+            "迅捷": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "迅捷1/2"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            },
+            "精准": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "灵巧": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧2/2"
+            },
+            "奥术": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术1/3"
+            },
+            "莱塔尼亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚1/6"
+            },
+            "不屈": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈1/3"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            }
+          }
+        }
+      },
+      "counters": [
+        "stealth",
+        "multi_hit",
+        "lethal"
+      ],
+      "counter_why": "流沙束缚属 cc，克制频次/致命；真言自带反隐处理隐匿与复苏隐匿形态。",
+      "weak": [
+        "elemental"
+      ],
+      "weak_why": "控制法伤为主、治疗偏薄，面对元素损伤环境缺乏庇护手段。",
+      "carry": [
+        "真言",
+        "鸿雪",
+        "佩佩",
+        "异客"
+      ],
+      "tank": [
+        "森蚺"
+      ],
+      "heal": [
+        "流明"
+      ],
+      "key_tips": [
+        "late 萨尔贡 6/6 + 流明/云迹"
+      ],
+      "reserve_plan": [
+        {
+          "name": "星极",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "off_board_bonds": [
+        "奇迹"
+      ],
+      "bond_thresholds": {
+        "萨尔贡": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "迅捷": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": false
+        },
+        "聚合": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "精准": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        }
+      }
+    },
+    {
+      "id": "victoria_equip",
+      "name": "维多利亚装备重锤队",
+      "archetype": "combat",
+      "core_bonds": [
+        "维多利亚"
+      ],
+      "splash_bonds": [
+        "奇迹",
+        "助力",
+        "远见",
+        "坚守"
+      ],
+      "fantasy": "维多利亚 3→6 装备体系；奇迹/远见可整备区。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "慕斯",
+              "tier": 1,
+              "role": "carry",
+              "note": "维1",
+              "off_board_ok": false
+            },
+            {
+              "name": "水灯心",
+              "tier": 3,
+              "role": "support",
+              "note": "维2",
+              "off_board_ok": false
+            },
+            {
+              "name": "哈洛德",
+              "tier": 2,
+              "role": "heal",
+              "note": "维3/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "渡桥",
+              "tier": 2,
+              "role": "econ",
+              "note": "远见场下",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "维多利亚": 3,
+            "奇迹": 1,
+            "远见": 1,
+            "灵巧": 1,
+            "独行": 1,
+            "谢拉格": 1
+          },
+          "bond_progress": {
+            "维多利亚": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚3/6"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "独行": {
+              "n": 1,
+              "max": 1,
+              "act": 1,
+              "off_board": false,
+              "label": "独行1/1"
+            },
+            "谢拉格": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格1/6"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "慕斯",
+              "tier": 1,
+              "role": "carry",
+              "note": "维",
+              "off_board_ok": false
+            },
+            {
+              "name": "水灯心",
+              "tier": 3,
+              "role": "support",
+              "note": "维",
+              "off_board_ok": false
+            },
+            {
+              "name": "哈洛德",
+              "tier": 2,
+              "role": "heal",
+              "note": "维3/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "渡桥",
+              "tier": 2,
+              "role": "econ",
+              "note": "远见",
+              "off_board_ok": true
+            },
+            {
+              "name": "凯瑟琳",
+              "tier": 3,
+              "role": "support",
+              "note": "维/远见",
+              "off_board_ok": true
+            },
+            {
+              "name": "野鬃",
+              "tier": 1,
+              "role": "support",
+              "note": "助力flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "砾",
+              "tier": 2,
+              "role": "tank",
+              "note": "不屈flex · 非维",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "维多利亚": 4,
+            "奇迹": 1,
+            "助力": 1,
+            "远见": 2,
+            "卡西米尔": 2,
+            "灵巧": 1,
+            "独行": 1,
+            "谢拉格": 1,
+            "不屈": 1
+          },
+          "bond_progress": {
+            "维多利亚": {
+              "n": 4,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚4/6"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "助力": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力1/3"
+            },
+            "远见": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见2/2"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "独行": {
+              "n": 1,
+              "max": 1,
+              "act": 1,
+              "off_board": false,
+              "label": "独行1/1"
+            },
+            "谢拉格": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格1/6"
+            },
+            "卡西米尔": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔2/6"
+            },
+            "不屈": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈1/3"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "维娜·维多利亚",
+              "tier": 5,
+              "role": "carry",
+              "note": "维核",
+              "off_board_ok": true
+            },
+            {
+              "name": "烛煌",
+              "tier": 6,
+              "role": "carry",
+              "note": "维",
+              "off_board_ok": false
+            },
+            {
+              "name": "酒神",
+              "tier": 6,
+              "role": "carry",
+              "note": "维",
+              "off_board_ok": false
+            },
+            {
+              "name": "涤火杰西卡",
+              "tier": 4,
+              "role": "tank",
+              "note": "坦",
+              "off_board_ok": false
+            },
+            {
+              "name": "哈洛德",
+              "tier": 2,
+              "role": "heal",
+              "note": "奶",
+              "off_board_ok": false
+            },
+            {
+              "name": "白铁",
+              "tier": 4,
+              "role": "carry",
+              "note": "维6/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "渡桥",
+              "tier": 2,
+              "role": "econ",
+              "note": "远见",
+              "off_board_ok": true
+            }
+          ],
+          "bond_counts": {
+            "维多利亚": 6,
+            "奇迹": 2,
+            "助力": 1,
+            "远见": 1,
+            "坚守": 1,
+            "炎": 1,
+            "迅捷": 1,
+            "谢拉格": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "维多利亚": {
+              "n": 6,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚6/6"
+            },
+            "奇迹": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹2/2"
+            },
+            "助力": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力1/3"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "炎": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "炎1/6"
+            },
+            "迅捷": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "迅捷1/2"
+            },
+            "谢拉格": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格1/6"
+            }
+          }
+        }
+      },
+      "counters": [
+        "refraction",
+        "multi_hit"
+      ],
+      "counter_why": "维娜真伤和白铁 DOT 分别处理折射高抗与频次怪；装备堆叠的攻击加成打单体质量高。",
+      "weak": [
+        "lethal"
+      ],
+      "weak_why": "强度绑定装备成型速度，装备没起来前前期偏脆，扛不住致命爆发波。",
+      "carry": [
+        "维娜·维多利亚",
+        "烛煌",
+        "酒神",
+        "白铁"
+      ],
+      "tank": [
+        "涤火杰西卡"
+      ],
+      "heal": [
+        "哈洛德"
+      ],
+      "key_tips": [
+        "late 维多利亚 6/6",
+        "渡桥/云迹可整备区"
+      ],
+      "reserve_plan": [
+        {
+          "name": "渡桥",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·远见",
+          "off_board_ok": true
+        },
+        {
+          "name": "云迹",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "off_board_bonds": [
+        "奇迹",
+        "远见"
+      ],
+      "bond_thresholds": {
+        "维多利亚": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "助力": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "远见": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "坚守": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        }
+      }
+    },
+    {
+      "id": "kjerag_freeze",
+      "name": "谢拉格冰冻控制队",
+      "archetype": "combat",
+      "core_bonds": [
+        "谢拉格"
+      ],
+      "splash_bonds": [
+        "精准",
+        "奥术",
+        "奇迹",
+        "灵巧"
+      ],
+      "fantasy": "谢拉格 3→6 冻结控制；精准/奥术溅射，奇迹场下。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "角峰",
+              "tier": 1,
+              "role": "tank",
+              "note": "谢1",
+              "off_board_ok": false
+            },
+            {
+              "name": "雪猎",
+              "tier": 2,
+              "role": "carry",
+              "note": "谢2/精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "哈洛德",
+              "tier": 2,
+              "role": "heal",
+              "note": "谢3/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "承曦格雷伊",
+              "tier": 2,
+              "role": "support",
+              "note": "精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "谢拉格": 3,
+            "精准": 2,
+            "奇迹": 1,
+            "灵巧": 1,
+            "坚守": 1,
+            "维多利亚": 1
+          },
+          "bond_progress": {
+            "谢拉格": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格3/6"
+            },
+            "精准": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准2/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "维多利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚1/6"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "角峰",
+              "tier": 1,
+              "role": "tank",
+              "note": "谢",
+              "off_board_ok": false
+            },
+            {
+              "name": "雪猎",
+              "tier": 2,
+              "role": "carry",
+              "note": "谢/精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "哈洛德",
+              "tier": 2,
+              "role": "heal",
+              "note": "谢",
+              "off_board_ok": false
+            },
+            {
+              "name": "承曦格雷伊",
+              "tier": 2,
+              "role": "support",
+              "note": "精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "极光",
+              "tier": 3,
+              "role": "tank",
+              "note": "谢坦",
+              "off_board_ok": false
+            },
+            {
+              "name": "Miss.Christine",
+              "tier": 2,
+              "role": "carry",
+              "note": "奥术flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "灰喉",
+              "tier": 1,
+              "role": "carry",
+              "note": "精准flex",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "谢拉格": 4,
+            "精准": 3,
+            "奥术": 1,
+            "奇迹": 1,
+            "灵巧": 1,
+            "维多利亚": 2,
+            "坚守": 1
+          },
+          "bond_progress": {
+            "谢拉格": {
+              "n": 4,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格4/6"
+            },
+            "精准": {
+              "n": 3,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准3/3"
+            },
+            "奥术": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "维多利亚": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚2/6"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "圣聆初雪",
+              "tier": 5,
+              "role": "carry",
+              "note": "谢/奥术",
+              "off_board_ok": false
+            },
+            {
+              "name": "凛御银灰",
+              "tier": 5,
+              "role": "support",
+              "note": "谢",
+              "off_board_ok": true
+            },
+            {
+              "name": "锏",
+              "tier": 6,
+              "role": "carry",
+              "note": "谢枢纽",
+              "off_board_ok": false
+            },
+            {
+              "name": "雪猎",
+              "tier": 2,
+              "role": "carry",
+              "note": "精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "极光",
+              "tier": 3,
+              "role": "tank",
+              "note": "坦",
+              "off_board_ok": false
+            },
+            {
+              "name": "哈洛德",
+              "tier": 2,
+              "role": "heal",
+              "note": "谢6/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "Miss.Christine",
+              "tier": 2,
+              "role": "carry",
+              "note": "奥术",
+              "off_board_ok": false
+            }
+          ],
+          "bond_counts": {
+            "谢拉格": 6,
+            "精准": 1,
+            "奥术": 2,
+            "奇迹": 1,
+            "灵巧": 1,
+            "维多利亚": 2,
+            "投资人": 1,
+            "卡西米尔": 1,
+            "莱塔尼亚": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "谢拉格": {
+              "n": 6,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格6/6"
+            },
+            "精准": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准1/3"
+            },
+            "奥术": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术2/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "投资人": {
+              "n": 1,
+              "max": 3,
+              "act": 3,
+              "off_board": true,
+              "label": "投资人1/3"
+            },
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            },
+            "莱塔尼亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚1/6"
+            },
+            "维多利亚": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚2/6"
+            }
+          }
+        }
+      },
+      "counters": [
+        "multi_hit",
+        "lethal",
+        "stealth"
+      ],
+      "counter_why": "冰冻 cc 控住频次/致命敌人，凛御银灰反隐处理隐匿；圣聆初雪削抗补法系穿透。",
+      "weak": [
+        "elemental"
+      ],
+      "weak_why": "冰冻法伤体系自身缺少元素庇护，元素损伤环境要外挂聚合行医。",
+      "carry": [
+        "圣聆初雪",
+        "锏",
+        "雪猎",
+        "Miss.Christine"
+      ],
+      "tank": [
+        "极光"
+      ],
+      "heal": [
+        "哈洛德"
+      ],
+      "key_tips": [
+        "late 谢拉格 6/6",
+        "耶拉整备区奇迹"
+      ],
+      "reserve_plan": [
+        {
+          "name": "耶拉",
+          "tier": 3,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        },
+        {
+          "name": "云迹",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "off_board_bonds": [
+        "奇迹"
+      ],
+      "bond_thresholds": {
+        "谢拉格": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "精准": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "奥术": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "灵巧": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": false
+        }
+      }
+    },
+    {
+      "id": "siracusa_anomaly",
+      "name": "叙拉古异常真伤队",
+      "archetype": "combat",
+      "core_bonds": [
+        "叙拉古"
+      ],
+      "splash_bonds": [
+        "精准",
+        "迅捷",
+        "奇迹",
+        "不屈"
+      ],
+      "fantasy": "叙拉古 3→6 异常真伤；精准/不屈溅射，奇迹场下。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "奥斯塔",
+              "tier": 2,
+              "role": "carry",
+              "note": "叙1",
+              "off_board_ok": false
+            },
+            {
+              "name": "忍冬",
+              "tier": 3,
+              "role": "carry",
+              "note": "叙2/迅捷",
+              "off_board_ok": false
+            },
+            {
+              "name": "斥罪",
+              "tier": 4,
+              "role": "tank",
+              "note": "叙3/不屈",
+              "off_board_ok": false
+            },
+            {
+              "name": "砾",
+              "tier": 2,
+              "role": "tank",
+              "note": "不屈",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "叙拉古": 3,
+            "迅捷": 1,
+            "奇迹": 1,
+            "不屈": 2,
+            "卡西米尔": 1
+          },
+          "bond_progress": {
+            "叙拉古": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "叙拉古3/6"
+            },
+            "迅捷": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "迅捷1/2"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "不屈": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈2/3"
+            },
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "奥斯塔",
+              "tier": 2,
+              "role": "carry",
+              "note": "叙",
+              "off_board_ok": false
+            },
+            {
+              "name": "忍冬",
+              "tier": 3,
+              "role": "carry",
+              "note": "叙",
+              "off_board_ok": false
+            },
+            {
+              "name": "斥罪",
+              "tier": 4,
+              "role": "tank",
+              "note": "叙",
+              "off_board_ok": false
+            },
+            {
+              "name": "砾",
+              "tier": 2,
+              "role": "tank",
+              "note": "不屈",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "伺夜",
+              "tier": 3,
+              "role": "carry",
+              "note": "叙/精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "灰喉",
+              "tier": 1,
+              "role": "carry",
+              "note": "精准flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合flex",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "叙拉古": 4,
+            "精准": 2,
+            "迅捷": 1,
+            "奇迹": 1,
+            "不屈": 2,
+            "卡西米尔": 1,
+            "聚合": 1
+          },
+          "bond_progress": {
+            "叙拉古": {
+              "n": 4,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "叙拉古4/6"
+            },
+            "精准": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准2/3"
+            },
+            "迅捷": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "迅捷1/2"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "不屈": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈2/3"
+            },
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "荒芜拉普兰德",
+              "tier": 6,
+              "role": "carry",
+              "note": "叙主C",
+              "off_board_ok": false
+            },
+            {
+              "name": "贝洛内",
+              "tier": 5,
+              "role": "carry",
+              "note": "叙",
+              "off_board_ok": false
+            },
+            {
+              "name": "斥罪",
+              "tier": 4,
+              "role": "tank",
+              "note": "坦",
+              "off_board_ok": false
+            },
+            {
+              "name": "忍冬",
+              "tier": 3,
+              "role": "carry",
+              "note": "迅捷",
+              "off_board_ok": false
+            },
+            {
+              "name": "伺夜",
+              "tier": 3,
+              "role": "carry",
+              "note": "精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "奥斯塔",
+              "tier": 2,
+              "role": "carry",
+              "note": "叙6/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "砾",
+              "tier": 2,
+              "role": "tank",
+              "note": "不屈",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹≤2",
+              "off_board_ok": true
+            }
+          ],
+          "bond_counts": {
+            "叙拉古": 6,
+            "精准": 1,
+            "迅捷": 1,
+            "奇迹": 1,
+            "不屈": 2,
+            "突袭": 1,
+            "卡西米尔": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "叙拉古": {
+              "n": 6,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "叙拉古6/6"
+            },
+            "精准": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准1/3"
+            },
+            "迅捷": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "迅捷1/2"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "不屈": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "不屈2/3"
+            },
+            "突袭": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "突袭1/2"
+            },
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            }
+          }
+        }
+      },
+      "counters": [
+        "stealth",
+        "revival",
+        "refraction"
+      ],
+      "counter_why": "双拉普兰德沉默使隐匿/复苏特殊能力失效；6 人异常真伤和贝洛内穿甲直击折射高抗。",
+      "weak": [
+        "sustained"
+      ],
+      "weak_why": "队里没有专职医疗，持续 DOT/消耗战续航不足，需要外挂聚合奶。",
+      "carry": [
+        "荒芜拉普兰德",
+        "贝洛内",
+        "忍冬",
+        "伺夜"
+      ],
+      "tank": [
+        "斥罪",
+        "砾"
+      ],
+      "heal": [],
+      "key_tips": [
+        "late 叙拉古 6/6 + 砾",
+        "复奏可整备区"
+      ],
+      "reserve_plan": [
+        {
+          "name": "复奏",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        },
+        {
+          "name": "云迹",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "off_board_bonds": [
+        "奇迹"
+      ],
+      "bond_thresholds": {
+        "叙拉古": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "精准": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "迅捷": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "不屈": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        }
+      }
+    },
+    {
+      "id": "leithanien_summon",
+      "name": "莱塔尼亚召唤成长队",
+      "archetype": "growth",
+      "core_bonds": [
+        "莱塔尼亚"
+      ],
+      "splash_bonds": [
+        "奥术",
+        "聚合",
+        "精准",
+        "奇迹"
+      ],
+      "fantasy": "莱塔尼亚 3→6 召唤里程碑；奥术/聚合溅射，奇迹场下。",
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "地灵",
+              "tier": 1,
+              "role": "support",
+              "note": "莱1",
+              "off_board_ok": false
+            },
+            {
+              "name": "折光",
+              "tier": 2,
+              "role": "carry",
+              "note": "莱2",
+              "off_board_ok": false
+            },
+            {
+              "name": "车尔尼",
+              "tier": 3,
+              "role": "tank",
+              "note": "莱3/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "莱塔尼亚": 3,
+            "聚合": 1,
+            "奇迹": 1,
+            "独行": 1,
+            "坚守": 1
+          },
+          "bond_progress": {
+            "莱塔尼亚": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚3/6"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "独行": {
+              "n": 1,
+              "max": 1,
+              "act": 1,
+              "off_board": false,
+              "label": "独行1/1"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "地灵",
+              "tier": 1,
+              "role": "support",
+              "note": "莱",
+              "off_board_ok": false
+            },
+            {
+              "name": "折光",
+              "tier": 2,
+              "role": "carry",
+              "note": "莱",
+              "off_board_ok": false
+            },
+            {
+              "name": "车尔尼",
+              "tier": 3,
+              "role": "tank",
+              "note": "莱",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "黑键",
+              "tier": 4,
+              "role": "carry",
+              "note": "莱/精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "流明",
+              "tier": 4,
+              "role": "heal",
+              "note": "聚合flex",
+              "off_board_ok": false
+            },
+            {
+              "name": "灰喉",
+              "tier": 1,
+              "role": "carry",
+              "note": "精准flex",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "莱塔尼亚": 4,
+            "聚合": 2,
+            "精准": 2,
+            "奇迹": 1,
+            "独行": 1,
+            "坚守": 1,
+            "伊比利亚": 1
+          },
+          "bond_progress": {
+            "莱塔尼亚": {
+              "n": 4,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚4/6"
+            },
+            "聚合": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合2/3"
+            },
+            "精准": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准2/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "独行": {
+              "n": 1,
+              "max": 1,
+              "act": 1,
+              "off_board": false,
+              "label": "独行1/1"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            },
+            "伊比利亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "伊比利亚1/6"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "纯烬艾雅法拉",
+              "tier": 5,
+              "role": "heal",
+              "note": "莱奶核",
+              "off_board_ok": true
+            },
+            {
+              "name": "薇薇安娜",
+              "tier": 5,
+              "role": "carry",
+              "note": "莱枢纽",
+              "off_board_ok": false
+            },
+            {
+              "name": "锏",
+              "tier": 6,
+              "role": "carry",
+              "note": "莱/卡",
+              "off_board_ok": false
+            },
+            {
+              "name": "艾雅法拉",
+              "tier": 4,
+              "role": "carry",
+              "note": "奥术",
+              "off_board_ok": false
+            },
+            {
+              "name": "黑键",
+              "tier": 4,
+              "role": "carry",
+              "note": "精准",
+              "off_board_ok": false
+            },
+            {
+              "name": "车尔尼",
+              "tier": 3,
+              "role": "tank",
+              "note": "莱6/6",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            }
+          ],
+          "bond_counts": {
+            "莱塔尼亚": 6,
+            "奥术": 2,
+            "聚合": 2,
+            "精准": 1,
+            "奇迹": 1,
+            "卡西米尔": 2,
+            "远见": 1,
+            "谢拉格": 1,
+            "坚守": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "莱塔尼亚": {
+              "n": 6,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚6/6"
+            },
+            "奥术": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术2/3"
+            },
+            "聚合": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合2/3"
+            },
+            "精准": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "精准1/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "远见": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "远见1/2"
+            },
+            "卡西米尔": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔2/6"
+            },
+            "谢拉格": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格1/6"
+            },
+            "坚守": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "坚守1/3"
+            }
+          }
+        }
+      },
+      "counters": [
+        "multi_hit"
+      ],
+      "counter_why": "大量召唤物提供高频攻击和阻挡，对频次怪海有数量优势，DOT/连击环境铺场快。",
+      "weak": [
+        "lethal"
+      ],
+      "weak_why": "召唤单位本体偏脆，致命 AOE 爆发会快速清场，需要铁卫和行医保住主体。",
+      "carry": [
+        "薇薇安娜",
+        "锏",
+        "艾雅法拉",
+        "黑键"
+      ],
+      "tank": [
+        "车尔尼"
+      ],
+      "heal": [
+        "纯烬艾雅法拉",
+        "褐果"
+      ],
+      "key_tips": [
+        "late 莱塔尼亚 6/6",
+        "复奏/渡桥整备区"
+      ],
+      "reserve_plan": [
+        {
+          "name": "复奏",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        },
+        {
+          "name": "渡桥",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·远见",
+          "off_board_ok": true
+        }
+      ],
+      "off_board_bonds": [
+        "奇迹"
+      ],
+      "bond_thresholds": {
+        "莱塔尼亚": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "奥术": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "聚合": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "精准": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        }
+      }
+    },
+    {
+      "id": "tiaoe_mowang_flex",
+      "name": "调和魔王万用挂件体系",
+      "archetype": "flex",
+      "core_bonds": [
+        "调和"
+      ],
+      "splash_bonds": [
+        "卡西米尔",
+        "莱塔尼亚",
+        "谢拉格",
+        "奥术",
+        "奇迹",
+        "投资人"
+      ],
+      "fantasy": "调和 1 激活使场上核心盟约激活人数+1。枢纽点亮卡/莱/谢/奥；投资人/奇迹多余件整备区。不为单一种族堆到 6，靠+1 跨激活线。",
+      "special_mechanic": {
+        "linchpin": "魔王(T6 吟游者，不攻击，持续群疗=10%攻击力/秒，微尘群保，技能带真伤+束缚，带 revive/cc/true_damage)",
+        "bond_effect": "调和需 1 人即激活；激活后场上每个核心盟约的激活计数 +1，等价于每套阵容可少上一个凑羁绊的挂件",
+        "hero_gift": "特定英雄开局送 1 个调和“盟约·辅助干员”，等于白嫖一个万用激活位(数据集无此临时单位，运行时由英雄提供)",
+        "combo_rule": "枢纽优先级：锏 > 薇薇安娜 > 凛御银灰/圣聆初雪/复奏；目标同时激活 卡西米尔/莱塔尼亚/谢拉格/奥术/投资人"
+      },
+      "stages": {
+        "early": {
+          "pop": "5",
+          "goal": "过渡：核心约3人激活档 + 1–3 小溅射/场下（小羁绊≤max）。",
+          "units": [
+            {
+              "name": "复奏",
+              "tier": 2,
+              "role": "econ",
+              "note": "莱/奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "野鬃",
+              "tier": 1,
+              "role": "support",
+              "note": "卡西/助力",
+              "off_board_ok": false
+            },
+            {
+              "name": "哈洛德",
+              "tier": 2,
+              "role": "heal",
+              "note": "谢奶",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹≤2",
+              "off_board_ok": true
+            },
+            {
+              "name": "Miss.Christine",
+              "tier": 2,
+              "role": "carry",
+              "note": "奥术",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 5,
+          "bond_counts": {
+            "卡西米尔": 1,
+            "莱塔尼亚": 1,
+            "谢拉格": 1,
+            "奥术": 1,
+            "奇迹": 2,
+            "维多利亚": 2,
+            "叙拉古": 1,
+            "助力": 1
+          },
+          "bond_progress": {
+            "卡西米尔": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔1/6"
+            },
+            "莱塔尼亚": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚1/6"
+            },
+            "谢拉格": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格1/6"
+            },
+            "奥术": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术1/3"
+            },
+            "奇迹": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹2/2"
+            },
+            "叙拉古": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "叙拉古1/6"
+            },
+            "助力": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力1/3"
+            },
+            "维多利亚": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚2/6"
+            }
+          }
+        },
+        "mid": {
+          "pop": "8",
+          "goal": "满编8含early：必须带溅射flex，禁止单羁绊堆满。",
+          "units": [
+            {
+              "name": "复奏",
+              "tier": 2,
+              "role": "econ",
+              "note": "莱/奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "野鬃",
+              "tier": 1,
+              "role": "support",
+              "note": "卡西",
+              "off_board_ok": false
+            },
+            {
+              "name": "哈洛德",
+              "tier": 2,
+              "role": "heal",
+              "note": "谢",
+              "off_board_ok": false
+            },
+            {
+              "name": "星极",
+              "tier": 2,
+              "role": "econ",
+              "note": "奇迹",
+              "off_board_ok": true
+            },
+            {
+              "name": "Miss.Christine",
+              "tier": 2,
+              "role": "carry",
+              "note": "奥术",
+              "off_board_ok": false
+            },
+            {
+              "name": "魔王",
+              "tier": 6,
+              "role": "heal",
+              "note": "调和",
+              "off_board_ok": false
+            },
+            {
+              "name": "锏",
+              "tier": 6,
+              "role": "carry",
+              "note": "三栖",
+              "off_board_ok": false
+            },
+            {
+              "name": "褐果",
+              "tier": 1,
+              "role": "heal",
+              "note": "聚合flex",
+              "off_board_ok": false
+            }
+          ],
+          "plan_fielded": 8,
+          "bond_counts": {
+            "调和": 1,
+            "卡西米尔": 2,
+            "莱塔尼亚": 2,
+            "谢拉格": 2,
+            "奥术": 1,
+            "奇迹": 2,
+            "维多利亚": 2,
+            "叙拉古": 1,
+            "助力": 1,
+            "聚合": 1
+          },
+          "bond_progress": {
+            "调和": {
+              "n": 1,
+              "max": 1,
+              "act": 1,
+              "off_board": false,
+              "label": "调和1/1"
+            },
+            "卡西米尔": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔2/6"
+            },
+            "莱塔尼亚": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚2/6"
+            },
+            "谢拉格": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格2/6"
+            },
+            "奥术": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术1/3"
+            },
+            "奇迹": {
+              "n": 2,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹2/2"
+            },
+            "叙拉古": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "叙拉古1/6"
+            },
+            "助力": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "助力1/3"
+            },
+            "维多利亚": {
+              "n": 2,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "维多利亚2/6"
+            },
+            "聚合": {
+              "n": 1,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "聚合1/3"
+            }
+          }
+        },
+        "late": {
+          "pop": "8",
+          "goal": "满编8：种族≤6；小羁绊人数不超过阈值。",
+          "units": [
+            {
+              "name": "魔王",
+              "tier": 6,
+              "role": "heal",
+              "note": "调和",
+              "off_board_ok": false
+            },
+            {
+              "name": "锏",
+              "tier": 6,
+              "role": "carry",
+              "note": "三栖",
+              "off_board_ok": false
+            },
+            {
+              "name": "薇薇安娜",
+              "tier": 5,
+              "role": "carry",
+              "note": "卡/奥/莱",
+              "off_board_ok": false
+            },
+            {
+              "name": "凛御银灰",
+              "tier": 5,
+              "role": "support",
+              "note": "投资/谢",
+              "off_board_ok": true
+            },
+            {
+              "name": "圣聆初雪",
+              "tier": 5,
+              "role": "carry",
+              "note": "奥/谢",
+              "off_board_ok": false
+            },
+            {
+              "name": "瑕光",
+              "tier": 3,
+              "role": "tank",
+              "note": "卡西坦",
+              "off_board_ok": false
+            },
+            {
+              "name": "山",
+              "tier": 4,
+              "role": "tank",
+              "note": "投资人",
+              "off_board_ok": true
+            },
+            {
+              "name": "复奏",
+              "tier": 2,
+              "role": "econ",
+              "note": "莱/奇迹",
+              "off_board_ok": true
+            }
+          ],
+          "bond_counts": {
+            "调和": 1,
+            "卡西米尔": 3,
+            "莱塔尼亚": 3,
+            "谢拉格": 3,
+            "奥术": 2,
+            "奇迹": 1,
+            "投资人": 2,
+            "灵巧": 1,
+            "突袭": 1,
+            "叙拉古": 1
+          },
+          "plan_fielded": 8,
+          "bond_progress": {
+            "调和": {
+              "n": 1,
+              "max": 1,
+              "act": 1,
+              "off_board": false,
+              "label": "调和1/1"
+            },
+            "卡西米尔": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "卡西米尔3/6"
+            },
+            "莱塔尼亚": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "莱塔尼亚3/6"
+            },
+            "谢拉格": {
+              "n": 3,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "谢拉格3/6"
+            },
+            "奥术": {
+              "n": 2,
+              "max": 3,
+              "act": 2,
+              "off_board": false,
+              "label": "奥术2/3"
+            },
+            "奇迹": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": true,
+              "label": "奇迹1/2"
+            },
+            "投资人": {
+              "n": 2,
+              "max": 3,
+              "act": 3,
+              "off_board": true,
+              "label": "投资人2/3"
+            },
+            "灵巧": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "灵巧1/2"
+            },
+            "突袭": {
+              "n": 1,
+              "max": 2,
+              "act": 2,
+              "off_board": false,
+              "label": "突袭1/2"
+            },
+            "叙拉古": {
+              "n": 1,
+              "max": 6,
+              "act": 3,
+              "off_board": false,
+              "label": "叙拉古1/6"
+            }
+          }
+        }
+      },
+      "counters": [
+        "lethal",
+        "elemental",
+        "sustained"
+      ],
+      "counter_why": "魔王群疗+微尘+复活提供顶级群保，擅长硬抗致命爆发、元素和持续消耗环境，是防守万金油。",
+      "weak": [
+        "special"
+      ],
+      "weak_why": "魔王本身不攻击，体系输出全靠挂件，若缺乏高练主 C 则打不动高面板特异/BOSS。",
+      "carry": [
+        "锏",
+        "薇薇安娜",
+        "圣聆初雪"
+      ],
+      "tank": [
+        "瑕光",
+        "山"
+      ],
+      "heal": [
+        "魔王"
+      ],
+      "key_tips": [
+        "early 复奏+星极场下奇迹",
+        "mid 插入魔王+锏",
+        "投资人 凛御银灰+山上场，锡人可整备区"
+      ],
+      "off_board_bonds": [
+        "奇迹",
+        "投资人"
+      ],
+      "reserve_plan": [
+        {
+          "name": "星极",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        },
+        {
+          "name": "锡人",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·投资人",
+          "off_board_ok": true
+        },
+        {
+          "name": "云迹",
+          "tier": 2,
+          "role": "econ",
+          "note": "整备·奇迹",
+          "off_board_ok": true
+        }
+      ],
+      "bond_thresholds": {
+        "调和": {
+          "activation_need": 1,
+          "display_max": 1,
+          "off_board": false
+        },
+        "卡西米尔": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "莱塔尼亚": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "谢拉格": {
+          "activation_need": 3,
+          "display_max": 6,
+          "off_board": false
+        },
+        "奥术": {
+          "activation_need": 2,
+          "display_max": 3,
+          "off_board": false
+        },
+        "奇迹": {
+          "activation_need": 2,
+          "display_max": 2,
+          "off_board": true
+        },
+        "投资人": {
+          "activation_need": 3,
+          "display_max": 3,
+          "off_board": true
+        }
+      }
+    }
+  ]
+}
