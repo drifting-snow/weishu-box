@@ -627,6 +627,22 @@
     setCollapsed(!!collapsed);
   });
 
+  (function bindNativeChromeDrag() {
+    const bar = $("drag-bar");
+    if (!bar) return;
+    bar.addEventListener("mousedown", (ev) => {
+      if (ev.button !== 0) return;
+      const t = ev.target;
+      if (t && t.closest && t.closest(".bar-actions, button, a, input, select, textarea, label")) {
+        return;
+      }
+      ev.preventDefault();
+      ev.stopPropagation();
+      if (!window.pywebview || !window.pywebview.api || !window.pywebview.api.start_drag) return;
+      window.pywebview.api.start_drag("roster");
+    });
+  })();
+
   $("btn-clear-sel").addEventListener("click", async () => {
     selected = { id: null, stage: "early" };
     if (window.pywebview && window.pywebview.api) {

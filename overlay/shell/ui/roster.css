@@ -33,11 +33,12 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  -webkit-app-region: drag;
+  /* Native caption drag via JS → Win32 (not -webkit-app-region). */
   cursor: move;
+  user-select: none;
 }
-.brand { font-weight: 700; letter-spacing: 0.02em; }
-.bar-actions { -webkit-app-region: no-drag; }
+.brand { font-weight: 700; letter-spacing: 0.02em; pointer-events: none; }
+.bar-actions { cursor: default; }
 button {
   background: var(--chip);
   color: var(--text);

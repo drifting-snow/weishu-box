@@ -29,6 +29,8 @@ SWP_SHOWWINDOW = 0x0040
 SW_HIDE = 0
 SW_SHOWNOACTIVATE = 4
 VK_LBUTTON = 0x01
+WM_NCLBUTTONDOWN = 0x00A1
+HTCAPTION = 2
 
 user32.FindWindowW.argtypes = [wintypes.LPCWSTR, wintypes.LPCWSTR]
 user32.FindWindowW.restype = wintypes.HWND
@@ -46,6 +48,19 @@ user32.IsWindow.argtypes = [wintypes.HWND]
 user32.IsWindow.restype = wintypes.BOOL
 user32.GetAsyncKeyState.argtypes = [ctypes.c_int]
 user32.GetAsyncKeyState.restype = ctypes.c_short
+user32.ReleaseCapture.argtypes = []
+user32.ReleaseCapture.restype = wintypes.BOOL
+user32.SendMessageW.argtypes = [
+    wintypes.HWND,
+    wintypes.UINT,
+    wintypes.WPARAM,
+    wintypes.LPARAM,
+]
+user32.SendMessageW.restype = wintypes.LPARAM
+
+# Hard lock while native caption drag (WM_NCLBUTTONDOWN) owns the move loop.
+# Heartbeat / chrome-guard must not SetWindowPos or toggle WS_EX_* during this.
+_drag_lock = threading.Event()
 
 MOD_ALT = 0x0001
 MOD_CONTROL = 0x0002
@@ -77,15 +92,83 @@ def left_button_down() -> bool:
         return False
 
 
+def drag_in_progress() -> bool:
+    """Native caption drag session or any LMB hold (skip Z-order / style churn)."""
+    return _drag_lock.is_set() or left_button_down()
+
+
+def read_exstyle(hwnd: int) -> int:
+    if not hwnd:
+        return 0
+    try:
+        return int(_GetWindowLong(hwnd, GWL_EXSTYLE) or 0)
+    except Exception:
+        return 0
+
+
+def clear_transparent_bits(hwnd: int) -> int:
+    """Drop WS_EX_TRANSPARENT/NOACTIVATE without SetWindowPos (safe mid-gesture)."""
+    if not hwnd or not user32.IsWindow(hwnd):
+        return 0
+    ex = read_exstyle(hwnd)
+    new_ex = (ex | WS_EX_LAYERED | WS_EX_TOOLWINDOW | WS_EX_TOPMOST) & ~(
+        WS_EX_TRANSPARENT | WS_EX_NOACTIVATE
+    )
+    if new_ex != ex:
+        try:
+            _SetWindowLong(hwnd, GWL_EXSTYLE, new_ex)
+        except Exception:
+            pass
+        ex = read_exstyle(hwnd)
+    return ex
+
+
+def begin_caption_drag(hwnd: int) -> dict:
+    """Native Windows title-bar drag (ReleaseCapture + WM_NCLBUTTONDOWN/HTCAPTION).
+
+    pywebview easy_drag + ``-webkit-app-region: drag`` is unreliable on WebView2
+    WinForms hosts: app-region eats chrome pointer events without a real caption
+    move, and SetWindowPos heartbeats can cancel JS ``pywebviewMoveWindow``.
+    """
+    out: dict = {"ok": False, "hwnd": int(hwnd or 0), "ex_before": 0, "ex_after": 0}
+    if not hwnd or not user32.IsWindow(hwnd):
+        out["error"] = "bad_hwnd"
+        return out
+    out["ex_before"] = read_exstyle(hwnd)
+    _drag_lock.set()
+    try:
+        # Chrome must not be click-through when the gesture starts.
+        out["ex_cleared"] = clear_transparent_bits(hwnd)
+        user32.ReleaseCapture()
+        # Cross-thread SendMessage: UI thread runs DefWindowProc move loop
+        # until LMB up; calling thread blocks for the duration.
+        user32.SendMessageW(
+            wintypes.HWND(hwnd),
+            WM_NCLBUTTONDOWN,
+            HTCAPTION,
+            0,
+        )
+        out["ok"] = True
+    except Exception as e:
+        out["error"] = str(e)
+    finally:
+        out["ex_after"] = read_exstyle(hwnd)
+        _drag_lock.clear()
+    return out
+
+
 def set_topmost(hwnd: int, *, force: bool = False) -> None:
     """Force HWND_TOPMOST + WS_EX_TOPMOST (Hearthstone-box always-on-top).
 
     Routine heartbeats must not call SetWindowPos while the user is dragging:
     after the x64 HWND_TOPMOST fix, SetWindowPos actually succeeds and a 1Hz
-    (or faster) reassert with SWP_NOMOVE cancels pywebview easy_drag / caption
-    moves. Skip while LMB is down unless force=True (explicit style settle).
+    (or faster) reassert with SWP_NOMOVE cancels caption moves. Skip while a
+    drag session / LMB is down unless force=True (explicit style settle).
+    force=True is still refused during an active native caption drag.
     """
     if not hwnd or not user32.IsWindow(hwnd):
+        return
+    if _drag_lock.is_set():
         return
     if not force and left_button_down():
         return
@@ -113,6 +196,8 @@ def set_layered_alpha(hwnd: int, alpha: int) -> None:
     """alpha 0–255."""
     if not hwnd:
         return
+    if _drag_lock.is_set():
+        return
     alpha = max(0, min(255, int(alpha)))
     ex = _GetWindowLong(hwnd, GWL_EXSTYLE)
     _SetWindowLong(hwnd, GWL_EXSTYLE, ex | WS_EX_LAYERED | WS_EX_TOOLWINDOW)
@@ -125,7 +210,7 @@ def set_click_through(hwnd: int, enabled: bool) -> None:
     if not hwnd:
         return
     # Do not toggle WS_EX_TRANSPARENT mid-drag — that drops mouse capture.
-    if left_button_down():
+    if drag_in_progress():
         return
     ex = _GetWindowLong(hwnd, GWL_EXSTYLE)
     ex |= WS_EX_LAYERED | WS_EX_TOOLWINDOW

@@ -1482,6 +1482,38 @@ class Api:
         self._sync_chrome_guard()
         return self._interact
 
+    def start_drag(self, which: str = "panel") -> dict:
+        """Native caption drag for 参谋 / 阵容 title chrome (JS → Win32)."""
+        which_l = (which or "panel").strip().lower()
+        if which_l in ("roster", "lineup", "阵容"):
+            hwnd = self._roster_hwnd()
+            label = "roster"
+        else:
+            self._ensure_hwnd()
+            hwnd = self._hwnd
+            label = "panel"
+        if not hwnd:
+            return {"ok": False, "which": label, "error": "no_hwnd"}
+        # Release click-through on chrome before the gesture; no SetWindowPos.
+        try:
+            w32.clear_transparent_bits(hwnd)
+        except Exception:
+            pass
+        result = w32.begin_caption_drag(int(hwnd))
+        result["which"] = label
+        # Optional console breadcrumb for live diagnosis (ex styles while drag).
+        try:
+            ex_b = int(result.get("ex_before") or 0)
+            ex_a = int(result.get("ex_after") or 0)
+            print(
+                f"[drag] {label} hwnd={hwnd} "
+                f"ex_before=0x{ex_b:x} ex_after=0x{ex_a:x} ok={result.get('ok')}",
+                flush=True,
+            )
+        except Exception:
+            pass
+        return result
+
     def _ensure_hwnd(self) -> None:
         if not self._hwnd:
             hwnd = w32.find_window_by_title(WINDOW_TITLE)
@@ -1494,6 +1526,9 @@ class Api:
 
     def _reassert_topmost(self) -> None:
         """Keep advice + lineup panels above the game (HWND_TOPMOST)."""
+        # Entirely idle during native/LMB drag — even force settle is unsafe.
+        if w32.drag_in_progress():
+            return
         self._ensure_hwnd()
         if self._hwnd:
             try:
@@ -1508,6 +1543,8 @@ class Api:
             pass
 
     def _apply_panel_styles(self) -> None:
+        if w32.drag_in_progress():
+            return
         self._ensure_hwnd()
         if not self._hwnd:
             return
@@ -1535,22 +1572,22 @@ class Api:
             while not self._chrome_stop.is_set():
                 if self._interact:
                     break
+                # Freeze entirely while dragging — no style toggle, no heartbeat.
+                if w32.drag_in_progress():
+                    self._chrome_stop.wait(0.04)
+                    continue
                 self._ensure_hwnd()
                 if self._hwnd:
-                    # Skip style toggles while dragging — SetWindowPos /
-                    # WS_EX_TRANSPARENT mid-capture cancels window moves.
-                    if not w32.left_button_down():
-                        over = w32.cursor_in_window_chrome(self._hwnd, chrome_h=56)
-                        want_through = not over
-                        if want_through != last:
-                            try:
-                                w32.set_click_through(self._hwnd, enabled=want_through)
-                            except Exception:
-                                pass
-                            last = want_through
+                    over = w32.cursor_in_window_chrome(self._hwnd, chrome_h=56)
+                    want_through = not over
+                    if want_through != last:
+                        try:
+                            w32.set_click_through(self._hwnd, enabled=want_through)
+                        except Exception:
+                            pass
+                        last = want_through
                 ticks += 1
-                # Game focus / resize can steal Z-order — refresh ~2Hz,
-                # but never during an active drag (see set_topmost).
+                # Game focus / resize can steal Z-order — refresh ~2Hz.
                 if ticks % 12 == 0:
                     self._reassert_topmost()
                 self._chrome_stop.wait(0.04)
@@ -1573,7 +1610,8 @@ class Api:
         def topmost_heartbeat() -> None:
             while True:
                 try:
-                    self._reassert_topmost()
+                    if not w32.drag_in_progress():
+                        self._reassert_topmost()
                 except Exception:
                     pass
                 threading.Event().wait(1.0)
@@ -1627,7 +1665,9 @@ def main(argv: list[str] | None = None) -> int:
         y=panel_y,
         on_top=True,
         frameless=True,
-        easy_drag=True,
+        # Native caption drag via Api.start_drag — easy_drag JS move fights
+        # WebView2 + TOPMOST heartbeat and is replaced on both panels.
+        easy_drag=False,
         background_color="#0C1016",
         transparent=False,
         resizable=True,
@@ -1642,7 +1682,7 @@ def main(argv: list[str] | None = None) -> int:
         y=roster_y,
         on_top=True,
         frameless=True,
-        easy_drag=True,
+        easy_drag=False,
         background_color="#0C1016",
         transparent=False,
         resizable=True,
