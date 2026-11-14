@@ -635,12 +635,13 @@
     let ox = 0;
     let oy = 0;
     const moveTo = (x, y) => {
-      if (window.pywebview && typeof window.pywebview._jsApiCallback === "function") {
-        window.pywebview._jsApiCallback("pywebviewMoveWindow", [x, y], "move");
-        return;
-      }
+      // Prefer Api.drag_move → HWND SetWindowPos (pywebviewMoveWindow is a no-op here).
       if (window.pywebview && window.pywebview.api && window.pywebview.api.drag_move) {
         window.pywebview.api.drag_move("roster", x, y);
+        return;
+      }
+      if (window.pywebview && typeof window.pywebview._jsApiCallback === "function") {
+        window.pywebview._jsApiCallback("pywebviewMoveWindow", [x, y], "move");
       }
     };
     const onMove = (ev) => {
