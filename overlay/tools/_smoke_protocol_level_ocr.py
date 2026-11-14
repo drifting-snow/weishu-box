@@ -2,6 +2,7 @@
 """Smoke: OCR difficulty-select 规程等级 from ref shot."""
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -9,7 +10,7 @@ from PIL import Image, ImageOps
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-ADVISOR = ROOT.parent / "weishu-advisor"
+ADVISOR = Path(os.environ.get("WEISHU_KERNEL_PATH", str(ROOT.parent / "advisor")))
 sys.path.insert(0, str(ADVISOR))
 sys.path.insert(0, str(ROOT / "shell"))
 

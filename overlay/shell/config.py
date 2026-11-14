@@ -39,6 +39,13 @@ def load_config() -> dict:
         with open(path, encoding="utf-8-sig") as f:
             user = json.load(f)
         _deep_update(cfg, user)
+    # Resolve relative kernel paths against overlay root (config.json often
+    # uses "../advisor" for monorepo layout).
+    for key in ("kernel_path", "kernel_python"):
+        raw = Path(str(cfg.get(key) or ""))
+        if not raw.is_absolute():
+            raw = (ROOT / raw).resolve()
+            cfg[key] = str(raw)
     # Fall back if venv python missing
     kpy = Path(cfg["kernel_python"])
     if not kpy.is_file():

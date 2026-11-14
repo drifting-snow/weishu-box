@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ADVISOR = ROOT.parent / "weishu-advisor"
+ADVISOR = Path(os.environ.get("WEISHU_KERNEL_PATH", str(ROOT.parent / "advisor")))
 sys.path.insert(0, str(ADVISOR))
 sys.path.insert(0, str(ROOT / "shell"))
 
