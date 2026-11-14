@@ -1509,18 +1509,24 @@ class Api:
         return result
 
     def drag_move(self, which: str, x: int, y: int) -> dict:
-        """Follow mouse during title-bar drag (logical screen coords → Window.move)."""
+        """Follow mouse during title-bar drag (screen coords → SetWindowPos / Window.move).
+
+        Prefer raw HWND SetWindowPos: pywebview ``Window.move`` touches WinForms
+        state and can fail or stall when invoked from the JS-API worker thread.
+        """
         label, hwnd, win = self._drag_target(which)
+        xi, yi = int(x), int(y)
+        if hwnd:
+            ok = w32.move_window_pos(int(hwnd), xi, yi)
+            if ok:
+                return {"ok": True, "which": label, "x": xi, "y": yi, "via": "hwnd"}
         if win is not None:
             try:
-                win.move(int(x), int(y))
-                return {"ok": True, "which": label, "x": int(x), "y": int(y)}
+                win.move(xi, yi)
+                return {"ok": True, "which": label, "x": xi, "y": yi, "via": "webview"}
             except Exception as e:
                 return {"ok": False, "which": label, "error": str(e)}
-        if not hwnd:
-            return {"ok": False, "which": label, "error": "no_hwnd"}
-        ok = w32.move_window_pos(int(hwnd), int(x), int(y))
-        return {"ok": bool(ok), "which": label, "x": int(x), "y": int(y)}
+        return {"ok": False, "which": label, "error": "no_hwnd"}
 
     def end_drag(self, which: str = "panel") -> dict:
         """Mouseup — release drag lock so TOPMOST heartbeat may resume."""
