@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Minimal self-play / hillclimb scaffold for advisor param search.
 
-Uses ASSUMED shop_odds (+ item_mix), ASSUMED gold_income min(3+r,12),
-freeze carry, mode_stats blockCnt, and P3 fixed-seed eval cards + robust
-fitness (round / leak / gold waste / variance). Not a full client sim.
+Uses ASSUMED shop_odds (+ item_mix + merge_reward), ASSUMED gold income,
+freeze carry, mode_stats blockCnt, ε-greedy action sampling, placement
+heuristic, and P3 fixed-seed eval cards + robust fitness. Not a full client.
 """
 from .episode import run_episode
 from .eval_harness import evaluate_on_cards, list_cards

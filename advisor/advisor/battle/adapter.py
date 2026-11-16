@@ -338,11 +338,25 @@ def board_to_allies(st, ds, metrics, needs_review: List[str]) -> List[Unit]:
     return allies
 
 
+def placement_sort_key_melee(unit: Unit):
+    """Front-first heuristic: higher blockCnt, then higher atk."""
+    return (-int(unit.base.block_cnt or 0), -float(unit.base.atk or 0.0), unit.name)
+
+
+def placement_sort_key_ranged(unit: Unit):
+    """Closer-to-front first: shorter range_radius, then higher atk."""
+    return (float(unit.base.range_radius or 0.0), -float(unit.base.atk or 0.0), unit.name)
+
+
 def _deploy_allies(battle: Battle, allies: List[Unit]):
-    """Place blockers on the lane front and ranged units behind them."""
-    melee = [u for u in allies if u.ground]
-    ranged = [u for u in allies if not u.ground]
-    # Stack melee blockers along the lane row, distinct tiles so occupancy holds.
+    """Place allies on a single lane with a simple front/back heuristic.
+
+    Enemies approach from low-x (red gate); lower col is more forward.
+    Melee: high ``blockCnt`` toward the front (MELEE_COL, MELEE_COL+1, …).
+    Ranged: shorter reach closer to melee line; longer reach further back.
+    """
+    melee = sorted([u for u in allies if u.ground], key=placement_sort_key_melee)
+    ranged = sorted([u for u in allies if not u.ground], key=placement_sort_key_ranged)
     for i, u in enumerate(melee):
         battle.add_ally(u, LANE_ROW, MELEE_COL + i)
     for i, u in enumerate(ranged):
@@ -383,6 +397,9 @@ def build_battle(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None
             "constant used" % (mm, MOVE_SCALE))
     approximations.append("routes folded to a single lane (per-route distance "
                           "ignored)")
+    approximations.append(
+        "placement heuristic: melee sorted by blockCnt/atk toward front; "
+        "ranged by shorter range closer to melee (not player layouts)")
     approximations.append("attack range uses real operator_ranges grids, "
                           "facing mirrored toward the red gate (orientation "
                           "pending in-game verification)")

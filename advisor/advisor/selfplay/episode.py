@@ -20,7 +20,16 @@ from advisor.engine import Advisor
 from advisor.model import BoardUnit, GameState
 
 from . import income as income_mod
-from .shop_roll import odds_disclaimer, roll_shop
+from .shop_roll import (
+    merge_reward_config,
+    odds_disclaimer,
+    roll_merge_reward,
+    roll_shop,
+)
+
+# Default ε for action sampling among top recommendations (P4).
+DEFAULT_ACTION_EPSILON = 0.15
+DEFAULT_ACTION_TOP_K = 4
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__)))), "data")
@@ -63,16 +72,65 @@ def _enemy_picture(level: dict, catalog, name_index) -> Dict[str, Any]:
     }
 
 
-def _board_add(board: List[BoardUnit], name: str, tier: int, bonds: List[str]) -> None:
+def _board_add(board: List[BoardUnit], name: str, tier: int, bonds: List[str]) -> bool:
+    """Add a copy; return True if this call promoted the unit to elite."""
     for u in board:
         if u.name == name:
             u.count = int(u.count) + 1
             if u.count >= 3 and not u.elite:
                 u.count = 1
                 u.elite = True
-            return
+                return True
+            return False
     board.append(BoardUnit(name=name, count=1, tier=tier, bonds=list(bonds or []),
                            elite=False))
+    return False
+
+
+def _promote_elite(board: List[BoardUnit], name: str) -> bool:
+    """Force elite promotion for merge-ready units; return True if promoted."""
+    for u in board:
+        if u.name == name and (not u.elite) and int(u.count) >= 3:
+            u.count = 1
+            u.elite = True
+            return True
+    return False
+
+
+def _ordered_picks(
+    rec: dict,
+    rng: random.Random,
+    *,
+    epsilon: float = DEFAULT_ACTION_EPSILON,
+    top_k: int = DEFAULT_ACTION_TOP_K,
+) -> List[dict]:
+    """ε-greedy reorder: with prob ε, sample one of top-k by score to try first."""
+    picks = list(rec.get("recommendations") or [])
+    if rec.get("top_pick"):
+        picks = [rec["top_pick"]] + [p for p in picks if p is not rec.get("top_pick")]
+    # Dedup by (verb, target) while preserving order.
+    seen = set()
+    uniq = []
+    for p in picks:
+        key = (p.get("verb"), p.get("target"))
+        if key in seen:
+            continue
+        seen.add(key)
+        uniq.append(p)
+    picks = uniq
+    if len(picks) <= 1 or float(epsilon) <= 0 or rng.random() >= float(epsilon):
+        return picks
+    k = max(1, min(int(top_k), len(picks)))
+    head = picks[:k]
+    weights = []
+    for p in head:
+        try:
+            w = float(p.get("score") or 0.0)
+        except (TypeError, ValueError):
+            w = 0.0
+        weights.append(max(w, 0.05))
+    chosen = rng.choices(head, weights=weights, k=1)[0]
+    return [chosen] + [p for p in picks if p is not chosen]
 
 
 def _remove_shop_card(st: GameState, name: str, kind: Optional[str] = None) -> None:
@@ -164,32 +222,57 @@ def _rest_start_shop(
     return meta
 
 
-def _apply_top(ds: Dataset, st: GameState, rec: dict, rng: random.Random,
-               season: str) -> str:
-    """Apply one affordable recommendation; return verb or 'noop'."""
-    picks = list(rec.get("recommendations") or [])
-    if rec.get("top_pick"):
-        picks = [rec["top_pick"]] + [p for p in picks if p is not rec.get("top_pick")]
+def _grant_merge_reward(
+    ds: Dataset,
+    st: GameState,
+    rng: random.Random,
+    season: str,
+    ctx: Dict[str, Any],
+) -> None:
+    """ASSUMED: replace shop with 晋级 3-pick-1 and grant free buys."""
+    cfg = merge_reward_config()
+    st.shop = roll_merge_reward(
+        ds, st.dispatch_level, season=season, rng=rng)
+    ctx["free_buys"] = int(cfg.get("free_buys") or 1)
+    ctx["merge_rewards"] = int(ctx.get("merge_rewards") or 0) + 1
+    ctx["merge_reward_active"] = True
+
+
+def _apply_top(
+    ds: Dataset,
+    st: GameState,
+    rec: dict,
+    rng: random.Random,
+    season: str,
+    *,
+    ctx: Optional[Dict[str, Any]] = None,
+    epsilon: float = DEFAULT_ACTION_EPSILON,
+    top_k: int = DEFAULT_ACTION_TOP_K,
+) -> str:
+    """Apply one sampled/affordable recommendation; return verb or 'noop'."""
+    ctx = ctx if ctx is not None else {}
+    ctx.setdefault("free_buys", 0)
+    picks = _ordered_picks(rec, rng, epsilon=epsilon, top_k=top_k)
     for action in picks:
         verb = str(action.get("verb") or "")
         cost = int(action.get("cost") or 0)
         if verb == "buy":
-            if cost > st.gold:
-                continue
             name = action.get("target")
             card = next((c for c in st.shop if c.name == name), None)
             kind = (card.kind if card else None) or "operator"
+            free = int(ctx.get("free_buys") or 0) > 0
 
             if kind == "item" or (card is None and ds.item(name) and not ds.operator(name)):
                 it = ds.item(name)
                 if not it:
                     continue
-                # Prefer shop card price; fall back to catalog.
                 try:
                     price = int(card.price) if card and card.price is not None \
                         else int(it.get("price") or cost or 0)
                 except (TypeError, ValueError):
                     price = int(cost or 0)
+                if free:
+                    price = 0
                 if price > st.gold:
                     continue
                 if not st.board:
@@ -198,22 +281,32 @@ def _apply_top(ds: Dataset, st: GameState, rec: dict, rng: random.Random,
                 if not _equip_item(ds, st, name):
                     st.gold += price
                     continue
+                if free:
+                    ctx["free_buys"] = int(ctx["free_buys"]) - 1
                 _remove_shop_card(st, name, kind="item")
                 return "buy_item"
 
             op = ds.operator(name)
             if not op:
                 continue
-            # Board cap: sell one copy of a different unit if at max_hand.
+            pay = 0 if free else cost
+            if pay > st.gold:
+                continue
             if (name not in {u.name for u in st.board}
                     and len(st.board) >= _max_hand(ds)):
                 victim = st.board[-1].name
                 if victim == name or not _sell_operator(ds, st, victim):
                     continue
-            st.gold -= cost
-            _board_add(st.board, name, int(op.get("shop_tier") or 1),
-                       list(op.get("bonds") or []))
+            st.gold -= pay
+            if free:
+                ctx["free_buys"] = int(ctx["free_buys"]) - 1
+            promoted = _board_add(
+                st.board, name, int(op.get("shop_tier") or 1),
+                list(op.get("bonds") or []))
             _remove_shop_card(st, name, kind="operator")
+            if promoted:
+                _grant_merge_reward(ds, st, rng, season, ctx)
+                return "buy_merge_reward"
             return "buy"
 
         if verb == "sell":
@@ -226,10 +319,11 @@ def _apply_top(ds: Dataset, st: GameState, rec: dict, rng: random.Random,
             if cost > st.gold:
                 continue
             st.gold -= cost
-            # Wiki: refresh while frozen re-rolls including locked slots.
             st.shop = roll_shop(ds, st.dispatch_level, st.difficulty,
                                 season=season, rng=rng)
             st.frozen = False
+            ctx["free_buys"] = 0
+            ctx["merge_reward_active"] = False
             return "refresh"
 
         if verb == "upgrade":
@@ -240,10 +334,13 @@ def _apply_top(ds: Dataset, st: GameState, rec: dict, rng: random.Random,
             return "upgrade"
 
         if verb == "merge":
+            name = action.get("target")
+            if name and _promote_elite(st.board, name):
+                _grant_merge_reward(ds, st, rng, season, ctx)
+                return "merge_reward"
             return "merge"
 
         if verb == "freeze":
-            # Persist shop into next rest; not a no-op.
             st.frozen = True
             return "freeze"
 
@@ -263,6 +360,8 @@ def run_episode(
     income_flat: Optional[int] = None,
     income_table=None,
     use_battle: bool = True,
+    action_epsilon: float = DEFAULT_ACTION_EPSILON,
+    action_top_k: int = DEFAULT_ACTION_TOP_K,
 ) -> Dict[str, Any]:
     """Play until a wave fails or ``max_rounds`` cleared.
 
@@ -290,6 +389,11 @@ def run_episode(
     )
     log: List[dict] = []
     cleared = 0
+    act_ctx: Dict[str, Any] = {
+        "free_buys": 0,
+        "merge_rewards": 0,
+        "merge_reward_active": False,
+    }
 
     for round_no in range(1, max_rounds + 1):
         meta = _level_for_round(waves, mode, round_no)
@@ -305,17 +409,23 @@ def run_episode(
         st.enemy_names = picture["enemy_names"]
         st.enemy_types = picture["enemy_types"]
         shop_meta = _rest_start_shop(ds, st, season=season, rng=rng)
+        act_ctx["free_buys"] = 0
+        act_ctx["merge_reward_active"] = False
 
         actions = []
         for _ in range(actions_per_round):
             if not st.board and st.gold <= 0 and not st.shop:
                 break
             rec = adv.recommend(st)
-            verb = _apply_top(ds, st, rec, rng, season)
+            verb = _apply_top(
+                ds, st, rec, rng, season, ctx=act_ctx,
+                epsilon=action_epsilon, top_k=action_top_k)
             actions.append(verb)
             if verb in ("noop", "freeze", "skip"):
                 break
-            if st.gold <= 0 and verb not in ("merge", "sell"):
+            if (st.gold <= 0 and int(act_ctx.get("free_buys") or 0) <= 0
+                    and verb not in ("merge", "merge_reward", "sell",
+                                     "buy_merge_reward")):
                 break
 
         if not st.board:
@@ -377,6 +487,7 @@ def run_episode(
             "level_stem": meta["stem"],
             "frozen_end": st.frozen,
             "shop_kinds": [c.kind for c in st.shop],
+            "merge_rewards_so_far": int(act_ctx.get("merge_rewards") or 0),
             **shop_meta,
             **detail,
         })
@@ -395,5 +506,7 @@ def run_episode(
         "income_note": income_mod.ASSUMED_INCOME_NOTE,
         "income_disclaimer": income_mod.income_disclaimer(),
         "shop_odds": odds_disclaimer(),
+        "action_epsilon": float(action_epsilon),
+        "merge_rewards": int(act_ctx.get("merge_rewards") or 0),
         "log": log,
     }
