@@ -104,6 +104,29 @@ class BuildBattleTest(unittest.TestCase):
         self.assertEqual(getattr(by_name[CASTER], "damage_family"), kd.ARTS_T)
         self.assertEqual(getattr(by_name[GUARD], "damage_family"), kd.PHYS)
 
+    def test_block_cnt_from_mode_stats_not_profession_default(self):
+        # 幽灵鲨: mode_stats initial blockCnt=2 (profession 近卫 default was 1).
+        name = "幽灵鲨"
+        self.assertIn(name, METRICS)
+        st = GameState(round=1, regulation_level=1,
+                       board=[BoardUnit(name=name, elite=False)])
+        assembled = adapter.build_battle(st, DS, PROFILES, METRICS, DOC)
+        self.assertIsNotNone(assembled)
+        ally = assembled["battle"].allies[0]
+        self.assertEqual(ally.base.block_cnt, 2)
+        self.assertEqual(
+            adapter.block_cnt_for(name, elite=False, prof="近卫", is_ranged=False),
+            2)
+        self.assertEqual(
+            adapter.block_cnt_for(name, elite=True, prof="近卫", is_ranged=False),
+            3)
+        # Ranged still 0 even if panel lists blockCnt.
+        self.assertEqual(
+            adapter.block_cnt_for("卡达", elite=False, prof="术师", is_ranged=True),
+            0)
+        self.assertTrue(any("blockCnt" in a or "mode_stats" in a
+                            for a in assembled["approximations"]))
+
 
 class BuffApplicationTest(unittest.TestCase):
     def test_equipment_raises_ally_attack(self):

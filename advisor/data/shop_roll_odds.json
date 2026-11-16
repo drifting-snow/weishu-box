@@ -57,5 +57,12 @@
       }
     }
   },
-  "default_season": "guicheng"
+  "default_season": "guicheng",
+  "item_mix": {
+    "assumed": true,
+    "official": false,
+    "per_slot_item_rate": 0.25,
+    "within_item_model": "uniform_all_items",
+    "note": "Official item appearance rates unpublished. Self-play ASSUMED: each shop slot independently becomes an item with this rate, then uniform over data/items.json. Do not treat as Hypergryph odds."
+  }
 }
