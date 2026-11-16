@@ -203,6 +203,44 @@ class ParamsAndHillclimbSmokeTest(unittest.TestCase):
         apply_params(prev)
         self.assertEqual(economy.INVEST_WEIGHT["free_refresh"], before)
 
+    def test_p6_knob_surface_covers_families(self):
+        from advisor.selfplay.params import PARAMS, clamp_pair, snapshot_params
+        keys = {p.key for p in PARAMS}
+        # P6 expanded families (beyond baseline effdps.full-only nudge).
+        for prefix in (
+            "invest.", "gap.", "refresh.", "effdps.", "margin.",
+            "compass.", "item.", "star.",
+        ):
+            self.assertTrue(any(k.startswith(prefix) for k in keys), prefix)
+        self.assertGreaterEqual(len(PARAMS), 25)
+        snap = snapshot_params()
+        self.assertEqual(len(snap), len(PARAMS))
+        # Nested dict knobs + refresh hunt constant apply/restore.
+        from advisor import clear_margin, economy, engine
+        before_sell = economy.INVEST_WEIGHT["special_sell_price"]
+        before_hunt = engine.REFRESH_HUNT_PER_TIER
+        before_tight = clear_margin.DAMAGE_BONUS["tight"]
+        prev = apply_params({
+            "invest.special_sell_price": before_sell + 1,
+            "refresh.hunt_per_tier": before_hunt + 0.5,
+            "margin.dmg_tight": before_tight + 1,
+        })
+        self.assertEqual(economy.INVEST_WEIGHT["special_sell_price"], before_sell + 1)
+        self.assertAlmostEqual(engine.REFRESH_HUNT_PER_TIER, before_hunt + 0.5)
+        self.assertEqual(clear_margin.DAMAGE_BONUS["tight"], before_tight + 1)
+        apply_params(prev)
+        self.assertEqual(economy.INVEST_WEIGHT["special_sell_price"], before_sell)
+        self.assertAlmostEqual(engine.REFRESH_HUNT_PER_TIER, before_hunt)
+        self.assertEqual(clear_margin.DAMAGE_BONUS["tight"], before_tight)
+        clamped = clamp_pair({
+            "refresh.soft_ceiling": 80, "refresh.critical_floor": 70,
+            "margin.critical_at": 1.5, "margin.comfortable_at": 1.2,
+            "margin.dmg_critical": 8, "margin.dmg_tight": 12,
+        })
+        self.assertLess(clamped["refresh.soft_ceiling"], clamped["refresh.critical_floor"])
+        self.assertLess(clamped["margin.critical_at"], clamped["margin.comfortable_at"])
+        self.assertLessEqual(clamped["margin.dmg_tight"], clamped["margin.dmg_critical"])
+
     def test_hillclimb_step_runs(self):
         # Short seed sweep (suite=None): 1 episode × 2 rounds × base+cand
         out = hillclimb_step(
@@ -214,6 +252,16 @@ class ParamsAndHillclimbSmokeTest(unittest.TestCase):
         self.assertIn("improved", out)
         self.assertIn("mean_max_round", out["base"])
         self.assertIn("fitness", out["base"])
+
+    def test_hillclimb_can_nudge_refresh_hunt(self):
+        out = hillclimb_step(
+            episodes=1, seed0=3, max_rounds=2,
+            param_key="refresh.hunt_per_tier",
+            suite=None,
+        )
+        self.assertEqual(out["param"], "refresh.hunt_per_tier")
+        self.assertIn("fitness", out["base"])
+
 
 
 class P4ActionsPlacementTest(unittest.TestCase):
@@ -308,6 +356,43 @@ class ObjectiveAndEvalHarnessTest(unittest.TestCase):
         })
         self.assertGreater(clean["fitness"], leaky["fitness"])
         self.assertEqual(clean["max_round_cleared"], 2)
+
+    def test_score_episode_penalizes_overflow_and_clear_miss(self):
+        from advisor.selfplay.objective import score_episode
+        clean = score_episode({
+            "max_round_cleared": 1,
+            "log": [{
+                "ok": True, "leaked": 0, "gold_end": 0,
+                "clear_frac": 1.0, "max_overflow_s": 0.0,
+            }],
+        })
+        pressured = score_episode({
+            "max_round_cleared": 1,
+            "log": [{
+                "ok": True, "leaked": 0, "gold_end": 0,
+                "clear_frac": 0.5, "max_overflow_s": 2.0,
+            }],
+        })
+        self.assertGreater(clean["fitness"], pressured["fitness"])
+        self.assertGreater(pressured["overflow_s"], 0)
+        self.assertGreater(pressured["clear_miss"], 0)
+        self.assertIn("overflow", pressured["weights"])
+        self.assertIn("clear_miss", pressured["weights"])
+        # Also accept signals nested under battle_sim.result.pressure.
+        nested = score_episode({
+            "max_round_cleared": 0,
+            "log": [{
+                "ok": False,
+                "battle_sim": {
+                    "result": {
+                        "killed": 2, "leaked": 2, "total": 4,
+                        "pressure": {"front": {"overflow_seconds": 1.5}},
+                    }
+                },
+            }],
+        })
+        self.assertAlmostEqual(nested["overflow_s"], 1.5)
+        self.assertAlmostEqual(nested["clear_miss"], 0.5)
 
     def test_eval_cards_suite_smoke_runs(self):
         from advisor.selfplay.eval_harness import evaluate_on_cards, list_cards

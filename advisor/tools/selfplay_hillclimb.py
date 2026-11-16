@@ -54,9 +54,12 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
 
     if args.cmd == "list-params":
-        from advisor.selfplay.params import list_params
+        from advisor.selfplay.params import list_params, param_catalog
+        catalog = {row["key"]: row for row in param_catalog()}
         for key, note, lo, hi, step in list_params():
-            print("%s\t[%s,%s] step=%s\t%s" % (key, lo, hi, step, note))
+            default = catalog.get(key, {}).get("default")
+            print("%s\t[%s,%s] step=%s\tdefault=%s\t%s" % (
+                key, lo, hi, step, default, note))
         return 0
 
     if args.cmd == "list-cards":

@@ -61,6 +61,12 @@ EFFDPS_FULL = 18.0
 # 2→3 merge (+100) and merge-ready callout (120) remain untouched / dominant.
 REFRESH_SOFT_CEILING = 58.0
 REFRESH_CRITICAL_FLOOR = 70.0
+# Hunt / spare-gold levers inside ``_score_refresh`` (hillclimb P6 knobs).
+REFRESH_HUNT_PER_TIER = 8.0
+REFRESH_SPARE_RICH_BONUS = 10.0   # spare gold >= 8
+REFRESH_SPARE_OK_BONUS = 5.0      # spare gold >= 4
+REFRESH_SPARE_TIGHT_PENALTY = 8.0  # spare gold <= 1
+
 
 
 class Advisor:
@@ -489,7 +495,7 @@ class Advisor:
 
         # Expected unlocked tier quality (1..6); higher levels hunt better cards.
         ev_tier = sum(int(t) * float(p) for t, p in probs.items())
-        hunt = ev_tier * 8.0 * (0.55 + 0.12 * n_slots)
+        hunt = ev_tier * float(REFRESH_HUNT_PER_TIER) * (0.55 + 0.12 * n_slots)
 
         if best_buy_score is None or best_buy_score < 20:
             base = 32.0
@@ -504,13 +510,13 @@ class Advisor:
         score = base + hunt
         spare = st.gold - cost
         if spare >= 8:
-            score += 10.0
+            score += float(REFRESH_SPARE_RICH_BONUS)
             gold_note = "余钱滚店"
         elif spare >= 4:
-            score += 5.0
+            score += float(REFRESH_SPARE_OK_BONUS)
             gold_note = "资金尚可刷新"
         elif spare <= 1:
-            score -= 8.0
+            score -= float(REFRESH_SPARE_TIGHT_PENALTY)
             gold_note = "资金紧·慎刷/留金"
         else:
             gold_note = "刷新找高价值牌"
