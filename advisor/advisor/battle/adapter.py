@@ -192,9 +192,16 @@ def _enemy_skill_index() -> dict:
     return _enemy_skill_cache
 
 
-def _hp_multiplier(st) -> float:
+def _hp_multiplier(st, enemy_hp_scale: float = 1.0) -> float:
     level = getattr(st, "regulation_level", None)
-    return rhp.regulation_hp_multiplier(level) if isinstance(level, int) else 1.0
+    base = rhp.regulation_hp_multiplier(level) if isinstance(level, int) else 1.0
+    try:
+        scale = float(enemy_hp_scale)
+    except (TypeError, ValueError):
+        scale = 1.0
+    if scale <= 0:
+        scale = 1.0
+    return base * scale
 
 
 def spawns_to_specs(level: dict) -> List[SpawnSpec]:
@@ -363,8 +370,13 @@ def _deploy_allies(battle: Battle, allies: List[Unit]):
         battle.add_ally(u, LANE_ROW, max(1, RANGED_COL - i))
 
 
-def build_battle(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None):
-    """Assemble a ready-to-run Battle from a GameState, or None if unresolved."""
+def build_battle(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None,
+                 enemy_hp_scale: float = 1.0):
+    """Assemble a ready-to-run Battle from a GameState, or None if unresolved.
+
+    ``enemy_hp_scale`` multiplies regulation HP (default 1.0). Smoke/self-play
+    cards may pass <1 (e.g. quick-sim 0.8) for gradient reach — not realism.
+    """
     from .. import effdps
     if not st.board:
         return None
@@ -386,7 +398,11 @@ def build_battle(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None
 
     needs_review: List[str] = []
     approximations: List[str] = []
-    hp_mult = _hp_multiplier(st)
+    hp_mult = _hp_multiplier(st, enemy_hp_scale=enemy_hp_scale)
+    if abs(float(enemy_hp_scale) - 1.0) > 1e-9:
+        approximations.append(
+            "enemy_hp_scale=%.3f applied on top of regulation HP "
+            "(self-play / smoke stub soften)" % float(enemy_hp_scale))
 
     # Guard the single movement constant against drifting between the two
     # modules: every observed level currently uses moveMultiplier == MOVE_SCALE.
@@ -449,12 +465,13 @@ def build_battle(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None
 
 
 def simulate(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None,
-             max_seconds: float = 3600.0):
+             max_seconds: float = 3600.0, enemy_hp_scale: float = 1.0):
     """Run the discrete simulation and return a battle_sim record.
 
     Consumed by clear_margin.apply_reservoir_pressure (蓄水池 → effective margin).
     """
-    assembled = build_battle(st, ds, profiles, metrics, doc)
+    assembled = build_battle(
+        st, ds, profiles, metrics, doc, enemy_hp_scale=enemy_hp_scale)
     if assembled is None:
         return None
     battle = assembled.pop("battle")
@@ -468,6 +485,7 @@ def simulate(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None,
         "mode": assembled["mode"],
         "level_stem": assembled["stem"],
         "hp_multiplier": assembled["hp_multiplier"],
+        "enemy_hp_scale": float(enemy_hp_scale),
         "result": result,
         "allies": ally_accounting,
         "skill_cycles": battle.skill_driver.snapshot(),

@@ -4,8 +4,9 @@
 Uses ASSUMED shop_odds (+ confirmed dedicated item slot / ASSUMED which-item,
 structure-confirmed merge_reward), ASSUMED gold income, freeze carry,
 mode_stats blockCnt, ε-greedy action sampling, placement heuristic, P3
-fixed-seed eval cards + robust fitness, and P6 expanded knobs / reservoir
-pressure terms. Not a full client.
+fixed-seed eval cards + robust fitness, P6 expanded knobs / reservoir
+pressure terms, and P7 intermediate-signal weights + smoke enemy_hp_scale
+for hillclimb gradient. Not a full client.
 """
 from .episode import run_episode
 from .eval_harness import evaluate_on_cards, list_cards

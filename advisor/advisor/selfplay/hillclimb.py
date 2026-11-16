@@ -134,9 +134,9 @@ def hillclimb_step(
         "kept": kept,
         "suite": suite,
         "note": (
-            "ASSUMED shop_odds/income/item_mix; fitness uses round/leak/"
-            "gold_waste/overflow/clear_miss + variance penalty; "
-            "P6 expanded knobs; not a full client sim"
+            "ASSUMED shop_odds/income/item_mix; fitness uses round/clear_frac/"
+            "margin/leak/gold_waste/overflow/clear_miss + variance penalty; "
+            "P6 knobs + P7 gradient signals; not a full client sim"
         ),
     }
 
@@ -318,7 +318,7 @@ def hillclimb_round(
             None if fit_before is None or (fit_after is None and fit_current is None)
             else round((fit_after if fit_after is not None else fit_current) - fit_before, 6)
         ),
-        "ref_smoke_fitness": -1.973,
+        "ref_smoke_fitness_p6": -1.973,
         "defaults": defaults,
         "best_knobs": best,
         "knobs_delta": knobs_delta,
