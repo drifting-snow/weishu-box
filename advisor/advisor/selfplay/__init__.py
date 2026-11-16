@@ -4,12 +4,13 @@
 Uses ASSUMED shop_odds (+ confirmed dedicated item slot / ASSUMED which-item,
 structure-confirmed merge_reward), ASSUMED gold income, freeze carry,
 mode_stats blockCnt, ε-greedy action sampling, placement heuristic, P3
-fixed-seed eval cards + robust fitness, and P6 expanded knobs / reservoir
-pressure terms. Not a full client.
+fixed-seed eval cards + robust fitness, P6 expanded knobs / reservoir
+pressure terms, and P7 intermediate-signal weights + smoke enemy_hp_scale
+for hillclimb gradient. Not a full client.
 """
 from .episode import run_episode
 from .eval_harness import evaluate_on_cards, list_cards
-from .hillclimb import hillclimb_step
+from .hillclimb import hillclimb_round, hillclimb_step
 from .objective import score_episode
 from .params import PARAMS, apply_params, list_params, snapshot_params
 
@@ -20,6 +21,7 @@ __all__ = [
     "snapshot_params",
     "run_episode",
     "hillclimb_step",
+    "hillclimb_round",
     "score_episode",
     "evaluate_on_cards",
     "list_cards",

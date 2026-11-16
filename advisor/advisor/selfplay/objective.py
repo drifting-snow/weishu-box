@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Robust episode / suite fitness for self-play hillclimb (P3 + P6 pressure).
+"""Robust episode / suite fitness for self-play hillclimb (P3 + P6 + P7).
 
-Not only ``max_round_cleared``: penalize leaks, unused rest gold, reservoir
-overflow / incomplete clear, and cross-episode/card variance so noisy
-single-wave wins don't dominate.
+Not only ``max_round_cleared``: reward intermediate clear progress and paper
+margin proxies, and penalize leaks, unused rest gold, reservoir overflow /
+incomplete clear, and cross-episode/card variance so noisy single-wave wins
+don't dominate.
+
+P7 (gradient fix): when most smoke cards wipe early, ``cleared`` alone is
+flat. Weight already-logged ``clear_frac`` / ``clear_miss`` / overflow /
+gold_waste / margin so knob changes move fitness even if max_round stays 0–2.
 """
 from __future__ import annotations
 
@@ -16,11 +21,21 @@ from typing import Any, Dict, Iterable, Mapping, Optional, Sequence
 ROUND_WEIGHT = 10.0
 LEAK_WEIGHT = 0.5
 FAIL_LEAK_WEIGHT = 1.0
-GOLD_WASTE_WEIGHT = 0.05
+# P7: unused rest gold was nearly silent at 0.05; bump so spend/refresh knobs
+# that leave different leftovers actually move fitness.
+GOLD_WASTE_WEIGHT = 0.2
 VARIANCE_WEIGHT = 0.35
 # P6 pressure: reservoir overflow seconds + clear_frac miss (1 - killed/total).
 OVERFLOW_WEIGHT = 0.35
 CLEAR_MISS_WEIGHT = 1.5
+# P7: explicit positive progress on Σ clear_frac (even on fail rounds) so
+# near-miss boards beat total wipes without needing max_round_cleared > 0.
+# Combined with CLEAR_MISS this yields effective ~+4.5 per unit clear_frac
+# relative to a full miss (see docs/weishu-hillclimb-gradient-fix.md).
+CLEAR_FRAC_WEIGHT = 3.0
+# P7: paper clear_margin.margin proxy (tanh-clamped). Scoring knobs move this
+# even when stub battle outcomes are identical.
+MARGIN_WEIGHT = 1.25
 
 
 def _row_leaked(row: Mapping[str, Any]) -> int:
@@ -106,6 +121,30 @@ def _row_clear_frac(row: Mapping[str, Any]) -> Optional[float]:
     return max(0.0, min(1.0, killed / float(resolved)))
 
 
+def _row_margin(row: Mapping[str, Any]) -> Optional[float]:
+    """Paper / logged clear-margin proxy (may be negative)."""
+    if row.get("margin") is not None:
+        try:
+            return float(row["margin"])
+        except (TypeError, ValueError):
+            pass
+    cm = row.get("clear_margin")
+    if isinstance(cm, dict) and cm.get("margin") is not None:
+        try:
+            return float(cm["margin"])
+        except (TypeError, ValueError):
+            pass
+    return None
+
+
+def _margin_proxy(margin: Optional[float]) -> float:
+    """Bounded contribution so extreme paper margins don't dominate rounds."""
+    if margin is None:
+        return 0.0
+    # tanh keeps ~[-1, 1] for typical margin magnitudes.
+    return math.tanh(float(margin))
+
+
 def score_episode(ep: Mapping[str, Any]) -> Dict[str, Any]:
     """Scalar fitness components for one episode result dict."""
     cleared = int(ep.get("max_round_cleared") or 0)
@@ -116,7 +155,10 @@ def score_episode(ep: Mapping[str, Any]) -> Dict[str, Any]:
     rounds_ok = 0
     overflow_s = 0.0
     clear_miss = 0.0
+    clear_frac_sum = 0.0
     clear_frac_n = 0
+    margin_proxy_sum = 0.0
+    margin_n = 0
     for row in log:
         leaked = _row_leaked(row)
         total_leaked += leaked
@@ -124,14 +166,23 @@ def score_episode(ep: Mapping[str, Any]) -> Dict[str, Any]:
         frac = _row_clear_frac(row)
         if frac is not None:
             clear_miss += 1.0 - float(frac)
+            clear_frac_sum += float(frac)
             clear_frac_n += 1
+        m = _row_margin(row)
+        if m is not None:
+            margin_proxy_sum += _margin_proxy(m)
+            margin_n += 1
         if row.get("ok"):
             rounds_ok += 1
             gold_waste += int(row.get("gold_end") or 0)
         else:
             fail_leaked = leaked
+            # Fail-round leftover gold is also waste signal (spend vs freeze).
+            gold_waste += int(row.get("gold_end") or 0)
     raw = (
         ROUND_WEIGHT * cleared
+        + CLEAR_FRAC_WEIGHT * clear_frac_sum
+        + MARGIN_WEIGHT * margin_proxy_sum
         - LEAK_WEIGHT * total_leaked
         - FAIL_LEAK_WEIGHT * fail_leaked
         - GOLD_WASTE_WEIGHT * gold_waste
@@ -148,9 +199,14 @@ def score_episode(ep: Mapping[str, Any]) -> Dict[str, Any]:
         "gold_waste": int(gold_waste),
         "overflow_s": float(round(overflow_s, 4)),
         "clear_miss": float(round(clear_miss, 4)),
+        "clear_frac_sum": float(round(clear_frac_sum, 4)),
         "clear_frac_rounds": int(clear_frac_n),
+        "margin_proxy": float(round(margin_proxy_sum, 4)),
+        "margin_rounds": int(margin_n),
         "weights": {
             "round": ROUND_WEIGHT,
+            "clear_frac": CLEAR_FRAC_WEIGHT,
+            "margin": MARGIN_WEIGHT,
             "leak": LEAK_WEIGHT,
             "fail_leak": FAIL_LEAK_WEIGHT,
             "gold_waste": GOLD_WASTE_WEIGHT,
@@ -184,6 +240,8 @@ def aggregate_scores(
     leaks = [int(r.get("total_leaked") or 0) for r in rows]
     overflows = [float(r.get("overflow_s") or 0.0) for r in rows]
     clear_misses = [float(r.get("clear_miss") or 0.0) for r in rows]
+    clear_fracs = [float(r.get("clear_frac_sum") or 0.0) for r in rows]
+    margins = [float(r.get("margin_proxy") or 0.0) for r in rows]
     mean_fit = _mean(fits)
     std_fit = _population_std(fits)
     fitness = mean_fit - float(variance_weight) * std_fit
@@ -196,6 +254,8 @@ def aggregate_scores(
         "mean_leaked": float(_mean([float(x) for x in leaks])),
         "mean_overflow_s": float(_mean(overflows)),
         "mean_clear_miss": float(_mean(clear_misses)),
+        "mean_clear_frac_sum": float(_mean(clear_fracs)),
+        "mean_margin_proxy": float(_mean(margins)),
         "n": len(rows),
         "episodes": rows,
     }

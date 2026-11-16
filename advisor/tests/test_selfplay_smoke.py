@@ -10,7 +10,7 @@ from advisor import shop_odds
 from advisor.data import Dataset
 from advisor.selfplay import income as income_mod
 from advisor.selfplay.episode import run_episode
-from advisor.selfplay.hillclimb import hillclimb_step
+from advisor.selfplay.hillclimb import hillclimb_round, hillclimb_step
 from advisor.selfplay.params import apply_params, snapshot_params
 from advisor.model import BoardUnit, GameState, ShopCard
 from advisor.selfplay.shop_roll import odds_disclaimer, roll_shop
@@ -262,6 +262,30 @@ class ParamsAndHillclimbSmokeTest(unittest.TestCase):
         self.assertEqual(out["param"], "refresh.hunt_per_tier")
         self.assertIn("fitness", out["base"])
 
+    def test_hillclimb_round_runs_short(self):
+        # Tiny seed-sweep round: proves multi-step API + wall fields.
+        prev = snapshot_params()
+        try:
+            out = hillclimb_round(
+                steps=2,
+                seconds=30.0,
+                hard_wall_s=60.0,
+                step_scale=4,
+                n_params=2,
+                seed0=4,
+                episodes=1,
+                max_rounds=2,
+                suite=None,
+                eval_before_after=True,
+            )
+            self.assertIn("wall_s", out)
+            self.assertIn("accepted", out)
+            self.assertFalse(out.get("over_hard_wall"))
+            self.assertLessEqual(out["wall_s"], 60.0)
+            self.assertGreaterEqual(out["steps_logged"], 1)
+        finally:
+            apply_params(prev)
+
 
 
 class P4ActionsPlacementTest(unittest.TestCase):
@@ -378,6 +402,8 @@ class ObjectiveAndEvalHarnessTest(unittest.TestCase):
         self.assertGreater(pressured["clear_miss"], 0)
         self.assertIn("overflow", pressured["weights"])
         self.assertIn("clear_miss", pressured["weights"])
+        self.assertIn("clear_frac", pressured["weights"])
+        self.assertIn("margin", pressured["weights"])
         # Also accept signals nested under battle_sim.result.pressure.
         nested = score_episode({
             "max_round_cleared": 0,
@@ -394,10 +420,36 @@ class ObjectiveAndEvalHarnessTest(unittest.TestCase):
         self.assertAlmostEqual(nested["overflow_s"], 1.5)
         self.assertAlmostEqual(nested["clear_miss"], 0.5)
 
+    def test_score_episode_clear_frac_and_margin_move_fitness(self):
+        """P7: intermediate signals move fitness when max_round stays 0."""
+        from advisor.selfplay.objective import score_episode
+        wipe = score_episode({
+            "max_round_cleared": 0,
+            "log": [{
+                "ok": False, "leaked": 2, "gold_end": 0,
+                "clear_frac": 0.25, "max_overflow_s": 0.0, "margin": -0.5,
+            }],
+        })
+        near = score_episode({
+            "max_round_cleared": 0,
+            "log": [{
+                "ok": False, "leaked": 2, "gold_end": 0,
+                "clear_frac": 0.9, "max_overflow_s": 0.0, "margin": 0.8,
+            }],
+        })
+        self.assertEqual(wipe["max_round_cleared"], 0)
+        self.assertEqual(near["max_round_cleared"], 0)
+        self.assertGreater(near["fitness"], wipe["fitness"])
+        self.assertGreater(near["clear_frac_sum"], wipe["clear_frac_sum"])
+        self.assertGreater(near["margin_proxy"], wipe["margin_proxy"])
+
     def test_eval_cards_suite_smoke_runs(self):
-        from advisor.selfplay.eval_harness import evaluate_on_cards, list_cards
+        from advisor.selfplay.eval_harness import (
+            clear_eval_cache, evaluate_on_cards, list_cards)
+        clear_eval_cache()
         cards = list_cards(suite="smoke")
         self.assertGreaterEqual(len(cards), 2)
+        self.assertTrue(any(float(c.get("enemy_hp_scale") or 1) < 1.0 for c in cards))
         # Run only first two cards for CI speed.
         out = evaluate_on_cards(cards=cards[:2])
         self.assertIn("fitness", out)
@@ -405,6 +457,16 @@ class ObjectiveAndEvalHarnessTest(unittest.TestCase):
         self.assertEqual(out["n"], 2)
         self.assertTrue(out.get("assumed_env"))
         self.assertEqual(len(out["cards"]), 2)
+
+    def test_smoke_suite_half_clear_at_least_one_round(self):
+        """Stub-soften smoke cards so ≥half routinely clear ≥1 round."""
+        from advisor.selfplay.eval_harness import clear_eval_cache, evaluate_on_cards
+        clear_eval_cache()
+        out = evaluate_on_cards(suite="smoke")
+        cleared = [int(c.get("max_round_cleared") or 0) for c in out["cards"]]
+        n_ge1 = sum(1 for r in cleared if r >= 1)
+        self.assertGreaterEqual(n_ge1, 2, cleared)
+        self.assertGreaterEqual(out["mean_max_round"], 1.0)
 
     def test_aggregate_variance_penalty(self):
         from advisor.selfplay.objective import aggregate_scores, better

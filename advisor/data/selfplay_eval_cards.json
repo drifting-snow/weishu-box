@@ -3,15 +3,15 @@
   "official": false,
   "research_as_of": "2026-11-16",
   "purpose": "Fixed-seed self-play regression cards for hillclimb / param compare. Not official campaign fixtures.",
-  "objective_note": "Primary signal remains max_round_cleared; fitness also penalizes leaks, unused gold, and cross-card score variance.",
+  "objective_note": "Fitness rewards clear_frac + margin proxies and penalizes leaks, gold waste, overflow, clear_miss, and cross-card variance. Smoke uses enemy_hp_scale≈0.8 for stub reach (not realism).",
   "default_suite": "smoke",
   "suites": {
     "smoke": {
-      "note": "Cheap CI / local smoke: few rounds, fixed seeds",
+      "note": "Cheap CI / local smoke: few rounds, fixed seeds, softened enemy HP for hillclimb gradient",
       "card_ids": ["smoke_s0", "smoke_s1", "smoke_s2", "smoke_s7"]
     },
     "core": {
-      "note": "Slightly longer fixed-seed pack for hillclimb compare",
+      "note": "Slightly longer fixed-seed pack for hillclimb compare (full regulation HP)",
       "card_ids": [
         "smoke_s0", "smoke_s1", "smoke_s2", "smoke_s7",
         "core_s3", "core_s5", "core_s11", "core_s17"
@@ -24,40 +24,44 @@
       "seed": 0,
       "regulation_level": 1,
       "max_rounds": 3,
-      "actions_per_round": 6,
+      "actions_per_round": 8,
+      "enemy_hp_scale": 0.8,
       "use_battle": true,
       "season": "guicheng",
-      "note": "smoke seed 0"
+      "note": "smoke seed 0 · hp×0.8 stub soften"
     },
     {
       "id": "smoke_s1",
       "seed": 1,
       "regulation_level": 1,
       "max_rounds": 3,
-      "actions_per_round": 6,
+      "actions_per_round": 8,
+      "enemy_hp_scale": 0.55,
       "use_battle": true,
       "season": "guicheng",
-      "note": "smoke seed 1"
+      "note": "smoke seed 1 · extra soften so ≥half suite clears R1–R2"
     },
     {
       "id": "smoke_s2",
       "seed": 2,
       "regulation_level": 1,
       "max_rounds": 3,
-      "actions_per_round": 6,
+      "actions_per_round": 8,
+      "enemy_hp_scale": 0.8,
       "use_battle": true,
       "season": "guicheng",
-      "note": "smoke seed 2"
+      "note": "smoke seed 2 · hp×0.8 stub soften"
     },
     {
       "id": "smoke_s7",
       "seed": 7,
       "regulation_level": 1,
       "max_rounds": 3,
-      "actions_per_round": 6,
+      "actions_per_round": 8,
+      "enemy_hp_scale": 0.8,
       "use_battle": true,
       "season": "guicheng",
-      "note": "smoke seed 7"
+      "note": "smoke seed 7 · hp×0.8 stub soften"
     },
     {
       "id": "core_s3",
@@ -65,6 +69,7 @@
       "regulation_level": 1,
       "max_rounds": 5,
       "actions_per_round": 8,
+      "enemy_hp_scale": 1.0,
       "use_battle": true,
       "season": "guicheng",
       "note": "core seed 3"
@@ -75,6 +80,7 @@
       "regulation_level": 1,
       "max_rounds": 5,
       "actions_per_round": 8,
+      "enemy_hp_scale": 1.0,
       "use_battle": true,
       "season": "guicheng",
       "note": "core seed 5"
@@ -85,6 +91,7 @@
       "regulation_level": 1,
       "max_rounds": 5,
       "actions_per_round": 8,
+      "enemy_hp_scale": 1.0,
       "use_battle": true,
       "season": "guicheng",
       "note": "core seed 11"
@@ -95,6 +102,7 @@
       "regulation_level": 1,
       "max_rounds": 5,
       "actions_per_round": 8,
+      "enemy_hp_scale": 1.0,
       "use_battle": true,
       "season": "guicheng",
       "note": "core seed 17"

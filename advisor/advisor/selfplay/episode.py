@@ -372,11 +372,15 @@ def run_episode(
     use_battle: bool = True,
     action_epsilon: float = DEFAULT_ACTION_EPSILON,
     action_top_k: int = DEFAULT_ACTION_TOP_K,
+    enemy_hp_scale: float = 1.0,
 ) -> Dict[str, Any]:
     """Play until a wave fails or ``max_rounds`` cleared.
 
     Win condition per wave (v0): battle_sim cleared with leaked==0 when
     ``use_battle``; else clear_margin band != critical after reservoir wire.
+
+    ``enemy_hp_scale`` softens stub enemy HP for smoke/self-play gradient
+    reach (e.g. 0.8 ≈ quick-sim); default 1.0 leaves regulation HP alone.
     """
     ds = ds or Dataset()
     adv = Advisor(ds)
@@ -385,6 +389,12 @@ def run_episode(
     mode = _mode_key(regulation_level)
     catalog = load_enemy_catalog()
     name_index = load_enemy_name_index()
+    try:
+        hp_scale = float(enemy_hp_scale)
+    except (TypeError, ValueError):
+        hp_scale = 1.0
+    if hp_scale <= 0:
+        hp_scale = 1.0
 
     st = GameState(
         round=1,
@@ -455,15 +465,18 @@ def run_episode(
             break
 
         wave_ok = False
-        detail: Dict[str, Any] = {}
+        detail: Dict[str, Any] = {"enemy_hp_scale": hp_scale}
         if use_battle:
             try:
-                sim = battle_adapter.simulate(st, ds)
+                sim = battle_adapter.simulate(
+                    st, ds, enemy_hp_scale=hp_scale)
             except Exception as exc:  # pragma: no cover
                 sim = {"error": type(exc).__name__}
             detail["battle_sim"] = {
                 "error": sim.get("error") if isinstance(sim, dict) else None,
                 "result": (sim or {}).get("result") if isinstance(sim, dict) else None,
+                "hp_multiplier": (
+                    (sim or {}).get("hp_multiplier") if isinstance(sim, dict) else None),
             }
             result = (sim or {}).get("result") if isinstance(sim, dict) else None
             if isinstance(result, dict):
@@ -473,7 +486,7 @@ def run_episode(
                 )
                 detail["leaked"] = result.get("leaked")
                 detail["reason"] = result.get("reason")
-                # Surface reservoir signals for P6 objective pressure terms.
+                # Surface reservoir signals for P6/P7 objective pressure terms.
                 try:
                     total = int(result.get("total") or 0)
                     killed = int(result.get("killed") or 0)
@@ -506,23 +519,30 @@ def run_episode(
                 }
                 detail["clear_frac"] = detail["reservoir"]["clear_frac"]
                 detail["max_overflow_s"] = detail["reservoir"]["max_overflow_s"]
-        if not use_battle or detail.get("battle_sim", {}).get("error"):
-            paper = clear_margin(st, ds=ds)
-            paper = apply_reservoir_pressure(paper, detail.get("battle_sim"))
+        # Always log paper clear_margin (margin proxy) for objective sensitivity
+        # even when battle decides ok/fail — knobs move paper margin earlier.
+        paper = clear_margin(st, ds=ds)
+        paper = apply_reservoir_pressure(paper, detail.get("battle_sim"))
+        if isinstance(paper, dict):
             detail["clear_margin"] = {
-                "band": None if not paper else paper.get("band"),
-                "margin": None if not paper else paper.get("margin"),
+                "band": paper.get("band"),
+                "margin": paper.get("margin"),
             }
-            if isinstance(paper, dict) and isinstance(paper.get("reservoir"), dict):
-                # Prefer reservoir wire when battle failed / paper-only mode.
+            try:
+                detail["margin"] = (
+                    None if paper.get("margin") is None
+                    else float(paper.get("margin")))
+            except (TypeError, ValueError):
+                detail["margin"] = None
+            if isinstance(paper.get("reservoir"), dict):
                 res = paper["reservoir"]
                 if detail.get("clear_frac") is None and res.get("clear_frac") is not None:
                     detail["clear_frac"] = res.get("clear_frac")
                 if detail.get("max_overflow_s") is None and res.get("max_overflow_s") is not None:
                     detail["max_overflow_s"] = res.get("max_overflow_s")
                 detail.setdefault("reservoir", res)
-            if not use_battle:
-                wave_ok = bool(paper) and paper.get("band") != "critical"
+        if not use_battle:
+            wave_ok = bool(paper) and isinstance(paper, dict) and paper.get("band") != "critical"
 
         log.append({
             "round": round_no,
@@ -554,6 +574,7 @@ def run_episode(
         "regulation_level": regulation_level,
         "seed": seed,
         "season": season,
+        "enemy_hp_scale": hp_scale,
         "income_note": income_mod.ASSUMED_INCOME_NOTE,
         "income_disclaimer": income_mod.income_disclaimer(),
         "shop_odds": odds_disclaimer(),

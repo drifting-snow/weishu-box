@@ -5,6 +5,7 @@ Examples:
   python tools/selfplay_hillclimb.py episode --seed 1 --max-rounds 5
   python tools/selfplay_hillclimb.py eval --suite smoke
   python tools/selfplay_hillclimb.py hillclimb --suite smoke --param gap.cap
+  python tools/selfplay_hillclimb.py climb --suite smoke --steps 32 --seconds 150
   python tools/selfplay_hillclimb.py list-params
   python tools/selfplay_hillclimb.py list-cards --suite core
 """
@@ -45,6 +46,33 @@ def main(argv=None) -> int:
     p_hc.add_argument("--param", type=str, default=None)
     p_hc.add_argument("--suite", type=str, default="smoke",
                       help="Eval card suite (default smoke). Use '' for seed sweep.")
+
+    p_cl = sub.add_parser(
+        "climb",
+        help="Multi-step in-process hillclimb (2–3 min smoke round)",
+    )
+    p_cl.add_argument("--seed", type=int, default=0)
+    p_cl.add_argument("--steps", type=int, default=32,
+                      help="Max proposals (default 32)")
+    p_cl.add_argument("--seconds", type=float, default=150.0,
+                      help="Soft climb+eval wall seconds (default 150)")
+    p_cl.add_argument("--hard-wall", type=float, default=180.0,
+                      help="Hard abort wall seconds (default 180)")
+    p_cl.add_argument("--step-scale", type=int, default=6,
+                      help="Max unit-step multiplier for ±moves (default 6)")
+    p_cl.add_argument("--n-params", type=int, default=3,
+                      help="Max knobs perturbed per proposal (default 3)")
+    p_cl.add_argument("--range-jump-prob", type=float, default=0.4,
+                      help="Prob of fractional lo/hi range jump per knob")
+    p_cl.add_argument("--episodes", type=int, default=2)
+    p_cl.add_argument("--max-rounds", type=int, default=5)
+    p_cl.add_argument("--regulation-level", type=int, default=1)
+    p_cl.add_argument("--suite", type=str, default="smoke",
+                      help="Eval card suite (default smoke). Use '' for seed sweep.")
+    p_cl.add_argument("--no-before-after", action="store_true",
+                      help="Skip dedicated before/after suite evals")
+    p_cl.add_argument("--compact", action="store_true",
+                      help="Omit per-step log from JSON stdout")
 
     sub.add_parser("list-params", help="List tunable knobs")
 
@@ -112,6 +140,39 @@ def main(argv=None) -> int:
         )
         json.dump(out, sys.stdout, ensure_ascii=False, indent=2)
         print()
+        return 0
+
+    if args.cmd == "climb":
+        from advisor.selfplay.hillclimb import hillclimb_round
+        import random
+        suite = args.suite if args.suite not in ("", "none", "null") else None
+        out = hillclimb_round(
+            steps=args.steps,
+            seconds=args.seconds,
+            hard_wall_s=args.hard_wall,
+            step_scale=args.step_scale,
+            n_params=args.n_params,
+            range_jump_prob=args.range_jump_prob,
+            seed0=args.seed,
+            episodes=args.episodes,
+            max_rounds=args.max_rounds,
+            regulation_level=args.regulation_level,
+            rng=random.Random(args.seed),
+            suite=suite,
+            eval_before_after=not args.no_before_after,
+        )
+        if args.compact:
+            out = dict(out)
+            out.pop("steps", None)
+            out.pop("before", None)
+            out.pop("after", None)
+            out.pop("defaults", None)
+            out.pop("best_knobs", None)
+        json.dump(out, sys.stdout, ensure_ascii=False, indent=2)
+        print()
+        # Non-zero if hard wall blown (caller should abort / not promote).
+        if out.get("over_hard_wall"):
+            return 2
         return 0
 
     return 1

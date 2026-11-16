@@ -63,6 +63,10 @@ def run_card(
 ) -> Dict[str, Any]:
     """Run one eval card → episode + scored components."""
     ds = ds or Dataset()
+    try:
+        hp_scale = float(card.get("enemy_hp_scale", 1.0))
+    except (TypeError, ValueError):
+        hp_scale = 1.0
     ep = run_episode(
         ds=ds,
         seed=int(card.get("seed") or 0),
@@ -72,6 +76,7 @@ def run_card(
         season=str(card.get("season") or "guicheng"),
         use_battle=bool(card.get("use_battle", True)),
         income_flat=card.get("income_flat"),
+        enemy_hp_scale=hp_scale,
     )
     scored = score_episode(ep)
     return {
@@ -126,6 +131,8 @@ def evaluate_on_cards(
                 "gold_waste": row.get("gold_waste"),
                 "overflow_s": row.get("overflow_s"),
                 "clear_miss": row.get("clear_miss"),
+                "clear_frac_sum": row.get("clear_frac_sum"),
+                "margin_proxy": row.get("margin_proxy"),
                 "rounds_ok": row.get("rounds_ok"),
                 "rounds_played": row.get("rounds_played"),
             })
@@ -138,9 +145,10 @@ def evaluate_on_cards(
             "detail": per_card,
             **agg,
             "note": (
-                "P3/P6 eval harness: fixed seeds; fitness = mean(episode) "
-                "- variance_weight * std; episode penalizes leak/gold_waste/"
-                "overflow/clear_miss; ASSUMED shop/income/item_mix"
+                "P3/P6/P7 eval harness: fixed seeds; fitness = mean(episode) "
+                "- variance_weight * std; episode rewards clear_frac/margin "
+                "proxies and penalizes leak/gold_waste/overflow/clear_miss; "
+                "ASSUMED shop/income/item_mix"
             ),
         }
     finally:
