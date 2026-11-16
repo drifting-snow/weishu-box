@@ -172,5 +172,97 @@ class MarginBonusTest(unittest.TestCase):
             self.assertEqual(cm.upgrade_margin_adjustment(band), 0.0)
 
 
+class ReservoirPressureWireTest(unittest.TestCase):
+    """蓄水池 → apply_reservoir_pressure (paper × clear_frac + band clamps)."""
+
+    def _paper(self, margin=1.6, band=None):
+        band = band or cm.classify_margin(margin)
+        return {
+            "margin": margin,
+            "margin_paper": margin,
+            "band": band,
+            "band_paper": band,
+            "enemy_hp_total": 1000.0,
+            "team_eff_dps": 100.0,
+            "kill_time_t": 10.0,
+            "reservoir": {"applied": False, "reason": "pending", "notes": []},
+        }
+
+    def _sim(self, killed, leaked, total, overflow_s=0.0, reason="timeout"):
+        return {
+            "result": {
+                "killed": killed,
+                "leaked": leaked,
+                "total": total,
+                "reason": reason,
+                "pressure": {
+                    "front": {
+                        "level": 0.0,
+                        "peak": float(total),
+                        "capacity": 2,
+                        "overflow_seconds": overflow_s,
+                    }
+                },
+            }
+        }
+
+    def test_none_margin_stays_none(self):
+        self.assertIsNone(cm.apply_reservoir_pressure(None, self._sim(1, 0, 1)))
+
+    def test_absent_sim_keeps_paper(self):
+        paper = self._paper(1.6)
+        out = cm.apply_reservoir_pressure(paper, None)
+        self.assertEqual(out["margin"], 1.6)
+        self.assertEqual(out["band"], cm.BAND_COMFORTABLE)
+        self.assertFalse(out["reservoir"]["applied"])
+        self.assertEqual(out["reservoir"]["reason"], "absent")
+
+    def test_error_sim_keeps_paper(self):
+        paper = self._paper(1.2)
+        out = cm.apply_reservoir_pressure(paper, {"error": "boom"})
+        self.assertEqual(out["margin"], 1.2)
+        self.assertFalse(out["reservoir"]["applied"])
+        self.assertEqual(out["reservoir"]["reason"], "error")
+
+    def test_full_clear_keeps_paper_margin(self):
+        paper = self._paper(1.6)
+        out = cm.apply_reservoir_pressure(paper, self._sim(10, 0, 10, reason="cleared"))
+        self.assertTrue(out["reservoir"]["applied"])
+        self.assertAlmostEqual(out["margin"], 1.6, places=3)
+        self.assertEqual(out["band"], cm.BAND_COMFORTABLE)
+        self.assertEqual(out["reservoir"]["clear_frac"], 1.0)
+
+    def test_partial_clear_scales_margin(self):
+        # clear_frac 0.75 >= CRITICAL_AT → scale only (1.2*0.75=0.9 → tight)
+        paper = self._paper(1.2)
+        out = cm.apply_reservoir_pressure(paper, self._sim(6, 2, 8))
+        self.assertAlmostEqual(out["margin"], 0.9, places=3)
+        self.assertEqual(out["band"], cm.BAND_TIGHT)
+        self.assertEqual(out["margin_paper"], 1.2)
+        self.assertIn("有漏怪", "；".join(out["reservoir"]["notes"]))
+
+    def test_half_clear_below_critical_frac_clamps(self):
+        # 0.5 < CRITICAL_AT → force critical even though 1.6*0.5=0.8
+        paper = self._paper(1.6)
+        out = cm.apply_reservoir_pressure(paper, self._sim(5, 5, 10))
+        self.assertLess(out["margin"], cm.CRITICAL_AT)
+        self.assertEqual(out["band"], cm.BAND_CRITICAL)
+
+    def test_majority_leak_forces_critical(self):
+        # clear_frac 0.2 < CRITICAL_AT 0.6 → critical even if paper was high
+        paper = self._paper(2.0)
+        out = cm.apply_reservoir_pressure(paper, self._sim(2, 8, 10))
+        self.assertLess(out["margin"], cm.CRITICAL_AT)
+        self.assertEqual(out["band"], cm.BAND_CRITICAL)
+
+    def test_overflow_without_leak_blocks_comfortable(self):
+        paper = self._paper(1.8)
+        out = cm.apply_reservoir_pressure(
+            paper, self._sim(10, 0, 10, overflow_s=4.5, reason="cleared"))
+        self.assertLess(out["margin"], cm.COMFORTABLE_AT)
+        self.assertNotEqual(out["band"], cm.BAND_COMFORTABLE)
+        self.assertGreater(out["reservoir"]["max_overflow_s"], 0)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

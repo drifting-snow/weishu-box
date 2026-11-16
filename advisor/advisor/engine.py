@@ -329,20 +329,21 @@ class Advisor:
         # Empty when there is no enemy picture or no blind spot, which makes the
         # additive gap bonus inert and keeps legacy scoring byte-identical.
         gaps = team_gaps.detect_team_gaps(self.ds, st)
-        # Stage-1 continuous clear margin (real spawn-window data). None when
+        # Stage-1 continuous clear margin (paper DPS × clear window). None when
         # the level/board/picture is incomplete -> every margin term is inert.
         eff_profiles, eff_metrics = self._ensure_eff_data()
         margin_rec = clear_margin.clear_margin(st, eff_profiles, eff_metrics, ds=self.ds)
-        margin_band = margin_rec["band"] if margin_rec else None
-        # Stage-2 discrete battle simulation (inert output block only: it never
-        # feeds scores/actions in this cut). Reuses the same real data and buffs
-        # as the closed-form margin so the two can be cross-validated. Defensively
-        # guarded so a simulation issue can never break the primary recommendation.
+        # Stage-2 discrete battle simulation (蓄水池 / blocking / leak). Its
+        # result folds into margin via apply_reservoir_pressure so buy/upgrade
+        # steering sees frontline overflow — not paper DPS alone. Defensively
+        # guarded so a simulation issue falls back to paper margin.
         try:
             battle_sim = battle_adapter.simulate(
                 st, self.ds, eff_profiles, eff_metrics)
         except Exception as exc:  # pragma: no cover - safety net only
             battle_sim = {"error": "simulation skipped: %s" % type(exc).__name__}
+        margin_rec = clear_margin.apply_reservoir_pressure(margin_rec, battle_sim)
+        margin_band = margin_rec["band"] if margin_rec else None
         # Infer the curated lineup this board is building, so shop picks steer
         # toward one coherent composition. None on a directionless board -> the
         # compass contributes nothing and legacy scoring is unchanged.
