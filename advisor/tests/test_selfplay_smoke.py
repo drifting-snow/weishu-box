@@ -35,15 +35,34 @@ class ShopRollTest(unittest.TestCase):
         self.assertEqual(len(cards), int(ds.slots(2, "standard")))
         self.assertTrue(all(c.kind == "operator" and c.name for c in cards))
 
-    def test_assumed_item_mix_can_roll_items(self):
+    def test_dedicated_item_slot_confirmed(self):
         import random
-        from advisor.selfplay.shop_roll import item_slot_rate
+        from advisor.selfplay.shop_roll import (
+            item_mix_model, item_slots_per_shop, item_slot_rate)
         ds = Dataset()
-        self.assertGreater(item_slot_rate(), 0)
-        # Force items with a high rate via odds_doc override.
+        doc = shop_odds.load_shop_roll_odds()
+        mix = doc.get("item_mix") or {}
+        self.assertEqual(item_mix_model(doc), "dedicated_item_slots")
+        self.assertEqual(item_slots_per_shop(doc), 1)
+        self.assertFalse(mix.get("assumed"))  # slot count confirmed
+        self.assertTrue(mix.get("within_item_assumed"))
+        self.assertEqual(item_slot_rate(doc), 0.0)
+        n_ops = int(ds.slots(3, "standard"))
+        cards = roll_shop(ds, 3, "standard", rng=random.Random(1))
+        self.assertEqual(len(cards), n_ops + 1)
+        items = [c for c in cards if c.kind == "item"]
+        self.assertEqual(len(items), 1)
+        self.assertLessEqual(int(items[0].tier or 1), 3)
+        self.assertIn("item_mix", odds_disclaimer().lower())
+        self.assertIn("dedicated", odds_disclaimer().lower())
+
+    def test_legacy_bernoulli_item_mix_override(self):
+        import random
+        ds = Dataset()
         doc = shop_odds.load_shop_roll_odds()
         forced = dict(doc)
         forced["item_mix"] = {
+            "model": "bernoulli",
             "assumed": True, "official": False,
             "per_slot_item_rate": 1.0,
             "within_item_model": "uniform_all_items",
@@ -51,8 +70,7 @@ class ShopRollTest(unittest.TestCase):
         cards = roll_shop(ds, 3, "standard", rng=random.Random(1),
                           odds_doc=forced)
         self.assertTrue(cards)
-        self.assertTrue(any(c.kind == "item" for c in cards))
-        self.assertIn("item_mix", odds_disclaimer().lower())
+        self.assertTrue(all(c.kind == "item" for c in cards))
 
 
 class FreezePersistTest(unittest.TestCase):
@@ -64,14 +82,20 @@ class FreezePersistTest(unittest.TestCase):
             round=1, gold=4, dispatch_level=1, difficulty="standard",
             board=[BoardUnit(name=ds.operators[0]["name"])],
             shop=[ShopCard(kind="operator", name="冻结牌A", tier=1, price=2),
-                  ShopCard(kind="operator", name="冻结牌B", tier=1, price=2)],
+                  ShopCard(kind="operator", name="冻结牌B", tier=1, price=2),
+                  ShopCard(kind="item", name="冻结道具", tier=1, price=1)],
             frozen=True,
         )
         meta = ep._rest_start_shop(ds, st, season="guicheng",
                                    rng=random.Random(0))
         self.assertTrue(meta["shop_carry_frozen"])
-        self.assertGreaterEqual(meta["frozen_kept"], 2)
+        self.assertGreaterEqual(meta["frozen_kept"], 3)
         self.assertEqual(st.shop[0].name, "冻结牌A")
+        self.assertTrue(any(c.kind == "item" and c.name == "冻结道具"
+                            for c in st.shop))
+        # L1: 3 ops + 1 item
+        self.assertEqual(len(st.shop), 4)
+        self.assertEqual(sum(1 for c in st.shop if c.kind == "item"), 1)
         self.assertFalse(st.frozen)  # one-round lock consumed
 
     def test_freeze_action_sets_flag(self):
@@ -216,7 +240,8 @@ class P4ActionsPlacementTest(unittest.TestCase):
         import random
         ds = Dataset()
         cfg = merge_reward_config()
-        self.assertTrue(cfg.get("assumed"))
+        self.assertTrue(cfg.get("assumed"))  # which-ops still ASSUMED
+        self.assertTrue(cfg.get("structure_confirmed"))
         self.assertEqual(int(cfg.get("picks") or 0), 3)
         cards = roll_merge_reward(ds, 2, rng=random.Random(0))
         self.assertEqual(len(cards), 3)
