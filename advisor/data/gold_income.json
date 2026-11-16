@@ -4,11 +4,20 @@
   "season": "guicheng",
   "season_tag": "act3autochess",
   "research_as_of": "2026-11-16",
+  "p5_audit_as_of": "2026-11-16",
   "formula": "min(3 + round, income_cap)",
   "income_cap": 12,
   "income_cap_alternative": 10,
   "verified_through_round": 3,
-  "verified_note": "R1–R3 = 4/5/6 verified in community research (screenshots / Bahamut R3=6); R4+ and cap 12 remain ASSUMED",
+  "status_breakdown": {
+    "rest_grant_timing": "confirmed",
+    "unspent_clears": "confirmed",
+    "no_base_interest": "confirmed",
+    "r1_r3_amounts": "verified_community",
+    "r4_plus_and_cap": "assumed",
+    "speed_mode_amounts": "gap"
+  },
+  "verified_note": "R1–R3 = 4/5/6 verified in community research (Stronghold 00-INDEX screenshots / Bahamut R3=6). R4+ and income_cap=12 remain ASSUMED for 规程: PRTS/BWiki still only say「一定资金」, no official round column. Season-1 BWiki (原型/核心) stated 上限12 with different R1 curves — historical cap hint only, not a 规程 table.",
   "starting_gold": {
     "note": "No separate purse; equals round-1 rest income",
     "value": 4,
@@ -17,7 +26,8 @@
   "interest": {
     "base": false,
     "leftover_carryover_default": false,
-    "note": "Unspent gold clears at rest end (wiki / economy.unspent_carryover=false). No TFT-style interest. Strategy exceptions (e.g. 坎诺特) not modeled in selfplay v0."
+    "status": "confirmed",
+    "note": "Unspent gold clears at rest end (PRTS 帮助 / BWiki 规程 / economy.unspent_carryover=false). No TFT-style interest. Strategy exceptions (e.g. 坎诺特) not modeled in selfplay v0."
   },
   "by_mode": {
     "standard_or_protocol": {
@@ -36,7 +46,9 @@
     "https://prts.wiki/w/卫戍协议/帮助",
     "https://github.com/sganggs/Stronghold-Protocol/blob/master/docs/research/00-INDEX.md",
     "https://github.com/evenifyouforget/Stronghold-Protocol-EN/blob/main/docs/DATA.md",
+    "https://wiki.biligame.com/arknights/卫戍协议/1",
     "Project store docs/weishu-guard-protocol-economy-nov2026.md"
   ],
-  "disclaimer": "Fan/community prior for selfplay. Do not treat gold_by_round after R3 or income_cap as official Hypergryph data. Shop roll odds stay in shop_roll_odds.json (separate ASSUMED tables)."
+  "p5_verdict": "Do NOT clear top-level assumed. Keep min(3+r,12) as best community prior. Only interest/carry and R1–R3 status are stronger than assumed.",
+  "disclaimer": "Fan/community prior for selfplay. Do not treat gold_by_round after R3 or income_cap as official Hypergryph 规程 data. Shop roll odds stay in shop_roll_odds.json."
 }

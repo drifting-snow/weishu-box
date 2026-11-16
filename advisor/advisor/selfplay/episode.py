@@ -197,21 +197,31 @@ def _rest_start_shop(
     """Build rest-start shop; honor freeze carry (wiki: only empty/unfrozen refill).
 
     Freeze locks current remaining cards into the next rest, then clears
-    (one-round lock). Manual refresh re-rolls everything separately.
+    (one-round lock). Operator 栏位 and the dedicated item slot refill
+    independently. Manual refresh re-rolls everything separately.
     """
-    n = int(ds.slots(st.dispatch_level, st.difficulty) or 3)
+    from .shop_roll import item_mix_model, item_slots_per_shop, roll_item_cards
+
+    n_ops = int(ds.slots(st.dispatch_level, st.difficulty) or 3)
+    n_items = item_slots_per_shop() if item_mix_model() == "dedicated_item_slots" else 0
     meta = {"shop_carry_frozen": False, "frozen_kept": 0, "frozen_filled": 0}
     if st.frozen and st.shop:
-        kept = list(st.shop)[:n]
-        need = max(0, n - len(kept))
-        filler = roll_shop(
+        prev = list(st.shop)
+        kept_ops = [c for c in prev if getattr(c, "kind", None) != "item"][:n_ops]
+        kept_items = [c for c in prev if getattr(c, "kind", None) == "item"][:n_items]
+        need_ops = max(0, n_ops - len(kept_ops))
+        need_items = max(0, n_items - len(kept_items))
+        filler_ops = roll_shop(
             ds, st.dispatch_level, st.difficulty,
-            season=season, rng=rng, n_slots=need) if need else []
-        st.shop = kept + filler
+            season=season, rng=rng, n_slots=need_ops,
+            include_items=False) if need_ops else []
+        filler_items = roll_item_cards(
+            ds, st.dispatch_level, need_items, rng=rng) if need_items else []
+        st.shop = kept_ops + filler_ops + kept_items + filler_items
         meta.update({
             "shop_carry_frozen": True,
-            "frozen_kept": len(kept),
-            "frozen_filled": len(filler),
+            "frozen_kept": len(kept_ops) + len(kept_items),
+            "frozen_filled": len(filler_ops) + len(filler_items),
         })
         # Lock delivered for this rest start.
         st.frozen = False
