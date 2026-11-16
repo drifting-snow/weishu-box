@@ -473,6 +473,39 @@ def run_episode(
                 )
                 detail["leaked"] = result.get("leaked")
                 detail["reason"] = result.get("reason")
+                # Surface reservoir signals for P6 objective pressure terms.
+                try:
+                    total = int(result.get("total") or 0)
+                    killed = int(result.get("killed") or 0)
+                    leaked_n = int(result.get("leaked") or 0)
+                except (TypeError, ValueError):
+                    total = killed = leaked_n = 0
+                max_overflow = 0.0
+                pressure = result.get("pressure")
+                if isinstance(pressure, dict):
+                    for tile in pressure.values():
+                        if not isinstance(tile, dict):
+                            continue
+                        try:
+                            max_overflow = max(
+                                max_overflow,
+                                float(tile.get("overflow_seconds") or 0.0))
+                        except (TypeError, ValueError):
+                            pass
+                clear_frac = None
+                if total > 0:
+                    resolved = max(killed + leaked_n, total)
+                    clear_frac = max(
+                        0.0, min(1.0, killed / float(resolved)))
+                detail["reservoir"] = {
+                    "clear_frac": None if clear_frac is None else round(clear_frac, 4),
+                    "max_overflow_s": round(max_overflow, 3),
+                    "killed": killed,
+                    "leaked": leaked_n,
+                    "total": total,
+                }
+                detail["clear_frac"] = detail["reservoir"]["clear_frac"]
+                detail["max_overflow_s"] = detail["reservoir"]["max_overflow_s"]
         if not use_battle or detail.get("battle_sim", {}).get("error"):
             paper = clear_margin(st, ds=ds)
             paper = apply_reservoir_pressure(paper, detail.get("battle_sim"))
@@ -480,6 +513,14 @@ def run_episode(
                 "band": None if not paper else paper.get("band"),
                 "margin": None if not paper else paper.get("margin"),
             }
+            if isinstance(paper, dict) and isinstance(paper.get("reservoir"), dict):
+                # Prefer reservoir wire when battle failed / paper-only mode.
+                res = paper["reservoir"]
+                if detail.get("clear_frac") is None and res.get("clear_frac") is not None:
+                    detail["clear_frac"] = res.get("clear_frac")
+                if detail.get("max_overflow_s") is None and res.get("max_overflow_s") is not None:
+                    detail["max_overflow_s"] = res.get("max_overflow_s")
+                detail.setdefault("reservoir", res)
             if not use_battle:
                 wave_ok = bool(paper) and paper.get("band") != "critical"
 

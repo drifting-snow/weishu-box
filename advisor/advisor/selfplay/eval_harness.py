@@ -124,6 +124,8 @@ def evaluate_on_cards(
                 "total_leaked": row.get("total_leaked"),
                 "fail_leaked": row.get("fail_leaked"),
                 "gold_waste": row.get("gold_waste"),
+                "overflow_s": row.get("overflow_s"),
+                "clear_miss": row.get("clear_miss"),
                 "rounds_ok": row.get("rounds_ok"),
                 "rounds_played": row.get("rounds_played"),
             })
@@ -136,8 +138,9 @@ def evaluate_on_cards(
             "detail": per_card,
             **agg,
             "note": (
-                "P3 eval harness: fixed seeds; fitness = mean(episode) "
-                "- variance_weight * std; ASSUMED shop/income/item_mix"
+                "P3/P6 eval harness: fixed seeds; fitness = mean(episode) "
+                "- variance_weight * std; episode penalizes leak/gold_waste/"
+                "overflow/clear_miss; ASSUMED shop/income/item_mix"
             ),
         }
     finally:

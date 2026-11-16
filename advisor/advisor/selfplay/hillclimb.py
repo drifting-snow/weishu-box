@@ -134,6 +134,7 @@ def hillclimb_step(
         "suite": suite,
         "note": (
             "ASSUMED shop_odds/income/item_mix; fitness uses round/leak/"
-            "gold_waste + variance penalty; not a full client sim"
+            "gold_waste/overflow/clear_miss + variance penalty; "
+            "P6 expanded knobs; not a full client sim"
         ),
     }
