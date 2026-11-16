@@ -180,14 +180,65 @@ class ParamsAndHillclimbSmokeTest(unittest.TestCase):
         self.assertEqual(economy.INVEST_WEIGHT["free_refresh"], before)
 
     def test_hillclimb_step_runs(self):
-        # Short: 1 episode × 2 rounds × base+cand = 4 tiny episodes
+        # Short seed sweep (suite=None): 1 episode × 2 rounds × base+cand
         out = hillclimb_step(
             episodes=1, seed0=2, max_rounds=2,
             param_key="gap.cap",
+            suite=None,
         )
         self.assertEqual(out["param"], "gap.cap")
         self.assertIn("improved", out)
         self.assertIn("mean_max_round", out["base"])
+        self.assertIn("fitness", out["base"])
+
+
+class ObjectiveAndEvalHarnessTest(unittest.TestCase):
+    def test_score_episode_penalizes_leaks(self):
+        from advisor.selfplay.objective import score_episode
+        clean = score_episode({
+            "max_round_cleared": 2,
+            "log": [
+                {"ok": True, "leaked": 0, "gold_end": 0},
+                {"ok": True, "leaked": 0, "gold_end": 1},
+            ],
+        })
+        leaky = score_episode({
+            "max_round_cleared": 2,
+            "log": [
+                {"ok": True, "leaked": 0, "gold_end": 0},
+                {"ok": False, "leaked": 5, "gold_end": 0},
+            ],
+        })
+        self.assertGreater(clean["fitness"], leaky["fitness"])
+        self.assertEqual(clean["max_round_cleared"], 2)
+
+    def test_eval_cards_suite_smoke_runs(self):
+        from advisor.selfplay.eval_harness import evaluate_on_cards, list_cards
+        cards = list_cards(suite="smoke")
+        self.assertGreaterEqual(len(cards), 2)
+        # Run only first two cards for CI speed.
+        out = evaluate_on_cards(cards=cards[:2])
+        self.assertIn("fitness", out)
+        self.assertIn("mean_max_round", out)
+        self.assertEqual(out["n"], 2)
+        self.assertTrue(out.get("assumed_env"))
+        self.assertEqual(len(out["cards"]), 2)
+
+    def test_aggregate_variance_penalty(self):
+        from advisor.selfplay.objective import aggregate_scores, better
+        stable = aggregate_scores([
+            {"fitness": 10, "max_round_cleared": 1, "total_leaked": 0},
+            {"fitness": 10, "max_round_cleared": 1, "total_leaked": 0},
+        ], variance_weight=0.35)
+        noisy = aggregate_scores([
+            {"fitness": 20, "max_round_cleared": 2, "total_leaked": 0},
+            {"fitness": 0, "max_round_cleared": 0, "total_leaked": 0},
+        ], variance_weight=0.35)
+        self.assertEqual(stable["mean_fitness"], 10.0)
+        self.assertGreater(noisy["std_fitness"], stable["std_fitness"])
+        # Same mean (10) but noisy has std>0 → lower fitness after penalty.
+        self.assertGreater(stable["fitness"], noisy["fitness"])
+        self.assertTrue(better(stable, noisy))
 
 
 if __name__ == "__main__":
