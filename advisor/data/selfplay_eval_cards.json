@@ -1,0 +1,103 @@
+{
+  "assumed_env": true,
+  "official": false,
+  "research_as_of": "2026-11-16",
+  "purpose": "Fixed-seed self-play regression cards for hillclimb / param compare. Not official campaign fixtures.",
+  "objective_note": "Primary signal remains max_round_cleared; fitness also penalizes leaks, unused gold, and cross-card score variance.",
+  "default_suite": "smoke",
+  "suites": {
+    "smoke": {
+      "note": "Cheap CI / local smoke: few rounds, fixed seeds",
+      "card_ids": ["smoke_s0", "smoke_s1", "smoke_s2", "smoke_s7"]
+    },
+    "core": {
+      "note": "Slightly longer fixed-seed pack for hillclimb compare",
+      "card_ids": [
+        "smoke_s0", "smoke_s1", "smoke_s2", "smoke_s7",
+        "core_s3", "core_s5", "core_s11", "core_s17"
+      ]
+    }
+  },
+  "cards": [
+    {
+      "id": "smoke_s0",
+      "seed": 0,
+      "regulation_level": 1,
+      "max_rounds": 3,
+      "actions_per_round": 6,
+      "use_battle": true,
+      "season": "guicheng",
+      "note": "smoke seed 0"
+    },
+    {
+      "id": "smoke_s1",
+      "seed": 1,
+      "regulation_level": 1,
+      "max_rounds": 3,
+      "actions_per_round": 6,
+      "use_battle": true,
+      "season": "guicheng",
+      "note": "smoke seed 1"
+    },
+    {
+      "id": "smoke_s2",
+      "seed": 2,
+      "regulation_level": 1,
+      "max_rounds": 3,
+      "actions_per_round": 6,
+      "use_battle": true,
+      "season": "guicheng",
+      "note": "smoke seed 2"
+    },
+    {
+      "id": "smoke_s7",
+      "seed": 7,
+      "regulation_level": 1,
+      "max_rounds": 3,
+      "actions_per_round": 6,
+      "use_battle": true,
+      "season": "guicheng",
+      "note": "smoke seed 7"
+    },
+    {
+      "id": "core_s3",
+      "seed": 3,
+      "regulation_level": 1,
+      "max_rounds": 5,
+      "actions_per_round": 8,
+      "use_battle": true,
+      "season": "guicheng",
+      "note": "core seed 3"
+    },
+    {
+      "id": "core_s5",
+      "seed": 5,
+      "regulation_level": 1,
+      "max_rounds": 5,
+      "actions_per_round": 8,
+      "use_battle": true,
+      "season": "guicheng",
+      "note": "core seed 5"
+    },
+    {
+      "id": "core_s11",
+      "seed": 11,
+      "regulation_level": 1,
+      "max_rounds": 5,
+      "actions_per_round": 8,
+      "use_battle": true,
+      "season": "guicheng",
+      "note": "core seed 11"
+    },
+    {
+      "id": "core_s17",
+      "seed": 17,
+      "regulation_level": 1,
+      "max_rounds": 5,
+      "actions_per_round": 8,
+      "use_battle": true,
+      "season": "guicheng",
+      "note": "core seed 17"
+    }
+  ]
+}
