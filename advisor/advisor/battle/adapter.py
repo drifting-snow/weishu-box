@@ -14,8 +14,9 @@ decision layer's real data into it, without touching any GPL source:
             through the kernel's own ModBucket, so attack cadence stays exact.
 
 Honest first-cut approximations (returned in `approximations`, never hidden):
-  * Block count is a coarse profession default (PROFESSION_*); per-operator
-    block data is not yet wired. Attack RANGE now uses the real range grids.
+  * Block count prefers per-operator ``operator_mode_stats`` ``blockCnt``
+    (elite panel when promoted); ranged high-ground still blocks 0. Profession
+    defaults remain only as fallback when the panel is missing.
   * Multiple routes are folded onto a single lane so contact blocking can fire;
     per-route travel-distance differences are not modelled yet.
   * Enemies attack from the derived enemy_attack table (atk / interval / reach /
@@ -58,7 +59,7 @@ PROFESSION_FAMILY = {
     "术师": kdamage.ARTS_T,
     "辅助": kdamage.ARTS_T,   # most casters/suppliers deal arts until typed data lands
 }
-# Contact block capacity by profession. Ranged high-ground units do not block.
+# Fallback only when operator_mode_stats lacks blockCnt for a melee op.
 PROFESSION_BLOCK = {
     "重装": 3,
     "近卫": 1,
@@ -73,8 +74,45 @@ RANGED_COL = 10
 
 RANGES_PATH = os.path.join(DATA_DIR, "operator_ranges.json")
 SKILLS_PATH = os.path.join(DATA_DIR, "operator_skills.json")
+MODE_STATS_PATH = os.path.join(DATA_DIR, "operator_mode_stats.json")
 _ranges_cache: Optional[dict] = "unloaded"
 _skills_cache: Optional[dict] = "unloaded"
+_mode_stats_cache: Optional[dict] = "unloaded"
+
+
+def _mode_stats_by_name() -> dict:
+    """name -> operator_mode_stats row (list artifact indexed once)."""
+    global _mode_stats_cache
+    if _mode_stats_cache != "unloaded":
+        return _mode_stats_cache
+    try:
+        with open(MODE_STATS_PATH, encoding="utf-8") as fh:
+            doc = json.load(fh)
+        rows = doc.get("operators") or []
+        _mode_stats_cache = {
+            str(r.get("name")): r for r in rows if r.get("name")
+        }
+    except FileNotFoundError:
+        _mode_stats_cache = {}
+    return _mode_stats_cache
+
+
+def block_cnt_for(op_name: str, *, elite: bool = False,
+                  prof: str = "", is_ranged: bool = False) -> int:
+    """Contact block capacity for an ally.
+
+    Ranged (远程位) never contact-block in this kernel. Melee uses
+    ``operator_mode_stats`` initial/elite ``blockCnt``; falls back to
+    ``PROFESSION_BLOCK`` only when the panel is missing.
+    """
+    if is_ranged:
+        return 0
+    row = _mode_stats_by_name().get(op_name) or {}
+    panel = (row.get("elite") if elite else None) or row.get("initial") or {}
+    raw = panel.get("blockCnt")
+    if isinstance(raw, (int, float)):
+        return max(0, int(raw))
+    return int(PROFESSION_BLOCK.get(prof, 1))
 
 
 def _operator_ranges() -> dict:
@@ -253,7 +291,12 @@ def board_to_allies(st, ds, metrics, needs_review: List[str]) -> List[Unit]:
         prof = (op or {}).get("prof", "")
         is_ranged = (op or {}).get("position") == "远程位"
         family = PROFESSION_FAMILY.get(prof, kdamage.PHYS)
-        block_cnt = 0 if is_ranged else PROFESSION_BLOCK.get(prof, 1)
+        block_cnt = block_cnt_for(
+            bu.name, elite=bool(getattr(bu, "elite", False)),
+            prof=prof, is_ranged=is_ranged)
+        if not is_ranged and bu.name not in _mode_stats_by_name():
+            needs_review.append(
+                "no mode_stats blockCnt for %s; profession fallback" % bu.name)
 
         # Real tile-based range (facing already mirrored to world offsets).
         # Fall back to the coarse Euclidean radius only when the derived range
@@ -343,8 +386,10 @@ def build_battle(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None
     approximations.append("attack range uses real operator_ranges grids, "
                           "facing mirrored toward the red gate (orientation "
                           "pending in-game verification)")
-    approximations.append("block count uses coarse profession defaults, not "
-                          "per-operator block data")
+    approximations.append(
+        "block count from operator_mode_stats.blockCnt "
+        "(elite panel when promoted); ranged=0; profession default only "
+        "if panel missing")
     approximations.append("enemy attacks are real (atk/interval/reach) but "
                           "assumed physical; the unpacked table has no phys/arts "
                           "normal-hit type, and enemy skill bursts are not driven")

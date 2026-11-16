@@ -5,12 +5,12 @@ from __future__ import annotations
 import json
 import os
 import random
-from copy import deepcopy
 from typing import Any, Dict, List, Optional
 
 from advisor.battle import adapter as battle_adapter
 from advisor.clear_margin import apply_reservoir_pressure, clear_margin
 from advisor.data import Dataset
+from advisor import economy as econ
 from advisor.enemy_catalog import (
     load_enemy_catalog,
     load_enemy_name_index,
@@ -55,7 +55,6 @@ def _enemy_picture(level: dict, catalog, name_index) -> Dict[str, Any]:
         nm = sp.get("enemy_name")
         if nm:
             names.extend([nm] * int(sp.get("count") or 1))
-    # Cap name list for resolve; unique order preserved for catalog.
     uniq = list(dict.fromkeys(names))
     resolved = resolve_enemies(uniq, catalog, name_index)
     return {
@@ -76,6 +75,95 @@ def _board_add(board: List[BoardUnit], name: str, tier: int, bonds: List[str]) -
                            elite=False))
 
 
+def _remove_shop_card(st: GameState, name: str, kind: Optional[str] = None) -> None:
+    out = []
+    removed = False
+    for c in st.shop:
+        if (not removed and c.name == name
+                and (kind is None or c.kind == kind)):
+            removed = True
+            continue
+        out.append(c)
+    st.shop = out
+
+
+def _equip_item(ds: Dataset, st: GameState, item_name: str) -> bool:
+    """Attach item to first board carrier with a free equipment slot."""
+    if not st.board:
+        return False
+    if st.equipment is None:
+        st.equipment = {}
+    cap = int((ds.economy or {}).get("items_per_operator") or 2)
+    for u in st.board:
+        bag = list(st.equipment.get(u.name) or [])
+        if len(bag) < cap:
+            bag.append(item_name)
+            st.equipment[u.name] = bag
+            return True
+    first = st.board[0].name
+    bag = list(st.equipment.get(first) or [])
+    bag.append(item_name)
+    st.equipment[first] = bag
+    return True
+
+
+def _sell_operator(ds: Dataset, st: GameState, name: str) -> bool:
+    for i, u in enumerate(st.board):
+        if u.name != name:
+            continue
+        op = ds.operator(name)
+        gain = econ.sell_price(ds, op, advanced=bool(u.elite)) if op else \
+            int((ds.economy or {}).get("default_sell_price") or 1)
+        st.gold += int(gain)
+        if (not u.elite) and int(u.count) > 1:
+            u.count = int(u.count) - 1
+        else:
+            st.board.pop(i)
+            if name not in {x.name for x in st.board}:
+                (st.equipment or {}).pop(name, None)
+        return True
+    return False
+
+
+def _max_hand(ds: Dataset) -> int:
+    return int((ds.economy or {}).get("max_hand") or 10)
+
+
+def _rest_start_shop(
+    ds: Dataset,
+    st: GameState,
+    *,
+    season: str,
+    rng: random.Random,
+) -> Dict[str, Any]:
+    """Build rest-start shop; honor freeze carry (wiki: only empty/unfrozen refill).
+
+    Freeze locks current remaining cards into the next rest, then clears
+    (one-round lock). Manual refresh re-rolls everything separately.
+    """
+    n = int(ds.slots(st.dispatch_level, st.difficulty) or 3)
+    meta = {"shop_carry_frozen": False, "frozen_kept": 0, "frozen_filled": 0}
+    if st.frozen and st.shop:
+        kept = list(st.shop)[:n]
+        need = max(0, n - len(kept))
+        filler = roll_shop(
+            ds, st.dispatch_level, st.difficulty,
+            season=season, rng=rng, n_slots=need) if need else []
+        st.shop = kept + filler
+        meta.update({
+            "shop_carry_frozen": True,
+            "frozen_kept": len(kept),
+            "frozen_filled": len(filler),
+        })
+        # Lock delivered for this rest start.
+        st.frozen = False
+    else:
+        st.shop = roll_shop(
+            ds, st.dispatch_level, st.difficulty, season=season, rng=rng)
+        st.frozen = False
+    return meta
+
+
 def _apply_top(ds: Dataset, st: GameState, rec: dict, rng: random.Random,
                season: str) -> str:
     """Apply one affordable recommendation; return verb or 'noop'."""
@@ -89,33 +177,78 @@ def _apply_top(ds: Dataset, st: GameState, rec: dict, rng: random.Random,
             if cost > st.gold:
                 continue
             name = action.get("target")
+            card = next((c for c in st.shop if c.name == name), None)
+            kind = (card.kind if card else None) or "operator"
+
+            if kind == "item" or (card is None and ds.item(name) and not ds.operator(name)):
+                it = ds.item(name)
+                if not it:
+                    continue
+                # Prefer shop card price; fall back to catalog.
+                try:
+                    price = int(card.price) if card and card.price is not None \
+                        else int(it.get("price") or cost or 0)
+                except (TypeError, ValueError):
+                    price = int(cost or 0)
+                if price > st.gold:
+                    continue
+                if not st.board:
+                    continue
+                st.gold -= price
+                if not _equip_item(ds, st, name):
+                    st.gold += price
+                    continue
+                _remove_shop_card(st, name, kind="item")
+                return "buy_item"
+
             op = ds.operator(name)
             if not op:
                 continue
+            # Board cap: sell one copy of a different unit if at max_hand.
+            if (name not in {u.name for u in st.board}
+                    and len(st.board) >= _max_hand(ds)):
+                victim = st.board[-1].name
+                if victim == name or not _sell_operator(ds, st, victim):
+                    continue
             st.gold -= cost
             _board_add(st.board, name, int(op.get("shop_tier") or 1),
                        list(op.get("bonds") or []))
-            # Remove purchased card from shop if present.
-            st.shop = [c for c in st.shop if c.name != name]
+            _remove_shop_card(st, name, kind="operator")
             return "buy"
+
+        if verb == "sell":
+            name = action.get("target")
+            if name and _sell_operator(ds, st, name):
+                return "sell"
+            continue
+
         if verb == "refresh":
             if cost > st.gold:
                 continue
             st.gold -= cost
+            # Wiki: refresh while frozen re-rolls including locked slots.
             st.shop = roll_shop(ds, st.dispatch_level, st.difficulty,
                                 season=season, rng=rng)
+            st.frozen = False
             return "refresh"
+
         if verb == "upgrade":
             if cost > st.gold or st.dispatch_level >= 6:
                 continue
             st.gold -= cost
             st.dispatch_level = int(st.dispatch_level) + 1
             return "upgrade"
+
         if verb == "merge":
-            # Elite promotion already handled on buy when count hits 3.
             return "merge"
-        if verb in ("freeze", "skip"):
-            return verb
+
+        if verb == "freeze":
+            # Persist shop into next rest; not a no-op.
+            st.frozen = True
+            return "freeze"
+
+        if verb == "skip":
+            return "skip"
     return "noop"
 
 
@@ -152,6 +285,8 @@ def run_episode(
         regulation_level=int(regulation_level),
         board=[],
         shop=[],
+        frozen=False,
+        equipment={},
     )
     log: List[dict] = []
     cleared = 0
@@ -169,8 +304,7 @@ def run_episode(
         picture = _enemy_picture(meta["level"], catalog, name_index)
         st.enemy_names = picture["enemy_names"]
         st.enemy_types = picture["enemy_types"]
-        st.shop = roll_shop(ds, st.dispatch_level, st.difficulty,
-                            season=season, rng=rng)
+        shop_meta = _rest_start_shop(ds, st, season=season, rng=rng)
 
         actions = []
         for _ in range(actions_per_round):
@@ -181,7 +315,7 @@ def run_episode(
             actions.append(verb)
             if verb in ("noop", "freeze", "skip"):
                 break
-            if st.gold <= 0 and verb != "merge":
+            if st.gold <= 0 and verb not in ("merge", "sell"):
                 break
 
         if not st.board:
@@ -195,6 +329,8 @@ def run_episode(
                 "gold_unspent_cleared": True,
                 "gold_interest": False,
                 "gold_assumed": income_flat is None,
+                "frozen": st.frozen,
+                **shop_meta,
             })
             break
 
@@ -239,10 +375,13 @@ def run_episode(
             "board": [u.name for u in st.board],
             "actions": actions,
             "level_stem": meta["stem"],
+            "frozen_end": st.frozen,
+            "shop_kinds": [c.kind for c in st.shop],
+            **shop_meta,
             **detail,
         })
-        # Rest end: any leftover is discarded next iteration when st.gold is
-        # replaced; explicit zero here documents no carry / no interest.
+        # Rest end: leftover gold discarded next iteration; freeze flag may
+        # remain True so the next rest keeps locked shop cards.
         st.gold = 0
         if not wave_ok:
             break

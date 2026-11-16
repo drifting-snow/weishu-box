@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Minimal self-play / hillclimb scaffold for advisor param search.
 
-Uses ASSUMED community shop_odds.tier_probs and ASSUMED gold_income.json
-(formula min(3+r,12); unspent clears at rest end). Not a full client sim.
+Uses ASSUMED shop_odds (+ item_mix), ASSUMED gold_income min(3+r,12),
+freeze carry across rests, and mode_stats blockCnt in battle. Not a full client.
 """
 from .episode import run_episode
 from .hillclimb import hillclimb_step
