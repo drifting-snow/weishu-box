@@ -9,7 +9,7 @@ pressure terms. Not a full client.
 """
 from .episode import run_episode
 from .eval_harness import evaluate_on_cards, list_cards
-from .hillclimb import hillclimb_step
+from .hillclimb import hillclimb_round, hillclimb_step
 from .objective import score_episode
 from .params import PARAMS, apply_params, list_params, snapshot_params
 
@@ -20,6 +20,7 @@ __all__ = [
     "snapshot_params",
     "run_episode",
     "hillclimb_step",
+    "hillclimb_round",
     "score_episode",
     "evaluate_on_cards",
     "list_cards",

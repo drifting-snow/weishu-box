@@ -10,7 +10,7 @@ from advisor import shop_odds
 from advisor.data import Dataset
 from advisor.selfplay import income as income_mod
 from advisor.selfplay.episode import run_episode
-from advisor.selfplay.hillclimb import hillclimb_step
+from advisor.selfplay.hillclimb import hillclimb_round, hillclimb_step
 from advisor.selfplay.params import apply_params, snapshot_params
 from advisor.model import BoardUnit, GameState, ShopCard
 from advisor.selfplay.shop_roll import odds_disclaimer, roll_shop
@@ -261,6 +261,30 @@ class ParamsAndHillclimbSmokeTest(unittest.TestCase):
         )
         self.assertEqual(out["param"], "refresh.hunt_per_tier")
         self.assertIn("fitness", out["base"])
+
+    def test_hillclimb_round_runs_short(self):
+        # Tiny seed-sweep round: proves multi-step API + wall fields.
+        prev = snapshot_params()
+        try:
+            out = hillclimb_round(
+                steps=2,
+                seconds=30.0,
+                hard_wall_s=60.0,
+                step_scale=4,
+                n_params=2,
+                seed0=4,
+                episodes=1,
+                max_rounds=2,
+                suite=None,
+                eval_before_after=True,
+            )
+            self.assertIn("wall_s", out)
+            self.assertIn("accepted", out)
+            self.assertFalse(out.get("over_hard_wall"))
+            self.assertLessEqual(out["wall_s"], 60.0)
+            self.assertGreaterEqual(out["steps_logged"], 1)
+        finally:
+            apply_params(prev)
 
 
 
