@@ -17,7 +17,11 @@ Key quantities:
     enemy_hp = level.total_hp_level0 * regulation_hp_multiplier(L)
     team_dps = sum over board of effdps(name, enemy_types)      # None -> skip
     kill_time = enemy_hp / team_dps
-    margin    = team_dps * clear_window / enemy_hp              # >1 clears in time
+    margin_paper = team_dps * clear_window / enemy_hp           # >1 clears in time
+Reservoir wire (apply_reservoir_pressure): when battle_sim is present, the
+effective margin is margin_paper * (killed/total), then clamped with the same
+CRITICAL_AT / COMFORTABLE_AT band thresholds so leaks / reservoir overflow
+cannot report a comfortable frontline. Missing sim -> paper-only fallback.
 A margin of 1.0 is the break-even line; bands turn the continuous value into a
 coarse economy-vs-damage steering signal. The module is inert (returns None)
 whenever the level cannot be resolved, the board has no measurable DPS, or no
@@ -210,9 +214,137 @@ def clear_margin(st, profiles=None, metrics=None, doc: Optional[dict] = None, ds
         "clear_window_t": window,
         "kill_time_t": round(kill_time, 2),
         "margin": round(margin, 3),
+        "margin_paper": round(margin, 3),
         "band": band,
+        "band_paper": band,
+        "reservoir": {
+            "applied": False,
+            "reason": "pending",
+            "notes": [],
+        },
         "approximations": list(doc.get("_meta", {}).get("approximations", [])),
     }
+
+
+def _max_overflow_seconds(pressure) -> float:
+    """Largest TileReservoir.overflow_time from battle.result pressure snapshot."""
+    if not isinstance(pressure, dict) or not pressure:
+        return 0.0
+    best = 0.0
+    for tile in pressure.values():
+        if not isinstance(tile, dict):
+            continue
+        try:
+            best = max(best, float(tile.get("overflow_seconds") or 0.0))
+        except (TypeError, ValueError):
+            continue
+    return best
+
+
+def apply_reservoir_pressure(margin_rec, battle_sim):
+    """Fold 蓄水池 discrete outcome into a paper clear_margin record.
+
+    Effective margin = margin_paper * (killed / total). Band clamps reuse the
+    existing CRITICAL_AT / COMFORTABLE_AT thresholds (no new game constants):
+      * any leak        -> cannot stay in comfortable
+      * clear_frac < CRITICAL_AT -> force critical band
+      * overflow_seconds > 0 with no leak -> cannot stay comfortable
+    Missing / errored / empty battle_sim leaves paper margin unchanged.
+    Returns a new dict (or None if margin_rec is None).
+    """
+    if margin_rec is None:
+        return None
+    out = dict(margin_rec)
+    paper = float(out.get("margin_paper", out.get("margin") or 0.0))
+    out["margin_paper"] = round(paper, 3)
+    out.setdefault("band_paper", out.get("band"))
+
+    notes = []
+    absent = {
+        "applied": False,
+        "clear_frac": None,
+        "killed": None,
+        "leaked": None,
+        "total": None,
+        "max_overflow_s": None,
+        "notes": notes,
+    }
+
+    if not isinstance(battle_sim, dict):
+        notes.append("无 battle_sim·回退纸面裕度")
+        absent["reason"] = "absent"
+        out["reservoir"] = absent
+        return out
+    if battle_sim.get("error"):
+        notes.append("仿真错误·回退纸面裕度")
+        absent["reason"] = "error"
+        absent["error"] = battle_sim.get("error")
+        out["reservoir"] = absent
+        return out
+
+    result = battle_sim.get("result")
+    if not isinstance(result, dict):
+        notes.append("无仿真 result·回退纸面裕度")
+        absent["reason"] = "empty"
+        out["reservoir"] = absent
+        return out
+
+    try:
+        total = int(result.get("total") or 0)
+        killed = int(result.get("killed") or 0)
+        leaked = int(result.get("leaked") or 0)
+    except (TypeError, ValueError):
+        notes.append("仿真计数不可解析·回退纸面裕度")
+        absent["reason"] = "empty"
+        out["reservoir"] = absent
+        return out
+
+    if total <= 0:
+        notes.append("仿真 total=0·回退纸面裕度")
+        absent["reason"] = "empty"
+        out["reservoir"] = absent
+        return out
+
+    # Resolve bookkeeping drift (killed+leaked may be < total on early exit).
+    resolved = max(killed + leaked, total)
+    clear_frac = max(0.0, min(1.0, killed / float(resolved)))
+    max_overflow = _max_overflow_seconds(result.get("pressure"))
+    margin_eff = paper * clear_frac
+    notes.append("蓄水池·清场率%.0f%%×纸面裕度" % (clear_frac * 100.0))
+
+    # Use 1e-3 headroom so round(..., 3) cannot land exactly on a band edge.
+    if leaked > 0:
+        if margin_eff >= COMFORTABLE_AT:
+            margin_eff = COMFORTABLE_AT - 0.001
+        notes.append("有漏怪·禁止舒适带")
+    if clear_frac < CRITICAL_AT:
+        if margin_eff >= CRITICAL_AT:
+            margin_eff = CRITICAL_AT - 0.001
+        notes.append("清场率<%.0f%%·压入critical" % (CRITICAL_AT * 100.0))
+    if max_overflow > 0 and leaked == 0:
+        if margin_eff >= COMFORTABLE_AT:
+            margin_eff = COMFORTABLE_AT - 0.001
+        notes.append("阵线溢出%.1fs·禁止舒适带" % max_overflow)
+
+    band = classify_margin(margin_eff)
+    out["margin"] = round(margin_eff, 3)
+    out["band"] = band
+    out["kill_time_t"] = (
+        round(out["enemy_hp_total"] / out["team_eff_dps"], 2)
+        if out.get("team_eff_dps") else out.get("kill_time_t")
+    )
+    out["reservoir"] = {
+        "applied": True,
+        "reason": "ok",
+        "clear_frac": round(clear_frac, 4),
+        "killed": killed,
+        "leaked": leaked,
+        "total": total,
+        "max_overflow_s": round(max_overflow, 3),
+        "sim_reason": result.get("reason"),
+        "notes": notes,
+    }
+    return out
 
 
 def operator_margin_bonus(profiles, metrics, name, enemy_types, band):

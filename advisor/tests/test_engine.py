@@ -373,11 +373,19 @@ class BattleSimOutputTest(unittest.TestCase):
         res = self.adv.recommend(st)
         self.assertIsNone(res.get("battle_sim"))
 
-    def test_battle_sim_does_not_change_recommendations(self):
-        # the block is inert: removing it must not alter any action score
+    def test_battle_sim_wires_into_clear_margin_reservoir(self):
+        # 蓄水池: battle_sim folds into clear_margin via apply_reservoir_pressure
         st = self._battle_state()
         res = self.adv.recommend(st)
-        scores = [(a["verb"], a["target"], a["score"]) for a in res["recommendations"]]
+        cm_rec = res.get("clear_margin")
+        self.assertIsNotNone(cm_rec)
+        self.assertIn("margin_paper", cm_rec)
+        self.assertIn("reservoir", cm_rec)
+        self.assertTrue(cm_rec["reservoir"].get("applied"))
+        self.assertIn(cm_rec["band"],
+                      ("critical", "tight", "adequate", "comfortable"))
+        scores = [(a["verb"], a["target"], a["score"])
+                  for a in res["recommendations"]]
         self.assertTrue(scores)
-        for verb, target, score in scores:
+        for _verb, _target, score in scores:
             self.assertIsInstance(score, (int, float))

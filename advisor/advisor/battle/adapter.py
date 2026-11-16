@@ -23,8 +23,9 @@ Honest first-cut approximations (returned in `approximations`, never hidden):
     hits are modelled as physical; enemy skill bursts are not driven.
   * Skill bursts, DP, projectiles, healing and boss mechanics are not driven.
 
-The module is inert with respect to the scoring engine: it only builds and runs
-a Battle and returns a record; engine.py decides later whether to consume it.
+Scoring: engine.recommend runs simulate then clear_margin.apply_reservoir_pressure
+so killed/leaked/pressure.overflow_seconds adjust the effective clear-margin band.
+This module still only builds and runs a Battle; it does not score cards itself.
 """
 import json
 import os
@@ -387,7 +388,10 @@ def build_battle(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None
 
 def simulate(st, ds, profiles=None, metrics=None, doc: Optional[dict] = None,
              max_seconds: float = 3600.0):
-    """Run the discrete simulation and return an inert battle_sim record."""
+    """Run the discrete simulation and return a battle_sim record.
+
+    Consumed by clear_margin.apply_reservoir_pressure (蓄水池 → effective margin).
+    """
     assembled = build_battle(st, ds, profiles, metrics, doc)
     if assembled is None:
         return None
