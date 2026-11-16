@@ -127,17 +127,78 @@ def roll_shop(
     return cards
 
 
+def merge_reward_config(odds_doc=None) -> dict:
+    doc = odds_doc if odds_doc is not None else shop_odds.load_shop_roll_odds()
+    cfg = dict((doc or {}).get("merge_reward") or {})
+    cfg.setdefault("assumed", True)
+    cfg.setdefault("official", False)
+    cfg.setdefault("picks", 3)
+    cfg.setdefault("tier_boost", 1)
+    cfg.setdefault("free_buys", 1)
+    cfg.setdefault("operators_only", True)
+    return cfg
+
+
+def roll_merge_reward(
+    ds: Dataset,
+    dispatch_level: int,
+    *,
+    season: str = "guicheng",
+    rng: Optional[random.Random] = None,
+    odds_doc=None,
+) -> List[ShopCard]:
+    """ASSUMED elite-promotion reward: N operator picks at boosted tier.
+
+    Community description: 晋级临时 3 选 1（高一阶）. Not official odds.
+    """
+    rng = rng or random.Random()
+    odds_doc = odds_doc if odds_doc is not None else shop_odds.load_shop_roll_odds()
+    cfg = merge_reward_config(odds_doc)
+    n = max(1, int(cfg.get("picks") or 3))
+    boost = max(0, int(cfg.get("tier_boost") or 1))
+    target = min(6, max(1, int(dispatch_level) + boost))
+    buckets = operators_by_tier(ds)
+    # Prefer exact target tier; fall back downward then upward.
+    order = [target] + list(range(target - 1, 0, -1)) + list(range(target + 1, 7))
+    cards: List[ShopCard] = []
+    for _ in range(n):
+        card = None
+        for tier in order:
+            pool = buckets.get(tier) or []
+            if not pool:
+                continue
+            op = rng.choice(pool)
+            price = buy_price(ds, op)
+            card = ShopCard(
+                kind="operator",
+                name=op["name"],
+                tier=int(op.get("shop_tier") or tier),
+                price=int(price),
+                bond=(op.get("bonds") or [None])[0],
+                raw={"merge_reward": True, "assumed": True},
+            )
+            break
+        if card is not None:
+            cards.append(card)
+    return cards
+
+
 def odds_disclaimer() -> str:
     doc = shop_odds.load_shop_roll_odds()
     mix = doc.get("item_mix") or {}
+    mr = merge_reward_config(doc)
     return (
         "shop_odds ASSUMED=%s official=%s source=%s; "
-        "item_mix ASSUMED=%s per_slot_rate=%s"
+        "item_mix ASSUMED=%s per_slot_rate=%s; "
+        "merge_reward ASSUMED=%s picks=%s tier_boost=%s"
         % (
             doc.get("assumed"),
             doc.get("official"),
             doc.get("source"),
             mix.get("assumed", True),
             item_slot_rate(doc),
+            mr.get("assumed", True),
+            mr.get("picks"),
+            mr.get("tier_boost"),
         )
     )

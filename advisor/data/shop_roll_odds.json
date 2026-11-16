@@ -64,5 +64,14 @@
     "per_slot_item_rate": 0.25,
     "within_item_model": "uniform_all_items",
     "note": "Official item appearance rates unpublished. Self-play ASSUMED: each shop slot independently becomes an item with this rate, then uniform over data/items.json. Do not treat as Hypergryph odds."
+  },
+  "merge_reward": {
+    "assumed": true,
+    "official": false,
+    "picks": 3,
+    "tier_boost": 1,
+    "free_buys": 1,
+    "operators_only": true,
+    "note": "Community: 晋级临时 3 选 1（高一阶）. Self-play ASSUMED: on elite promotion, replace shop with N operator picks biased to min(dispatch+tier_boost,6); one free buy. Not official Hypergryph odds/UI."
   }
 }

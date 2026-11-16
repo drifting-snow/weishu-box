@@ -192,6 +192,78 @@ class ParamsAndHillclimbSmokeTest(unittest.TestCase):
         self.assertIn("fitness", out["base"])
 
 
+class P4ActionsPlacementTest(unittest.TestCase):
+    def test_ordered_picks_epsilon_can_reorder(self):
+        from advisor.selfplay import episode as ep
+        import random
+        rec = {
+            "recommendations": [
+                {"verb": "buy", "target": "A", "score": 100, "cost": 2},
+                {"verb": "buy", "target": "B", "score": 50, "cost": 2},
+                {"verb": "refresh", "target": "调度中心", "score": 40, "cost": 1},
+            ]
+        }
+        # epsilon=1 forces sample among top-k
+        seen = set()
+        for seed in range(40):
+            picks = ep._ordered_picks(
+                rec, random.Random(seed), epsilon=1.0, top_k=3)
+            seen.add(picks[0]["target"])
+        self.assertGreaterEqual(len(seen), 2)
+
+    def test_merge_reward_rolls_three_operators(self):
+        from advisor.selfplay.shop_roll import roll_merge_reward, merge_reward_config
+        import random
+        ds = Dataset()
+        cfg = merge_reward_config()
+        self.assertTrue(cfg.get("assumed"))
+        self.assertEqual(int(cfg.get("picks") or 0), 3)
+        cards = roll_merge_reward(ds, 2, rng=random.Random(0))
+        self.assertEqual(len(cards), 3)
+        self.assertTrue(all(c.kind == "operator" for c in cards))
+
+    def test_buy_third_copy_grants_merge_reward_shop(self):
+        from advisor.selfplay import episode as ep
+        import random
+        ds = Dataset()
+        # Pick an operator that exists
+        name = None
+        for op in ds.operators:
+            if int(op.get("shop_tier") or 0) == 1:
+                name = op["name"]
+                break
+        self.assertIsNotNone(name)
+        st = GameState(
+            round=1, gold=10, dispatch_level=2,
+            board=[BoardUnit(name=name, count=2, elite=False,
+                             tier=1, bonds=list(ds.operator(name).get("bonds") or []))],
+            shop=[ShopCard(kind="operator", name=name, tier=1, price=2)],
+        )
+        ctx = {"free_buys": 0, "merge_rewards": 0}
+        verb = ep._apply_top(
+            ds, st,
+            {"recommendations": [{"verb": "buy", "target": name, "cost": 2, "score": 90}]},
+            random.Random(0), "guicheng", ctx=ctx, epsilon=0.0)
+        self.assertEqual(verb, "buy_merge_reward")
+        self.assertEqual(ctx["merge_rewards"], 1)
+        self.assertEqual(ctx["free_buys"], 1)
+        self.assertEqual(len(st.shop), 3)
+        self.assertTrue(any(u.elite for u in st.board if u.name == name))
+
+    def test_placement_sorts_high_block_front(self):
+        from advisor.battle.adapter import placement_sort_key_melee
+        from advisor.battle.unit import Unit, BaseStats
+        def mk(name, block, atk):
+            return Unit(
+                "id_%s" % name, name, "ally", "op",
+                BaseStats(atk=atk, defense=0, max_hp=1, res=0,
+                          base_bat=1.0, block_cnt=block, range_radius=1.0))
+        a = mk("tank", 3, 100)
+        b = mk("dps", 1, 500)
+        ordered = sorted([b, a], key=placement_sort_key_melee)
+        self.assertEqual(ordered[0].name, "tank")
+
+
 class ObjectiveAndEvalHarnessTest(unittest.TestCase):
     def test_score_episode_penalizes_leaks(self):
         from advisor.selfplay.objective import score_episode
