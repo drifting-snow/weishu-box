@@ -161,8 +161,11 @@ def run_episode(
         if meta is None:
             break
         st.round = round_no
-        st.gold = income_mod.gold_for_round(
+        # Rest start: REPLACE gold with round income (wiki: unspent clears at
+        # rest end; no TFT-style interest). Do not add leftover from last wave.
+        income = income_mod.gold_for_round(
             round_no, table=income_table, flat=income_flat)
+        st.gold = income
         picture = _enemy_picture(meta["level"], catalog, name_index)
         st.enemy_names = picture["enemy_names"]
         st.enemy_types = picture["enemy_types"]
@@ -182,8 +185,17 @@ def run_episode(
                 break
 
         if not st.board:
-            log.append({"round": round_no, "ok": False, "reason": "empty_board",
-                        "actions": actions})
+            log.append({
+                "round": round_no,
+                "ok": False,
+                "reason": "empty_board",
+                "actions": actions,
+                "gold_granted": income,
+                "gold_end": st.gold,
+                "gold_unspent_cleared": True,
+                "gold_interest": False,
+                "gold_assumed": income_flat is None,
+            })
             break
 
         wave_ok = False
@@ -218,13 +230,20 @@ def run_episode(
         log.append({
             "round": round_no,
             "ok": wave_ok,
+            "gold_granted": income,
             "gold_end": st.gold,
+            "gold_unspent_cleared": True,
+            "gold_interest": False,
+            "gold_assumed": income_flat is None,
             "dispatch_level": st.dispatch_level,
             "board": [u.name for u in st.board],
             "actions": actions,
             "level_stem": meta["stem"],
             **detail,
         })
+        # Rest end: any leftover is discarded next iteration when st.gold is
+        # replaced; explicit zero here documents no carry / no interest.
+        st.gold = 0
         if not wave_ok:
             break
         cleared = round_no
@@ -235,6 +254,7 @@ def run_episode(
         "seed": seed,
         "season": season,
         "income_note": income_mod.ASSUMED_INCOME_NOTE,
+        "income_disclaimer": income_mod.income_disclaimer(),
         "shop_odds": odds_disclaimer(),
         "log": log,
     }

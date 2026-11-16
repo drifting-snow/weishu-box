@@ -35,10 +35,32 @@ class ShopRollTest(unittest.TestCase):
 
 
 class IncomeAssumedTest(unittest.TestCase):
-    def test_income_marked_assumed(self):
+    def test_income_marked_assumed_formula(self):
+        # Community ASSUMED: min(3+r, 12); R1–R3 verified 4/5/6.
+        doc = income_mod.load_gold_income()
+        self.assertTrue(doc.get("assumed"))
+        self.assertFalse(doc.get("official"))
+        self.assertEqual(doc.get("income_cap"), 12)
         self.assertIn("ASSUMED", income_mod.ASSUMED_INCOME_NOTE)
-        self.assertEqual(income_mod.gold_for_round(1), 10)
+        self.assertEqual(income_mod.gold_for_round(1), 4)
+        self.assertEqual(income_mod.gold_for_round(2), 5)
+        self.assertEqual(income_mod.gold_for_round(3), 6)
+        self.assertEqual(income_mod.gold_for_round(9), 12)
+        self.assertEqual(income_mod.gold_for_round(15), 12)
         self.assertEqual(income_mod.gold_for_round(1, flat=7), 7)
+        table = income_mod.table_for_mode(doc)
+        for r in range(1, 16):
+            self.assertEqual(table[r], income_mod.income_formula(r, doc))
+
+    def test_episode_clears_unspent_each_rest(self):
+        out = run_episode(seed=0, max_rounds=3, actions_per_round=2,
+                          use_battle=False)
+        self.assertTrue(out["log"])
+        for i, row in enumerate(out["log"]):
+            self.assertEqual(row["gold_granted"], income_mod.gold_for_round(i + 1))
+            self.assertTrue(row["gold_unspent_cleared"])
+            self.assertFalse(row["gold_interest"])
+            self.assertTrue(row["gold_assumed"])
 
 
 class EpisodeSmokeTest(unittest.TestCase):
